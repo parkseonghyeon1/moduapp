@@ -21,9 +21,47 @@
 	</div>
 	<form id="review_reg_form" method="post" enctype="multipart/form-data">
 	<div id="m_reg_wrap" method="post" enctype="multipart/form-data">
-		<div class="m_reg_li">
-			<p class="title rg_title">[여성의류] 스윗바비 3기</p>
-			<ul>
+		<div class="m_reg_li" style="background:none">
+			<div style="margin-bottom:10px">
+			<p class="title rg_title bk_white">[여성의류] 스윗바비 3기</p>
+			<ul style="background:#fff">
+				<li>
+					<label for="" class="title">배송지</label>
+					<div class="dv_input conf_input m_b">
+						<div class="input_txt">
+							<input class="input" name="mb_zip" id="mb_zip" type="text" placeholder="우편번호 입력" required>
+							<input type="button" class="conf_stat btn_conf" id="btn_zip" value="우편검색" onclick="sample4_execDaumPostcode()">
+						</div>
+						<div class="input_txt2">
+							<input class="input" name="mb_addr1" id="mb_addr1" type="text" placeholder="주소 입력" required>
+						</div>
+						<div class="input_txt3">
+							<input class="input" name="mb_addr2" id="mb_addr2" type="text" placeholder="나머지 주소 입력" required>
+						</div>
+					</div>
+				</li>
+				<li style="overflow:hidden">
+					<label for="" class="title">연락처</label>
+					<div class="tel_input" style="overflow:hidden">
+						<input class="input" type="text" name="mb_hp1" id="mb_hp1" maxlength="3" numberonly="true" required><em>-</em>
+						<input class="input" type="text" name="mb_hp2" id="mb_hp2" maxlength="4" numberonly="true" required><em >-</em>
+						<input class="input" type="text" name="mb_hp3" id="mb_hp3" maxlength="4" numberonly="true" required>
+					</div>
+				</li>
+				<li>
+					<label class="title" for="">특이사항</label>
+					<div class="dv_input">
+						<div class="input_txt">
+							<textarea class="rg_cont" name="data9" id="data9" placeholder="특이사항을 입력"></textarea>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label for="" class="title">주의사항</label>
+				</li>
+			</ul>
+			</div>
+			<ul style="background:#fff">
 				<li>
 					<label class="title" for="">신청상품</label>
 					<div class="dv_input">
