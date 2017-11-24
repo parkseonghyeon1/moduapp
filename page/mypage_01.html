@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>나의체험단</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.form.min.js"></script>
+	<script src="../js/menu.js"></script>
+</head>
+<body>
+	<div id="header">
+		<h1>나의체험단</h1>
+		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+	</div>
+	<div>
+		<ul id="pr_view_mn" class="bk_white">
+			<li class="on"><a class="tab1 t_b" id="my_p1">신청</a></li>
+			<li><a class="tab2 t_b" id="my_p2">선정</a></li>
+			<li><a class="tab3 t_b" id="my_p3">취소/불참</a></li>
+		</ul>
+	</div>
+	<div class="home_list">
+		<ul id="sns_list">
+		
+		</ul>
+	</div>
+	<script>
+	$(document).ready(function(){
+		var mb_id = member['mb_id'];
+		var my_p = $('[class=on]').children().attr("id");
+		var string = '';
+		var params = {"mb_id":mb_id,"my_p":"my_p1"};
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_mypage01.php",   
+			data:params,
+			success:function(data){
+				$.each(data[0],function(key,value){
+					string += '<li><a href="product_view';
+					if(value.bo_table == 'sns_fashion'){
+						string +='_sns';
+					}
+					string += '.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'&site_id=sns"><div class="list_item"><div class="list_item_img"><img src="'+value.image+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.choice+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.comment+'</span>&nbsp;/&nbsp;'+value.wr_8+'</span></div></div></div><div>';
+					if(my_p == 'my_p1'){
+						string += '<a>신청수정</a><a>신청취소</a>';
+					}
+					string += '</div></li>';
+				}); 
+				$("#sns_list").append(string);
+				
+				console.log(data);
+			},   
+			error:function(e){  
+				alert(e.responseText);  
+			}  
+		});  		
+	})
+	
+	// 신청|선정|취소불참 클릭
+	$(document).on('click','#pr_view_mn li a',function(){
+		$(this).closest('li').addClass('on').siblings().removeClass('on');	
+		var mb_id = member['mb_id'];
+		var my_p = $('[class=on]').children().attr("id");
+		var string = '';
+		var txt_s = '';
+		var params = {"mb_id":mb_id,"my_p":my_p};
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_mypage01.php",   
+			data:params,
+			success:function(data){
+				$.each(data[0],function(key,value){
+					string += '<li><a href="product_view';
+					if(value.bo_table == 'sns_fashion'){
+						string +='_sns';
+					}
+					string += '.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'&site_id=sns"><div class="list_item"><div class="list_item_img"><img src="'+value.image+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.choice+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.comment+'</span>&nbsp;/&nbsp;'+value.wr_8+'</span></div></div></div><div>';
+					if(my_p == 'my_p1'){
+						string += '<a>신청수정</a><a>신청취소</a>';
+					}else if(my_p == 'my_p2'){
+						if(value.review){
+							txt_s = "수정";
+						}else{
+							txt_s = "등록";
+						}
+						string += '<a>체험안내</a><a>리뷰'+txt_s+'</a>';
+					}else if(my_p == 'my_p3'){
+						if(value.ms_choice == "n2"){
+							txt_s = "불참";
+						}else{
+							txt_s = "취소";
+						}
+						string += '<a>'+txt_s+'</a>';
+					}
+					string += '</div></li>';
+				}); 
+				$("#sns_list").html(string);
+				
+				console.log(data);
+			},   
+			error:function(e){  
+				alert(e.responseText);  
+			}  
+		});  
+	});
+	</script>
+</body>
+</html>
