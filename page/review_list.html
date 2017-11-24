@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>전체리뷰</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/swiper.min.js"></script>
+	<script src="../js/menu.js"></script>
+</head>
+<style>
+.star_b {padding-top:30px}
+</style>
+<body>
+	<div id="header">
+		<h1>전체리뷰</h1>
+		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+	</div>
+	<div class="home_list">
+		<ul id="sns_list">
+			<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><div class="star_b"><span>★★★☆☆</span>/<span>10점</span></div></div></div></a></li>
+		</ul>
+	</div>
+	<script>
+	$(document).ready(function(){
+		var mb_id = member['mb_id'];
+		var my_p = $('[class=on]').children().attr("id");
+		var string = '';
+		var params = {"mb_id":mb_id,"my_p":"my_p1"};
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_mypage01.php",   
+			data:params,
+			success:function(data){
+				
+				
+				console.log(data);
+			},   
+			error:function(e){  
+				alert(e.responseText);  
+			}  
+		});  		
+	})
+	</script>
+</body>
+</html>
