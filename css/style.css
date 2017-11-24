@@ -35,11 +35,12 @@ input::placeholder {color:#989898 !important}
 /* popup */
 #popup {width:90%;margin:0 5%;position:absolute;top:50%;margin-top:-210px;z-index:999;display:none}
 #popup #pop_cont {background:#fff;border-radius:0.4em;overflow:hidden;padding:0 16px}
+#popup .pop_cont_txt {height:300px;overflow-y:auto}
 #popup #pop_cont p {font-size:15px;text-align:center;border-bottom:1px solid #ebebeb;padding:16px 0}
 #popup #pop_cont div {padding:16px 0;font-size:11px;color:#707070}
 #popup #btn_close {position:relative;height:16px;padding:0 4px 10px}
 #popup #btn_close a {position:absolute;right:0;top:0;width:16px;height:16px;background:url(../img/icon_cancle.png)no-repeat;background-size:16px 16px;}
-#mask {position:absolute;top:0;left:0;width:100%;height:100%;background:#000;z-index:99;opacity:.5;display:none}
+#mask {position:absolute;top:0;left:0;width:100%;height:100%;background:#000;z-index:99;opacity:.5;display:none;overflow-y:}
 
 /* main */
 .btn_t_l {position:fixed;top:10px;left:10px}

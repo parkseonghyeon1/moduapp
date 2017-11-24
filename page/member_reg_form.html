@@ -202,22 +202,22 @@
 			</div>
 			<em class="em_b"></em>
 			<div class="terms_use">
-				<span class="ct">[필수]</span><a href="#none">회원약관 동의</a>
+				<span class="ct">[필수]</span><a href="#none" class="pop">회원약관 동의</a>
 				<input type="checkbox" id="chk_1" name="chk_1" class="chk">
 				<label for="chk_1"><span></span></label>
 			</div>
 			<div class="terms_use">
-				<span class="ct">[필수]</span><a href="#none">개인정보 수집 및 이용 동의</a>
+				<span class="ct">[필수]</span><a href="#none" class="pop">개인정보 수집 및 이용 동의</a>
 				<input type="checkbox" id="chk_2" name="chk_2" class="chk">
 				<label for="chk_2"><span></span></label>
 			</div>
 			<div class="terms_use">
-				<span class="ct">[필수]</span><a href="#none">체험 상품 정보 메일 및 SMS 수신 동의</a>
+				<span class="ct">[필수]</span><a href="#none" class="pop">체험 상품 정보 메일 및 SMS 수신 동의</a>
 				<input type="checkbox" id="chk_3" name="chk_3" class="chk">
 				<label for="chk_3"><span></span></label>
 			</div>
 			<div class="terms_use">
-				<span class="ct">[필수]</span><a href="#none">정해진 규정 준수 동의</a>
+				<span class="ct">[필수]</span><a href="#none" class="pop">정해진 규정 준수 동의</a>
 				<input type="checkbox" id="chk_4" name="chk_4" class="chk">
 				<label for="chk_4"><span></span></label>
 			</div>
@@ -231,7 +231,16 @@
 		</div>
     </form>
 	
+	<!-- 팝업 -->
+	<div id="pop"></div>
+	
 	<script>
+	
+	// 도움말 버튼 팝업 띄우기
+	$(document).on('click','.pop',function(){
+		$('#pop').load("popup.html");
+	})
+	
 	$('#mb_email').keyup(function(){
 		var email_input = $('#mb_email').val();
 		$('#mb_email_f').text(email_input);
