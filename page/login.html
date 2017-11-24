@@ -16,7 +16,7 @@
 <body>
 	<div id="header">
 		<h1>로그인</h1>
-		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+		<a href="main.html" class="header_btn_l btn_back go_a_replace">뒤로</a>
 	</div>
 	<div id="log_wrap">
 		<div class="log_info1">
@@ -26,17 +26,17 @@
 				<div class="input_txt2"><input class="input" id="val2" type="password" placeholder="비밀번호"></div>
 			</div>
 			<div class="btn_wrap btn_ok">
-				<a href="#none">로그인</a>
+				<a id="loginclick">로그인</a>
 			</div>
 		</div>
 		<div class="log_info2">
 			<p class="p_txt" style="padding-bottom:17px">비밀번호가 생각나지 않으세요?</p>
 			<span class="sub_p_txt">회원가입 시 등록하신 이메일 주소를 입력하시면<br>아이디와 비밀번호 정보를 보내드립니다.</span>
 			<div class="btn_wrap btn_pw">
-				<a href="password_help.html">아이디/비밀번호 찾기</a>
+				<a href="password_help.html" class="go_a">아이디/비밀번호 찾기</a>
 			</div>
 			<div class="btn_wrap btn_pw">
-				<a href="member_reg_form.html">회원가입</a>
+				<a href="member_reg_form.html" class="go_a">회원가입</a>
 			</div>
 		</div>
 	</div>
@@ -54,6 +54,61 @@
 			$('.btn_ok > a').removeClass('on');
 		}
 	})
+	 // 이동
+    $(document).on('click','.go_a',function(){
+        var url = $(this).attr("href");
+        location.href(url);
+        return false;
+    });
+    $(document).on('click','.go_a_replace',function(){
+        var url = $(this).attr("href");
+        location.replace(url);
+        return false;
+    });
+    $(function(){
+		//로그인 체크 기능
+        $('#loginclick').click(function(){
+			var ummm = {
+			mb_id : $("#val1").val(),
+			password : $("#val2").val()
+			};
+
+			$.ajax({
+				type : 'POST',
+				url : 'http://modublog.co.kr/app_public/ajax/a_login.php/',
+				data : ummm,
+				dataType : 'json',
+				success : function(data){
+					$.each(data,function(key,value){
+						if (value=='failure') {
+							alert("이메일 또는 비밀번호가 일치하지 않습니다");
+						}else if (value!='failure') {
+							window.localStorage.setItem("mb_id",value.mb_id);
+							window.localStorage.setItem("mb_nick",value.mb_nick);
+							window.localStorage.setItem("mb_point",value.mb_point);
+							window.localStorage.setItem("mb_name",value.mb_name);
+							window.localStorage.setItem("mb_zip1",value.mb_zip1);
+							window.localStorage.setItem("mb_addr1",value.mb_addr1);
+							window.localStorage.setItem("mb_addr2",value.mb_addr2);
+							window.localStorage.setItem("mb_hp",value.mb_hp);
+							window.localStorage.setItem("mb_email",value.mb_email);
+							window.localStorage.setItem("mb_homepage",value.mb_homepage);
+							window.localStorage.setItem("mb_sns1",value.mb_sns1);
+							window.localStorage.setItem("mb_sns2",value.mb_sns2);
+							location.replace('main.html');
+						}
+					});
+					
+				}, error : function(xhr, status, error){
+					var error_confirm = confirm('데이터 전송 오류입니다. 확인을 누르시면 페이지가 새로고침됩니다.');
+					document.location.reload();
+				}
+			});
+		});
+
+
+		
+    });
 	</script>
 </body>
 </html>

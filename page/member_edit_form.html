@@ -116,13 +116,14 @@
 	</form>
 	<script>
 	$(document).ready(function(){
-		var mb_id = {'mb_id':'shinbyro'};
+		var mb_id = {'mb_id':member['mb_id']};
 		$.ajax({      
-			url: 'http://modublog.co.kr/app_public/a_edit_member.php',
+			url: 'http://modublog.co.kr/app_public/ajax/a_edit_member.php',
 			data: mb_id,
 			type: 'POST',
 			datatype: 'JSON',
 			success: function(data){
+				
 				$.each(data,function(key,value){
 					if(key == 'mb_hp0' || key == 'mb_hp1' || key == 'mb_hp2' || key == 'mb_nick' || 
 					key == 'mb_zip1' || key == 'mb_addr1' || key == 'mb_addr2' || key == 'mb_homepage' || 
@@ -137,6 +138,7 @@
 						$('#img_box1').css('background','url(http://modublog.co.kr/data/mb_photo/'+value+')center center / cover no-repeat');
 					}
 				})
+				
 			}, 
 			error:function(e){  
 				
