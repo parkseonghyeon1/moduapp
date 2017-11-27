@@ -132,7 +132,11 @@
 		}
 
 		function string_change(data){
-			return data.replaceAll("%21","!").replaceAll("%23","#").replaceAll("%24","&").replaceAll("%26","&").replaceAll("%27","'").replaceAll("%28","(").replaceAll("%29",")").replaceAll("%2A","*").replaceAll("%2B","+").replaceAll("%2C",",").replaceAll("%2F","/").replaceAll("%3A",":").replaceAll("%3B",";").replaceAll("%3D","=").replaceAll("%3F","?").replaceAll("%40","@").replaceAll("%5B","[").replaceAll("%5D","]").replaceAll("%20"," ").replaceAll("%22",'"').replaceAll("%25","%").replaceAll("%2D","-").replaceAll("%2E",".").replaceAll("%3C","<").replaceAll("%3E",">").replaceAll("%5C","\'").replaceAll("%5E","^").replaceAll("%5F","_").replaceAll("%60","`").replaceAll("%7B","{").replaceAll("%7C","|").replaceAll("%7D","}").replaceAll("%7E","~");
+			return data.replace(/%21/gi,"!").replace(/%23/gi,"#").replace(/%24/gi,"&").replace(/%26/gi,"&").replace(/%27/gi,"'").replace(/%28/gi,"(").replace(/%29/gi,")").replace(/%2A/gi,"*").replace(/%2B/gi,"+").replace(/%2C/gi,",").replace(/%2F/gi,"/").replace(/%3A/gi,":").replace(/%3B/gi,";").replace(/%3D/gi,"=").replace(/%3F/gi,"?").replace(/%40/gi,"@").replace(/%5B/gi,"[").replace(/%5D/gi,"]").replace(/%20/gi," ").replace(/%22/gi,'"').replace(/%25/gi,"%").replace(/%2D/gi,"-").replace(/%2E/gi,".").replace(/%3C/gi,"<").replace(/%3E/gi,">").replace(/%5C/gi,"\'").replace(/%5E/gi,"^").replace(/%5F/gi,"_").replace(/%60/gi,"`").replace(/%7B/gi,"{").replace(/%7C/gi,"|").replace(/%7D/gi,"}").replace(/%7E/gi,"~");
+		}
+
+		function string_blank(data){
+			return data.replace(/\+/gi," ");
 		}
 
 		$('#mb_name').val(decodeURI(data['mb_name']));
@@ -142,8 +146,8 @@
 		$('#mb_hp2').val(data['mb_hp2']);
 		$('#mb_hp3').val(data['mb_hp3']);
 		$('#mb_zip').val(data['mb_zip']);
-		$('#mb_addr1').val(decodeURI(data['mb_addr1']));
-		$('#mb_addr2').val(decodeURI(data['mb_addr2']));
+		$('#mb_addr1').val(string_blank(decodeURI(data['mb_addr1'])));
+		$('#mb_addr2').val(string_blank(decodeURI(data['mb_addr2'])));
 		$('#mb_homepage').val(string_change(data['mb_homepage']));
 		$('#mb_email').val(data['mb_email'].replace("%40","@"));
 		$('#mb_password').val(decodeURI(data['mb_password']));
@@ -196,6 +200,7 @@
 			$("#mb_email").focus();
 			return false;
 		}*/
+		
 		
 		if(mb_name == ''){
 			alert("이름을 입력하세요.");
@@ -284,8 +289,6 @@
 		});*/
 		
 
-
-		
 		$('#mb_form_f').ajaxForm({
 			url: "http://modublog.co.kr/app_public/ajax/a_register_member.php",
 			enctype: "multipart/form-data",
@@ -300,6 +303,7 @@
 			}
 		});
 		$("#mb_form_f").submit();
+	
 	})
 
 // 이동
