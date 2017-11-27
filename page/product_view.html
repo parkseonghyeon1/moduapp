@@ -112,7 +112,7 @@
 	<script>
 	//전체 로딩
 	$(document).ready(function(){
-		var mb_id = member['mb_id'];
+		var mb_id = 'shinbyro';
 		var bo_table = getQuerystring('bo_table');
 		var wr_id = getQuerystring('wr_id');
 		var params = {"wr_id":wr_id,"mb_id":mb_id,"bo_table":bo_table,"ca_name":"BLOG"};
@@ -147,7 +147,7 @@
 				$('#wr_comment').html(data.wr_comment);
 				$('#pr_rec_num').html(data.pr_rec_num);
 				$('#pr_go').attr("href",data.wr_link1);
-				$('#req_go').attr("href","product_req_form.html?bo_table="+data.pr_board+"&wr_id="+data.pr_board_id);
+				$('#req_go').attr("href","product_req_form.html?bo_table="+data.pr_board+"&wr_id="+data.pr_board_id+'&mb_id='+mb_id);
 				
 				$.each(data.pr_file,function(key,value){
 					string += '<div class="swiper-slide"><div class="main_bann_img"><img alt="" src="'+value+'"></div></div>';
