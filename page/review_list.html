@@ -17,18 +17,108 @@
 	<script src="../js/menu.js"></script>
 </head>
 <style>
-.star_b {padding-top:30px}
+.star_b {}
+.star_b span {margin-right:3px;font-size:9px;color:#797979}
+.star_b img {width:10px}
+.rv_sub_info {padding-top:10px}
+.vr_list li {border-top:1px solid #e9e9e9}
+.tab_sns {display:none}
+.star_gd {padding-right:10px;background:url(../img/icon_bar.png)no-repeat right center}
 </style>
 <body>
 	<div id="header">
 		<h1>리뷰보기</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+		<a href="" class="header_btn_r btn_search2">검색</a>
 	</div>
-	<div class="home_list">
-		<ul id="sns_list">
-			<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><div class="star_b"><span>★★★☆☆</span>/<span>10점</span></div></div></div></a></li>
+	<ul class="tab_mn tab_two">
+		<li class="on"><a class="tab1 t_b">블로그 체험단</a></li>
+		<li><a class="tab2 t_s">SNS 체험단</a></li>
+	</ul>
+	
+	<!-- 블로그 리뷰 -->
+	<div class="swiper-container ca_wrap tab_blog" style="padding:12px 0 6px;background:#fff">
+		<div class="swiper-wrapper category blog_c" style="height:25px">
+			<a href="#none" class="on" data="all">전체</span></a>
+			<a href="#none" data="food">맛집</a>
+			<a href="#none" data="fashion">패션</a>
+			<a href="#none" data="beauty">뷰티</a>
+			<a href="#none" data="life">생활</a>
+			<a href="#none" data="hobby">취미</span></a>
+			<a href="#none" data="tour">여행</a>
+			<a href="#none" data="special">기타</a>
+		</div>
+	</div>
+	<div class="tab_blog list_wrap">
+		<ul class="bk_white vr_list" id="rv_li">
+			<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><span class="conts txt_ov">제주도 가면 기념품은 필수 인거같아요 진짜 꼭 챙겨가세요</span>
+			
+			<div class="rv_sub_info star_b">
+				<span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span class="star_gd">10점</span>
+				<span>리뷰&nbsp;<span class="color_blog">121</span></span>
+			</div>
+			
+			</div></div></a></li>
+			<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><span class="conts txt_ov">제주도 가면 기념품은 필수 인거같아요 진짜 꼭 챙겨가세요</span>
+			
+			<div class="rv_sub_info star_b">
+				<span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span class="star_gd">10점</span>
+				<span>리뷰&nbsp;<span class="color_blog">121</span></span>
+			</div>
+			
+			</div></div></a></li>
 		</ul>
 	</div>
+	
+	<!-- SNS 리뷰 -->
+	<div class="swiper-container ca_wrap tab_sns" style="padding:12px 0 6px;background:#fff">
+		<div class="swiper-wrapper category sns_c" style="height:25px">
+			<a href="#none" class="on" data="all">전체</a>
+			<a href="#none" data="food">맛집</a>
+			<a href="#none" data="fashion">패션</a>
+			<a href="#none" data="beauty">뷰티</a>
+			<a href="#none" data="life">생활</a>
+			<a href="#none" data="event">이벤트</a>
+		</div>
+	</div>
+	<div class="tab_sns list_wrap" style="display:none">
+		<ul class="bk_white vr_list" id="rv_li">
+			<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><span class="conts txt_ov">제주도 가면 기념품은 필수 인거같아요 진짜 꼭 챙겨가세요</span>
+			
+			<div class="rv_sub_info star_b">
+				<span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span class="star_gd">10점</span>
+				<span>리뷰&nbsp;<span class="color_sns">121</span></span>
+			</div>
+			
+			</div></div></a></li>
+		</ul>
+	</div>
+	<script>
+	// 탭메뉴
+	$(document).on('click','.tab_mn li a', function() {
+		$(this).closest('li').addClass('on').siblings().removeClass('on');	
+		var tab_s = $(this).attr('class').substring(0,4);
+		if(tab_s == 'tab1') {
+			$('.tab_blog').show();
+			$('.tab_sns').hide();
+			//$('.tab2_pn').attr("id","");
+		}else if(tab_s == 'tab2') {
+			$('.tab_blog').hide();
+			$('.tab_sns').show();
+			//$('.tab2_pn').attr("id","scr_on");
+		}
+	})
+	// 카테고리 on-off
+    $(document).on("click",".category a",function(){  
+        $(this).parent().children('a').removeClass('on');
+        $(this).addClass('on');
+    })
+	// 카테고리 slide
+	var swiper = new Swiper('.swiper-container1', {
+		slidesPerView: 'auto',
+		spaceBetween: 12,
+	});
+	</script>
 	<script>
 	$(document).ready(function(){
 		var mb_id = member['mb_id'];
@@ -40,7 +130,6 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_mypage01.php",   
 			data:params,
 			success:function(data){
-				
 				
 				console.log(data);
 			},   

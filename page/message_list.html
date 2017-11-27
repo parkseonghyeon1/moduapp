@@ -22,7 +22,7 @@
 		<div class="message_sort" style="position:relative">
 			<a class="on" id="s_recent">최신순</a>
 			<a id="s_read">안읽은순</a>
-			<input type="button" class="btn_tp1 btn_read_all" value="전체 읽음">
+			<input type="button" class="btn_tp1" value="전체 읽음" id="btn_read_all">
 			<input type="hidden" id="sort" value="">
 		</div>
 		<ul class="list_pn_sd message_list" id="message_li">
@@ -49,7 +49,7 @@
 					}else{
 					string_m += '<span class="txt_ov title_sub r_memo">'+value.me_memo+'</span>';
 					}
-					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer">'+value.me_memo+'</div></li>';
+					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'</div></div></li>';
 				}); 
 				$("#message_li").append(string_m);
 				
@@ -86,7 +86,7 @@
 					}else{
 					string_m += '<span class="txt_ov title_sub r_memo">'+value.me_memo+'</span>';
 					}
-					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer">'+value.me_memo+'</div></li>';
+					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'</div></div></li>';
 				}); 
 				$("#message_li").append(string_m);
 				
@@ -125,7 +125,7 @@
 							}else{
 							string_m += '<span class="txt_ov title_sub r_memo">'+value.me_memo+'</span>';
 							}
-							string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer">'+value.me_memo+'</div></li>';
+							string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'</div></div></li>';
 						}); 
 						$("#message_li").append(string_m);
 						
@@ -170,7 +170,7 @@
 	})
 	
 	// 전체 읽음 버튼
-	$(document).on('click','.btn_read_all',function(){
+	$(document).on('click','#btn_read_all',function(){
 		var me_id = $(this).attr("id");
 		var mb_id = 'qwe';
 		var params = {"m_all":"m_all","mb_id":mb_id};

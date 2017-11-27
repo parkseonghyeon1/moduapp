@@ -52,7 +52,7 @@
 			</div>
 		</div>
 		<div class="pr_view_cont">
-			<ul id="pr_view_mn">
+			<ul class="tab_mn tab_thr">
 				<li class="on"><a class="tab1 t_s">체험단 정보</a></li>
 				<li><a class="tab2 t_s">신청자 <span class="color_sns" id="wr_comment"></span>/<span id="pr_rec_num"></span></a></li>
 				<li><a class="tab3 t_s">업체정보</a></li>
@@ -91,7 +91,7 @@
 	
 	<script>
 	// 탭메뉴
-	$(document).on('click','#pr_view_mn li a', function() {
+	$(document).on('click','.tab_mn li a', function() {
 		$(this).closest('li').addClass('on').siblings().removeClass('on');	
 		var tab_s = $(this).attr('class').substring(0,4);
 		if(tab_s == 'tab1') {
