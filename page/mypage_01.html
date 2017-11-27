@@ -33,7 +33,8 @@
 	</div>
 	<script>
 	$(document).ready(function(){
-		var mb_id = member['mb_id'];
+		//var mb_id = member['mb_id'];
+		var mb_id = 'shinbyro';
 		var my_p = $('[class=on]').children().attr("id");
 		var string = '';
 		var params = {"mb_id":mb_id,"my_p":"my_p1"};
@@ -66,7 +67,8 @@
 	// 신청|선정|취소불참 클릭
 	$(document).on('click','#pr_view_mn li a',function(){
 		$(this).closest('li').addClass('on').siblings().removeClass('on');	
-		var mb_id = member['mb_id'];
+		//var mb_id = member['mb_id'];
+		var mb_id = 'shinbyro';
 		var my_p = $('[class=on]').children().attr("id");
 		var string = '';
 		var txt_s = '';
@@ -83,14 +85,14 @@
 					}
 					string += '.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'&site_id=sns"><div class="list_item"><div class="list_item_img"><img src="'+value.image+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.choice+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.comment+'</span>&nbsp;/&nbsp;'+value.wr_8+'</span></div></div></div><div>';
 					if(my_p == 'my_p1'){
-						string += '<a>신청수정</a><a>신청취소</a>';
+						string += '<a href="review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'">신청수정</a><a>신청취소</a>';
 					}else if(my_p == 'my_p2'){
 						if(value.review){
 							txt_s = "수정";
 						}else{
 							txt_s = "등록";
 						}
-						string += '<a>체험안내</a><a>리뷰'+txt_s+'</a>';
+						string += '<a>체험안내</a><a href="review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'">리뷰'+txt_s+'</a>';
 					}else if(my_p == 'my_p3'){
 						if(value.ms_choice == "n2"){
 							txt_s = "불참";

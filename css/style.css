@@ -336,6 +336,13 @@ ui-page {background:#fff;height:100%}
 .re_star .star img {width:18px;vertical-align:center}
 .rg_title {font-size:11px;text-align:center;padding-top:20px}
 .rg_cont {resize:none;height:132px;width:100%;box-sizing:border-box;border:none;padding:13px;font-size:11px}
+.rv_select {display:block;heihgt:50px;line-height:50px;font-size:12px;padding:0 10px;width:96%}
+.rv_list_blog {display:none}
+.rv_list_blog.on {display:block}
+#rv_list {margin-top:-11px;margin-bottom:10px;border:1px solid #c6c6c6;border-top:none}
+#rv_list li {font-size:12px;padding:0 16px;line-height:40px;height:40px;border-bottom:1px solid #ebebeb}
+#rv_list li:last-child {border-bottom:none}
+#rv_list li span {display:inline-block;width:96%}
 
 /* 적립금 */
 .point_info {padding:28px 0;text-align:center}

@@ -19,10 +19,16 @@
 		<h1>리뷰등록</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-	<form id="review_reg_form" method="post" enctype="multipart/form-data">
-	<div id="m_reg_wrap" method="post" enctype="multipart/form-data">
+	<form id="review_reg_form" method="post">
+	<input type="hidden" name="w" id="w" value="c">
+	<input type="hidden" name="bo_table" value="review">
+	<input type="hidden" name="wr_6" value="" id="wr_6">
+	<input type="hidden" name="mb_id" value="" id="mb_id">
+	<input type="hidden" name="wr_id" value="" id="wr_id">
+	<input type="hidden" name="c_divide" value="review">
+	<div>
 		<div class="m_reg_li">
-			<p class="title reg_title">[여성의류] 스윗바비 3기</p>
+			<p class="title rg_title">[여성의류] 스윗바비 3기</p>
 			<ul>
 				<li>
 					<label class="title" for="local">평점</label>
@@ -43,33 +49,34 @@
 					<p class="title">내용</p>
 					<div class="dv_input">
 						<div class="input_txt">
-							<textarea class="rg_cont" name="data9" id="data9" placeholder="내용 입력"></textarea>
+							<textarea class="rg_cont" name="wr_content" id="wr_content" placeholder="내용 입력"></textarea>
 						</div>
 					</div>
 				</li>
 				<li>
 					<label class="title" for="data1">리뷰</label>
 					<div class="dv_input" style="margin-bottom:10px">
-						<select name="" id="">
-							<option>블로그 리뷰 불러오기</option>
-							<option>SNS 리뷰 불러오기</option>
-						</select>
+						<span class="rv_select txt_ov">블로그 리뷰 불러오기</span>
+					</div>
+					<div class="rv_list_blog">
+						<ul id="rv_list">
+							
+						</ul>
 					</div>
 					<div class="dv_input" style="margin-bottom:10px">
 						<div class="input_txt">
-							<input class="input" type="text" name="" id="" placeholder="블로그 리뷰 URL 직접 입력하기" required>
+							<input class="input rv_input" type="text" name="wr_1" id="rv_1" placeholder="블로그 리뷰 URL 직접 입력하기" required>
 						</div>
 					</div>
 					<div class="dv_input">
 						<div class="input_txt">
-							<input class="input" type="text" name="" id="" placeholder="블로그 리뷰 URL 추가 입력하기" required>
+							<input class="input rv_input" type="text" name="wr_1_2" id="rv_2" placeholder="블로그 리뷰 URL 추가 입력하기" required>
 						</div>
 					</div>
 				</li>
 			</ul>
 		</div>
 	</div>
-	
 	<div style="padding:0 16px 20px">
 		<div class="btn_wrap btn_ok">
 			<a href="#none" id="btn_submit">등록하기</a>
@@ -78,6 +85,7 @@
 		<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
 	</div>
 	</form>
+	
 	<script>
 	// 평점
 	$(".re_star .star").click(function(){
@@ -95,22 +103,113 @@
 		return false;
 	});
 	
+	// 블로그 리뷰 리스트 불러오기
+	$(document).ready(function(){
+		var mb_id = 'shinbyro';
+		var params = {"mb_id":mb_id};
+		var string = '';
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_review_blog.php",   
+			data:params,
+			success:function(data){
+				$.each(data[0],function(key,value){
+					string += '<li class="rv_title"><a href="'+value.rv_link[0]+'"><span class="txt_ov">'+value.rv_title[1]+'</span></a></li>';
+				})
+				$('#rv_list').html(string);
+				console.log(data);
+			},   
+			error:function(e){  
+				alert(e.responseText);  
+			}  
+		});  	
+	})
+
+	// 블로그 리뷰 불러오기 클릭
+	$(document).on('click','.rv_select',function(){
+		$(this).toggleClass("on");
+		$( ".rv_list_blog" ).toggleClass("on");
+	});	
+	// 블로그 리뷰 선택
+	$(document).on("click",".rv_title",function(){
+		$(".rv_title").css("background","none");
+		$(this).css("background","#f2f2f2");
+		
+		var link = $(this).children("a").attr("href");
+		var text = $(this).children("a").html();
+		
+		if($("#rv_1").val() != ''){
+			$("#rv_2").val(link);
+		}else{
+			$("#rv_1").val(link);
+		}
+		
+		$(".rv_list_blog").removeClass("on");
+		$(".rv_select").html(text);
+		
+		//리뷰 선택입력 - URL이 있을때 버튼 on
+		if($("#rv_1").val().length > 0 || $("#rv_1").val().length > 0){
+			$('.btn_ok > a').addClass('on');
+		}else{
+			$('.btn_ok > a').removeClass('on');
+		}
+		return false;
+	})
+	
+	// 리뷰 직접입력 - URL이 있을때 버튼 on
+	$('.rv_input').keyup(function(){
+		var rv_1 = $('#rv_1').val();
+		var rv_2 = $('#rv_2').val();
+		
+		if(rv_1.length > 0 || rv_2.length > 0){
+			$('.btn_ok > a').addClass('on');
+		}else{
+			$('.btn_ok > a').removeClass('on');
+		}
+	})
+	
+	
+	
+	
 	// 등록버튼 클릭
 	$(document).on('click','#btn_submit',function(){
-		if ($("#wr_7").val() == "") {
+		var wr_6 = getQuerystring('ms_id');
+		var wr_id = getQuerystring('wr_id');
+		var mb_id = 'shinbyro';
+		$('#mb_id').val(mb_id);
+		$('#wr_id').val(wr_id);
+		$('#wr_6').val(wr_6);
+		
+		
+		if ($('#wr_7').val() == "") {
 			alert("별점을 남겨주세요.");
+			$('.re_star').focus();
 			return false;
 		}
-		/*
-		$('#review_reg_form').ajaxForm({
-			url: "http://modublog.co.kr/app_public/ajax/.php",
-			enctype: "multipart/form-data",
-			success: function(args){
-				//alert(args);
-			}
-		});
-		$("#review_reg_form").submit();
-		*/
+		if ($('#wr_content').val() == "") {
+			alert("내용을 입력해주세요.");
+			$('#wr_content').focus();
+			return false;
+		}
+		if ($('#rv_1').val() == ""){
+			alert("리뷰 URL을 선택 또는 입력해주세요.");
+			$('#rv_1').focus();
+			return false;
+		}
+		
+		var params = $(this).closest("form").serialize();
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_comment_write.php",  
+			data:params,			
+			success:function(data){
+				//alert("ok");
+				//location.reload();
+			},   
+			error:function(e){  
+				console.log(e.responseText);  
+			}  
+		});	
 	})
 	</script>
 </body>
