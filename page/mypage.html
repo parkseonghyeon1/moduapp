@@ -51,7 +51,7 @@
 		</ul>
 		<div style="padding-top:20px">
 			<div class="bottom_mn">
-				<a href="member_reg_form.html">회원가입</a><span>ㅣ<span><a href="#none">로그아웃</a>
+				<a id="logout">로그아웃</a>
 			</div>
 			<div class="log_footer n_ov_f">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 0 2-6392-2121</div>
 		</div>
@@ -78,6 +78,14 @@
 			error:function(e){  
 				alert(e.responseText);  
 			}  
+		});
+
+		$(document).on('click','#logout',function(){
+        	window.localStorage.removeItem("mb_id");
+        	window.localStorage.removeItem("mb_nick");
+        	window.localStorage.removeItem("mb_point");
+        	window.localStorage.clear();
+        	location.replace("main.html");
 		});
 	});	
 </script>
