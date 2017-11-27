@@ -67,8 +67,8 @@
 	// 신청|선정|취소불참 클릭
 	$(document).on('click','#pr_view_mn li a',function(){
 		$(this).closest('li').addClass('on').siblings().removeClass('on');	
-		//var mb_id = member['mb_id'];
-		var mb_id = 'shinbyro';
+		var mb_id = member['mb_id'];
+		//var mb_id = 'shinbyro';
 		var my_p = $('[class=on]').children().attr("id");
 		var string = '';
 		var txt_s = '';
