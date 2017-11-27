@@ -168,14 +168,11 @@
 		}
 	})
 	
-	
-	
-	
 	// 등록버튼 클릭
 	$(document).on('click','#btn_submit',function(){
 		var wr_6 = getQuerystring('ms_id');
 		var wr_id = getQuerystring('wr_id');
-		var mb_id = 'shinbyro';
+		var mb_id = member['mb_id'];
 		$('#mb_id').val(mb_id);
 		$('#wr_id').val(wr_id);
 		$('#wr_6').val(wr_6);
@@ -204,7 +201,7 @@
 			data:params,			
 			success:function(data){
 				//alert("ok");
-				//location.reload();
+				location.replace('mypage_01.html');
 			},   
 			error:function(e){  
 				console.log(e.responseText);  
