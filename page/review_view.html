@@ -17,41 +17,106 @@
 	<script src="../js/menu.js"></script>
 </head>
 <style>
-.review_img {}
-.review_img img {width:100%}
-.review_txt {padding:20px 16px}
-.review_txt p {font-size:12px}
-.review_cont {font-size:11px}
-.star_b {padding:6px 0}
+.star_b span {margin-right:3px;font-size:9px;color:#797979}
+.star_b img {width:9px}
+
+.answer2 {border-top:1px solid #ebebeb}
+.rv_comment li:last-child {border-bottom:none !important}
+.rv_comment {}
 </style>
 <body>
 	<div id="header">
 		<h1>전체리뷰</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-	<div class="bk_white">
-		<div class="review_img"><img src="../temp-img/view1.jpg"></div>
-		<div class="title review_txt">
-			<p>[강동] 플로체플라워</p>
-			<div class="star_b" style="position:relative;height:30px">
-				<div class="re_star" style="padding:0">
-					<span id="s_1" value="1" class="star"><img src="../img/star_off.png"></span>
-					<span id="s_2" value="2" class="star"><img src="../img/star_off.png"></span>
-					<span id="s_3" value="3" class="star"><img src="../img/star_off.png"></span>
-					<span id="s_4" value="4" class="star"><img src="../img/star_off.png"></span>
-					<span id="s_5" value="5" class="star"><img src="../img/star_off.png"></span>
-					<input type="hidden" id="wr_7" name="wr_7" value="">
-					<span style="font-size:13px;display:inline-block">/<span>10점</span></span>
-				</div>
-			</div>
-			<div class="review_cont">지금 플로리스트 자격증 따려고 준비중입니다! 뭔가 요즘 유행처럼 번지고 있는 플로리스트! 그리고 꽃집!! 꽃을 워낙 좋아해서 받는것도 좋아하고 선물도 자주 하는편인데 그래서 꽃집도 지역 상관없이 종류별로 많이 가봤어요~ 클래스도 많이 받구! 그중에 베스트 찾았네요! 플로체플라워 꽃집이에요!! 사장님도 친절하시고 꽃도 너무 센스있게 만들어주셔서 진짜 보기만 해도 행복해져요ㅠㅠ 정말 가치있는 곳입니다! 꼭 가보세요!!</div>
+	<div class="" style="margin-bottom:55px">
+		<div class="rv_img"><img src="../temp-img/view1.jpg"></div>
+		<div class="title rv_txt pr_view_info">
+			<p class="title">[강동] 플로체플라워</p>
+			
+			<span class="rv_sub_info star_b" style="padding-bottom:13px;display:block">
+				<span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span>10점</span>
+				<span class="rv_num_box">리뷰&nbsp;<span class="color_blog">121</span></span>
+			</span>
+			
+			<div class="review_cont" id="pr_subject_sub">지금 플로리스트 자격증 따려고 준비중입니다! 뭔가 요즘 유행처럼 번지고 있는 플로리스트! 그리고 꽃집!! 꽃을 워낙 좋아해서 받는것도 좋아하고 선물도 자주 하는편인데 그래서 꽃집도 지역 상관없이 종류별로 많이 가봤어요~ 클래스도 많이 받구! 그중에 베스트 찾았네요! 플로체플라워 꽃집이에요!! 사장님도 친절하시고 꽃도 너무 센스있게 만들어주셔서 진짜 보기만 해도 행복해져요ㅠㅠ 정말 가치있는 곳입니다! 꼭 가보세요!!</div>
 		</div>
-		<div class="comu_box comment_list bk_white">
+		<div class="list_wrap">
+			<ul class="list_pn_sd list_sd bk_white" id="">
+				<li>
+					<a href="#none">
+						<div class="list_txt">
+							<p style=""><span class="title_sub" style="display:inline-block" id="sp">1 ~ 10번째 리뷰</span></p>
+							<span class="ps_r btn_arrow_r"></span>
+						</div>
+					</a>
+					<div class="rv_cmt_list">
+						<div class="rv_comment bk_white">
+							<ul id="comment_li">
+								<li><div class="comment_title"><span class="title_sub">닉네임</span><span class="date_txt" style="padding:0 4px">2017-08-12</span><span class="comment_re">
+								<span class="rv_sub_info star_b">
+									<span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span class="star_gd">10점</span>
+									</span>
+								</span>
+								</span><div class="comment_img"><img src="'+value.mb_photo+'"></div>
+								<input type="button" class="btn_tp1" value="리뷰보기" id="btn_read_all" style="right:0"></div><div class="comment_conts">댓글이다 이거 댓글이야</div></li>
+								<li><div class="comment_title"><span class="title_sub">닉네임</span><span class="date_txt" style="padding:0 4px">2017-08-12</span><span class="comment_re">
+								<span class="rv_sub_info star_b">
+									<span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span class="star_gd">10점</span>
+									</span>
+								</span>
+								</span><div class="comment_img"><img src="'+value.mb_photo+'"></div>
+								<input type="button" class="btn_tp1" value="리뷰보기" id="btn_read_all" style="right:0"></div><div class="comment_conts">댓글이다 이거 댓글이야</div></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="#none">
+						<div class="list_txt">
+							<p style=""><span class="title_sub" style="display:inline-block" id="sp">11 ~ 20번째 리뷰</span></p>
+							<span class="ps_r btn_arrow_r"></span>
+						</div>
+					</a>
+					<div class="rv_cmt_list">
+						<div class="rv_comment bk_white">
+							<ul id="comment_li">
+								<li><div class="comment_title"><span class="title_sub">닉네임</span><span class="date_txt" style="padding:0 4px">2017-08-12</span><span class="comment_re">
+								<span class="rv_sub_info star_b">
+									<span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span class="star_gd">10점</span>
+									</span>
+								</span>
+								</span><div class="comment_img"><img src="'+value.mb_photo+'"></div>
+								<input type="button" class="btn_tp1" value="리뷰보기" id="btn_read_all" style="right:0"></div><div class="comment_conts">댓글이다 이거 댓글이야</div></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script>
+		// 리스트 슬라이드
+		$(document).on('click','.list_sd > li > a', function() {
+			//$('html,body').animate({scrollTop : $(this).parent('li').offset().top},400);
+			$(this).closest('li').toggleClass('on').find('.rv_cmt_list').slideToggle().end().siblings().removeClass('on').find('.rv_cmt_list').slideUp();	
+			
+		})
+		</script>
+		<!--
+		<div class="comu_box comment_list bk_white" style="border-top:none">
 			<p id="comment_num2" style="font-size:13px">리뷰 4</p>
 			<ul id="comment_li">
 				<li style="position:relative"><div><div class="comment_title"><span class="title_sub">닉네임</span><span class="date_txt" style="padding:0 4px">2017-08-12</span><span class="comment_re"><a href="#none" class="color_blog btn_comment" id="'+value.wr_id+'">답글</a></span><div class="comment_img"><img src="'+value.mb_photo+'"></div><div class="" style="position:absolute;right:0;top:50%;margin-top:-12px"><span class="star"><img src="../img/star_off.png" style="width:12px"></span><span class="star"><img src="../img/star_off.png" style="width:12px"></span><span class="star"><img src="../img/star_off.png" style="width:12px"></span><span class="star"><img src="../img/star_off.png" style="width:12px"></span><span class="star"><img src="../img/star_off.png" style="width:12px"></span><span style="font-size:11px;display:inline-block">/<span>10점</span></span></div></div><div class="comment_conts">댓글이다 이거 댓글이야</div></div><a href="#none" style="position:absolute;right:4px;bottom:6px;font-size:11px;line-height:20px;width:80px;border:1px solid #a9a9a9;border-radius:1em;display:inline-block;text-align:center;color:#888">리뷰보러가기</a></li>
 				<li style="position:relative"><div><div class="comment_title"><span class="title_sub">닉네임</span><span class="date_txt" style="padding:0 4px">2017-08-12</span><span class="comment_re"><a href="#none" class="color_blog btn_comment" id="'+value.wr_id+'">답글</a></span><div class="comment_img"><img src="'+value.mb_photo+'"></div><div class="" style="position:absolute;right:0;top:50%;margin-top:-12px"><span class="star"><img src="../img/star_off.png" style="width:12px"></span><span class="star"><img src="../img/star_off.png" style="width:12px"></span><span class="star"><img src="../img/star_off.png" style="width:12px"></span><span class="star"><img src="../img/star_off.png" style="width:12px"></span><span class="star"><img src="../img/star_off.png" style="width:12px"></span><span style="font-size:11px;display:inline-block">/<span>10점</span></span></div></div><div class="comment_conts">댓글이다 이거 댓글이야</div></div><a href="#none" style="position:absolute;right:4px;bottom:6px;font-size:11px;line-height:20px;width:80px;border:1px solid #a9a9a9;border-radius:1em;display:inline-block;text-align:center;color:#888">리뷰보러가기</a></li>
 			</ul>
+		</div>
+		-->
+	</div>
+	
+	<div class="pr_btn_wrap bk_b">
+		<div class="pr_btn_p">
+			<a id="pr_go">구경하기</a>
+			<a id="req_go">신청하기</a>
 		</div>
 	</div>
 	<script>

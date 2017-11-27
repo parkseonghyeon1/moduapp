@@ -50,7 +50,7 @@ input::placeholder {color:#989898 !important}
 #popup #btn_close a {position:absolute;right:0;top:0;width:16px;height:16px;background:url(../img/icon_cancle.png)no-repeat;background-size:16px 16px;}
 #mask {position:absolute;top:0;left:0;width:100%;height:100%;background:#000;z-index:99;opacity:.5;display:none;overflow-y:}
 
-/* main */
+/* 메인 */
 .btn_t_l {position:fixed;top:10px;left:10px}
 .btn_t_r {position:absolute;top:10px;right:10px}
 .btn_t_bk {width:30px;height:30px;text-indent:-9999px;z-index:2}
@@ -101,7 +101,7 @@ input::placeholder {color:#989898 !important}
 .loader_wrap {height:166px;position:relative;width:100%}
 .loader_wrap img {position:absolute;top:50%;left:50%;width:38px;height:32px;margin-top:-16px;margin-left:-19px}
 
-/* home */
+/* 블로그 | SNS 홈 */
 .home_list {background:#fff;margin-top:10px}
 .home_category {padding:2px 8px 6px;border-bottom:1px solid #efefef}
 .home_category a span {display:inline-block;font-size:12px;color:#ccc;width:40px;text-align:center;margin-right:5px}
@@ -125,7 +125,7 @@ input::placeholder {color:#989898 !important}
 .dv_input input[type=password] {width:100%;height:50px}
 .dv_input select {outline:none;width:100%;height:50px !important;border:none;padding:0 13px;box-sizing:border-box;font-size:11px;color:#b5b5b5}
 
-/* login page */
+/* 로그인 */
 .log_wrap {min-height:100%;position:relative;margin-bottom:-40px;padding-bottom:40px}
 .log_info1 .sub_p_txt {line-height:18px}
 .log_info1 {position:relatvie;height:100%;background:#fff;padding:0 16px}
@@ -140,7 +140,7 @@ input::placeholder {color:#989898 !important}
 .log_footer {position:absolute;bottom:0px;left:0;width:100%;height:60px;color:#909090;font-size:11px;text-align:center}
 .n_ov_f {position:relative !important}
 
-/* 회원가입 | 광고문의 | 신청 | 리뷰등록 register*/
+/* 회원가입 | 광고문의 | 신청 | 리뷰등록 register */
 .m_reg_li {background:#fff;margin-bottom:8px}
 .m_reg_li li {padding:0 16px 22px}
 .m_reg_li li:first-child {padding-top:22px}
@@ -176,7 +176,7 @@ input::placeholder {color:#989898 !important}
 .reg_btn {padding:0 16px 20px}
 .reg_t_sub {font-size:10px;color:#989898}
 
-/* 회원 edit */
+/* 회원정보 수정 */
 .m_profile_box {position:relative;border-bottom:1px solid #d5d5d5}
 .m_profile_box .profile_info {height:112px}
 .m_profile_box .profile_info p {padding-top:50px;text-align:center;font-size:12px}
@@ -192,7 +192,7 @@ input::placeholder {color:#989898 !important}
 .bottom_mn a {font-size:11px;color:#717171;padding:0 12px}
 .bottom_mn span {font-size:11px;color:#b0b0b0}
 
-/* notice | comunity | qna */
+/* 공지사항 | 커뮤니티 | 문의 목록 */
 .list_wrap,
 list_pn,
 ui-page {background:#fff;height:100%}
@@ -211,8 +211,8 @@ ui-page {background:#fff;height:100%}
 .list_pn li .date_txt {font-size:10px;color:#9e9e9e;display:block;padding-top:2px} 
 .list_pn li .btn_arrow_r {background:url(../img/icon_arrow_right.png)no-repeat;background-size:13px 14px}
 .list_pn_sd li .title_sub {font-size:12px}
-.list_pn_sd li .btn_arrow_r {background:url(../img/icon_arrow_bottom.png)no-repeat;background-size:13px 14px}
-.list_pn_sd li.on  .btn_arrow_r{background:url(../img/icon_arrow_top.png)no-repeat;background-size:13px 14px}
+.list_pn_sd li .btn_arrow_r {background:url(../img/icon_arrow_top.png)no-repeat;background-size:13px 14px}
+.list_pn_sd li.on  .btn_arrow_r{background:url(../img/icon_arrow_bottom.png)no-repeat;background-size:13px 14px}
 .list_pn_sd li .list_txt p {height:48px;}
 .list_pn_sd li .list_txt p span {font-size:12px;line-height:48px}
 .answer {display:none;}
@@ -230,12 +230,12 @@ ui-page {background:#fff;height:100%}
 #image_wrap {max-width:100%;margin-top:10px}
 .ps_r {position:absolute;right:0;top:50%;}
 
-/* notice view */
+/* 공지사항 상세 */
 .notice_view {font-size:12px;height:100%}
 .notice_view div {padding:16px 22px;background:#fff}
 .no_title {text-align:left;padding-left:45px}
 
-/* community view */
+/* 커뮤니티 상세 */
 .comu_box {padding:16px 18px;position:relative}
 .comu_view .comu_cate {display:block;font-size:14px}
 .comu_view .comu_li {border-bottom:1px solid #ebebeb}
@@ -256,12 +256,7 @@ ui-page {background:#fff;height:100%}
 .comment_img img {width:100%;height:100%}
 .comment_re222 {font-size:10px;display:inline-block;padding:13px 0}
 
-/* edit style */
-.notice_conts img,
-.comu_conts img {max-width:100%}
-#postViewArea {padding:0}
-
-/* event */
+/* 이벤트 목록 */
 .event_list li > a {display:block;padding:0 16px}
 .event_list li > a .list_conts {padding:22px 0 16px;border-bottom:1px solid #ececec}
 .event_list li:last-child a .list_conts {border-bottom:none}
@@ -282,7 +277,7 @@ ui-page {background:#fff;height:100%}
 .my_li li a {position:relative;font-size:11px;display:block;height:48px;line-height:48px;background:url(../img/icon_arrow_right.png)no-repeat right 16px center;background-size:10px 10px}
 .my_li li a span {position:absolute;top:0px;right:45px;font-size:10px;color:#979797}
 
-/* 메세지함 */
+/* 메세지함 목록 */
 .message_sort {padding:13px 16px}
 .message_sort a {font-size:12px;display:inline-block;padding:0 13px;margin-right:10px}
 .message_sort a.on {color:#88cbde;background:url(../img/icon_sort_on.png)no-repeat left center;background-size:10px 10px}
@@ -291,7 +286,7 @@ ui-page {background:#fff;height:100%}
 /*.btn_read_all {position:absolute;right:16px;width:60px;font-size:10px;top:50%;margin-top:-14px;border:1px solid #ebebeb;border-radius:4px !important;overflow:hidden;display:inline-block;height:26px;background:#fff;color:#88cbde}*/
 .r_memo {color:#909090}
 
-/* 상품 상세페이지 */
+/* 상품 상세 */
 .pr_wrap {overflow:hidden;width:100%}
 .pr_view_info {padding:20px 16px;background:#fff;border-bottom:1px solid #dbdbdb;margin-bottom:10px}
 .pr_view_info .pr_f {overflow:hidden;padding-top:20px}
@@ -319,6 +314,20 @@ ui-page {background:#fff;height:100%}
 .pr_btn_wrap .pr_btn_p a {display:block;width:47%;color:#fff;text-align:center;padding:8px 0;font-size:12px;border:1px solid #fff;border-radius:4em;overflow:hidden}
 .pr_btn_wrap .pr_btn_p a:first-child {float:left}
 .pr_btn_wrap .pr_btn_p a:last-child {float:right}
+
+/* 리뷰목록 | 리뷰상세 */
+.tab_sns {display:none}
+#tab_blog,
+#tab_sns {padding:12px 0 6px;background:#fff}
+.rv_list li {border-top:1px solid #e9e9e9}
+.rv_list li .rv_sub_info {padding-top:10px;display:inline-block}
+.rv_img img {width:100%;vertical-align:top}
+.rv_txt {padding:20px 16px}
+.rv_txt p {font-size:12px}
+.rv_cont {font-size:11px}
+.rv_num_box {padding-left:10px;background:url(../img/icon_bar.png)no-repeat left center}
+.rv_cmt_list {display:none;border-top:1px solid #efefef}
+.rv_cmt_list .comment_li {border-top:none !important}
 
 /* 리뷰등록 */
 .star_wrap {position:relative;height:50px}
@@ -366,32 +375,10 @@ ui-page {background:#fff;height:100%}
 
 
 
-
-/* 우편검색 */
-.zip_wrap {display:none;border:1px solid #707070;width:99%;height:300px;margin:5px 0;position:relative}
-.btn_zip_close {cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1}
-
-/* jquery_mobile */
-.ui-select .ui-btn select {color:#252525 !important}
-.ui-select .ui-btn .ui-btn-inner {padding-left:16px !important}
-.ui-btn {margin:0 !important;text-align:left !important}
-.ui-btn-inner {outline:none;width:100%;border:none;box-sizing:border-box;font-size:11px;line-height:50px !important}
-.ui-btn-text span {color:#989898}
-.conf_input .ui-btn-inner {position:absolute !important;top:50%;right:8px;width:58px;height:28px;line-height:28px !important;margin-top:-14px;text-align:center;border-radius:4px;overflow:hidden;font-family:NotoSansCKJ;padding:0 !important;background:#f4f4f4 !important;border:1px solid #c6c6c6;}
-.conf_input .ui-btn-inner .ui-btn-text {font-size:11px !important;color:#b0b0b0 !important}
-
-/* left-menu */
-.ui-panel-dismiss-open {z-index:9999;}
-
-
-
-
-
-
-
-
-
-
+/* edit style */
+.notice_conts img,
+.comu_conts img {max-width:100%}
+#postViewArea {padding:0}
 #event_li img {max-width:100%}
 .post-view {width:100% !important}
 .comment_re_dp {padding-left:28px;background:url(../img/curved_arrow.png)no-repeat left center;background-size:15px 15px}
@@ -399,6 +386,15 @@ ui-page {background:#fff;height:100%}
 .comment_re input[type=checkbox] + label span {position:absolute;top:0px;right:0;width:13px;height:13px;border:1px solid #c6c6c6;border-radius:4px;overflow:hidden;}
 .comment_re2 input[type=checkbox] + label span {position:absolute;top:-12px;right:0;width:13px;height:13px;border:1px solid #c6c6c6;border-radius:4px;overflow:hidden;}
 .comment_re2 input[type=checkbox]:checked + label span {background:url(../img/icon_check.png)no-repeat;background-size:15px 15px;border:none;width:15px;height:15px}
+
+/* 우편검색 */
+.zip_wrap {display:none;border:1px solid #707070;width:99%;height:300px;margin:5px 0;position:relative}
+.btn_zip_close {cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1}
+
+
+
+
+
 
 
 
