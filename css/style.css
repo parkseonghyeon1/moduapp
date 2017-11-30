@@ -150,6 +150,7 @@ input::placeholder {color:#989898 !important}
 .conf_input .conf_stat {position:absolute;top:50%;right:8px;width:58px;height:28px;line-height:28px;margin-top:-14px;color:#fff;background:#88cbde;font-size:11px;text-align:center;border-radius:4px;overflow:hidden;font-family:NotoSansCKJ}
 .btn_conf {padding:0 !important;background:#f4f4f4 !important;border:1px solid #c6c6c6;color:#b0b0b0 !important}
 .conf_n {padding:0;background:#ef5350;border:1px solid #ef5350;color:#fff}
+.conf_txt {font-size:11px;padding:5px 0 0 4px;color:#f15151}
 .gender_input {width:50%;float:left}
 .gender_input input[type=radio] {display:none}
 .gender_input input[type=radio] + label span {text-align:center;display:block;font-size:11px;line-height:44px;color:#989898}
@@ -188,8 +189,8 @@ input::placeholder {color:#989898 !important}
 .m_profile_box #img_box2 {position:absolute;width:102px;height:103px;left:50%;margin-left:-51px;bottom:80px;z-index:2}
 .m_profile_box .btn_add_img {bottom:0px;right:0px}
 .m_profile_box .profile_img_b {width:100%;height:100%;background:#fff;overflow:hidden;border-radius:50%;display:block;position:relative}
-.m_profile_box .profile_img_n .profile_img {position:relative;width:100%;height:100%}
-.m_profile_box .profile_img_n .profile_img img {width:100%;height:100%;position:absolute;top:0;left:0;bottom:0;right:0}
+.m_profile_box .profile_img_b .profile_img {position:relative;width:100%;height:100%}
+.m_profile_box .profile_img_b .profile_img img {width:100%;height:100%;position:absolute;top:0;left:0;bottom:0;right:0}
 .bottom_mn {text-align:center;padding-bottom:20px}
 .bottom_mn a {font-size:11px;color:#717171;padding:0 12px}
 .bottom_mn span {font-size:11px;color:#b0b0b0}
@@ -338,7 +339,7 @@ ui-page {background:#fff;height:100%}
 .re_star .star img {width:18px;vertical-align:center}
 .rg_title {font-size:11px;text-align:center;padding-top:20px}
 .rg_cont {resize:none;height:132px;width:100%;box-sizing:border-box;border:none;padding:13px;font-size:11px}
-.rv_select {display:block;heihgt:50px;line-height:50px;font-size:12px;padding:0 10px;width:96%}
+.rv_select {display:block;height:50px;line-height:50px;font-size:12px;padding:0 10px;width:96%}
 .rv_list_blog {display:none}
 .rv_list_blog.on {display:block}
 #rv_list {margin-top:-11px;margin-bottom:10px;border:1px solid #c6c6c6;border-top:none}
@@ -397,7 +398,7 @@ ui-page {background:#fff;height:100%}
 .comment_re2 input[type=checkbox]:checked + label span {background:url(../img/icon_check.png)no-repeat;background-size:15px 15px;border:none;width:15px;height:15px}
 
 /* 우편검색 */
-.zip_wrap {display:none;border:1px solid #707070;width:99%;height:300px;margin:5px 0;position:relative}
+.zip_wrap {display:none;border:1px solid #909090;width:99%;height:300px;margin:5px 0;position:relative}
 .btn_zip_close {cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1}
 
 
