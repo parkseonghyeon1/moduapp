@@ -18,11 +18,15 @@
 <script>
 	$(document).ready(function(){
 		var mb_id = member['mb_id'];
+		var w = getQuerystring('w');
 		//var mb_id = getQuerystring('mb_id');
 		var bo_table = getQuerystring('bo_table');
 		var wr_id = getQuerystring('wr_id');
+		if(w == 'u'){
+			$("#header h1").text("신청수정");
+		}
 		
-		$(".request").attr("src","http://modublog.co.kr/app_public/product_req_form.php?bo_table="+bo_table+"&wr_id="+wr_id+"&mb_id="+mb_id);
+		$(".request").attr("src","http://modublog.co.kr/app_public/product_req_form.php?bo_table="+bo_table+"&wr_id="+wr_id+"&mb_id="+mb_id+"&w="+w);
 	})
 </script>	
 <body>
@@ -47,10 +51,11 @@
 		<input type="hidden" name="wr_review" id="wr_review"  val="">
 		<input type="hidden" name="mb_homepage" id="mb_homepage" val="">
 		<input type="hidden" name="wr_3" id="wr_3" val="">
+		<input type="hidden" name="w" id="w" val="">
 	</form>
-		<div>
-		<iframe id="product_req_frame" name="product_req_frame" src="http://modublog.co.kr/app_public/product_req_form.php" width="100%" class="request" height="600px;" frameborder="0"></iframe>
-		</div>
+		<table style="width:100%">
+		<tr><td><iframe id="product_req_frame" name="product_req_frame" src="http://modublog.co.kr/app_public/product_req_form.php" class="request" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="100%" onload="autoResize(this)"></iframe></td></tr>
+		</table>
 	<div class="m_reg_li terms_wrap">
 		<p class="title">약관동의</p>
 		<div class="terms_use terms_all">
@@ -79,6 +84,16 @@
 	</div>
 		
 </body>
+<script>
+function autoResize(h){
+	if(h == null){
+		return false;
+	}
+	(h).height = "0px";
+	var iframeHeight = (h).contentWindow.document.body.scrollHeight;
+	(h).height = iframeHeight + 10;
+}
+</script>
 <script>
 	$(document).ready(function(){
 		// 전체동의 선택 시 모든 체크박스 상태 checked true|false
@@ -229,6 +244,7 @@
 		$('#wr_review').val(string_blank(decodeURI(data['wr_review'])));
 		$('#mb_homepage').val(string_change(data['mb_homepage']));
 		$('#wr_content').val(string_blank(decodeURI(data['wr_content'])));
+		$('#w').val(data['w']);
 		var wr_content = $('#wr_content').val();
 		var mb_homepage = $('#mb_homepage').val();
 		if(wr_content == ''){
