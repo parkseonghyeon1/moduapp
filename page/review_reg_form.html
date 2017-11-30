@@ -20,15 +20,17 @@
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
 	<form id="review_reg_form" method="post">
-	<input type="hidden" name="w" id="w" value="c">
+	<input type="hidden" name="w" id="w" value="" id="w">
 	<input type="hidden" name="bo_table" value="review">
 	<input type="hidden" name="wr_6" value="" id="wr_6">
 	<input type="hidden" name="mb_id" value="" id="mb_id">
 	<input type="hidden" name="wr_id" value="" id="wr_id">
 	<input type="hidden" name="c_divide" value="review">
+	<input type="hidden" name="comment_id" id="comment_id" value="">
+	
 	<div>
 		<div class="m_reg_li">
-			<p class="title rg_title">[여성의류] 스윗바비 3기</p>
+			<p class="title rg_title" id="wr_subject"></p>
 			<ul>
 				<li>
 					<label class="title" for="local">평점</label>
@@ -55,22 +57,24 @@
 				</li>
 				<li>
 					<label class="title" for="data1">리뷰</label>
-					<div class="dv_input" style="margin-bottom:10px">
-						<span class="rv_select txt_ov">블로그 리뷰 불러오기</span>
-					</div>
-					<div class="rv_list_blog">
-						<ul id="rv_list">
-							
-						</ul>
+					<div id="rv_rs">
+						<div class="dv_input" style="margin-bottom:10px">
+							<span class="rv_select txt_ov">블로그 리뷰 불러오기</span>
+						</div>
+						<div class="rv_list_blog">
+							<ul id="rv_list">
+								
+							</ul>
+						</div>
 					</div>
 					<div class="dv_input" style="margin-bottom:10px">
 						<div class="input_txt">
-							<input class="input rv_input" type="text" name="wr_1" id="rv_1" placeholder="블로그 리뷰 URL 직접 입력하기" required>
+							<input class="input rv_input" type="text" name="wr_1" id="wr_1" placeholder="블로그 리뷰 URL 직접 입력하기" required>
 						</div>
 					</div>
 					<div class="dv_input">
 						<div class="input_txt">
-							<input class="input rv_input" type="text" name="wr_1_2" id="rv_2" placeholder="블로그 리뷰 URL 추가 입력하기" required>
+							<input class="input rv_input" type="text" name="wr_1_2" id="wr_1_2" placeholder="블로그 리뷰 URL 추가 입력하기" required>
 						</div>
 					</div>
 				</li>
@@ -102,28 +106,6 @@
 		
 		return false;
 	});
-	
-	// 블로그 리뷰 리스트 불러오기
-	$(document).ready(function(){
-		var mb_id = 'shinbyro';
-		var params = {"mb_id":mb_id};
-		var string = '';
-		$.ajax({      
-			type:"POST",  
-			url:"http://modublog.co.kr/app_public/ajax/a_review_blog.php",   
-			data:params,
-			success:function(data){
-				$.each(data[0],function(key,value){
-					string += '<li class="rv_title"><a href="'+value.rv_link[0]+'"><span class="txt_ov">'+value.rv_title[1]+'</span></a></li>';
-				})
-				$('#rv_list').html(string);
-				console.log(data);
-			},   
-			error:function(e){  
-				alert(e.responseText);  
-			}  
-		});  	
-	})
 
 	// 블로그 리뷰 불러오기 클릭
 	$(document).on('click','.rv_select',function(){
@@ -138,17 +120,17 @@
 		var link = $(this).children("a").attr("href");
 		var text = $(this).children("a").html();
 		
-		if($("#rv_1").val() != ''){
-			$("#rv_2").val(link);
+		if($("#wr_1").val() != ''){
+			$("#wr_1_2").val(link);
 		}else{
-			$("#rv_1").val(link);
+			$("#wr_1").val(link);
 		}
 		
 		$(".rv_list_blog").removeClass("on");
 		$(".rv_select").html(text);
 		
 		//리뷰 선택입력 - URL이 있을때 버튼 on
-		if($("#rv_1").val().length > 0 || $("#rv_1").val().length > 0){
+		if($("#wr_1").val().length > 0 || $("#wr_1").val().length > 0){
 			$('.btn_ok > a').addClass('on');
 		}else{
 			$('.btn_ok > a').removeClass('on');
@@ -158,13 +140,75 @@
 	
 	// 리뷰 직접입력 - URL이 있을때 버튼 on
 	$('.rv_input').keyup(function(){
-		var rv_1 = $('#rv_1').val();
-		var rv_2 = $('#rv_2').val();
+		var wr_1 = $('#wr_1').val();
+		var wr_1_2 = $('#wr_1_2').val();
 		
-		if(rv_1.length > 0 || rv_2.length > 0){
+		if(wr_1.length > 0 || wr_1_2.length > 0){
 			$('.btn_ok > a').addClass('on');
 		}else{
 			$('.btn_ok > a').removeClass('on');
+		}
+	})
+	
+	$(document).ready(function(){
+		// 블로그 리뷰 리스트(rss) 불러오기
+		var mb_id = 'shinbyro';
+		var params = {"mb_id":mb_id};
+		var string = '';
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_review_blog.php",   
+			data:params,
+			success:function(data){
+				$.each(data[0],function(key,value){
+					string += '<li class="rv_title"><a href="'+value.rv_link[0]+'"><span class="txt_ov">'+value.rv_title[1]+'</span></a></li>';
+				})
+				$('#rv_list').html(string);
+				//console.log(data);
+			},   
+			error:function(e){  
+				alert(e.responseText);  
+			}  
+		});  
+		
+		// 리뷰 등록|수정 구분
+		var w = getQuerystring('w');
+		$("#w").val(w);
+		
+		// 리뷰 수정일 때 리뷰 불러오기
+		if(w == "cu"){
+			$('#rv_rs').hide();	//블로그 불러오기 hide
+			$('.btn_ok > a').addClass('on');	//버튼 on
+			
+			var wr_id = getQuerystring('wr_id');
+			var mb_id = member['mb_id'];
+			var params = {"mb_id":mb_id,"wr_id":wr_id};
+			$.ajax({      
+				type:"POST",  
+				url:"http://modublog.co.kr/app_public/ajax/a_review_update.php",   
+				data:params,
+				success:function(data){
+					$.each(data,function(key,value){
+						$('#wr_subject').text(data.wr_subject);
+						if(key == 'wr_content' || key == 'wr_1' || key == 'wr_1_2'){
+							$("#"+key).val(value);
+						}
+						var star_p = data.wr_7/2;
+						for(var i=1;i<6;i++){
+							if(i <= star_p){
+								$("#s_"+i).children().attr("src","../img/star_on.png");
+							}
+						}
+						var point = star_p * 2;
+						$("#wr_7").val(point);
+						$("#comment_id").val(data.comment_id);
+					})
+					//console.log(data);
+				},   
+				error:function(e){  
+					alert(e.responseText);  
+				}  
+			});  
 		}
 	})
 	
@@ -177,7 +221,6 @@
 		$('#wr_id').val(wr_id);
 		$('#wr_6').val(wr_6);
 		
-		
 		if ($('#wr_7').val() == "") {
 			alert("별점을 남겨주세요.");
 			$('.re_star').focus();
@@ -188,20 +231,21 @@
 			$('#wr_content').focus();
 			return false;
 		}
-		if ($('#rv_1').val() == ""){
+		if ($('#wr_1').val() == ""){
 			alert("리뷰 URL을 선택 또는 입력해주세요.");
-			$('#rv_1').focus();
+			$('#wr_1').focus();
 			return false;
 		}
 		
 		var params = $(this).closest("form").serialize();
+		
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_comment_write.php",  
 			data:params,			
 			success:function(data){
-				//alert("ok");
-				location.replace('mypage_01.html');
+				location.href="mypage_01.html";
+				//console.log(data); 
 			},   
 			error:function(e){  
 				console.log(e.responseText);  
