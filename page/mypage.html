@@ -23,20 +23,20 @@
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
 	<div class="bk_gray" id="mypage_wrap">
-		<div class="bk_white m_profile_box" style="border-bottom:none">
+		<div class="bk_white m_profile_box" style="margin-bottom:10px">
 			<div id="img_box1">
 				<!--<input type="file" name="" class="btn_add_img" onchange="fileInfo_b(this)">-->
-				<div style="width:100%;height:100%; background:rgba(0,0,0,.1) no-repeat 50%; background-size:cover; opacity: 0.7;" id="back_img"></div>
+				<div style="width:100%;height:100%; background:rgba(0,0,0,.3)" id="bk_profile_img"></div>
 			</div>
 			<div class="profile_info">
-				<p id="mb_name"></p>
-				<span id="mb_email"></span>
+				<p id="mb_name_t"></p>
+				<span id="mb_email_t"></span>
 			</div>
 			<div id="img_box2">
-				<div class="profile_img">
-					<div style="position:relative;width:100%;height:100%"><img src="" id="mb_photo" style="width:100%;height:100%;position:absolute;top:0;left:0;bottom:0;right:0"></div>
+				<div class="profile_img_b">
+					<div class="profile_img"><img src="" id="mb_photo" onError="this.src='../img/person.png'"></div>
 				</div>
-				<!--<div class="btn_add_img"><input type="file" name="mb_photo" id="mb_photo" onchange="fileInfo_p(this)"></div>-->
+				<div class="btn_add_img"><input type="file" name="mb_photo" id="mb_photo" onchange="fileInfo_p(this)"></div>
 			</div>
 		</div>
 		<style>
@@ -70,9 +70,11 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_mypage.php",
 			data:params,
 			success:function(data){
+				$("#mb_name_t").text(data.mb_name);
+				$("#mb_email_t").text(data.mb_email);
 				$("#mb_photo").attr("src",data.mb_photo);
-				$("#back_img").css("background-image","url('"+data.mb_photo+"')");
 				$("#my_point").text(data.mb_point_format+"p");
+				$('#img_box1').css('background','url(http://modublog.co.kr/data/mb_photo/'+member['mb_id']+')center center / cover no-repeat');
 				console.log(data);
 			},   
 			error:function(e){  
