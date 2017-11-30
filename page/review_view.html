@@ -32,10 +32,13 @@
 	<div class="" style="margin-bottom:55px">
 		<div class="rv_img"><img src="../temp-img/view1.jpg"></div>
 		<div class="title rv_txt pr_view_info">
-			<p class="title">[강동] 플로체플라워</p>
+			<p class="title" id="wr_subject">[강동] 플로체플라워</p>
 			
 			<span class="rv_sub_info star_b" style="padding-bottom:13px;display:block">
-				<span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span>10점</span>
+				<span id="star_wrap">
+				<span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_off.png"></span>
+				</span>
+				<span id="reivew_star">10점</span>
 				<span class="rv_num_box">리뷰&nbsp;<span class="color_blog">121</span></span>
 			</span>
 			
@@ -53,24 +56,50 @@
 					<div class="rv_cmt_list">
 						<div class="rv_comment bk_white">
 							<ul id="comment_li">
-								<li><div class="comment_title"><span class="title_sub">닉네임</span><span class="date_txt" style="padding:0 4px">2017-08-12</span><span class="comment_re">
-								<span class="rv_sub_info star_b">
-									<span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span class="star_gd">10점</span>
-									</span>
-								</span>
-								</span><div class="comment_img"><img src="'+value.mb_photo+'"></div>
-								<input type="button" class="btn_tp1" value="리뷰보기" id="btn_read_all" style="right:0"></div><div class="comment_conts">댓글이다 이거 댓글이야</div></li>
-								<li><div class="comment_title"><span class="title_sub">닉네임</span><span class="date_txt" style="padding:0 4px">2017-08-12</span><span class="comment_re">
-								<span class="rv_sub_info star_b">
-									<span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span class="star_gd">10점</span>
-									</span>
-								</span>
-								</span><div class="comment_img"><img src="'+value.mb_photo+'"></div>
-								<input type="button" class="btn_tp1" value="리뷰보기" id="btn_read_all" style="right:0"></div><div class="comment_conts">댓글이다 이거 댓글이야</div></li>
+								<li>
+									<div class="comment_title">
+										<span class="title_sub">닉네임</span>
+										<span class="date_txt" style="padding:0 4px">2017-08-12</span>
+										<span class="comment_re">
+											<span class="rv_sub_info star_b">
+												<span class="star"><img src="../img/star_on.png"></span>
+												<span class="star"><img src="../img/star_on.png"></span>
+												<span class="star"><img src="../img/star_on.png"></span>
+												<span class="star"><img src="../img/star_on.png"></span>
+												<span class="star"><img src="../img/star_off.png"></span>
+												<span class="star_gd">10점</span>
+											</span>
+										</span>
+										<div class="comment_img"><img src="'+value.mb_photo+'"></div>
+										<input type="button" class="btn_tp1" value="리뷰보기" id="btn_read_all" style="right:0">
+									</div>
+									<div class="comment_conts">댓글이다 이거 댓글이야</div>
+								</li>
+								<li>
+									<div class="comment_title">
+										<span class="title_sub">닉네임</span>
+										<span class="date_txt" style="padding:0 4px">2017-08-12</span>
+										<span class="comment_re">
+											<span class="rv_sub_info star_b">
+												<span class="star"><img src="../img/star_on.png"></span>
+												<span class="star"><img src="../img/star_on.png"></span>
+												<span class="star"><img src="../img/star_on.png"></span>
+												<span class="star"><img src="../img/star_on.png"></span>
+												<span class="star"><img src="../img/star_off.png"></span>
+												<span class="star_gd">10점</span>
+											</span>
+										</span>
+										<div class="comment_img"><img src="'+value.mb_photo+'"></div>
+										<input type="button" class="btn_tp1" value="리뷰보기" id="btn_read_all" style="right:0">
+									</div>
+									<div class="comment_conts">댓글이다 이거 댓글이야</div>
+								</li>
 							</ul>
 						</div>
 					</div>
 				</li>
+				
+				
 				<li>
 					<a href="#none">
 						<div class="list_txt">
@@ -111,7 +140,7 @@
 		</div>
 	</div>
 	<script>
-	<script>
+
 	//전체 로딩
 	$(document).ready(function(){
 		var bo_table = getQuerystring('bo_table');
@@ -124,14 +153,40 @@
 			data:params,
 			success:function(data){
 				
-				
-				console.log(data);
-				console.log(data);
+				for(var i=0; i < 10; i = i +2){
+					if(data.wr_star > i){
+						string += '<span class="star"><img src="../img/star_on.png"></span>';
+					}else{
+						string += '<span class="star"><img src="../img/star_off.png"></span>';
+					}				
+				}
+				$("#star_wrap").html(string);
+				$(".wr_subject").html(data.wr_subject);
+				$("#pr_subject_sub").html(data.wr_content);
+				$(".color_blog").html(data.wr_comment);
+				$("#reivew_star").html(data.wr_star+"점");
+				$(".rv_img img").attr("src",data.image);
+				//console.log(data);
 			},   
 			error:function(e){  
 				alert(e.responseText);  
 			}  
 		});
+		
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_comment_view.php",
+			data:params,
+			success:function(data){
+				console.log(data);
+				//console.log("aaaa");
+			},   
+			error:function(e){  
+				alert(e.responseText);  
+			}  
+		});		
+		
+		
 	});	
 	</script>
 </body>
