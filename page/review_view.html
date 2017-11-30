@@ -111,25 +111,28 @@
 		</div>
 	</div>
 	<script>
+	<script>
+	//전체 로딩
 	$(document).ready(function(){
-		var mb_id = member['mb_id'];
-		var my_p = $('[class=on]').children().attr("id");
+		var bo_table = getQuerystring('bo_table');
+		var wr_id = getQuerystring('wr_id');
+		var params = {"wr_id":wr_id,"bo_table":bo_table};
 		var string = '';
-		var params = {"mb_id":mb_id,"my_p":"my_p1"};
 		$.ajax({      
 			type:"POST",  
-			url:"http://modublog.co.kr/app_public/ajax/a_mypage01.php",   
+			url:"http://modublog.co.kr/app_public/ajax/a_review_view.php",
 			data:params,
 			success:function(data){
 				
 				
 				console.log(data);
+				console.log(data);
 			},   
 			error:function(e){  
 				alert(e.responseText);  
 			}  
-		});  		
-	})
+		});
+	});	
 	</script>
 </body>
 </html>

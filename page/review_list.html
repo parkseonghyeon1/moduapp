@@ -27,62 +27,50 @@
 		<a href="" class="header_btn_r btn_search2">검색</a>
 	</div>
 	<ul class="tab_mn tab_two">
-		<li class="on"><a class="tab1 t_b">블로그 체험단</a></li>
-		<li><a class="tab2 t_s">SNS 체험단</a></li>
+		<li class="on"><a class="tab1 t_b" data="all">블로그 체험단</a></li>
+		<li><a class="tab2 t_s" data="all">SNS 체험단</a></li>
 	</ul>
 	
 	<!-- 블로그 리뷰 -->
 	<div class="swiper-container ca_wrap tab_blog" id="tab_blog">
 		<div class="swiper-wrapper category blog_c">
-			<a href="#none" class="on" data="all">전체</span></a>
-			<a href="#none" data="food">맛집</a>
-			<a href="#none" data="fashion">패션</a>
-			<a href="#none" data="beauty">뷰티</a>
-			<a href="#none" data="life">생활</a>
-			<a href="#none" data="hobby">취미</span></a>
-			<a href="#none" data="tour">여행</a>
-			<a href="#none" data="special">기타</a>
+			<a href="#none" class="t_b on" data="all">전체</span></a>
+			<a href="#none" class="t_b" data="맛집">맛집</a>
+			<a href="#none" class="t_b" data="패션">패션</a>
+			<a href="#none" class="t_b" data="뷰티">뷰티</a>
+			<a href="#none" class="t_b" data="생활">생활</a>
+			<a href="#none" class="t_b" data="취미">취미</span></a>
+			<a href="#none" class="t_b" data="여행">여행</a>
+			<a href="#none" class="t_b" data="이벤트"></a>
 		</div>
 	</div>
 	<div class="tab_blog list_wrap">
-		<ul class="bk_white rv_list" id="rv_li">
-			<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><span class="conts txt_ov">제주도 가면 기념품은 필수 인거같아요 진짜 꼭 챙겨가세요</span>
+		<ul class="bk_white rv_list blog" id="rv_li">
 			
-			<span class="rv_sub_info star_b">
-				<span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span>10점</span>
-				<span class="rv_num_box">리뷰&nbsp;<span class="color_blog">121</span></span>
-			</span>
-			
-			</div></div></a></li>
 		</ul>
 	</div>
 	
 	<!-- SNS 리뷰 -->
 	<div class="swiper-container ca_wrap tab_sns" id="tab_sns">
 		<div class="swiper-wrapper category sns_c">
-			<a href="#none" class="on" data="all">전체</a>
-			<a href="#none" data="food">맛집</a>
-			<a href="#none" data="fashion">패션</a>
-			<a href="#none" data="beauty">뷰티</a>
-			<a href="#none" data="life">생활</a>
-			<a href="#none" data="event">이벤트</a>
+			<a href="#none" class="t_s on" data="all">전체</a>
+			<a href="#none" class="t_s" data="맛집">맛집</a>
+			<a href="#none" class="t_s" data="패션">패션</a>
+			<a href="#none" class="t_s" data="뷰티">뷰티</a>
+			<a href="#none" class="t_s" data="생활">생활</a>
+			<a href="#none" class="t_s" data="이벤트">이벤트</a>
 		</div>
 	</div>
 	<div class="tab_sns list_wrap">
-		<ul class="bk_white rv_list" id="rv_li">
-			<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><span class="conts txt_ov">제주도 가면 기념품은 필수 인거같아요 진짜 꼭 챙겨가세요</span>
-			
-			<span class="rv_sub_info star_b">
-				<span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span>10점</span>
-				<span class="rv_num_box">리뷰&nbsp;<span class="color_sns">121</span></span>
-			</span>
-			
-			</div></div></a></li>
+		<ul class="bk_white rv_list sns" id="rv_li">
+
 		</ul>
 	</div>
 	<script>
 	// 탭메뉴
 	$(document).on('click','.tab_mn li a', function() {
+		$(".category a").removeClass("on");
+		$(".category a:first-child").addClass("on");
 		$(this).closest('li').addClass('on').siblings().removeClass('on');	
 		var tab_s = $(this).attr('class').substring(0,4);
 		if(tab_s == 'tab1') {
@@ -103,36 +91,149 @@
 		});
 		}
 	})
-	$(document).ready(function(){
+
 	
 		
 		
-	})
+
 	// 카테고리 on-off
+	/*
     $(document).on("click",".category a",function(){  
         $(this).parent().children('a').removeClass('on');
         $(this).addClass('on');
     })
+	*/
 	</script>
 	<script>
-	/*$(document).ready(function(){
-		var mb_id = member['mb_id'];
-		var my_p = $('[class=on]').children().attr("id");
+	
+	//페이지 첫 로딩시 ajax
+	$(document).ready(function(){	
 		var string = '';
-		var params = {"mb_id":mb_id,"my_p":"my_p1"};
-		$.ajax({      
-			type:"POST",  
-			url:"http://modublog.co.kr/app_public/ajax/a_mypage01.php",   
-			data:params,
-			success:function(data){
-				
-				console.log(data);
-			},   
-			error:function(e){  
-				alert(e.responseText);  
-			}  
-		});  		
-	})*/
+		var bo_table = 'review';
+		var ca_name = 'all';
+		var params = {"bo_table":bo_table,"ca_name":ca_name};
+		$(document).ready(function(){
+			$.ajax({      
+				type:"POST",  
+				url:"http://modublog.co.kr/app_public/ajax/a_review_list.php",   
+				data:params,
+				success:function(data){
+					console.log(data);
+					$.each(data[0],function(key,value){
+						//블로그 리뷰
+						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
+						for(var i = 0; i < 10; i= i+2){
+							if(value.wr_star > i){
+								string += '<span class="star"><img src="../img/star_on.png"></span>';
+							}else{
+								string += '<span class="star"><img src="../img/star_off.png"></span>';
+							}
+							
+						}
+						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></a></li>';
+						//sns 리뷰
+						//string += '<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><span class="conts txt_ov">제주도 가면 기념품은 필수 인거같아요 진짜 꼭 챙겨가세요</span><span class="rv_sub_info star_b"><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span>10점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_sns">121</span></span></span></div></div></a></li>';				
+					}); 
+					$(".blog").html(string);
+					
+				},   
+				error:function(e){  
+					alert(e.responseText);  
+				}  
+			});  		
+		})
+	})
+	
+	//블로그 체험단 클릭시 ajax
+	$(document).on("click",".t_b",function(){
+		$(this).siblings().removeClass("on");
+		$(this).addClass("on");
+		
+		var string = '';
+		var bo_table = 'review';
+		var ca_name = $(this).attr('data');
+
+		var params = {"bo_table":bo_table,"ca_name":ca_name};
+		$(document).ready(function(){
+			$.ajax({      
+				type:"POST",  
+				url:"http://modublog.co.kr/app_public/ajax/a_review_list.php",   
+				data:params,
+				success:function(data){
+					console.log(data);
+					$.each(data[0],function(key,value){
+						//블로그 리뷰
+						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
+						for(var i = 0; i < 10; i= i+2){
+							if(value.wr_star > i){
+								string += '<span class="star"><img src="../img/star_on.png"></span>';
+							}else{
+								string += '<span class="star"><img src="../img/star_off.png"></span>';
+							}
+							
+						}
+						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></a></li>';
+						//sns 리뷰
+						//string += '<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><span class="conts txt_ov">제주도 가면 기념품은 필수 인거같아요 진짜 꼭 챙겨가세요</span><span class="rv_sub_info star_b"><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span>10점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_sns">121</span></span></span></div></div></a></li>';				
+					}); 
+					$(".blog").html(string);
+					
+				},   
+				error:function(e){  
+					alert(e.responseText);  
+				}  
+			});  		
+		})
+		return false;
+	})
+	
+	//SNS 체험단 클릭시 ajax
+	$(document).on("click",".t_s",function(){
+		$(this).siblings().removeClass("on");
+		$(this).addClass("on");
+		
+		var string = '';
+		var bo_table = 'sns_review';
+		var ca_name = $(this).attr('data');
+		
+		
+		var params = {"bo_table":bo_table,"ca_name":ca_name};
+		$(document).ready(function(){
+			$.ajax({      
+				type:"POST",  
+				url:"http://modublog.co.kr/app_public/ajax/a_review_list.php",   
+				data:params,
+				success:function(data){
+					console.log(data);
+					$.each(data[0],function(key,value){
+						//블로그 리뷰
+						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
+						for(var i = 0; i < 10; i= i+2){
+							if(value.wr_star > i){
+								string += '<span class="star"><img src="../img/star_on.png"></span>';
+							}else{
+								string += '<span class="star"><img src="../img/star_off.png"></span>';
+							}
+							
+						}
+						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></a></li>';
+						//sns 리뷰
+						//string += '<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><span class="conts txt_ov">제주도 가면 기념품은 필수 인거같아요 진짜 꼭 챙겨가세요</span><span class="rv_sub_info star_b"><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span>10점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_sns">121</span></span></span></div></div></a></li>';				
+					}); 
+					$(".sns").html(string);
+					
+				},   
+				error:function(e){  
+					alert(e.responseText);  
+				}  
+			});  		
+		})
+		return false;
+	})	
+		
+	
 	</script>
+	
+
 </body>
 </html>
