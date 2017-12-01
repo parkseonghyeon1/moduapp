@@ -22,24 +22,30 @@
 
 .answer2 {border-top:1px solid #ebebeb}
 .rv_comment li:last-child {border-bottom:none !important}
-.rv_comment {}
+.star_b span {margin-right:2px}
+.star_b img {width:8px}
 </style>
 <body>
+	<!--
 	<div id="header">
 		<h1>전체리뷰</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
+	-->
+	<div id="nav_v"></div>
+	<script>
+		$("#nav_v").load("slide_menu.html");
+	</script>
+	
 	<div class="" style="margin-bottom:55px">
 		<div class="rv_img"><img src="../temp-img/view1.jpg"></div>
 		<div class="title rv_txt pr_view_info">
 			<p class="title" id="wr_subject"></p>
 			
 			<span class="rv_sub_info star_b" style="padding-bottom:13px;display:block">
-				<span id="star_wrap">
-				<span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_on.png"></span><span class="star"><img src="../img/star_off.png"></span>
-				</span>
+				<span id="star_wrap"></span>
 				<span id="reivew_star"></span>
-				<span class="rv_num_box"><span class="color_blog"></span></span>
+				<span class="rv_num_box">리뷰 <span id="rv_num"></span></span>
 			</span>
 			
 			<div class="review_cont" id="pr_subject_sub"></div>
@@ -50,7 +56,7 @@
 		</div>
 	</div>
 	
-	<div class="pr_btn_wrap bk_b">
+	<div class="pr_btn_wrap">
 		<div class="pr_btn_p">
 			<a id="pr_go">구경하기</a>
 			<a id="req_go">신청하기</a>
@@ -65,6 +71,13 @@
 		var params = {"wr_id":wr_id,"bo_table":bo_table};
 		var string = '';
 		var comment_string = '';
+		if(bo_table == 'sns_review'){
+			$('.pr_btn_wrap').addClass('bk_s');
+			$('#rv_num').addClass('color_sns');
+		}else if(bo_table == 'review'){
+			$('.pr_btn_wrap').addClass('bk_b');
+			$('#rv_num').addClass('color_blog');
+		}
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_review_view.php",
@@ -73,7 +86,11 @@
 				
 				for(var i=0; i < 10; i = i +2){
 					if(data.wr_star > i){
-						string += '<span class="star"><img src="../img/star_on.png"></span>';
+						string += '<span class="star"><img src="../img/star';
+						if(bo_table == 'sns_review'){
+						string += '_y';
+						}
+						string += '_on.png"></span>';
 					}else{
 						string += '<span class="star"><img src="../img/star_off.png"></span>';
 					}				
@@ -81,7 +98,7 @@
 				$("#star_wrap").html(string);
 				$("#wr_subject").html(data.wr_subject);
 				$("#pr_subject_sub").html(data.wr_content);
-				$(".color_blog").html(data.wr_comment);
+				$("#rv_num").html(data.wr_comment);
 				$("#reivew_star").html(data.wr_star+"점");
 				$(".rv_img img").attr("src",data.image);
 				//console.log(data);
@@ -92,9 +109,7 @@
 						comment_string +=  (i+1);
 					}else{
 						comment_string +=  (i*10+1);
-					}					
-					
-					
+					}	
 					comment_string += '" data_n = "'+i+'" class="list_click"><div class="list_txt"><p style=""><span class="title_sub" style="display:inline-block" id="sp">';
 					if(i == 0){
 						comment_string += (i+1)+'~'+(i+10);
@@ -148,18 +163,24 @@
 						
 					for(var i=0; i < 10; i = i +2){
 						if(value.wr_7 > i){
-							com_string += '<span class="star"><img src="../img/star_on.png"></span>';
+							com_string += '<span class="star"><img src="../img/star';
+							if(bo_table == 'sns_review'){
+							com_string += '_y';
+							}
+							com_string += '_on.png"></span>';
 						}else{
 							com_string += '<span class="star"><img src="../img/star_off.png"></span>';
 						}				
 					}												
 					com_string += '<span class="star_gd">'+value.wr_7+'점</span></span></span><div class="comment_img"><img src="'+value.mb_photo+'"></div>';
-					
-					if(value.wr_1){
-						com_string += '<a href="'+value.wr_1+'" class="btn_tp1" value="리뷰보기">리뷰보기</a>';
+					if(bo_table == 'sns_review'){
+						var txt_c = 'color_sns';
+					}
+					if(value.wr_1 && !value.wr_1_2){
+						com_string += '<a href="'+value.wr_1+'" class="btn_tp1 '+txt_c+'" value="리뷰보기" style="right:0;width:55px">리뷰보기</a>';
 					}
 					if(value.wr_1_2){
-						com_string += '<a href="'+value.wr_1_2+'" class="btn_tp1" value="리뷰보기">리뷰보기</a>';
+						com_string += '<a href="'+value.wr_1+'" class="btn_tp1 '+txt_c+'" value="리뷰보기" style="margin-right:16px;width:55px">리뷰보기</a><a href="'+value.wr_1_2+'" class="btn_tp1 '+txt_c+'" value="리뷰보기" style="right:0;width:26px;font-size:15px">+</a>';
 					}						
 					com_string += '</div><div class="comment_conts">'+value.wr_content+'</div></li>';					
 				})

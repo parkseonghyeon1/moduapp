@@ -210,7 +210,7 @@ ui-page {background:#fff;height:100%}
 .list_pn li .btn_arrow_r,
 .list_pn_sd li .btn_arrow_r {width:13px;height:14px;margin-top:-7px}
 .list_pn li .list_txt {padding:12px 0}
-.list_pn li .title_sub {font-size:11px;display:block;max-height:20px;width:80%}
+.list_pn li .title_sub {font-size:11px;display:block;max-height:20px;width:80%;padding-bottom:2px}
 .list_pn li .date_txt {font-size:10px;color:#9e9e9e;display:block;padding-top:2px} 
 .list_pn li .btn_arrow_r {background:url(../img/icon_arrow_right.png)no-repeat;background-size:13px 14px}
 .list_pn_sd li .title_sub {font-size:12px}
@@ -251,7 +251,7 @@ ui-page {background:#fff;height:100%}
 .comment_list ul {padding-top:8px}
 .comment_list li {border-top:1px solid #ebebeb}
 .comment_title {overflow:hidden;position:relative;padding-left:25px}
-.comment_title .title_sub {font-size:11px;display:inline-block;padding:12px 4px 8px}
+.comment_title .title_sub {font-size:11px;display:inline-block;padding:10px 4px}
 .comment_title .date_txt {font-size:10px;display:inline-block;padding:12px 0;color:#9e9e9e}
 .comment_title .btn_comment {font-size:10px}
 .comment_conts {font-size:12px;padding-bottom:13px}
