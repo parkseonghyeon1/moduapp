@@ -28,8 +28,8 @@
 		<ul class="list_pn_sd message_list" id="message_li">
 		
 		</ul>
-		<div id="loading_bar" class="off">
-	</div>
+		<div id="loading_bar" class="off"></div>
+		<div id="loading_bar2" class="off"></div>
 	<script>
 	// 메세지 목록
 	$(document).ready(function(){
@@ -62,11 +62,11 @@
 	})
 	</script>
 	<script>
-	var list = 20;
-	var list_num = 20;
 	
 	// 정렬 버튼 (최신순 | 안읽은순)
 	$(document).on('click','.message_sort a', function(){
+		$('#loading_bar').attr('class','off');
+		$('#loading_bar2').attr('class','off');
 		var mb_id = member['mb_id'];
 		var string_m = '';
 		var sort = $(this).attr("id");
@@ -89,9 +89,6 @@
 					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'</div></div></li>';
 				}); 
 				$("#message_li").append(string_m);
-				
-				list = 20;
-				console.log(list + "adasf");
 			},   
 			error:function(e){  
 				alert(e.responseText);  
@@ -99,13 +96,20 @@
 		})
 	})
 	
+	var list = 20;
+	var list_num = 20;
 	// 스크롤 목록
 	$(window).scroll(function() {
 		if($(window).scrollTop() == $(document).height() - $(window).height()){
-			var sort = $("#sort").val();
-			var mb_id = 'qwe';
+			var sort = $(".on").attr("id");
+			var mb_id = member['mb_id'];
 			var linum = $("#message_li li").length;
-			var loading_class = $("#loading_bar").attr("class");
+			if(sort == 's_read'){
+				var loading_bar = 'loading_bar2';
+			}else{
+				var loading_bar = 'loading_bar';
+			}
+			var loading_class = $("#"+loading_bar).attr("class");
 			if(linum > 0 && loading_class == 'off'){
 				var params = {"list_ar":list,"mb_id":mb_id,"sort":sort};
 				var string_m = '';
@@ -114,8 +118,7 @@
 					data:params,			
 					url:"http://modublog.co.kr/app_public/ajax/a_message_ajax.php",      
 					beforeSend:function(){
-						$("#loading_bar").attr("class","on");
-						$("#loading_bar").html("<div class='loader_wrap' style='height:56px;background:#fff'><img src='../img/icon_loder.gif'></div>");
+						$("#"+loading_bar).html("<div class='loader_wrap' style='height:60px;background:#fff'><img src='../img/icon_loder.gif'></div>");
 					},
 					success:function(data){
 						$.each(data,function(key,value){
@@ -128,16 +131,17 @@
 							string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'</div></div></li>';
 						}); 
 						$("#message_li").append(string_m);
-						
+						if($('#click_chk').val() == 'chk'){list = 20;}
 						list = list + list_num;
 						
-						$("#loading_bar").attr("class","off");
+						$("#"+loading_bar).attr("class","off");
 						
-						if(!string_m){
-							$("#loading_bar").attr("class","");
-							list = 0;
+						if(!string_m){	//리스트 목록 다 불러왔을 경우 리스트,로딩 초기화
+							list = 20;
+							$("#"+loading_bar).attr("class","");
+							$("#"+loading_bar).html("");
 						}
-						console.log(list);
+						//console.log(list);
 					},   
 					error:function(e){  
 						alert(e.responseText);  

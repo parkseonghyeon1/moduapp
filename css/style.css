@@ -328,7 +328,7 @@ ui-page {background:#fff;height:100%}
 .rv_txt {padding:20px 16px}
 .rv_txt p {font-size:12px}
 .rv_cont {font-size:11px}
-.rv_num_box {padding-left:10px;background:url(../img/icon_bar.png)no-repeat left center}
+.rv_num_box {padding-left:10px;background:url(../img/icon_bar.png)no-repeat left center;margin-left:8px}
 .rv_cmt_list {display:none;border-top:1px solid #efefef}
 .rv_cmt_list .comment_li {border-top:none !important}
 

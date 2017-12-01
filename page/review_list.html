@@ -66,9 +66,10 @@
 		<ul class="bk_white rv_list sns" id="rv_li">
 
 		</ul>
-		<div id="loading_bar" class="off"></div>
+		<div id="loading_bar2" class="off"></div>
 	</div>
 	<input type="hidden" id="check" value="blog">
+	
 	<script>
 	// 탭메뉴
 	$(document).on('click','.tab_mn li a', function() {
@@ -94,11 +95,6 @@
 		});
 		}
 	})
-
-	
-		
-		
-
 	// 카테고리 on-off
 	/*
     $(document).on("click",".category a",function(){  
@@ -121,7 +117,7 @@
 				url:"http://modublog.co.kr/app_public/ajax/a_review_list.php",   
 				data:params,
 				success:function(data){
-					console.log(data);
+					//console.log(data);
 					$.each(data[0],function(key,value){
 						//블로그 리뷰
 						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
@@ -131,14 +127,10 @@
 							}else{
 								string += '<span class="star"><img src="../img/star_off.png"></span>';
 							}
-							
 						}
-						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></a></li>';
-						//sns 리뷰
-						//string += '<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><span class="conts txt_ov">제주도 가면 기념품은 필수 인거같아요 진짜 꼭 챙겨가세요</span><span class="rv_sub_info star_b"><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span>10점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_sns">121</span></span></span></div></div></a></li>';				
+						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></a></li>';			
 					}); 
 					$(".blog").html(string);
-					
 				},   
 				error:function(e){  
 					alert(e.responseText);  
@@ -149,6 +141,8 @@
 	
 	//블로그 체험단 클릭시 ajax
 	$(document).on("click",".t_b",function(){
+		$("#loading_bar").attr("class","off");
+		$("#loading_bar2").attr("class","off");
 		$("#check").val("blog");
 		$(this).siblings().removeClass("on");
 		$(this).addClass("on");
@@ -164,7 +158,7 @@
 				url:"http://modublog.co.kr/app_public/ajax/a_review_list.php",   
 				data:params,
 				success:function(data){
-					console.log(data);
+					//console.log(data);
 					$.each(data[0],function(key,value){
 						//블로그 리뷰
 						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
@@ -176,9 +170,7 @@
 							}
 							
 						}
-						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></a></li>';
-						//sns 리뷰
-						//string += '<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><span class="conts txt_ov">제주도 가면 기념품은 필수 인거같아요 진짜 꼭 챙겨가세요</span><span class="rv_sub_info star_b"><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span>10점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_sns">121</span></span></span></div></div></a></li>';				
+						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></a></li>';	
 					}); 
 					$(".blog").html(string);
 					
@@ -193,6 +185,8 @@
 	
 	//SNS 체험단 클릭시 ajax
 	$(document).on("click",".t_s",function(){
+		$("#loading_bar").attr("class","off");
+		$("#loading_bar2").attr("class","off");
 		$("#check").val("sns");
 		$(this).siblings().removeClass("on");
 		$(this).addClass("on");
@@ -210,7 +204,7 @@
 				success:function(data){
 					console.log(data);
 					$.each(data[0],function(key,value){
-						//블로그 리뷰
+						//SNS 리뷰
 						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
 						for(var i = 0; i < 10; i= i+2){
 							if(value.wr_star > i){
@@ -218,11 +212,8 @@
 							}else{
 								string += '<span class="star"><img src="../img/star_off.png"></span>';
 							}
-							
 						}
-						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_sns">'+value.wr_comment+'</span></span></span></div></div></a></li>';
-						//sns 리뷰
-						//string += '<li><a href="review_view.html"><div class="list_item"><div class="list_item_img"><img src=""></div><div class="list_item_txt"><p class="title">[스포츠웨어] 다이빙스팟</p><span class="conts txt_ov">제주도 가면 기념품은 필수 인거같아요 진짜 꼭 챙겨가세요</span><span class="rv_sub_info star_b"><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_y_on.png"></span><span class="star"><img src="../img/star_off.png"></span><span>10점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_sns">121</span></span></span></div></div></a></li>';				
+						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_sns">'+value.wr_comment+'</span></span></span></div></div></a></li>';		
 					}); 
 					$(".sns").html(string);
 					
@@ -234,21 +225,27 @@
 		})
 		return false;
 	})	
-	</script>
-	<script>
-	var list = 5;
-	var list_num = 5;
+	
+	var list = 20;
+	var list_num = 20;
+	var temp = 'all';
+	// 리스트 스크롤
 	$(window).scroll(function() {
 		if($(window).scrollTop() == $(document).height() - $(window).height()){
-			var linum = $(".blog li").length;
-			var loading_class = $("#loading_bar").attr("class");
+			//console.log(temp+"1");
 			if($("#check").val() == 'blog'){
 				var bo_table = 'review';
+				var loading_bar = 'loading_bar';
 				var ca_name = $('.blog_c .on').attr('data');
 			}else{
 				var bo_table = 'sns_review';
 				var ca_name = $('.sns_c .on').attr('data');
+				var loading_bar = 'loading_bar2';
 			}
+			//console.log(temp+"2");
+			var linum = $(".blog li").length;
+			var loading_class = $("#"+loading_bar).attr("class");
+			
 			if(linum > 0 && loading_class == 'off'){
 				var params = {"list_ar":list,"bo_table":bo_table,"ca_name":ca_name};
 				var string = '';
@@ -257,40 +254,51 @@
 					data:params,			
 					url:"http://modublog.co.kr/app_public/ajax/a_ajax.php",      
 					beforeSend:function(){
-						$("#loading_bar").attr("class","on");
-						$("#loading_bar").html("<div class='loader_wrap' style='height:56px;background:#fff'><img src='../img/icon_loder.gif'></div>");
+						$("#"+loading_bar).html("<div class='loader_wrap' style='height:115px;background:#fff'><img src='../img/icon_loder.gif'></div>");
 					},
 					success:function(data){
-						
-						
 						$.each(data,function(key,value){
 							string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
 							for(var i = 0; i < 10; i= i+2){
 								if(value.wr_star > i){
-									string += '<span class="star"><img src="../img/star_on.png"></span>';
+									if(bo_table == 'sns_review'){
+										string += '<span class="star"><img src="../img/star_y_on.png"></span>';
+									}else{
+										string += '<span class="star"><img src="../img/star_on.png"></span>';
+									}
 								}else{
 									string += '<span class="star"><img src="../img/star_off.png"></span>';
 								}
 							}
-							string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></a></li>';			
+							if(bo_table == 'sns_review'){
+								var color = 'sns';
+							}else{
+								var color = 'blog';
+							}
+							string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_'+color+'">'+value.wr_comment+'</span></span></span></div></div></a></li>';			
 						}); 
 						
-						
-						console.log(string);
 						if(bo_table == 'review'){
 							$(".blog").append(string);
 						}else{
 							$(".sns").append(string);
 						}
+						if(ca_name != temp){
+							list = 20;
+						}
+						console.log(list);
 						
 						list = list + list_num;
 						
-						$("#loading_bar").attr("class","off");
+						console.log(temp+"/"+ca_name);
+						
+						temp = ca_name;
 						
 						if(!string){
-							$("#loading_bar").attr("class","");
+							list = 20;
+							$("#"+loading_bar).attr("class","");
+							$("#"+loading_bar).html("");
 						}
-						
 					},   
 					error:function(e){  
 						alert(e.responseText);  
