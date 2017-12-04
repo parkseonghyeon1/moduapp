@@ -26,38 +26,21 @@
 	</div>
 	<!-- 출금신청 했을때만 show -->
 	<div id="point_req_wrap">
-		<div class="ct_wrap pa_info">
-			<div class="pa_txt">
-				<p>50,000원 환급 신청 (환급액:48,350 원)</p>
-				<span>신청일:2017-11-22 17:43:42&nbsp;&nbsp;&nbsp;계좌:국민은행 11111111</span>
-				<p class="pa_state">심사중</p>
-			</div>
-		</div>
-		<div class="ct_wrap pa_info">
-			<div class="pa_txt">
-				<p>50,000원 환급 신청 (환급액:48,350 원)</p>
-				<span>신청일:2017-11-22 17:43:42&nbsp;&nbsp;&nbsp;계좌:국민은행 11111111</span>
-				<span>보류사유</span>
-				<p class="pa_state">심사중</p>
-			</div>
-		</div>
+		
 	</div>	
 	
-	<div class="swiper-container ca_wrap" style="padding:12px 0 6px;background:#fff">
-		<div class="swiper-wrapper category blog_c" style="height:25px">
+	<div class="ca_wrap" style="padding:12px 0;background:#fff">
+		<div class="category blog_c" style="">
 			<a href="#none" class="ca_name on" data="all">전체</a>
 			<a href="#none" class="ca_name" data="plus">적립</a>
 			<a href="#none" class="ca_name" data="minus">사용</a>
 		</div>
-		<input type="button" class="btn_tp1" id="btn_pay" value="출금 신청">
+		<a href="point_req_form.html" class="btn_tp1" id="btn_pay">출금 신청</a>
 	</div>
 	
 	<div class="list_wrap">
 		<ul class="list_pn bk_white" id="point_li">
-			<li style="border-top:1px solid #ebebeb"><a href="#none"><div class="list_txt"><div class="notice_txt"><span class="txt_ov title_sub">모두의 블로그 출금</span><span class="date_txt">2017.11.05(수)</span><span class="ps_r poin_txt" style="margin-top:-12px;line-height:24px;font-size:9px;color:#9e9e9e">-5,000</span></div></div></a></li>
-			
-			
-			<li><a href="#none"><div class="list_txt"><div class="notice_txt"><span class="txt_ov title_sub">모두의 블로그 첫 회원가입</span><span class="date_txt">2017.09.22(월)</span><span class="ps_r poin_txt color_blog" style="margin-top:-12px;line-height:24px;font-size:9px">+1,000</span></div></div></a></li>
+		
 		</ul>
 		<!--<p class="alt_txt">최근 적립 사용한 내역이 없습니다.</p>-->
 		<div id="loading_bar" class="off"></div>
@@ -78,27 +61,21 @@
 	
 	$(document).ready(function(){
 		string = '';
-		
-		
-		//var mb_id = member['mb_id'];
-		var mb_id = 'qwe';
+		var mb_id = member['mb_id'];
+		//var mb_id = 'qwe';
 		var params = {"mb_id":mb_id};
 		$.ajax({      
 			type:"POST",
 			data:params,			
 			url:"http://modublog.co.kr/app_public/ajax/a_point_view.php",      
 			success:function(data){
-			
-			
 				//회원 DB 가져오기
 				$.each(data[0],function(key,value){
 					$("#mb_point").html(value.mb_point_format);
 				});
-				
-				
 				//출금내역 가져오기
 				$.each(data[1],function(key,value){
-					string += '<div class="ct_wrap pa_info"><div class="pa_txt"><p>'+value.wr_1+'원 환급 신청 (환급액:'+value.wr_10+' 원)</p><span>신청일:'+value.wr_datetime+'&nbsp;&nbsp;&nbsp;계좌:'+value.wr_2+' '+value.wr_subject+'</span>';
+					string += '<div class="ct_wrap po_info"><div class="po_txt"><p>'+value.wr_1+'원 환급 신청 (환급액:'+value.wr_10+' 원)</p><span>신청일:'+value.wr_datetime+'&nbsp;&nbsp;&nbsp;계좌:'+value.wr_2+' '+value.wr_subject+'</span>';
 					if(value.ca_name == '보류'){
 						string += '<span>보류사유 : '+value.wr_5+'</span>';
 					}
@@ -106,13 +83,11 @@
 				});
 				$("#point_req_wrap").html(string);
 				console.log(data);
-				
 			},   
 			error:function(e){  
 				alert(e.responseText);  
 			}  		
 		})
-		
 		
 		string1 = '';
 		var params1 = {"mb_id":mb_id,"ca_name":"all"};
@@ -122,18 +97,15 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_point_list.php",      
 			success:function(data){
 				//포인트 내역 가져오기
-				
 				$.each(data,function(key,value){
 					if(value.po_point >= 0){
-						point = '+'+value.po_point;
+						point = '<span class="color_blog">+'+value.po_point+'</span>';
 					}else{
 						point = '-'+value.po_point;
 					}
-					string1 += '<li style="border-top:1px solid #ebebeb"><a href="#none"><div class="list_txt"><div class="notice_txt"><span class="txt_ov title_sub">'+value.po_content+'</span><span class="date_txt">'+value.po_datetime+'</span><span class="ps_r poin_txt" style="margin-top:-12px;line-height:24px;font-size:9px;color:#9e9e9e">'+point+'</span></div></div></a></li>'
+					string1 += '<li><a href="#none"><div class="list_txt"><div class="notice_txt"><span class="txt_ov title_sub">'+value.po_content+'</span><span class="date_txt">'+value.po_datetime+'</span><span class="ps_r point_txt">'+point+'</span></div></div></a></li>'
 				});	
 				$("#point_li").html(string1);
-						
-				
 			},   
 			error:function(e){  
 				alert(e.responseText);  
@@ -142,8 +114,8 @@
 	})
 	
 	$(document).on("click",".ca_name",function(){
-		//var mb_id = member['mb_id'];
-		var mb_id = 'qwe';	
+		var mb_id = member['mb_id'];
+		//var mb_id = 'qwe';	
 		var string1 = '';
 		var ca_name = $(this).attr("data");
 		var params1 = {"mb_id":mb_id,"ca_name":ca_name};
@@ -153,14 +125,14 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_point_list.php",      
 			success:function(data){
 				//포인트 내역 가져오기
-				
 				$.each(data,function(key,value){
 					if(value.po_point >= 0){
-						point = '+'+value.po_point;
+						point = '<span class="color_blog">+'+value.po_point+'</span>';
 					}else{
-						point = '-'+value.po_point;
+						//point = '-'+value.po_point;
+						point = value.po_point;
 					}
-					string1 += '<li style="border-top:1px solid #ebebeb"><a href="#none"><div class="list_txt"><div class="notice_txt"><span class="txt_ov title_sub">'+value.po_content+'</span><span class="date_txt">'+value.po_datetime+'</span><span class="ps_r poin_txt" style="margin-top:-12px;line-height:24px;font-size:9px;color:#9e9e9e">'+point+'</span></div></div></a></li>'
+					string1 += '<li><a href="#none"><div class="list_txt"><div class="notice_txt"><span class="txt_ov title_sub">'+value.po_content+'</span><span class="date_txt">'+value.po_datetime+'</span><span class="ps_r point_txt">'+point+'</span></div></div></a></li>'
 				});	
 				$("#point_li").html(string1);
 						
