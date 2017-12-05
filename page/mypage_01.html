@@ -18,18 +18,19 @@
 	<div id="header">
 		<h1>나의체험단</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+		<a class="header_btn_r btn_search2">검색</a>
 	</div>
-	<div>
-		<ul id="pr_view_mn" class="bk_white">
+	<div class="list_wrap">
+		<ul class="tab_mn tab_thr" id="pr_view_mn">
 			<li class="on"><a class="tab1 t_b" id="my_p1">신청</a></li>
 			<li><a class="tab2 t_b" id="my_p2">선정</a></li>
 			<li><a class="tab3 t_b" id="my_p3">취소/불참</a></li>
 		</ul>
-	</div>
-	<div class="home_list">
-		<ul id="sns_list">
-		
-		</ul>
+		<div class="home_list" style="margin-top:0">
+			<ul id="my_list">
+			
+			</ul>
+		</div>
 	</div>
 	<script>
 	// 체험단 첫 페이지 불러오기(신청)
@@ -49,17 +50,17 @@
 					if(value.bo_table == 'sns_fashion'){
 						string +='_sns';
 					}
-					string += '.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.image+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.choice+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_';
+					string += '.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.image+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">선택상품 : '+value.choice+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_';
 					if(value.bo_table == 'sns_fashion'){
 					string += 'sns';
 					}
-					string += 'blog">'+value.comment+'</span>&nbsp;/&nbsp;'+value.wr_8+'</span></div></div></div><div>';
+					string += 'blog">'+value.comment+'</span>/'+value.wr_8+'</span><span>&nbsp;'+value.wr_10+'</span></div></div></div><div class="rv_btn_b">';
 					if(my_p == 'my_p1'){
-						string += '<a href="product_req_form.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'&ms_id='+value.ms_id+'&w=u">신청수정</a><a id="btn_cancle" data="'+value.wr_id+'|'+value.ms_id+'|'+value.mb_id+'|'+value.bo_table+'">신청취소</a>';
+						string += '<a class="btn_tp1 btn_l" id="btn_cancle" data="'+value.wr_id+'|'+value.ms_id+'|'+value.mb_id+'|'+value.bo_table+'">신청취소</a><a href="product_req_form.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'&ms_id='+value.ms_id+'&w=u"  class="btn_tp1 btn_r">신청수정</a>';
 					}
-					string += '</div></li>';
+					string += '</div></div></li>';
 				}); 
-				$("#sns_list").append(string);
+				$("#my_list").append(string);
 				
 				console.log(data);
 			},   
@@ -77,6 +78,7 @@
 		var my_p = $('[class=on]').children().attr("id");
 		var string = '';
 		var txt_s = '';
+		var txt_ca = '';
 		var rv_id = '';
 		var params = {"mb_id":mb_id,"my_p":my_p};
 		$.ajax({      
@@ -85,13 +87,28 @@
 			data:params,
 			success:function(data){
 				$.each(data[0],function(key,value){
+					if(value.bo_table == 'sns_fashion'){
+						txt_ca = '_sns';
+					}else{
+						txt_ca = '_blog';
+					}
 					string += '<li><a href="product_view';
 					if(value.bo_table == 'sns_fashion'){
 						string +='_sns';
 					}
-					string += '.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.image+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.choice+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.comment+'</span>&nbsp;/&nbsp;'+value.wr_8+'</span></div></div></div><div>';
+					string += '.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.image+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">선택상품 : '+value.choice+'</span><div class="conts_info"><span class="info_title">';
+					if(my_p == 'my_p2'){
+						string+='<span >리뷰&nbsp;<span class="color_blog">'+value.wr_11+'</span></span>';
+					}else{
+						string += '<span>신청</span><span class="color'+txt_ca+'">'+value.comment+'</span>/'+value.wr_8+'</span>';
+						if(my_p == 'my_p3'){
+							string += '<span>조회&nbsp;'+value.wr_hit+'&nbsp;</span>';
+						}
+						string +='<span>&nbsp;'+value.wr_10+'</span>';
+					}
+					string += '</div></div></div><div class="rv_btn_b">';
 					if(my_p == 'my_p1' || my_p == ''){
-						string += '<a href="#none">신청수정</a><a id="btn_cancle" data="'+value.wr_id+'|'+value.ms_id+'|'+value.mb_id+'|'+value.bo_table+'">신청취소</a>';
+						string += '<a class="btn_tp1 btn_l" id="btn_cancle" data="'+value.wr_id+'|'+value.ms_id+'|'+value.mb_id+'|'+value.bo_table+'">신청취소</a><a href="product_req_form.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'&ms_id='+value.ms_id+'&w=u"  class="btn_tp1 btn_r">신청수정</a>';
 					}else if(my_p == 'my_p2'){
 						if(value.review){
 							txt_s = "수정";
@@ -100,18 +117,25 @@
 							txt_s = "등록";
 							w = "c";
 						}
-						string += '<a>체험안내</a><a href="review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'">리뷰'+txt_s+'</a>';
+						if(value.wr_18){
+						string += '<a href="'+value.wr_18+'" class="btn_tp1 btn_l">체험안내</a>';
+						}
+						string += '<a href="review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'" class="btn_tp1 btn_r">리뷰'+txt_s+'</a>';
 					}else if(my_p == 'my_p3'){
 						if(value.ms_choice == "n2"){
 							txt_s = "불참";
 						}else{
 							txt_s = "취소";
 						}
-						string += '<a>'+txt_s+'</a>';
+						string += '<a class="btn_tp1 btn_r" style="color:#949494">'+txt_s+'</a>';
 					}
-					string += '</div></li>';
+					string += '</div></div>';
+					if(my_p == 'my_p3'){
+						string+= '<div class="end_mask"></div>';
+					}
+					string+='</li>';
 				}); 
-				$("#sns_list").html(string);
+				$("#my_list").html(string);
 				
 				console.log(data);
 			},   

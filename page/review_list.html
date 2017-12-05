@@ -120,7 +120,7 @@
 					//console.log(data);
 					$.each(data[0],function(key,value){
 						//블로그 리뷰
-						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
+						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
 						for(var i = 0; i < 10; i= i+2){
 							if(value.wr_star > i){
 								string += '<span class="star"><img src="../img/star_on.png"></span>';
@@ -128,7 +128,7 @@
 								string += '<span class="star"><img src="../img/star_off.png"></span>';
 							}
 						}
-						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></a></li>';			
+						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></div></a></li>';			
 					}); 
 					$(".blog").html(string);
 				},   
@@ -161,7 +161,7 @@
 					//console.log(data);
 					$.each(data[0],function(key,value){
 						//블로그 리뷰
-						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
+						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
 						for(var i = 0; i < 10; i= i+2){
 							if(value.wr_star > i){
 								string += '<span class="star"><img src="../img/star_on.png"></span>';
@@ -170,7 +170,7 @@
 							}
 							
 						}
-						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></a></li>';	
+						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></div></a></li>';	
 					}); 
 					$(".blog").html(string);
 					
@@ -205,7 +205,7 @@
 					console.log(data);
 					$.each(data[0],function(key,value){
 						//SNS 리뷰
-						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
+						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
 						for(var i = 0; i < 10; i= i+2){
 							if(value.wr_star > i){
 								string += '<span class="star"><img src="../img/star_y_on.png"></span>';
@@ -213,7 +213,7 @@
 								string += '<span class="star"><img src="../img/star_off.png"></span>';
 							}
 						}
-						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_sns">'+value.wr_comment+'</span></span></span></div></div></a></li>';		
+						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_sns">'+value.wr_comment+'</span></span></span></div></div></div></a></li>';		
 					}); 
 					$(".sns").html(string);
 					
@@ -258,7 +258,7 @@
 					},
 					success:function(data){
 						$.each(data,function(key,value){
-							string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
+							string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
 							for(var i = 0; i < 10; i= i+2){
 								if(value.wr_star > i){
 									if(bo_table == 'sns_review'){
@@ -275,7 +275,7 @@
 							}else{
 								var color = 'blog';
 							}
-							string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_'+color+'">'+value.wr_comment+'</span></span></span></div></div></a></li>';			
+							string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_'+color+'">'+value.wr_comment+'</span></span></span></div></div></div></a></li>';			
 						}); 
 						
 						if(bo_table == 'review'){
