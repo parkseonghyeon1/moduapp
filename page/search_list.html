@@ -17,49 +17,16 @@
 	<script src="../js/menu.js"></script>
 </head>
 <body>
-	<div id="nav_v"></div>
-	<script>
-		$("#nav_v").load("slide_menu.html");
-	</script>
-	
-	<!-- main banner -->
-	<!--
-	<div class="main_bann bk_gray">
-		<div class="main_bann_nav">
-			<span class="sub-pagination"></span>
-		</div>
+	<style>
+	#search_list li {border-bottom:none}
+	</style>
+	<div id="header">
+		<h1>검색결과</h1>
+		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-	-->
-	<!--
-    <div class="main_list">
-        <h1 class="title">MD 추천 콘텐츠</h1>
-		<div class="pd_wrap">
-			<div class="swiper-container">
-				<div class="swiper-wrapper" id="blog_wrap">
-				
-				</div>
-			</div>
-		</div>
-    </div>
-	-->
-    <div class="home_list">
-		<!--
-		<div class="ca_wrap">
-			<div class="swiper-container">
-				<div class="swiper-wrapper home_category blog_ct">
-					<a href="#none" class="on" data="all"><span>전체</span></a>
-					<a href="#none" data="food"><span>맛집</span></a>
-					<a href="#none" data="fashion"><span>패션</span></a>
-					<a href="#none" data="beauty"><span>뷰티</span></a>
-					<a href="#none" data="life"><span>생활</span></a>
-					<a href="#none" data="hobby"><span>취미</span></a>
-					<a href="#none" data="tour"><span>여행</span></a>
-					<a href="#none" data="special"><span>기타</span></a>
-				</div>
-			</div>
-		</div>
-		-->
-		<ul id="blog_list">
+	
+    <div class="list_wrap home_list" style="margin-top:0">
+		<ul id="search_list" class="bk_white">
 		
 		</ul>
 		<div id="loading_bar" class="off">
@@ -92,9 +59,9 @@
 			data:params,
 			success:function(data){
 				$.each(data[0],function(key,value){
-					string += '<li><a href="product_view.html?bo_table='+value.bll_pr_board+'&wr_id='+value.bll_pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_item_img"><img src="'+value.bll_img+'"></div><div class="list_item_txt"><p class="title">'+value.bll_wr_subject+'</p><span class="conts txt_ov">'+value.bll_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.bll_comment+'</span>&nbsp;/&nbsp;'+value.bll_rec_num+'</span><span class="info_title"><span>조회</span>'+value.bll_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></a></li>';
+					string += '<li><a href="product_view.html?bo_table='+value.bll_pr_board+'&wr_id='+value.bll_pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.bll_img+'"></div><div class="list_item_txt"><p class="title">'+value.bll_wr_subject+'</p><span class="conts txt_ov">'+value.bll_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.bll_comment+'</span>&nbsp;/&nbsp;'+value.bll_rec_num+'</span><span class="info_title"><span>조회</span>'+value.bll_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></div></a></li>';
 				}); 
-				$("#blog_list").append(string);				
+				$("#search_list").append(string);				
 				console.log(data);
 				
 				//메인배너 slide

@@ -1,32 +1,46 @@
+	
 	<script>
-	/*
-	$(document).ready(function(){
-		var site_id = getQuerystring('site_id');
-		//$('.nav_right_mn').siblings().removeClass('on');	
-		if(site_id == 'blog'){
-			$('.blog').addClass('on');
-		}else if(site_id == 'sns'){
-			$('.sns').addClass('on');
-		}else if(site_id == 'share'){
-			$('.share').addClass('on');
-		}
-	})
-	*/
-	</script>	
+	var site_id = document.URL.substring(document.URL.lastIndexOf("/") + 1, document.URL.length);
+	
+	$('.nav_right_mn').siblings().removeClass('on');	
+	if(site_id == 'home_blog.html'){
+		$('.blog').addClass('on');
+	}else if(site_id == 'home_sns.html'){
+		$('.sns').addClass('on');
+	}else if(site_id == 'home_share.html'){
+		$('.share').addClass('on');
+	}
+	console.log(site_id);
+	</script>
 	<!-- header button -->
 	<div id="o-wrapper" class="o-wrapper">
 		<div class="c-buttons">
 			<a id="c-button--slide-left" class="c-button btn_t_l btn_t_bk btn_nav">메뉴</a>
+			<a href="#none" class="btn_t_r btn_t_bk btn_search" id="search_on_off">검색</a>
 		</div>
 	</div>	
-	<a href="#none" class="btn_t_r btn_t_bk" id="btn_search">검색</a>
 	
+	<style>
+	#search_b {display:none}
+	#search_b.on {display:block}
+	.nav_header2 .on {background:url(../img/icon_arrow_right.png)no-repeat right 16px center;background-size:10px 10px}
+	</style>
+	
+	<div id="search_b" style="position:relative">
+		<a class="btn_t_l btn_t_bk btn_close_on">닫기</a>
+		<a class="btn_t_r btn_t_bk btn_search_on">검색</a>
+		<div id="" style="background:#fff;height:50px;line-height:50px;padding:0 50px">
+			<input placeholder="검색어를 입력해주세요." id="stx_wrap" style="display:block;width:100%;height:100%;border:none;font-size:12px;color:#303030;outline:none"></input>
+		</div>
+	</div>
 	<!-- nav slide menu -->
 	<nav id="c-menu--slide-left" class="c-menu c-menu--slide-left" style="overflow:hidden">
 		<div class="nav_left_mn">
 			<div style="background:#ececec">
 				<div class="nav_header">
-					<div class="nav_profile">
+					<div class="nav_header2">
+						<div class="nav_profile">
+						</div>
 					</div>
 				</div>
 				<ul class="c-menu__items nav_mn1">
@@ -45,7 +59,7 @@
 			</div>
 			<div class="nav_footer">
 				<ul class="nav_mn3">
-					<li><a href="#none">설정</a></li>
+					<li><a href="setting.html">설정</a></li>
 					<li><a href="#none">개인정보</a></li>
 					<li><a href="ad_reg_form.html" class="go_a">광고문의</a></li>
 				</ul>
@@ -53,12 +67,37 @@
 		</div>
 		<div class="nav_right_mn">
 			<a href="main.html" class="home go_a_replace">home</a>
-			<a href="home_blog.html?site_id=blog" class="blog go_a">blog</a>
-			<a href="home_sns.html?site_id=sns" class="sns go_a">sns</a>
+			<a href="home_blog.html" class="blog go_a">blog</a>
+			<a href="home_sns.html" class="sns go_a">sns</a>
 			<a href="#none" class="share">share</a>
 		</div>
 	</nav>
 	<div id="c-mask" class="c-mask"></div><!-- /c-mask -->
+	<script>
+	// 검색 on|off
+	$(document).on('click','#search_on_off',function(){
+		$('#search_b').toggleClass('on');
+		var search_stat = $('#search_b').attr('class');
+		if(search_stat == 'on'){
+			$('.c-buttons').hide();
+			$('.btn_search').attr('id','');
+			$('.btn_close_on').attr('id','search_on_off')
+			$('#stx_wrap').focus();
+		}else{
+			$('.c-buttons').show();
+			$('.btn_search').attr('id','search_on_off');
+			$('.btn_close_on').attr('id','')
+		}
+	})
+	// 검색
+	$(document).on("click",".btn_search_on",function(){
+		var stx = $("#stx_wrap").val();
+		if(stx){
+			location.href="search_list.html?stx="+stx;
+		}
+		return false;
+	})
+	</script>
 	<script>
 	// nav left 메뉴
 	var slideLeft = new Menu({
@@ -74,15 +113,14 @@
 		e.preventDefault;
 		slideLeft.open();
 	});
-	</script>
-
-	<script>
-	
 	// nav left-right 메뉴 on class (현재 활성화되어있는 페이지 on으로 변경시켜야함)
 	$(document).on('click','.nav_right_mn > a',function(){
 		$(this).parent().children('a').removeClass('on');
 		$(this).addClass('on');
 	})
+	</script>
+
+	<script>
 	// 이동
     $(document).on('click','.go_a',function(){
         var url = $(this).attr("href");
@@ -97,9 +135,12 @@
 	</script>	
 	<script>
 	if (logincheck==0) {
-        $('.nav_profile').html('<a href="login.html" class="go_a">로그인</a>');
-        $('.nav_mn1').hide();         
-    }else{
+		$('.nav_header2').addClass('on');
+		$('.nav_profile').html('<a href="login.html" class="go_a"><div class="p_img_wrap"><div class="p_img"><img src="../img/user.png" alt="" id="profile_img" style="width:100%;height:100%"></div></div><p class="title p_name">로그인 및 회원가입</p><span class="p_point">다양한 체험을 모블과 함께!</span></a>');
+		//$('.nav_profile').html('<a href="login.html" class="go_a">로그인</a>');
+		$('.nav_mn1').hide();         
+		}else{
+		$('.nav_header2').removeClass('on');
 		$('.nav_profile').html('<div class="p_img_wrap"><a href="mypage.html" class="go_a"><div class="p_img"><img src="http://modublog.co.kr/data/mb_photo/'+member['mb_id']+'" alt="" id="profile_img" style="width:100%;height:100%"></div></a></div><p class="title p_name"><a href="mypage.html" class="go_a">'+member['mb_nick']+'</a></p><span class="p_point">'+member['mb_point']+'</span><div class="p_message"><a href="message_list.html" class="go_a" id="msg_num"></a></div>');
 
 		var mb_id = member['mb_id'];

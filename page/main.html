@@ -21,14 +21,15 @@
 	<script>
 		$("#nav_v").load("slide_menu.html");
 	</script>
-	
 	<!-- main banner -->
 	<div class="main_bann bk_gray">
 		<div class="main_bann_nav">
 			<span class="sub-pagination"></span>
 		</div>
 	</div>
+	<style>
 	
+	</style>
     <!-- blog -->
     <div class="main_list">
         <h1 class="title"><a href="home_blog.html" class="go_a">블로그 추천 콘텐츠</a></h1>
@@ -47,7 +48,7 @@
 			</div>
 		</div>
         <div class="pd_wrap">
-			<div class="swiper-container">
+			<div class="swiper-container1">
 				<div class="swiper-wrapper" id="blog_wrap">
 				
 				</div>
@@ -72,7 +73,7 @@
 			</div>
 		</div>
         <div class="pd_wrap">
-			<div class="swiper-container">
+			<div class="swiper-container2">
 				<div class="swiper-wrapper" id="sns_wrap">
 				
 				</div>
@@ -85,7 +86,7 @@
     <div class="main_list">
         <h1 class="title">쉐어 추천 콘텐츠</h1>
         <div class="pd_wrap">
-			<div class="swiper-container">
+			<div class="swiper-container3">
 				<div class="swiper-wrapper" id="share_wrap">
 				
 				</div>
@@ -105,7 +106,7 @@
     <div class="main_list">
         <h1 class="title">당신을 위한 이벤트</h1>
         <div class="pd_wrap">
-			<div class="swiper-container">
+			<div class="swiper-container4">
 				<div class="swiper-wrapper" id="event_wrap">
 				
 				</div>
@@ -256,8 +257,23 @@
 					},
 				});	
 				
-				//상품 slide
-				var swiper = new Swiper('.swiper-container', {
+				//상품 slide - BLOG
+				var swiper = new Swiper('.swiper-container1', {
+					slidesPerView: 'auto',
+					spaceBetween: 12,
+				});
+				//상품 slide - SNS
+				var swiper = new Swiper('.swiper-container2', {
+					slidesPerView: 'auto',
+					spaceBetween: 12,
+				});
+				//상품 slide - SHARE
+				var swiper = new Swiper('.swiper-container3', {
+					slidesPerView: 'auto',
+					spaceBetween: 12,
+				});
+				//상품 slide - EVENT
+				var swiper = new Swiper('.swiper-container4', {
 					slidesPerView: 'auto',
 					spaceBetween: 12,
 				});
