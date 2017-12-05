@@ -12,6 +12,8 @@
 	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/menu.js"></script>
+	<script src="../../cordova.js"></script>
+
 </head>
 <body>
 	<div id="header">
@@ -23,7 +25,7 @@
 			<p class="p_txt">이메일과 비밀번호를 입력하세요</p>
 			<div class="dv_input">
 				<div class="input_txt"><input class="input" id="val1" type="text" placeholder="wlecom@mdublog.com"></div>
-				<div class="input_txt2"><input class="input" id="val2" type="password" placeholder="비밀번호"></div>
+				<div class="input_txt2"><input class="input" id="val2" type="password" placeholder="비밀번호"><input class="input" id="val3" type="hidden"></div>
 			</div>
 			<div class="btn_wrap btn_ok">
 				<a id="loginclick">로그인</a>
@@ -70,7 +72,8 @@
         $('#loginclick').click(function(){
 			var ummm = {
 			mb_id : $("#val1").val(),
-			password : $("#val2").val()
+			password : $("#val2").val(),
+			mb_token : $("#val3").val()
 			};
 
 			$.ajax({
@@ -95,6 +98,7 @@
 							window.localStorage.setItem("mb_homepage",value.mb_homepage);
 							window.localStorage.setItem("mb_sns1",value.mb_sns1);
 							window.localStorage.setItem("mb_sns2",value.mb_sns2);
+							window.localStorage.setItem("mb_token",value.mb_token);
 							location.replace('main.html');
 						}
 					});
@@ -104,11 +108,41 @@
 					document.location.reload();
 				}
 			});
-		});
-
-
-		
+		});		
     });
+	</script>
+	<script>
+	document.addEventListener("deviceready", onDeviceReady, false);
+
+    function onDeviceReady() {
+    
+	    FCMPlugin.getToken(
+	      function(token){
+
+	        $("#val3").val(token);
+	      },
+	      function(err){
+	        console.log('error retrieving token: ' + err);
+	      }
+	    )
+
+	    FCMPlugin.onNotification(
+	      function(data){
+	        if(data.wasTapped){
+	          alert( JSON.stringify(data) );
+	        }else{
+	          alert( JSON.stringify(data) );    //이것만 실행됨
+	        }
+	      },
+	      function(msg){
+	        //alert('onNotification callback successfully registered: ' + msg)
+	        console.log('onNotification callback successfully registered: ' + msg);
+	      },
+	      function(err){
+	        console.log('Error registering onNotification callback: ' + err);
+	      }
+	    );
+	}
 	</script>
 </body>
 </html>
