@@ -322,8 +322,8 @@ ui-page {background:#fff;height:100%}
 .pr_view_info .pr_f {overflow:hidden;padding-top:20px}
 .pr_view_info .title {font-size:13px}
 .pr_view_info #pr_subject_sub {display:block;font-size:11px;color:#797979}
-.pr_d {float:left;width:25%;text-align:center}
-.pr_d span:first-child {display:block;font-size:10px}
+
+.pr_d span:first-child {width:70px;display:block;font-size:10px}
 .pr_d span:last-child {display:block;font-size:8px}
 .en_info {padding:0 16px}
 .en_info p {font-size:12px}

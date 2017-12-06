@@ -32,6 +32,11 @@
 			<span id="pr_subject_sub"></span>
 			<div class="pr_f">
 				<div class="pr_d">
+					<span>체험기간</span><span id="pr_due"></span>
+					<span>리뷰등록</span><span id="pr_review"></span>
+					<span>체험발표</span><span id="pr_d_day"></span>
+				</div>
+				<!--<div class="pr_d">
 					<span>체험단 신청</span>
 					<span id="pr_due"></span>
 				</div>
@@ -46,7 +51,7 @@
 				<div class="pr_d">
 					<span>결과발표</span>
 					<span>17.12.14</span>
-				</div>
+				</div>-->
 			</div>
 		</div>
 		<div class="pr_view_cont">
@@ -165,8 +170,11 @@
 				$('#wr_comment').html(data.wr_comment);
 				$('#pr_rec_num').html(data.pr_rec_num);
 				$('#pr_go').attr("href",data.wr_link1);
-				if(logincheck==1){
-					$('#req_go').attr("href","product_req_form.html?bo_table="+data.pr_board+"&wr_id="+data.pr_board_id+"&w=");
+				if(logincheck==1 && data.cnt == 0){
+					$('#req_go').attr("href","product_req_form.html?bo_table="+data.pr_board+"&wr_id="+data.pr_board_id+"&w=w");
+				}
+				if(data.cnt != 0){
+					$('#req_go').text('신청완료');
 				}
 				$.each(data.pr_file,function(key,value){
 					string += '<div class="swiper-slide"><div class="main_bann_img"><img alt="" src="'+value+'"></div></div>';

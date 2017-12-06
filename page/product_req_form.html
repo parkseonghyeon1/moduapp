@@ -39,6 +39,7 @@
 	</div>
 	<form id="review_reg_form1" name="review_reg_form1" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="mb_id" id="mb_id" val="">
+		<input type="hidden" name="ms_id" id="ms_id" val="">
 		<input type="hidden" name="bo_table" id="bo_table" val="">
 		<input type="hidden" name="wr_id" id="wr_id" val="">
 		<input type="hidden" name="wr_20" id="wr_20" val="">
@@ -124,9 +125,12 @@
 	})
 	
 	// 확인 버튼 클릭
-	$(document).on('click','.btn_submit on',function(){
+	$(document).on('click','.btn_submit.on',function(){
 		$(this).attr("class","btn_submit off");
 		var w = getQuerystring('w');
+		if(w == 'u'){
+		var ms_id = getQuerystring('ms_id');
+		}
 		var zip = $("#product_req_frame").contents().find("#review_reg_form").serialize();
 		//var zip = $(".product_req_frame").contents().find("#mb_id").val();
 		
@@ -246,7 +250,8 @@
 			return false;
 			}
 		}
-
+		
+		$('#ms_id').val(ms_id);
 		$('#mb_id').val(decodeURI(data['mb_id']));
 		$('#bo_table').val(decodeURI(data['bo_table']));
 		$('#wr_id').val(data['wr_id']);
@@ -270,24 +275,20 @@
 		}
 
 		var params = string_change(string_blank(decodeURI($("#review_reg_form1").serialize())));
-		
+		console.log(params);
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_request.php",  
-			data:params,	
-			beforeSend:function(){
-				//$('#loading').show();
-			},			
+			data:params,		
 			success:function(data){
-				//alert(data);
+				console.log(data);
 			},   
 			complete:function(){
-				//$('#loading').hide();
-				alert("신청이 완료되었습니다");
+				alert("신청이 및 변경이 완료되었습니다");
 				location.replace("mypage_01.html");
 			},
 			error:function(e){  
-				//console.log(e.responseText);  
+				console.log(e.responseText);  
 			}  
 		});	
 		

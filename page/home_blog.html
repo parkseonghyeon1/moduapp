@@ -64,14 +64,20 @@
 	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	
     <script>
+	// 카테고리 on-off
+	$(document).on('click','.home_category a',function(){
+		$(this).parent().children('a').removeClass('on');
+		$(this).addClass('on');
+	})
+	
 	// 배너 slide	
 	var swiper_ca = new Swiper('.swiper-container', {
 		slidesPerView: 'auto',
 		spaceBetween: 4,
 		init: true
 	});	
-    </script>
-	<script>
+	
+	// 첫 페이지 불러오기
 	$(document).ready(function(){
 		var string = '';
 		var string_re= '';
