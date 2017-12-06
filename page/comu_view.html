@@ -82,7 +82,7 @@
 				$("#image_wrap").attr("src",data.image);
 			},   
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  
 		});  	
 	})
@@ -129,7 +129,7 @@
 				$('#loading').hide();
 			},
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  
 		});  
 		//댓글 폼
@@ -179,7 +179,7 @@
 				location.reload();
 			},   
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  
 		});  	
 	});

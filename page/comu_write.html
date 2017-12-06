@@ -55,7 +55,7 @@
 				$('#comu_ct').html(data);
 			},   
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  
 		});  	
 	});
@@ -68,7 +68,7 @@
 				location.href="comu_list.html";
 			},
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  
 		});
 		$("#comu_reg_form").submit();

@@ -114,7 +114,7 @@
 				console.log(data);
 			},   
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  
 		});  	
 	});
@@ -127,7 +127,7 @@
 				location.href="qna_list.html";
 			},
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  
 		});
 		$("#qna_reg_form").submit();

@@ -62,7 +62,7 @@
 				$('#loading').hide();
 			},			
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  
 		});  	
 	})
@@ -105,7 +105,7 @@
 				$('#comment_li').append(string_c);
 			},   
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  
 		});  
 		
@@ -154,7 +154,7 @@
 				location.reload();
 			},   
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  
 		});  	
 	});

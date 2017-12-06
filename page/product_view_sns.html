@@ -181,7 +181,7 @@
 				$('#loading').hide();
 			},
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  
 		});
 		
@@ -207,7 +207,7 @@
 				$('#pd_view_li').html(string_c);
 			},   
 			error:function(e){  
-				alert(e.responseText); 
+				console.log(e.responseText); 
 			}  
 		}); 
 	});
@@ -257,7 +257,7 @@
 							console.log(list);
 						},   
 						error:function(e){  
-							alert(e.responseText);  
+							console.log(e.responseText);  
 						}  		
 					})
 				}

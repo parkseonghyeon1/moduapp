@@ -78,7 +78,7 @@
 	</div>
 	<div class="reg_btn">
 		<div class="btn_wrap btn_ok">
-			<a id="btn_submit">신청하기</a>
+			<a id="btn_submit" class="btn_submit on">신청하기</a>
 		</div>
 		<div class="bottom_txt">신청하기에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
 		<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
@@ -124,7 +124,9 @@
 	})
 	
 	// 확인 버튼 클릭
-	$(document).on('click','#btn_submit',function(){
+	$(document).on('click','.btn_submit on',function(){
+		$(this).attr("class","btn_submit off");
+		var w = getQuerystring('w');
 		var zip = $("#product_req_frame").contents().find("#review_reg_form").serialize();
 		//var zip = $(".product_req_frame").contents().find("#mb_id").val();
 		
@@ -149,9 +151,12 @@
 
 		var agree1 = $('#chk_1:checkbox:checked').val();
 		var agree2 = $('#chk_2:checkbox:checked').val();
-		if(agree1 != 'on' || agree2 != 'on'){
-			alert("이용약관에 동의해주세요.");
-			return false;
+		// 첫 친성일때만 동의
+		if(w != 'u'){
+			if(agree1 != 'on' || agree2 != 'on'){
+				alert("이용약관에 동의해주세요.");
+				return false;
+			}
 		}
 		
 		if(data['wr_20'] == 1){	//배송일때
@@ -271,18 +276,18 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_request.php",  
 			data:params,	
 			beforeSend:function(){
-				$('#loading').show();
+				//$('#loading').show();
 			},			
 			success:function(data){
 				//alert(data);
 			},   
 			complete:function(){
-				$('#loading').hide();
+				//$('#loading').hide();
 				alert("신청이 완료되었습니다");
 				location.replace("mypage_01.html");
 			},
 			error:function(e){  
-				//alert(e.responseText);  
+				//console.log(e.responseText);  
 			}  
 		});	
 		
