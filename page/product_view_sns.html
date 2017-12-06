@@ -88,6 +88,8 @@
 			</div>
 		</div>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	
 	<script>
 	// 탭메뉴
@@ -175,6 +177,9 @@
 				//끝	
 				console.log(data);
 			},   
+			complete:function(){
+				$('#loading').hide();
+			},
 			error:function(e){  
 				alert(e.responseText);  
 			}  

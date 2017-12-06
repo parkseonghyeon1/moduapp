@@ -31,7 +31,7 @@
 	</div>
 	<div class="list_wrap">
 		<div class="" style="margin-bottom:55px">
-			<div class="rv_img"><img src="../temp-img/view1.jpg"></div>
+			<div class="rv_img"><img></div>
 			<div class="title rv_txt pr_view_info">
 				<p class="title" id="wr_subject"></p>
 				
@@ -55,8 +55,10 @@
 			</div>
 		</div>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	
 	<script>
-
 	//전체 로딩
 	$(document).ready(function(){
 		var bo_table = getQuerystring('bo_table');
@@ -113,26 +115,14 @@
 					comment_string += '번째 리뷰</span></p><span class="ps_r btn_arrow_r"></span></div></a><div class="rv_cmt_list"><div class="rv_comment bk_white"><ul id="comment_li" class="comment_li '+i+'"></ul></div></div>';				
 				}
 				$("#comment_wrap").html(comment_string);
-			},   
+			},  
+			complete:function(){
+				$('#loading').hide();
+			},			
 			error:function(e){  
 				alert(e.responseText);  
 			}  
 		});
-		/*
-		$.ajax({      
-			type:"POST",  
-			url:"http://modublog.co.kr/app_public/ajax/a_comment_view.php",
-			data:params,
-			success:function(data){
-				console.log(data);
-				//console.log("aaaa");
-			},   
-			error:function(e){  
-				alert(e.responseText);  
-			}  
-		});		
-		*/
-		
 	});	
 	</script>
 	<script>

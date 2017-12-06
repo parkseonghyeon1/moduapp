@@ -21,6 +21,9 @@
 	<div class="notice_view bk_white_li">
 		<div class="notice_conts"></div>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	
 	<script>
 	$(document).ready(function(){
 		var wr_id = getQuerystring('wr_id');
@@ -33,6 +36,9 @@
 				$("#notice_title").html('[공지] '+data.wr_subject);
 				$(".notice_conts").append(data.wr_content);
 			},   
+			complete:function(){
+				$('#loading').hide();
+			},
 			error:function(e){  
 				alert(e.responseText);  
 			}  

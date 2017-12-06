@@ -21,54 +21,57 @@
 .star_b img {width:9px}
 </style>
 <body>
-	<div id="header">
-		<h1>리뷰보기</h1>
-		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
-		<a href="" class="header_btn_r btn_search2">검색</a>
-	</div>
-	<ul class="tab_mn tab_two">
-		<li class="on"><a class="tab1 t_b" data="all">블로그 체험단</a></li>
-		<li><a class="tab2 t_s" data="all">SNS 체험단</a></li>
-	</ul>
-	
-	<!-- 블로그 리뷰 -->
-	<div class="swiper-container ca_wrap tab_blog" id="tab_blog">
-		<div class="swiper-wrapper category blog_c">
-			<a href="#none" class="t_b on" data="all">전체</span></a>
-			<a href="#none" class="t_b" data="맛집">맛집</a>
-			<a href="#none" class="t_b" data="패션">패션</a>
-			<a href="#none" class="t_b" data="뷰티">뷰티</a>
-			<a href="#none" class="t_b" data="생활">생활</a>
-			<a href="#none" class="t_b" data="취미">취미</span></a>
-			<a href="#none" class="t_b" data="여행">여행</a>
-			<a href="#none" class="t_b" data="이벤트"></a>
+	<div id="wrap">
+		<div id="header">
+			<h1>리뷰보기</h1>
+			<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+			<a href="" class="header_btn_r btn_search2">검색</a>
 		</div>
-	</div>
-	<div class="tab_blog list_wrap">
-		<ul class="bk_white rv_list blog" id="rv_li">
-			
+		<ul class="tab_mn tab_two">
+			<li class="on"><a class="tab1 t_b" data="all">블로그 체험단</a></li>
+			<li><a class="tab2 t_s" data="all">SNS 체험단</a></li>
 		</ul>
-		<div id="loading_bar" class="off"></div>
-	</div>
-	
-	<!-- SNS 리뷰 -->
-	<div class="swiper-container ca_wrap tab_sns" id="tab_sns">
-		<div class="swiper-wrapper category sns_c">
-			<a href="#none" class="t_s on" data="all">전체</a>
-			<a href="#none" class="t_s" data="맛집">맛집</a>
-			<a href="#none" class="t_s" data="패션">패션</a>
-			<a href="#none" class="t_s" data="뷰티">뷰티</a>
-			<a href="#none" class="t_s" data="생활">생활</a>
-			<a href="#none" class="t_s" data="이벤트">이벤트</a>
+		
+		<!-- 블로그 리뷰 -->
+		<div class="swiper-container ca_wrap tab_blog" id="tab_blog">
+			<div class="swiper-wrapper category blog_c">
+				<a href="#none" class="t_b on" data="all">전체</span></a>
+				<a href="#none" class="t_b" data="맛집">맛집</a>
+				<a href="#none" class="t_b" data="패션">패션</a>
+				<a href="#none" class="t_b" data="뷰티">뷰티</a>
+				<a href="#none" class="t_b" data="생활">생활</a>
+				<a href="#none" class="t_b" data="취미">취미</span></a>
+				<a href="#none" class="t_b" data="여행">여행</a>
+				<a href="#none" class="t_b" data="이벤트"></a>
+			</div>
 		</div>
-	</div>
-	<div class="tab_sns list_wrap">
-		<ul class="bk_white rv_list sns" id="rv_li">
+		<div class="tab_blog list_wrap">
+			<ul class="bk_white rv_list blog" id="rv_li">
+				
+			</ul>
+			<div id="loading_bar" class="off"></div>
+		</div>
+		
+		<!-- SNS 리뷰 -->
+		<div class="swiper-container ca_wrap tab_sns" id="tab_sns">
+			<div class="swiper-wrapper category sns_c">
+				<a href="#none" class="t_s on" data="all">전체</a>
+				<a href="#none" class="t_s" data="맛집">맛집</a>
+				<a href="#none" class="t_s" data="패션">패션</a>
+				<a href="#none" class="t_s" data="뷰티">뷰티</a>
+				<a href="#none" class="t_s" data="생활">생활</a>
+				<a href="#none" class="t_s" data="이벤트">이벤트</a>
+			</div>
+		</div>
+		<div class="tab_sns list_wrap">
+			<ul class="bk_white rv_list sns" id="rv_li">
 
-		</ul>
-		<div id="loading_bar2" class="off"></div>
-	</div>
-	<input type="hidden" id="check" value="blog">
+			</ul>
+			<div id="loading_bar2" class="off"></div>
+		</div>
+		<input type="hidden" id="check" value="blog">
+	</div>	
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	
 	<script>
 	// 탭메뉴
@@ -131,7 +134,10 @@
 						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></div></a></li>';			
 					}); 
 					$(".blog").html(string);
-				},   
+				},  
+				complete:function(){
+					$('#loading').hide();
+				},
 				error:function(e){  
 					alert(e.responseText);  
 				}  

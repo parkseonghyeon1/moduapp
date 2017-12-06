@@ -132,11 +132,11 @@
     </script>
 	<script>
 	$(document).ready(function(){
-		if (logincheck==0) {
+		/*if (logincheck==0) {
 			$('.nav_profile').html('<a href="login.html" class="go_a">로그인</a>');         
 		}else{
 			$('.nav_profile').html('<div class="p_img_wrap"><div class="p_img"><img src="http://modublog.co.kr/data/mb_photo/'+member['mb_id']+'" alt="" id="profile_img"></div></div><p class="title p_name"><a href="member_edit_form.html" class="go_a">'+member['mb_nick']+'</a></p><span class="p_point">'+member['mb_point']+'</span><div class="p_message"><a href="#none"><span class="title">1</span></a></div>');      
-		}
+		}*/
     });
     
     $('.p_message').click(function(){
@@ -164,11 +164,6 @@
 	});
 	</script>
 	<script>
-	// nav left-right 메뉴 on class (현재 활성화되어있는 페이지 on으로 변경시켜야함)
-	$(document).on('click','.nav_right_mn > a',function(){
-		$(this).parent().children('a').removeClass('on');
-		$(this).addClass('on');
-	})
 	// 이동
     $(document).on('click','.go_a',function(){
         var url = $(this).attr("href");

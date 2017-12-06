@@ -27,14 +27,13 @@ input::placeholder {color:#989898 !important}
 /* 버튼 */
 #header {position:relative;background:#fff;height:44px;line-height:44px;border-bottom:1px solid #dcdcdc;text-align:center}
 #header h1 {font-size:14px;font-weight:normal}
-.header_btn_l {position:absolute;top:0;left:0;width:40px;height:45px;overflow:hidden;text-indent:-9999px}
-.header_btn_r {position:absolute;top:0;right:0;width:40px;height:45px;overflow:hidden;text-indent:-9999px}
+.header_btn_l {position:absolute;top:0;left:0;width:45px;height:45px;overflow:hidden;text-indent:-9999px}
+.header_btn_r {position:absolute;top:0;right:0;width:45px;height:45px;overflow:hidden;text-indent:-9999px}
 .btn_back {background:url(../img/icon_back.png)no-repeat;background-size:17px 17px;background-position:50% 50%}
 .btn_back_w {background:url(../img/icon_back_w.png)no-repeat;background-size:17px 17px;background-position:50% 50%}
 .btn_search2 {background:url(../img/icon_search_bl.png)no-repeat;background-size:17px 17px;background-position:50% 50%}
 .btn_help {background:url(../img/icon_help.png)no-repeat;background-size:17px 17px;background-position:50% 50%}
-
-
+/* 기타 */
 .ct_wrap {background:#fff;border-bottom:1px solid #d8d8d8;margin-bottom:10px}
 .add_photo_b {position:relative}
 .add_photo_b .btn_add_photo {display:inline-block;width:50px;height:50px;border:1px solid #b5b5b5;border-radius:4px;overflow:hidden;text-indent:-9999px;background:url(../img/icon_add.png)no-repeat center;background-size:16px 16px;background-position:50% 50%}
@@ -48,6 +47,9 @@ input::placeholder {color:#989898 !important}
 .tab_mn li.on a.t_s {border-bottom:3px solid #edaf07}
 .tab_thr li {width:33.3%}
 .tab_two li {width:50%}
+#loading {position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;z-index:9999}
+#loading #load_gif {position:absolute;top:50%;left:50%;width:150px;height:99px;margin-top:-49px;margin-left:-75px}
+#loading #load_gif img{width:100%;height:100%;vertical-align:top}
 /* 댓글 */
 #wr_secret,
 #wr_secret_r {display:none}
@@ -344,9 +346,9 @@ ui-page {background:#fff;height:100%}
 .pr_btn_wrap .pr_btn_p a:last-child {float:right}
 
 /* 리뷰목록 | 리뷰상세 */
-.tab_sns {display:none}
+.tab_sns {display:none;}
 #tab_blog,
-#tab_sns {padding:12px 0 6px;background:#fff}
+#tab_sns {padding:12px 0 10px;background:#fff;border-bottom:1px solid #e9e9e9}
 .rv_list li .rv_sub_info {padding-top:10px;display:inline-block}
 .rv_img img {width:100%;vertical-align:top}
 .rv_txt {padding:20px 16px}

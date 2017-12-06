@@ -25,6 +25,9 @@
 		
 		</ul>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	
 	<script>
 	// 리스트 슬라이드
 	$(document).on('click','.list_sd > li > a', function() {
@@ -45,7 +48,10 @@
 				})
 				$('#faq_li').append(string_f);
 				console.log(data);
-			},   
+			},  
+			complete:function(){
+				$('#loading').hide();
+			},
 			error:function(e){  
 				alert(e.responseText);  
 			}  

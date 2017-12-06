@@ -24,7 +24,6 @@
 		<h1>검색결과</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-	
     <div class="list_wrap home_list" style="margin-top:0">
 		<ul id="search_list" class="bk_white">
 		
@@ -32,6 +31,8 @@
 		<div id="loading_bar" class="off">
 		</div>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	
     <script>
     // 카테고리 on-off
@@ -85,7 +86,10 @@
 					spaceBetween: 12,
 					init: true
 				});
-			},   
+			},  
+			complete:function(){
+				$('#loading').hide();
+			},			
 			error:function(e){  
 				alert(e.responseText);  
 			}  

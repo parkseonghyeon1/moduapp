@@ -13,6 +13,10 @@
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/menu.js"></script>
 </head>
+<style>
+#message_li .answer div {position:relative;padding-right:50px;}
+.msg_link {position:absolute;width:40px;height:40px;background:url(../img/icon_go.png)no-repeat;background-size:20px 20px;right:0px;bottom:0px;background-position:50% 60%}
+</style>
 <body>
 	<div id="header">
 		<h1>메세지함</h1>
@@ -30,6 +34,11 @@
 		</ul>
 		<div id="loading_bar" class="off"></div>
 		<div id="loading_bar2" class="off"></div>
+	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	
+	
 	<script>
 	// 메세지 목록
 	$(document).ready(function(){
@@ -49,12 +58,15 @@
 					}else{
 					string_m += '<span class="txt_ov title_sub r_memo">'+value.me_memo+'</span>';
 					}
-					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'</div></div></li>';
+					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'<a href="'+value.me_link+'" class="msg_link"></a></div></div></li>';
 				}); 
 				$("#message_li").append(string_m);
 				
 				console.log(data);
 			},   
+			complete:function(){
+				$('#loading').hide();
+			},
 			error:function(e){  
 				alert(e.responseText);  
 			}  		
@@ -86,7 +98,7 @@
 					}else{
 					string_m += '<span class="txt_ov title_sub r_memo">'+value.me_memo+'</span>';
 					}
-					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'</div></div></li>';
+					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'<a href="'+value.me_link+'" class="msg_link"></a></div></div></li>';
 				}); 
 				$("#message_li").append(string_m);
 			},   
@@ -128,7 +140,7 @@
 							}else{
 							string_m += '<span class="txt_ov title_sub r_memo">'+value.me_memo+'</span>';
 							}
-							string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'</div></div></li>';
+							string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'<a href="'+value.me_link+'" class="msg_link"></a></div><a class="msg_link"></a></div></li>';
 						}); 
 						$("#message_li").append(string_m);
 						if($('#click_chk').val() == 'chk'){list = 20;}
@@ -139,7 +151,7 @@
 						if(!string_m){	//리스트 목록 다 불러왔을 경우 리스트,로딩 초기화
 							list = 20;
 							$("#"+loading_bar).attr("class","");
-							$("#"+loading_bar).html("");
+							$("#"+loading_bar).hide();
 						}
 						//console.log(list);
 					},   
@@ -176,7 +188,7 @@
 	// 전체 읽음 버튼
 	$(document).on('click','#btn_read_all',function(){
 		var me_id = $(this).attr("id");
-		var mb_id = 'qwe';
+		var mb_id = member['mb_id'];
 		var params = {"m_all":"m_all","mb_id":mb_id};
 		$.ajax({      
 			type:"POST",

@@ -3,7 +3,9 @@
 	var site_id = document.URL.substring(document.URL.lastIndexOf("/") + 1, document.URL.length);
 	
 	$('.nav_right_mn').siblings().removeClass('on');	
-	if(site_id == 'home_blog.html'){
+	if(site_id == 'main.html'){
+		$('.home').addClass('on');
+	}else if(site_id == 'home_blog.html'){
 		$('.blog').addClass('on');
 	}else if(site_id == 'home_sns.html'){
 		$('.sns').addClass('on');
@@ -46,7 +48,7 @@
 				<ul class="c-menu__items nav_mn1">
 					<li class="c-menu__item"><a href="mypage_01.html" class="go_a">나의 체험단</a></li>
 					<!-- <li class="c-menu__item"><a href="#none">관심 체험단</a></li> -->
-					<li class="c-menu__item"><a href="#none">나의리뷰</a></li>
+					<li class="c-menu__item"><a href="my_review.html" class="go_a">나의리뷰</a></li>
 				</ul>
 				<ul class="c-menu__items nav_mn2">
 					<li class="c-menu__item"><a href="notice_list.html" class="go_a">공지사항</a></li>
@@ -66,7 +68,7 @@
 			</div>
 		</div>
 		<div class="nav_right_mn">
-			<a href="main.html" class="home go_a_replace">home</a>
+			<a href="main.html" class="home go_a">home</a>
 			<a href="home_blog.html" class="blog go_a">blog</a>
 			<a href="home_sns.html" class="sns go_a">sns</a>
 			<a href="#none" class="share">share</a>

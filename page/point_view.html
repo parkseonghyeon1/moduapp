@@ -45,6 +45,8 @@
 		<!--<p class="alt_txt">최근 적립 사용한 내역이 없습니다.</p>-->
 		<div id="loading_bar" class="off"></div>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	<!-- 팝업 -->
 	<div id="pop"></div>
 	
@@ -59,6 +61,7 @@
 		$('#pop').load("popup.html");
 	})
 	
+	// 첫페이지 ajax
 	$(document).ready(function(){
 		string = '';
 		var mb_id = member['mb_id'];
@@ -106,16 +109,19 @@
 					string1 += '<li><a href="#none"><div class="list_txt"><div class="notice_txt"><span class="txt_ov title_sub">'+value.po_content+'</span><span class="date_txt">'+value.po_datetime+'</span><span class="ps_r point_txt">'+point+'</span></div></div></a></li>'
 				});	
 				$("#point_li").html(string1);
-			},   
+			},  
+			complete:function(){
+				$('#loading').hide();
+			},			
 			error:function(e){  
 				alert(e.responseText);  
 			}  		
 		})		
 	})
 	
+	// 카테고리 리스트 ajax
 	$(document).on("click",".ca_name",function(){
 		var mb_id = member['mb_id'];
-		//var mb_id = 'qwe';	
 		var string1 = '';
 		var ca_name = $(this).attr("data");
 		var params1 = {"mb_id":mb_id,"ca_name":ca_name};
@@ -124,6 +130,11 @@
 			data:params1,			
 			url:"http://modublog.co.kr/app_public/ajax/a_point_list.php",      
 			success:function(data){
+				if(data.length < 10){
+					$("#loading_bar").attr("class","");
+				}else{
+					$("#loading_bar").attr("class","off");
+				}
 				//포인트 내역 가져오기
 				$.each(data,function(key,value){
 					if(value.po_point >= 0){
@@ -135,13 +146,71 @@
 					string1 += '<li><a href="#none"><div class="list_txt"><div class="notice_txt"><span class="txt_ov title_sub">'+value.po_content+'</span><span class="date_txt">'+value.po_datetime+'</span><span class="ps_r point_txt">'+point+'</span></div></div></a></li>'
 				});	
 				$("#point_li").html(string1);
-						
-				
+				list = 10;
 			},   
 			error:function(e){  
 				alert(e.responseText);  
 			}  		
 		})			
+	})
+	var list = 10;
+	var list_num = 10;
+	var temp = 'all';
+	// 리스트 스크롤
+	$(window).scroll(function() {
+		if($(window).scrollTop() == $(document).height() - $(window).height()){
+			var mb_id = member['mb_id'];
+			var ca_name = $('.category .on').attr("data");
+			var loading_class = $("#loading_bar").attr("class");
+			var linum = $("#point_li").length;
+			
+			if(linum > 0 && loading_class == 'off'){
+				var params = {"list_ar":list,"ca_name":ca_name,"mb_id":mb_id};
+				var string1 = '';
+				$.ajax({      
+					type:"POST",
+					data:params,			
+					url:"http://modublog.co.kr/app_public/ajax/a_point_ajax.php",      
+					beforeSend:function(){
+						$("#loading_bar").html("<div class='loader_wrap' style='height:61px;background:#fff'><img src='../img/icon_loder.gif'></div>");
+					},
+					success:function(data){
+						//포인트 내역 가져오기
+						$.each(data,function(key,value){
+							if(value.po_point >= 0){
+								point = '<span class="color_blog">+'+value.po_point+'</span>';
+							}else{
+								//point = '-'+value.po_point;
+								point = value.po_point;
+							}
+							string1 += '<li><a href="#none"><div class="list_txt"><div class="notice_txt"><span class="txt_ov title_sub">'+value.po_content+'</span><span class="date_txt">'+value.po_datetime+'</span><span class="ps_r point_txt">'+point+'</span></div></div></a></li>'
+							console.log("$list_ar : "+value.list_ar);
+						});	
+						$("#point_li").append(string1);
+						
+						if(ca_name != temp){
+							list = 10;
+						}
+						console.log(list);
+						
+						list = list + list_num;
+						
+						console.log(temp+"/"+ca_name);
+						
+						temp = ca_name;
+						
+						if(!string1){
+							list = 10;
+							$("#loading_bar").attr("class","");
+							$("#loading_bar").html("");
+						}
+					},   
+					error:function(e){  
+						alert(e.responseText);  
+					}  		
+				})
+			}
+		}	
 	})
 	</script>
 </body>

@@ -46,6 +46,9 @@
 			</ul>
 		</div>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	
 	<script>
 	// 텍스트 입력 시 버튼 change
 	$(document).on('keyup','.input',function(){
@@ -122,6 +125,9 @@
 				$('#comment_num2').html("댓글 "+data.length);
 				$('#comment_li').append(string_c);
 			},   
+			complete:function(){
+				$('#loading').hide();
+			},
 			error:function(e){  
 				alert(e.responseText);  
 			}  

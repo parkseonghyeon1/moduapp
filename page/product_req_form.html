@@ -24,6 +24,9 @@
 		var wr_id = getQuerystring('wr_id');
 		if(w == 'u'){
 			$("#header h1").text("신청수정");
+			$('.terms_wrap').hide();
+			$('#btn_submit').text("변경완료");
+			$('.btn_ok > a').addClass('on');
 		}
 		
 		$(".request").attr("src","http://modublog.co.kr/app_public/product_req_form.php?bo_table="+bo_table+"&wr_id="+wr_id+"&mb_id="+mb_id+"&w="+w);
@@ -53,9 +56,7 @@
 		<input type="hidden" name="wr_3" id="wr_3" val="">
 		<input type="hidden" name="w" id="w" val="">
 	</form>
-		<table style="width:100%">
-		<tr><td><iframe id="product_req_frame" name="product_req_frame" src="http://modublog.co.kr/app_public/product_req_form.php" class="request" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="100%" onload="autoResize(this)"></iframe></td></tr>
-		</table>
+	<iframe id="product_req_frame" name="product_req_frame" src="http://modublog.co.kr/app_public/product_req_form.php" class="request" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" onload="autoResize(this)"></iframe>
 	<div class="m_reg_li terms_wrap">
 		<p class="title">약관동의</p>
 		<div class="terms_use terms_all">
@@ -82,20 +83,23 @@
 		<div class="bottom_txt">신청하기에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
 		<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading" style="display:none"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 		
 </body>
 <script>
-function autoResize(h){
-	if(h == null){
-		return false;
+
+	// iframe resize
+	function autoResize(i){
+	    var iframeHeight=
+	    (i).contentWindow.document.body.scrollHeight;
+	    (i).height=iframeHeight;
 	}
-	(h).height = "0px";
-	var iframeHeight = (h).contentWindow.document.body.scrollHeight;
-	(h).height = iframeHeight + 10;
-}
+	
 </script>
 <script>
-	$(document).ready(function(){
+	$(document).ready(function(){	
+		//약관동의 체크박스
 		// 전체동의 선택 시 모든 체크박스 상태 checked true|false
 		$('#chk_all').click(function(){
 			if($('#chk_all').prop('checked')){
@@ -115,12 +119,11 @@ function autoResize(h){
 			}
 		})
 	})
-
+	
+	// 확인 버튼 클릭
 	$(document).on('click','#btn_submit',function(){
-		
 		var zip = $("#product_req_frame").contents().find("#review_reg_form").serialize();
 		//var zip = $(".product_req_frame").contents().find("#mb_id").val();
-		
 		
 		var dataList = zip.split("&");
 		var dataList_length = dataList.length;
@@ -263,12 +266,18 @@ function autoResize(h){
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_request.php",  
-			data:params,			
+			data:params,	
+			beforeSend:function(){
+				$('#loading').show();
+			},			
 			success:function(data){
 				//alert(data);
+			},   
+			complete:function(){
+				$('#loading').hide();
 				alert("신청이 완료되었습니다");
 				location.replace("mypage_01.html");
-			},   
+			},
 			error:function(e){  
 				//alert(e.responseText);  
 			}  

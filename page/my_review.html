@@ -26,13 +26,14 @@
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 		<a href="" class="header_btn_r btn_search2">검색</a>
 	</div>
-	
 	<div class="list_wrap">
 		<ul class="rv_list bk_white" id="rv_li">
 			
 		</ul>
 		<div id="loading_bar" class="off"></div>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	
 	<script>
 	//페이지 첫 로딩시 ajax
@@ -61,102 +62,18 @@
 				}); 
 				$("#rv_li").html(string);
 			},   
+			complete:function(){
+				$('#loading').hide();
+			},
 			error:function(e){  
 				alert(e.responseText);  
 			}  
 		});  
 	})
-	
-	//블로그 체험단 클릭시 ajax
-	/*$(document).on("click",".t_b",function(){
-		$("#loading_bar").attr("class","off");
-		$("#loading_bar2").attr("class","off");
-		$("#check").val("blog");
-		$(this).siblings().removeClass("on");
-		$(this).addClass("on");
-		
-		var string = '';
-		var bo_table = 'review';
-		var ca_name = $(this).attr('data');
-
-		var params = {"bo_table":bo_table,"ca_name":ca_name};
-		$(document).ready(function(){
-			$.ajax({      
-				type:"POST",  
-				url:"http://modublog.co.kr/app_public/ajax/a_review_list.php",   
-				data:params,
-				success:function(data){
-					//console.log(data);
-					$.each(data[0],function(key,value){
-						//블로그 리뷰
-						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
-						for(var i = 0; i < 10; i= i+2){
-							if(value.wr_star > i){
-								string += '<span class="star"><img src="../img/star_on.png"></span>';
-							}else{
-								string += '<span class="star"><img src="../img/star_off.png"></span>';
-							}
-							
-						}
-						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></a></li>';	
-					}); 
-					$(".blog").html(string);
-					
-				},   
-				error:function(e){  
-					alert(e.responseText);  
-				}  
-			});  		
-		})
-		return false;
-	})
-	
-	//SNS 체험단 클릭시 ajax
-	$(document).on("click",".t_s",function(){
-		$("#loading_bar").attr("class","off");
-		$("#loading_bar2").attr("class","off");
-		$("#check").val("sns");
-		$(this).siblings().removeClass("on");
-		$(this).addClass("on");
-		
-		var string = '';
-		var bo_table = 'sns_review';
-		var ca_name = $(this).attr('data');
-		
-		var params = {"bo_table":bo_table,"ca_name":ca_name};
-		$(document).ready(function(){
-			$.ajax({      
-				type:"POST",  
-				url:"http://modublog.co.kr/app_public/ajax/a_review_list.php",   
-				data:params,
-				success:function(data){
-					console.log(data);
-					$.each(data[0],function(key,value){
-						//SNS 리뷰
-						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
-						for(var i = 0; i < 10; i= i+2){
-							if(value.wr_star > i){
-								string += '<span class="star"><img src="../img/star_y_on.png"></span>';
-							}else{
-								string += '<span class="star"><img src="../img/star_off.png"></span>';
-							}
-						}
-						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_sns">'+value.wr_comment+'</span></span></span></div></div></a></li>';		
-					}); 
-					$(".sns").html(string);
-					
-				},   
-				error:function(e){  
-					alert(e.responseText);  
-				}  
-			});  		
-		})
-		return false;
-	})	*/
-	
+	/*
 	var list = 20;
 	var list_num = 20;
-	var temp = 'all';
+	//var temp = 'all';
 	// 리스트 스크롤
 	$(window).scroll(function() {
 		if($(window).scrollTop() == $(document).height() - $(window).height()){
@@ -235,6 +152,7 @@
 			}
 		}	
 	})
+	*/
 	</script>
 	
 

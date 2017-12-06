@@ -32,6 +32,9 @@
 			</ul>
 		</div>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	
 	<script>
 	// 체험단 첫 페이지 불러오기(신청)
 	$(document).ready(function(){
@@ -63,7 +66,10 @@
 				$("#my_list").append(string);
 				
 				console.log(data);
-			},   
+			}, 
+			complete:function(){
+				$('#loading').hide();
+			},			
 			error:function(e){  
 				alert(e.responseText);  
 			}  
@@ -85,6 +91,9 @@
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_mypage01.php",   
 			data:params,
+			beforeSend:function(){
+				$('#loading').show();
+			},
 			success:function(data){
 				$.each(data[0],function(key,value){
 					if(value.bo_table == 'sns_fashion'){
@@ -138,7 +147,10 @@
 				$("#my_list").html(string);
 				
 				console.log(data);
-			},   
+			}, 
+			complete:function(){
+				$('#loading').hide();
+			},  
 			error:function(e){  
 				alert(e.responseText);  
 			}  

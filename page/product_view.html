@@ -86,7 +86,19 @@
 			</div>
 		</div>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	
 	<script>
+	$(document).on('click','#req_go',function(){
+		if(logincheck==0){
+			var result = confirm('로그인 후 이용 가능한 서비스입니다. 로그인 하시겠습니까?');
+			if(result){
+				location.href="login.html";
+			}
+		}
+	})
+	
 	// 탭메뉴
 	$(document).on('click','.tab_mn li a', function() {
 		$(this).closest('li').addClass('on').siblings().removeClass('on');	
@@ -122,6 +134,7 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_product.php",
 			data:params,
 			success:function(data){
+				console.log(data);
 				$('#header h1').html(data.wr_subject);
 				$('#wr_subject').html(data.wr_subject);
 				if(!data.pr_info || !data.wr_google_map){
@@ -144,12 +157,17 @@
 				$('#pr_subject_sub').html(data.pr_subject_sub);
 				$('#pr_d_day').html(data.pr_d_day);
 				$('#pr_due').html(data.pr_due1 + " - " + data.pr_due2);
-				$('#pr_review').html(data.pr_review1 + " - " + data.pr_review2);
+				if(data.pr_review2){
+					$('#pr_review').html(data.pr_review1 + " - " + data.pr_review2);
+				}else{
+					$('#pr_review').html(data.pr_review1);
+				}
 				$('#wr_comment').html(data.wr_comment);
 				$('#pr_rec_num').html(data.pr_rec_num);
 				$('#pr_go').attr("href",data.wr_link1);
-				$('#req_go').attr("href","product_req_form.html?bo_table="+data.pr_board+"&wr_id="+data.pr_board_id+"&w=");
-				
+				if(logincheck==1){
+					$('#req_go').attr("href","product_req_form.html?bo_table="+data.pr_board+"&wr_id="+data.pr_board_id+"&w=");
+				}
 				$.each(data.pr_file,function(key,value){
 					string += '<div class="swiper-slide"><div class="main_bann_img"><img alt="" src="'+value+'"></div></div>';
 				}); 
@@ -173,6 +191,9 @@
 				//끝	
 				console.log(data);
 			},   
+			complete:function(){
+				$('#loading').hide();
+			},
 			error:function(e){  
 				alert(e.responseText);  
 			}  

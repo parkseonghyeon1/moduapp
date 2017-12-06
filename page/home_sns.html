@@ -58,14 +58,10 @@
 		<div id="loading_bar" class="off">
 		</div>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	
     <script>
-    // 카테고리 on-off
-    $(document).on("click",".home_category a",function(){  
-        $(this).parent().children('a').removeClass('on');
-        $(this).addClass('on');
-    })
-	
 	// 배너 slide	
 	var swiper_ca = new Swiper('.swiper-container', {
 		slidesPerView: 'auto',
@@ -141,6 +137,9 @@
 					direction: 'horizontal'
 				});
 			},   
+			complete:function(){
+				$('#loading').hide();
+			},
 			error:function(e){  
 				alert(e.responseText);  
 			}  
@@ -148,11 +147,10 @@
 	})
 	</script>
 	<script>
-	var list = 12;
-	var list_num = 10;
 	
 	// SNS 카테고리 선택
 	$(document).on('click','.home_category a',function(){
+		$('#loading_bar').attr('class','off');
 		var data = $(this).attr("data");
 		var params = {"bo_table":data,"type":"sns"};
 		$("#loading_bar").attr("class","on");
@@ -174,7 +172,7 @@
 				}); 
 				$("#sns_list").html(string_sn);
 				$("#loading_bar").attr("class","off");
-				list = 12;
+				list = 10;
 			},   
 			error:function(e){  
 				alert(e.responseText);  
@@ -182,6 +180,8 @@
 		})
 	});
 	
+	var list = 10;
+	var list_num = 10;
 	$(window).scroll(function() {
 		if($(window).scrollTop() == $(document).height() - $(window).height()){
 			var loading_class = $("#loading_bar").attr("class");
@@ -212,6 +212,7 @@
 						
 						if(!string_sn){
 							$("#loading_bar").attr("class","");
+							$("#loading_bar").hide();
 						}
 					},   
 					error:function(e){  
