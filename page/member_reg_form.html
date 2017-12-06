@@ -95,6 +95,8 @@
 			<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
 		</div>
     </form>
+	<!-- 페이지 로딩 -->
+	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	<script> 
 	function autoResize(iframeObj){
 		$('iframe').height($('iframe').contents().height());
@@ -185,9 +187,13 @@
 	    (i).contentWindow.document.body.scrollHeight;
 	    (i).height=iframeHeight;
 	}
-	
 	//iframe
 	$("#register_frame").attr("src","http://modublog.co.kr/app_public/a_test02.html?login_check="+logincheck+"&mb_id="+member['mb_id']);
+	// iframe 로드 후 이벤트
+	$("#register_frame").on("load", function(){
+		$('#loading').hide();
+
+	});
 	
 	// 프로필 이미지
 	function fileInfo_p(f){
