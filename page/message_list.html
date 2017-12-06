@@ -58,7 +58,12 @@
 					}else{
 					string_m += '<span class="txt_ov title_sub r_memo">'+value.me_memo+'</span>';
 					}
-					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'<a href="'+value.me_link+'" class="msg_link"></a></div></div></li>';
+					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo;
+					
+					if(value.me_link){
+						string_m += '<a href="'+value.bo_table+'?wr_id='+value.wr_wr_id+'" class="msg_link"></a>';
+					}
+					string_m += '</div></div></li>';
 				}); 
 				$("#message_li").append(string_m);
 				
@@ -68,7 +73,7 @@
 				$('#loading').hide();
 			},
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  		
 		})
 	})
@@ -98,12 +103,12 @@
 					}else{
 					string_m += '<span class="txt_ov title_sub r_memo">'+value.me_memo+'</span>';
 					}
-					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'<a href="'+value.me_link+'" class="msg_link"></a></div></div></li>';
+					string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'<a href="'+value.bo_table+'?wr_id='+value.wr_wr_id+'" class="msg_link"></a></div></div></li>';
 				}); 
 				$("#message_li").append(string_m);
 			},   
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  		
 		})
 	})
@@ -140,7 +145,7 @@
 							}else{
 							string_m += '<span class="txt_ov title_sub r_memo">'+value.me_memo+'</span>';
 							}
-							string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'<a href="'+value.me_link+'" class="msg_link"></a></div><a class="msg_link"></a></div></li>';
+							string_m += '<span class="date_txt">'+value.me_send_datetime+'</span></div></a><div class="answer"><div>'+value.me_memo+'<a href="'+value.bo_table+'?wr_id='+value.wr_wr_id+'" class="msg_link"></a></div><a class="msg_link"></a></div></li>';
 						}); 
 						$("#message_li").append(string_m);
 						if($('#click_chk').val() == 'chk'){list = 20;}
@@ -156,7 +161,7 @@
 						//console.log(list);
 					},   
 					error:function(e){  
-						alert(e.responseText);  
+						console.log(e.responseText);  
 					}  		
 				})
 			}
@@ -179,7 +184,7 @@
 				$('.title_sub').addClass("r_memo");
 			},   
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			}  		
 		})
 
@@ -198,7 +203,7 @@
 				$('.title_sub').addClass("r_memo");
 			},   
 			error:function(e){  
-				alert(e.responseText);  
+				console.log(e.responseText);  
 			} 		
 		}) 
 	});
