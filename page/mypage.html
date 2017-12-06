@@ -81,12 +81,27 @@
 			}  
 		});
 
-		$(document).on('click','#logout',function(){
-        	window.localStorage.removeItem("mb_id");
-        	window.localStorage.removeItem("mb_nick");
-        	window.localStorage.removeItem("mb_point");
-        	window.localStorage.clear();
-        	location.replace("main.html");
-		});
 	});	
+
+	$(document).on('click','#logout',function(){
+
+			var ummm = {
+				mb_token : window.localStorage.getItem("mb_token")
+			};
+			$.ajax({
+			type : 'POST',
+			url : 'http://modublog.co.kr/app_public/push/logout.php',
+			data : ummm,
+			dataType : 'json',
+			success : function(data){
+				window.localStorage.removeItem("mb_id");
+				window.localStorage.removeItem("mb_nick");
+				window.localStorage.removeItem("mb_point");
+        		window.localStorage.clear();
+        		location.replace("main.html");
+			}, error : function(xhr, status, error){
+				alert("오류");
+			}
+		});		    	
+	});
 </script>
