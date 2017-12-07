@@ -48,12 +48,6 @@
 				</ul>
 			</div>
 		</div>
-		<div class="pr_btn_wrap">
-			<div class="pr_btn_p">
-				<a id="pr_go">구경하기</a>
-				<a id="req_go">신청하기</a>
-			</div>
-		</div>
 	</div>
 	<!-- 페이지 로딩 -->
 	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
@@ -78,7 +72,6 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_review_view.php",
 			data:params,
 			success:function(data){
-				
 				for(var i=0; i < 10; i = i +2){
 					if(data.wr_star > i){
 						string += '<span class="star"><img src="../img/star';

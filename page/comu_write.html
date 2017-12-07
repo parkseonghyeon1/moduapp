@@ -20,30 +20,80 @@
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
 	<form id="comu_reg_form" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="w" value="">
-	<input type="hidden" name="mb_id" id="mb_id" value="">
-	<input type="hidden" name="bo_table" value="comu">
-	<div class="bk_white">
-		<div>
-			<select name="ca_name" id="comu_ct">
-				
-			</select>
+		<input type="hidden" name="w" value="">
+		<input type="hidden" name="mb_id" id="mb_id" value="">
+		<input type="hidden" name="bo_table" value="comu">
+		<div class="m_reg_li">
+			<ul>
+				<li>
+					<label class="title" for="">카테고리</label>
+					<div class="dv_input">
+						<select name="ca_name" id="comu_ct">
+							
+						</select>
+					</div>
+				</li>
+				<li>
+					<label class="title" for="">제목</label>
+					<div class="dv_input">
+						<div class="input_txt">
+							<input type="text" name="wr_subject" placeholder="제목을 입력해주세요.">
+						</div>
+					</div>
+				</li>
+				<li>
+					<label class="title">내용</label>
+					<div class="dv_input">
+						<div class="input_txt">
+							<textarea class="rg_cont" name="wr_content" placeholder="내용을 입력해주세요."></textarea>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label class="title" for="">이미지</label>
+					<div id="id_card" style="font-size:12px"></div>
+					<input type="hidden" id="id_chk" value="0">
+					<div class="add_photo_b" id="id_file_b">
+						<span class="btn_add_photo">추가버튼</span>
+						<input type="file" onchange="fileInfo_p(this)" name="bf_file[]">
+						<span class="preview_photo" id="id_card_photo"></span>
+					</div>
+				</li>
+			</ul>
 		</div>
-		<div>
-			<input type="text" name="wr_subject" placeholder="제목을 입력해주세요.">
+		<div class="reg_btn">
+			<div class="btn_wrap btn_ok">
+				<a href="#none" id="submit_btn">등록하기</a>
+			</div>
 		</div>
-		<div>
-			<textarea name="wr_content" placeholder="내용을 입력해주세요."></textarea>
-		</div>
-		<div>
-			<input type="file" name="bf_file[]">
-		</div>
-		<div class="btn_wrap btn_ok">
-			<a href="#none" id="submit_btn">등록하기</a>
-		</div>
-	</div>
 	</form>
 	<script>
+	// 파일 첨부
+	function fileInfo_p(f){
+		var file = f.files; // 파일의 정보
+		// file 은 배열이므로 file[0] 으로 접근
+
+		if(file[0].size > 1024 * 1024){
+			//alert('1MB 이상의 파일은 X');
+			return;
+		}
+		else if(file[0].type.indexOf('image') < 0){ // 선택한 파일이 이미지인지 확인
+			//alert('이미지 파일만 선택하세요.');
+			return;
+		}
+
+		var reader = new FileReader(); // FileReader 객체 사용
+		reader.onload = function(rst){
+			$('#id_card_photo').html('<img id="id_photo" style="position:absolute;top:0;left:0;bottom:0;right:0;vertical-align:middle;width:100%;height:100%;vertical-align:top;border:none">');
+			$('#id_photo').attr("src", rst.target.result); 
+			//$('#img_box1').css('background','url('+rst.target.result+')center center / cover no-repeat');
+			// append 메소드를 사용해서 이미지 추가
+			// 이미지는 base64 문자열로 추가
+		}
+		reader.readAsDataURL(file[0]); // 파일을 읽는다
+	}
+	
+	// 커뮤니티 카테고리 불러오기
 	$('#mb_id').val(member['mb_id']);
 	$(document).ready(function(){
 		var params = {"bo_table":"comu"};
@@ -60,6 +110,7 @@
 		});  	
 	});
 	
+	// 등록하기 버튼
 	$(document).on('click','#submit_btn',function(){
 		$('#comu_reg_form').ajaxForm({
 			url: "http://modublog.co.kr/app_public/ajax/a_write.php",

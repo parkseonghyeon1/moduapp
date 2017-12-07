@@ -319,7 +319,7 @@ ui-page {background:#fff;height:100%}
 /* 상품 상세 */
 .pr_wrap {overflow:hidden;width:100%}
 .pr_view_info {padding:20px 16px;background:#fff;border-bottom:1px solid #dbdbdb;margin-bottom:10px}
-.pr_view_info .pr_f {overflow:hidden;padding-top:20px}
+.pr_view_info .pr_f {overflow:hidden;padding-top:13px}
 .pr_view_info .title {font-size:13px}
 .pr_view_info #pr_subject_sub {display:block;font-size:11px;color:#797979}
 
