@@ -11,6 +11,7 @@ button,input,select,textarea{vertical-align:middle}
 button{border:0 none;background-color:transparent;cursor:pointer}
 table{border-collapse:collapse;border-spacing:0;border:0 none}
 body{-webkit-text-size-adjust:none}
+input, select {background:#fff}
 input[type=text] {border:none;outline:none}
 input:checked[type=checkbox]{background-color:#666;-webkit-appearance:checkbox}
 html input[type=button],input[type=email],input[type=password],input[type=reset],input[type=search],input[type=submit],input[type=tel],input[type=text]{-webkit-appearance:none;border-radius:0;vertical-align:middle}
