@@ -20,7 +20,7 @@
 	</div>
 	<div class="list_wrap">
 		<div class="comu_box comu_view bk_white">
-			<span class="color_blog comu_cate">[공지]</span>
+			<span class="color_blog comu_cate" id="comu_cate"></span>
 			<p style="font-size:16px" id="comu_title"></p>
 			<div class="comu_li">
 				<div class="list_txt">
@@ -71,6 +71,7 @@
 			data:params,
 			success:function(data){
 				$("#wr_name").html(data.wr_name);
+				$("#comu_cate").html("["+data.ca_name+"]");
 				$("#comu_img").attr("src",data.mb_photo);
 				$("#datetime").html(data.wr_datetime);
 				$("#wr_hit").append(data.wr_hit);
