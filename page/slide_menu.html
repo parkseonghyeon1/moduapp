@@ -25,7 +25,6 @@
 	<style>
 	#search_b {display:none}
 	#search_b.on {display:block}
-	.nav_header2 .on {background:url(../img/icon_arrow_right.png)no-repeat right 16px center;background-size:10px 10px}
 	</style>
 	
 	<div id="search_b" style="position:relative">
@@ -39,10 +38,9 @@
 	<nav id="c-menu--slide-left" class="c-menu c-menu--slide-left" style="overflow:hidden">
 		<div class="nav_left_mn">
 			<div style="background:#ececec">
-				<div class="nav_header">
-					<div class="nav_header2">
-						<div class="nav_profile">
-						</div>
+				<div class="nav_profile_wrap">
+					<div class="nav_profile" style="position:relative">
+						
 					</div>
 				</div>
 				<ul class="c-menu__items nav_mn1">
@@ -75,6 +73,7 @@
 		</div>
 	</nav>
 	<div id="c-mask" class="c-mask"></div><!-- /c-mask -->
+	
 	<script>
 	// 검색 on|off
 	$(document).on('click','#search_on_off',function(){
@@ -99,8 +98,7 @@
 		}
 		return false;
 	})
-	</script>
-	<script>
+	
 	// nav left 메뉴
 	var slideLeft = new Menu({
 		wrapper: '#o-wrapper',
@@ -137,13 +135,12 @@
 	</script>	
 	<script>
 	if (logincheck==0) {
-		$('.nav_header2').addClass('on');
-		$('.nav_profile').html('<a href="login.html" class="go_a"><div class="p_img_wrap"><div class="p_img"><img src="../img/user.png" alt="" id="profile_img" style="width:100%;height:100%"></div></div><p class="title p_name">로그인 및 회원가입</p><span class="p_point">다양한 체험을 모블과 함께!</span></a>');
-		//$('.nav_profile').html('<a href="login.html" class="go_a">로그인</a>');
+		$('.nav_profile').addClass('on');
+		$('.nav_profile').html('<a href="login.html" class="go_a"><div class="p_img"><img src="../img/user.png" alt="" id="profile_img"></div><div class="mb_info"><p class="title p_name" style="font-size:15px">로그인 및 회원가입</p><span class="p_point">다양한 체험을 모블과 함께!</span></div></a>');
 		$('.nav_mn1').hide();         
 		}else{
-		$('.nav_header2').removeClass('on');
-		$('.nav_profile').html('<div class="p_img_wrap"><a href="mypage.html" class="go_a"><div class="p_img"><img src="http://modublog.co.kr/data/mb_photo/'+member['mb_id']+'" alt="" id="profile_img" style="width:100%;height:100%"></div></a></div><p class="title p_name"><a href="mypage.html" class="go_a">'+member['mb_nick']+'</a></p><span class="p_point">'+member['mb_point']+'</span><div class="p_message"><a href="message_list.html" class="go_a" id="msg_num"></a></div>');
+		$('.nav_profile').removeClass('on');
+		$('.nav_profile').html('<div class="p_img"><img src="http://modublog.co.kr/data/mb_photo/'+member['mb_id']+'" alt="" id="profile_img"></div><div class="mb_info"><p class="title p_name txt_ov"><a href="mypage.html" class="go_a">'+member['mb_nick']+'</a></p><span class="p_point">'+member['mb_point']+'</span><div class="p_message"><a href="message_list.html" class="go_a" id="msg_num"></a></div></div>');
 
 		var mb_id = member['mb_id'];
 		var params = {"mb_id":mb_id};

@@ -9,6 +9,7 @@ select {border:0;outline:none;box-shadow:none;font-size:12px !important;box-sizi
 input::placeholder {color:#989898 !important}
 /* color | text */
 .txt_ov {overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nick_ov {overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:120px}
 .txt_ov_m {overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-wrap:break-word;display: -webkit-box} 
 .title {font-family:NotoSansCKJ-Bold}
 .title_sub {font-family:NotoSansCKJ-Medium}
@@ -48,10 +49,11 @@ input::placeholder {color:#989898 !important}
 .tab_mn li.on a.t_s {border-bottom:3px solid #edaf07}
 .tab_thr li {width:33.3%}
 .tab_two li {width:50%}
-.ex_info {font-size:12px;padding:30px 0;text-align:center;color:#797979}
+.ex_info {font-size:12px;padding:40px 0;text-align:center;color:#797979}
 #loading {position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;z-index:9999}
 #loading #load_gif {position:absolute;top:50%;left:50%;width:150px;height:99px;margin-top:-49px;margin-left:-75px}
 #loading #load_gif img{width:100%;height:100%;vertical-align:top}
+#loading_bar.on {display:none}
 /* 댓글 */
 #wr_secret,
 #wr_secret_r {display:none}

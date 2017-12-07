@@ -65,7 +65,6 @@
 	$(document).ready(function(){
 		string = '';
 		var mb_id = member['mb_id'];
-		//var mb_id = 'qwe';
 		var params = {"mb_id":mb_id};
 		$.ajax({      
 			type:"POST",
@@ -130,11 +129,6 @@
 			data:params1,			
 			url:"http://modublog.co.kr/app_public/ajax/a_point_list.php",      
 			success:function(data){
-				if(data.length < 10){
-					$("#loading_bar").attr("class","");
-				}else{
-					$("#loading_bar").attr("class","off");
-				}
 				//포인트 내역 가져오기
 				$.each(data,function(key,value){
 					if(value.po_point >= 0){
@@ -146,6 +140,13 @@
 					string1 += '<li><a href="#none"><div class="list_txt"><div class="notice_txt"><span class="txt_ov title_sub">'+value.po_content+'</span><span class="date_txt">'+value.po_datetime+'</span><span class="ps_r point_txt">'+point+'</span></div></div></a></li>'
 				});	
 				$("#point_li").html(string1);
+				
+				if(data.length < 10){
+					$("#loading_bar").attr("class","on");
+				}else{
+					$("#loading_bar").attr("class","off");
+				}
+				
 				list = 10;
 			},   
 			error:function(e){  
@@ -201,8 +202,10 @@
 						
 						if(!string1){
 							list = 10;
-							$("#loading_bar").attr("class","");
+							$("#loading_bar").attr("class","on");
 							$("#loading_bar").html("");
+						}else{
+							$("#loading_bar").attr("class","off");
 						}
 					},   
 					error:function(e){  

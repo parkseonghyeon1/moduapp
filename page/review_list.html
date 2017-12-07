@@ -114,6 +114,12 @@
 	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	
 	<script>
+	
+				//상품 slide - SHARE
+				var swiper = new Swiper('.swiper-container3', {
+					slidesPerView: 'auto',
+					spaceBetween: 12,
+				});
 	// 탭메뉴
 	$(document).on('click','.tab_mn li a', function() {
 		$(".category a").removeClass("on");

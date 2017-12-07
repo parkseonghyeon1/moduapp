@@ -249,16 +249,17 @@
 	function fileInfo_p(f){
 		var file = f.files; // 파일의 정보
 		// file 은 배열이므로 file[0] 으로 접근
-
-		if(file[0].size > 1024 * 1024){
-			//alert('1MB 이상의 파일은 X');
+		var maxSize = 5242880;
+		var fileSize = Math.round(file[0].size);
+		
+        if(fileSize > maxSize){
+            alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+            return;
+        }else if(file[0].type.indexOf('image') < 0){ // 선택한 파일이 이미지인지 확인
+			alert('이미지 파일만 선택하세요.');
 			return;
 		}
-		else if(file[0].type.indexOf('image') < 0){ // 선택한 파일이 이미지인지 확인
-			//alert('이미지 파일만 선택하세요.');
-			return;
-		}
-
+		
 		var reader = new FileReader(); // FileReader 객체 사용
 		reader.onload = function(rst){
 			$('#id_card_photo').html('<img id="id_photo" style="position:absolute;top:0;left:0;bottom:0;right:0;vertical-align:middle;width:100%;height:100%;vertical-align:top;border:none">');

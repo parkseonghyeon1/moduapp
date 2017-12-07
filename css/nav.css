@@ -13,17 +13,20 @@
 .nav_mn3 li:first-child a {background:none}
 
 .nav_left_mn {height:100%;background:#fff;width:232px;position:relative;float:left}
-.nav_header {height:80px;background:#fff;padding:0 16px;overflow:hidden}
-.nav_footer {position:absolute;bottom:18px;left:0;width:100%}
-.nav_profile {position:relative;padding:15px 0px 0px 66px}
+
+.nav_profile_wrap {background:#fff}
+.nav_profile {position:relative;height:80px;background:#fff;padding:0 16px;overflow:hidden}
+.nav_profile.on {background:url(../img/icon_arrow_right.png)no-repeat right 16px center;background-size:10px 10px}
+.nav_profile.on .mb_info {padding-right:0;}
 .nav_profile .p_name {font-size:15px;color:#303030;padding-top:5px}
 .nav_profile .p_point {color:#979797;font-size:10px;display:block}
-.p_img_wrap {position:absolute;top:16px;left:0;width:50px;height:50px;background:#ddd;border-radius:50%;overflow:hidden}
-.p_img {position:relative;width:50px;height:50px}
-.p_img img {position:absolute;top:0;bottom:0;left:0;right:0;vertical-align:top}
+.p_img {position:absolute;top:50%;left:16px;width:50px;height:50px;border-radius:50%;overflow:hidden;margin-top:-25px}
+.p_img img {position:absolute;top:0;bottom:0;left:0;right:0;vertical-align:top;width:100%;height:100%}
+.mb_info {padding:15px 43px 0 60px;position:relative}
 .p_message {position:absolute;right:0;width:30px;height:43px;top:20px}
 .p_message a {position:relative;display:block;background:url(../img/icon_message.png)no-repeat;background-size:26px 19px;background-position:50% 50%;height:43px}
-.p_message a span {position:absolute;bottom:10px;right:0px;width:10px;height:10px;border-radius:50%;overflow:hidden;background:#f14742;text-align:center;color:#fff;font-size:7px;line-height:10px}
+.p_message a span {position:absolute;bottom:10px;right:0px;width:13px;height:13px;border-radius:50%;overflow:hidden;background:#f14742;text-align:center;color:#fff;font-size:7px;line-height:13px}
+.nav_footer {position:absolute;bottom:18px;left:0;width:100%}
 
 .nav_right_mn {float:left;width:64px}
 .nav_right_mn a {display:block;height:49px;text-indent:-9999px}
