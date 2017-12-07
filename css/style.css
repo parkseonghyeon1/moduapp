@@ -1,7 +1,6 @@
 /*
 	modublog App
 */
-
 #blog_wrap a {display:inline-block}
 /* all */
 input[type=text],
@@ -35,6 +34,8 @@ input::placeholder {color:#989898 !important}
 .btn_help {background:url(../img/icon_help.png)no-repeat;background-size:17px 17px;background-position:50% 50%}
 /* 기타 */
 .ct_wrap {background:#fff;border-bottom:1px solid #d8d8d8;margin-bottom:10px}
+.icon_secret {position:absolute;top:2px;right:18px;width:12px;height:12px}
+.icon_secret2 {position:absolute;top:-10px;right:18px;width:12px;height:12px}
 .add_photo_b {position:relative}
 .add_photo_b .btn_add_photo {display:inline-block;width:50px;height:50px;border:1px solid #b5b5b5;border-radius:4px;overflow:hidden;text-indent:-9999px;background:url(../img/icon_add.png)no-repeat center;background-size:16px 16px;background-position:50% 50%}
 .add_photo_b input {position:absolute;top:0;left:0;display:block;width:48px;height:48px;opacity:0;cursor:pointer}
@@ -47,6 +48,7 @@ input::placeholder {color:#989898 !important}
 .tab_mn li.on a.t_s {border-bottom:3px solid #edaf07}
 .tab_thr li {width:33.3%}
 .tab_two li {width:50%}
+.ex_info {font-size:12px;padding:30px 0;text-align:center;color:#797979}
 #loading {position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;z-index:9999}
 #loading #load_gif {position:absolute;top:50%;left:50%;width:150px;height:99px;margin-top:-49px;margin-left:-75px}
 #loading #load_gif img{width:100%;height:100%;vertical-align:top}
@@ -241,8 +243,8 @@ ui-page {background:#fff;height:100%}
 .list_pn li .date_txt {font-size:10px;color:#9e9e9e;display:block;padding-top:2px} 
 .list_pn li .btn_arrow_r {background:url(../img/icon_arrow_right.png)no-repeat;background-size:13px 14px}
 .list_pn_sd li .title_sub {font-size:12px}
-.list_pn_sd li .btn_arrow_r {background:url(../img/icon_arrow_top.png)no-repeat;background-size:13px 14px}
-.list_pn_sd li.on  .btn_arrow_r{background:url(../img/icon_arrow_bottom.png)no-repeat;background-size:13px 14px}
+.list_pn_sd li .btn_arrow_r {background:url(../img/icon_arrow_bottom.png)no-repeat;background-size:13px 14px}
+.list_pn_sd li.on  .btn_arrow_r{background:url(../img/icon_arrow_top.png)no-repeat;background-size:13px 14px}
 .list_pn_sd li .list_txt p {height:48px;}
 .list_pn_sd li .list_txt p span {font-size:12px;line-height:48px}
 .answer {display:none;}
@@ -277,7 +279,7 @@ ui-page {background:#fff;height:100%}
 .comment_list {border-top:1px solid #d7d7d7}
 .comment_list ul {padding-top:8px}
 .comment_list li {border-top:1px solid #ebebeb}
-.comment_title {overflow:hidden;position:relative;padding-left:25px;margin-top:4px}
+.comment_title {overflow:hidden;position:relative;padding-left:25px;margin-top:5px}
 .comment_title .title_sub {font-size:11px;display:inline-block;padding:10px 4px}
 .comment_title .date_txt {font-size:10px;display:inline-block;padding:12px 0;color:#9e9e9e}
 .comment_title .btn_comment {font-size:10px}
@@ -346,6 +348,7 @@ ui-page {background:#fff;height:100%}
 .pr_btn_wrap .pr_btn_p a:last-child {float:right}
 
 /* 리뷰목록 | 리뷰상세 */
+#rv_li .title {max-width:96%}
 .tab_sns {display:none;}
 #tab_blog,
 #tab_sns {padding:12px 0 10px;background:#fff;border-bottom:1px solid #e9e9e9}

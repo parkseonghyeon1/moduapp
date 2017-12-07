@@ -84,7 +84,7 @@
 		<div class="pr_btn_wrap bk_s">
 			<div class="pr_btn_p">
 				<a id="pr_go">구경하기</a>
-				<a href="#none">신청하기</a>
+				<a id="req_go">신청하기</a>
 			</div>
 		</div>
 	</div>
@@ -92,6 +92,16 @@
 	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	
 	<script>
+	// 신청하기 버튼 비로그인
+	$(document).on('click','#req_go',function(){
+		if(logincheck==0){
+			var result = confirm('로그인 후 이용 가능한 서비스입니다. 로그인 하시겠습니까?');
+			if(result){
+				location.href="login.html";
+			}
+		}
+	})
+	
 	// 탭메뉴
 	$(document).on('click','.tab_mn li a', function() {
 		$(this).closest('li').addClass('on').siblings().removeClass('on');	
@@ -113,8 +123,7 @@
 			$('.tab2_pn').attr("id","");
 		}
 	})
-	</script>
-	<script>
+	
 	//전체 로딩
 	$(document).ready(function(){
 		var mb_id = member['mb_id'];
@@ -153,6 +162,13 @@
 				$('#wr_comment').html(data.wr_comment);
 				$('#pr_rec_num').html(data.pr_rec_num);
 				$('#pr_go').attr("href",data.wr_link1)
+				
+				if(logincheck==1 && data.cnt == 0){
+					$('#req_go').attr("href","product_req_form.html?bo_table="+data.pr_board+"&wr_id="+data.pr_board_id+"&w=w");
+				}
+				if(data.cnt != 0){
+					$('#req_go').text('신청완료');
+				}
 				
 				$.each(data.pr_file,function(key,value){
 					string += '<div class="swiper-slide"><div class="main_bann_img"><img alt="" src="'+value+'"></div></div>';

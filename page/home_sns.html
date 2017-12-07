@@ -21,14 +21,14 @@
 	<script>
 		$("#nav_v").load("slide_menu.html");
 	</script>
-	
+	<div class="list_wrap">
+		<div class="bk_gray">
 	<!-- main banner -->
 	<div class="main_bann bk_gray">
 		<div class="main_bann_nav">
 			<span class="sub-pagination"></span>
 		</div>
 	</div>
-	
     <div class="main_list">
         <h1 class="title">MD 추천 콘텐츠</h1>
 		<div class="pd_wrap">
@@ -55,9 +55,12 @@
 		<ul id="sns_list">
 		
 		</ul>
-		<div id="loading_bar" class="off">
-		</div>
+		<div id="loading_bar" class="off"></div>
 	</div>
+	
+		</div>
+		
+		</div>
 	<!-- 페이지 로딩 -->
 	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	
@@ -172,11 +175,17 @@
 			},
 			success:function(data){
 				$("#sns_list").html("");
+				console.log(data);
 				//SNS 뿌리기
 				$.each(data,function(key,value){
 					string_sn += '<li><a href="product_view_sns.html?bo_table='+value.snn_pr_board+'&wr_id='+value.snn_pr_board_id+'&site_id=sns"><div class="list_item"><div class="list_item_img"><img src="'+value.snn_img+'"></div><div class="list_item_txt"><p class="title">'+value.snn_wr_subject+'</p><span class="conts txt_ov">'+value.snn_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.snn_comment+'</span>&nbsp;/&nbsp;'+value.snn_rec_num+'</span><span class="info_title"><span>조회</span>'+value.snn_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.snn_d_day+'</span></div></div></div></a></li>';
 				}); 
 				$("#sns_list").html(string_sn);
+				
+				if(data.length <= 0){
+					$('#sns_list').html('<p class="ex_info">등록된 상품이 존재하지 않습니다.</p>');
+				}
+				
 				$("#loading_bar").attr("class","off");
 				list = 10;
 			},   

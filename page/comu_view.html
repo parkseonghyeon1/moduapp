@@ -133,7 +133,7 @@
 			}  
 		});  
 		//댓글 폼
-		var comment1 = '<form id="comment_input"><input type="hidden" name="w" value="c"><input type="hidden" name="bo_table" value="comu"><input type="hidden" name="comment_id" value="0"><div style="position:relative;height:20px;"><input type="checkbox" id="wr_secret" name="wr_secret" value="secret"><label for="wr_secret"><span></span></label></div><input type="hidden" name="wr_id" value="'+wr_id+'"><textarea type="text" class="input" name="wr_content" id="val1" placeholder="댓글을 입력하세요."></textarea><div class="btn_wrap btn_ok" style="margin-bottom:0"><a href="#none" id="">등록하기</a></div><input type="hidden" name="mb_id" value="'+member['mb_id']+'"></form>';
+		var comment1 = '<form id="comment_input"><input type="hidden" name="w" value="c"><input type="hidden" name="bo_table" value="comu"><input type="hidden" name="comment_id" value="0"><div class="" style="position:relative;height:20px;"><img class="icon_secret" src="../img/icon_lock.png"><input type="checkbox" id="wr_secret" name="wr_secret" value="secret"><label for="wr_secret"><span></span></label></div><input type="hidden" name="wr_id" value="'+wr_id+'"><textarea type="text" class="input" name="wr_content" id="val1" placeholder="댓글을 입력하세요."></textarea><div class="btn_wrap btn_ok" style="margin-bottom:0"><a href="#none" id="">등록하기</a></div><input type="hidden" name="mb_id" value="'+member['mb_id']+'"></form>';
 		
 		$('#cmt_box').html(comment1);
 	})
@@ -143,7 +143,7 @@
 	$(document).on('click','.btn_comment',function(){ 
 		var wr_id = getQuerystring('wr_id');
 		var comment_id = $(this).attr("id");
-		var comment = '<div class="comu_box comment comment_re2" style="padding:8px 0 13px"><form id="comment_input"><input type="hidden" name="w" value="c"><input type="hidden" name="bo_table" value="comu"><input type="checkbox" id="wr_secret_r" name="wr_secret" value="secret"><label for="wr_secret_r"><span></span></label><input type="hidden" name="comment_id" value="'+comment_id+'"><input type="hidden" name="wr_id" value="'+wr_id+'"><textarea type="text" class="input" name="wr_content" id="val1" placeholder="댓글을 입력하세요."></textarea><div class="btn_wrap btn_ok" style="margin-bottom:0"><a href="#none" id="">등록하기</a></div><input type="hidden" name="mb_id" value="'+member['mb_id']+'"></form></div>';
+		var comment = '<div class="comu_box comment comment_re2" style="padding:8px 0 13px"><form id="comment_input"><input type="hidden" name="w" value="c"><input type="hidden" name="bo_table" value="comu"><img class="icon_secret2" src="../img/icon_lock.png"><input type="checkbox" id="wr_secret_r" name="wr_secret" value="secret"><label for="wr_secret_r"><span></span></label><input type="hidden" name="comment_id" value="'+comment_id+'"><input type="hidden" name="wr_id" value="'+wr_id+'"><textarea type="text" class="input" name="wr_content" id="val1" placeholder="댓글을 입력하세요."></textarea><div class="btn_wrap btn_ok" style="margin-bottom:0"><a href="#none" id="">등록하기</a></div><input type="hidden" name="mb_id" value="'+member['mb_id']+'"></form></div>';
 		
 		$(this).parent().parent().parent().parent('li').toggleClass('on').siblings().removeClass('on').find('.test').html("");
 		

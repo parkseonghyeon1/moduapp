@@ -40,22 +40,6 @@
 				<div class="">
 					<span style="font-size:12px;color:#797979;display:inline-block;width:70px">체험발표</span><span id="pr_d_day" style="font-size:12px"></span>
 				</div>
-				<!--<div class="pr_d">
-					<span>체험단 신청</span>
-					<span id="pr_due"></span>
-				</div>
-				<div class="pr_d">
-					<span>체험단 발표</span>
-					<span id="pr_d_day"></span>
-				</div>
-				<div class="pr_d">
-					<span>리뷰 등록</span>
-					<span id="pr_review">11.24 - 12.08</span>
-				</div>
-				<div class="pr_d">
-					<span>결과발표</span>
-					<span>17.12.14</span>
-				</div>-->
 			</div>
 		</div>
 		<div class="pr_view_cont">
@@ -138,8 +122,7 @@
 			$('.tab2_pn').attr("id","");
 		}
 	})
-	</script>
-	<script>
+	
 	//전체 로딩
 	$(document).ready(function(){
 		var mb_id = member['mb_id'];
@@ -183,12 +166,14 @@
 				$('#wr_comment').html(data.wr_comment);
 				$('#pr_rec_num').html(data.pr_rec_num);
 				$('#pr_go').attr("href",data.wr_link1);
+				
 				if(logincheck==1 && data.cnt == 0){
 					$('#req_go').attr("href","product_req_form.html?bo_table="+data.pr_board+"&wr_id="+data.pr_board_id+"&w=w");
 				}
 				if(data.cnt != 0){
 					$('#req_go').text('신청완료');
 				}
+				
 				$.each(data.pr_file,function(key,value){
 					string += '<div class="swiper-slide"><div class="main_bann_img"><img alt="" src="'+value+'"></div></div>';
 				}); 

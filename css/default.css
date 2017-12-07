@@ -21,8 +21,10 @@ address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:400}
 button::-moz-focus-inner{border:0;padding:0}
 body {background:#ececec}
 textarea, input[type=text] {box-sizing:border-box;}
-div {outline:none}
+div, textarea, input {outline:none}
+a {-webkit-tap-highlight-color:transparent}
 .ui-loader {display:none !important}
+
 
 @font-face{
 	font-family: "NotoSansCKJ";

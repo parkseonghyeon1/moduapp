@@ -6,7 +6,7 @@
 	<meta name="msapplication-tap-highlight" content="no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
-	<title>커뮤니티 상세</title>
+	<title>1:1문의</title>
 	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
@@ -14,45 +14,49 @@
 	<script src="../js/jquery.form.min.js"></script>
 	<script src="../js/menu.js"></script>
 </head>
+<style>
+.selectImg,.selectImg {width:50px;height:50px;border:1px solid #c6c6c6;border-radius:4px;overflow:hidden;position:relative}
+.selectImg img,.selectImg img {width:100%:height:100%;vertical-align:top;position:absolute;top:0;right:0;left:0;bottom:0;}
+</style>
 <body>
 	<div id="header">
-		<h1>커뮤니티</h1>
+		<h1>1:1문의</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-	<form id="comu_reg_form" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="w" value="">
-		<input type="hidden" name="mb_id" id="mb_id" value="">
-		<input type="hidden" name="bo_table" value="comu">
+	<form id="qna_reg_form" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="w" value="">
+	<input type="hidden" name="mb_id" id="mb_id" value="">
+	<input type="hidden" name="bo_table" value="qna">
+	<div id="m_reg_wrap">
 		<div class="m_reg_li">
+			<p class="title" style="font-size:11px;text-align:center;padding-top:20px">문의를 남겨주시면 해당 담당자가 확인 후<br>빠른시일내에 답변드리겠습니다.</p>
 			<ul>
 				<li>
-					<label class="title" for="">카테고리</label>
+					<p class="title">카테고리</p>
 					<div class="dv_input">
-						<select name="ca_name" id="comu_ct">
+						<select name="ca_name" id="qna_ct">
 							
 						</select>
 					</div>
 				</li>
 				<li>
-					<label class="title" for="">제목</label>
+					<p class="title">제목</p>
 					<div class="dv_input">
 						<div class="input_txt">
-							<input type="text" name="wr_subject" placeholder="제목을 입력해주세요.">
+							<input class="input" type="text" name="wr_subject" id="wr_subject" placeholder="제목 입력" required>
 						</div>
 					</div>
 				</li>
 				<li>
-					<label class="title">내용</label>
+					<p class="title">내용</p>
 					<div class="dv_input">
 						<div class="input_txt">
-							<textarea class="rg_cont" name="wr_content" placeholder="내용을 입력해주세요."></textarea>
+							<textarea class="rg_cont" name="wr_content" id="wr_content" placeholder="내용 입력"></textarea>
 						</div>
 					</div>
 				</li>
 				<li>
-					<label class="title" for="">이미지</label>
-					<div id="id_card" style="font-size:12px"></div>
-					<input type="hidden" id="id_chk" value="0">
+					<p class="title">이미지</p>
 					<div class="add_photo_b" id="id_file_b">
 						<span class="btn_add_photo">추가버튼</span>
 						<input type="file" onchange="fileInfo_p(this)" name="bf_file[]">
@@ -61,12 +65,17 @@
 				</li>
 			</ul>
 		</div>
-		<div class="reg_btn">
-			<div class="btn_wrap btn_ok">
-				<a href="#none" id="submit_btn">등록하기</a>
-			</div>
-		</div>
+	</div>
 	</form>
+	
+	<div style="padding:0 16px 20px">
+		<div class="btn_wrap btn_ok">
+			<a href="#none" id="submit_btn">문의하기</a>
+		</div>
+		<div class="bottom_txt">광고문의에 문제가 있을 시 광고/제휴문의 고객센터로<br>전화해주시면 친절히 안내해 드리겠습니다.</div>
+		<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
+	</div>
+    
 	<script>
 	// 파일 첨부
 	function fileInfo_p(f){
@@ -93,16 +102,27 @@
 		reader.readAsDataURL(file[0]); // 파일을 읽는다
 	}
 	
-	// 커뮤니티 카테고리 불러오기
+	// 내용 입력했을때 버튼 on
+	$('#wr_content').keyup(function(){
+		var wr_content = $('#wr_content').val();
+		
+		if(wr_content.length > 0){
+			$('.btn_ok > a').addClass('on');
+		}else{
+			$('.btn_ok > a').removeClass('on');
+		}
+	})
+	
 	$('#mb_id').val(member['mb_id']);
 	$(document).ready(function(){
-		var params = {"bo_table":"comu"};
+		var params = {"bo_table":"qna"};
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_category.php",          
 			data:params,
 			success:function(data){
-				$('#comu_ct').html(data);
+				$('#qna_ct').html(data);
+				console.log(data);
 			},   
 			error:function(e){  
 				console.log(e.responseText);  
@@ -110,19 +130,38 @@
 		});  	
 	});
 	
-	// 등록하기 버튼
 	$(document).on('click','#submit_btn',function(){
-		$('#comu_reg_form').ajaxForm({
+		var ca_name = $('#qna_ct option:selected').val();
+		var wr_subject = $('#wr_subject').val();
+		var wr_content = $('#wr_content').val();
+		
+		if(ca_name == ''){
+			alert("카테고리를 선택해주세요.");
+			$('#comu_ct').focus();
+			return false;
+		}
+		if(wr_subject == ''){
+			alert("제목을 입력해주세요.");
+			$('#wr_subject').focus();
+			return false;
+		}
+		if(wr_content == ''){
+			alert("내용을 입력해주세요.");
+			$('#wr_content').focus();
+			return false;
+		}
+		
+		$('#qna_reg_form').ajaxForm({
 			url: "http://modublog.co.kr/app_public/ajax/a_write.php",
 			enctype: "multipart/form-data",
 			success: function(data){
-				location.href="comu_list.html";
+				location.href="qna_list.html";
 			},
 			error:function(e){  
 				console.log(e.responseText);  
 			}  
 		});
-		$("#comu_reg_form").submit();
+		$("#qna_reg_form").submit();
 	})
 	</script>
 </body>

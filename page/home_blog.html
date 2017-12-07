@@ -162,6 +162,11 @@
 					string_bl += '<li><a href="product_view.html?bo_table='+value.bll_pr_board+'&wr_id='+value.bll_pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_item_img"><img src="'+value.bll_img+'"></div><div class="list_item_txt"><p class="title">'+value.bll_wr_subject+'</p><span class="conts txt_ov">'+value.bll_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.bll_comment+'</span>&nbsp;/&nbsp;'+value.bll_rec_num+'</span><span class="info_title"><span>조회</span>'+value.bll_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></a></li>';
 				}); 
 				$("#blog_list").html(string_bl);
+				
+				if(data.length <= 0){
+					$('#sns_list').html('<p class="ex_info">등록된 상품이 존재하지 않습니다.</p>');
+				}
+				
 				$("#loading_bar").attr("class","off");
 				list = 10;
 			},   

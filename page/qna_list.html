@@ -20,7 +20,7 @@
 	<div id="header">
 		<h1>문의내역</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
-		<a href="qna_write.html" class="btn_tp1">문의하기</a>
+		<a class="btn_tp1" id="btn_write">문의하기</a>
 	</div>
 	<!--천 단위 초과시 글자단위 적용(ex.1만,2만,30만)-->
 	<div class="list_wrap">
@@ -33,6 +33,21 @@
 	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	
 	<script>
+	// 문의하기 버튼 로그인 | 비로그인
+	$(document).on('click','#btn_write',function(){
+		if(logincheck==0){
+			var result = confirm('로그인 후 이용 가능한 서비스입니다. 로그인 하시겠습니까?');
+			if(result){
+				location.href="login.html";
+			}else{
+				return false;
+			}
+		}else{
+			$('#btn_write').attr('href','qna_reg_form.html');
+		}
+	})
+	
+	// 첫 페이지 불러오기
 	$(document).ready(function(){
 		var string_c = '';
 		var params = {"bo_table":"qna","mb_id":member['mb_id']};

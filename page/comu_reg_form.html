@@ -6,7 +6,7 @@
 	<meta name="msapplication-tap-highlight" content="no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
-	<title>커뮤니티 글쓰기</title>
+	<title>커뮤니티 상세</title>
 	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
@@ -19,17 +19,17 @@
 		<h1>커뮤니티</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-	<form id="review_reg_form" method="post" enctype="multipart/form-data">
-	<div id="m_reg_wrap" method="post" enctype="multipart/form-data">
+	<form id="comu_reg_form" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="w" value="">
+		<input type="hidden" name="mb_id" id="mb_id" value="">
+		<input type="hidden" name="bo_table" value="comu">
 		<div class="m_reg_li">
 			<ul>
 				<li>
 					<label class="title" for="">카테고리</label>
 					<div class="dv_input">
-						<select name="" id="">
-							<option value="">카테고리 선택</option>
-							<option>1</option>
-							<option>2</option>
+						<select name="ca_name" id="comu_ct">
+							
 						</select>
 					</div>
 				</li>
@@ -37,7 +37,7 @@
 					<label class="title" for="">제목</label>
 					<div class="dv_input">
 						<div class="input_txt">
-							<input class="input" type="text" name="" id="" value="" placeholder="제목 입력" required>
+							<input type="text" name="wr_subject" id="wr_subject" placeholder="제목을 입력해주세요.">
 						</div>
 					</div>
 				</li>
@@ -45,68 +45,117 @@
 					<label class="title">내용</label>
 					<div class="dv_input">
 						<div class="input_txt">
-							<textarea class="rg_cont" name="data9" id="data9" placeholder="내용 입력"></textarea>
+							<textarea class="rg_cont" name="wr_content" id="wr_content" placeholder="내용을 입력해주세요."></textarea>
 						</div>
 					</div>
 				</li>
 				<li>
 					<label class="title" for="">이미지</label>
-					<div class="dv_input">
-						<div class="input_txt">
-							<input class="input" type="file" name="" id="" value="" placeholder="0" required readonly>
-						</div>
+					<div id="id_card" style="font-size:12px"></div>
+					<input type="hidden" id="id_chk" value="0">
+					<div class="add_photo_b" id="id_file_b">
+						<span class="btn_add_photo">추가버튼</span>
+						<input type="file" onchange="fileInfo_p(this)" name="bf_file[]">
+						<span class="preview_photo" id="id_card_photo"></span>
 					</div>
 				</li>
 			</ul>
 		</div>
-	</div>
-	<div class="reg_btn">
-		<div class="btn_wrap btn_ok">
-			<a href="#none" id="btn_submit">등록하기</a>
+		<div class="reg_btn">
+			<div class="btn_wrap btn_ok">
+				<a href="#none" id="submit_btn">등록하기</a>
+			</div>
+			<div class="bottom_txt">커뮤니티에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
+			<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
 		</div>
-	</div>
-	<div class="bottom_txt">커뮤니티에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
-	<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
 	</form>
 	<script>
-	// 약관동의 체크박스
+	// 파일 첨부
+	function fileInfo_p(f){
+		var file = f.files; // 파일의 정보
+		// file 은 배열이므로 file[0] 으로 접근
+
+		if(file[0].size > 1024 * 1024){
+			//alert('1MB 이상의 파일은 X');
+			return;
+		}
+		else if(file[0].type.indexOf('image') < 0){ // 선택한 파일이 이미지인지 확인
+			//alert('이미지 파일만 선택하세요.');
+			return;
+		}
+
+		var reader = new FileReader(); // FileReader 객체 사용
+		reader.onload = function(rst){
+			$('#id_card_photo').html('<img id="id_photo" style="position:absolute;top:0;left:0;bottom:0;right:0;vertical-align:middle;width:100%;height:100%;vertical-align:top;border:none">');
+			$('#id_photo').attr("src", rst.target.result); 
+			//$('#img_box1').css('background','url('+rst.target.result+')center center / cover no-repeat');
+			// append 메소드를 사용해서 이미지 추가
+			// 이미지는 base64 문자열로 추가
+		}
+		reader.readAsDataURL(file[0]); // 파일을 읽는다
+	}
+	
+	// 커뮤니티 카테고리 불러오기
+	$('#mb_id').val(member['mb_id']);
 	$(document).ready(function(){
-		// 전체동의 선택 시 모든 체크박스 상태 checked true|false
-		$('#chk_all').click(function(){
-			if($('#chk_all').prop('checked')){
-				$('input[name=check]').prop('checked',true);
-				$('.btn_ok > a').addClass('on');
-			}else{
-				$('input[name=check]').prop('checked',false);
-				$('.btn_ok > a').removeClass('on');
-			}
-		})
-		// 모든 체크박스 checked 일 때 확인 버튼 on
-		$('input[name=check]').click(function(){
-			if($('#chk_1').prop('checked') && $('#chk_2').prop('checked')){
-				$('.btn_ok > a').addClass('on');
-			}else{
-				$('.btn_ok > a').removeClass('on');
-			}
-		})
+		var params = {"bo_table":"comu"};
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_category.php",          
+			data:params,
+			success:function(data){
+				$('#comu_ct').html(data);
+			},   
+			error:function(e){  
+				console.log(e.responseText);  
+			}  
+		});  	
+	});
+	
+	// 내용 입력했을때 버튼 on
+	$('#wr_content').keyup(function(){
+		var wr_content = $('#wr_content').val();
+		
+		if(wr_content.length > 0){
+			$('.btn_ok > a').addClass('on');
+		}else{
+			$('.btn_ok > a').removeClass('on');
+		}
 	})
 	
-	// 등록버튼 클릭
-	$(document).on('click','#btn_submit',function(){
-		if ($("#wr_7").val() == "") {
-			alert("별점을 남겨주세요.");
+	// 등록하기 버튼
+	$(document).on('click','#submit_btn',function(){
+		var ca_name = $('#comu_ct option:selected').val();
+		var wr_subject = $('#wr_subject').val();
+		var wr_content = $('#wr_content').val();
+		
+		if(ca_name == ''){
+			alert("카테고리를 선택해주세요.");
+			$('#comu_ct').focus();
 			return false;
 		}
-		/*
-		$('#review_reg_form').ajaxForm({
-			url: "http://modublog.co.kr/app_public/ajax/.php",
+		if(wr_subject == ''){
+			alert("제목을 입력해주세요.");
+			$('#wr_subject').focus();
+			return false;
+		}
+		if(wr_content == ''){
+			alert("내용을 입력해주세요.");
+			$('#wr_content').focus();
+			return false;
+		}
+		
+		$('#comu_reg_form').ajaxForm({
+			url: "http://modublog.co.kr/app_public/ajax/a_write.php",
 			enctype: "multipart/form-data",
-			success: function(args){
-				//alert(args);
-			}
+			success: function(data){
+				location.href="comu_list.html";
+			},
+			error:function(e){  
+				console.log(e.responseText);  
+			}  
 		});
-		$("#review_reg_form").submit();
-		*/
+		$("#comu_reg_form").submit();
 	})
 	</script>
 </body>

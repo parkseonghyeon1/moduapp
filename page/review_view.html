@@ -23,14 +23,23 @@
 .rv_comment li:last-child {border-bottom:none !important}
 .star_b span {margin-right:2px}
 .star_b img {width:8px}
+
+#rv_view .comment_re {overflow:hidden}
+#rv_view .comment_title {padding-left:40px;margin-bottom:4px}
+#rv_view .comment_title .title_sub {padding:0}
+#rv_view .date_txt {padding:0 8px 0 0}
+#rv_view .comment_img {width:33px;height:33px;margin-top:-16px}
+#rv_view .comment_re span {float:left}
+#rv_view .star {font-size:10px !important}
+#rv_view .star_gd {font-size:9px}
 </style>
 <body>
 	<div id="header">
-		<h1>전체리뷰</h1>
+		<h1>리뷰보기</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-	<div class="list_wrap">
-		<div class="" style="margin-bottom:55px">
+	<div id="rv_view" class="bk_white">
+		<div class="bk_gray">
 			<div class="rv_img"><img></div>
 			<div class="title rv_txt pr_view_info">
 				<p class="title" id="wr_subject"></p>
@@ -90,24 +99,28 @@
 				$("#reivew_star").html(data.wr_star+"점");
 				$(".rv_img img").attr("src",data.image);
 				//console.log(data);
-				
-				for(var i =0; i < data.c_page_num; i++){
-					comment_string += '<li><a href="#none" data ="';
-					if(i == 0){
-						comment_string +=  (i+1);
-					}else{
-						comment_string +=  (i*10+1);
-					}	
-					comment_string += '" data_n = "'+i+'" class="list_click"><div class="list_txt"><p style=""><span class="title_sub" style="display:inline-block" id="sp">';
-					if(i == 0){
-						comment_string += (i+1)+'~'+(i+10);
-					}else{
-						comment_string += (i*10+1)+'~'+((i+1)*10);
+				if(data.wr_comment <= 0){
+					comment_string += '<div class="" style="font-size:12px;padding:30px 13px;color:#707070;text-align:center">리뷰가 존재하지 않습니다.</div>';
+				}else{
+					for(var i =0; i < data.c_page_num; i++){
+						comment_string += '<li><a href="#none" data ="';
+						if(i == 0){
+							comment_string +=  (i+1);
+						}else{
+							comment_string +=  (i*10+1);
+						}	
+						comment_string += '" data_n = "'+i+'" class="list_click"><div class="list_txt"><p style=""><span class="title_sub" style="display:inline-block" id="sp">';
+						if(i == 0){
+							comment_string += (i+1)+'~'+(i+10);
+						}else{
+							comment_string += (i*10+1)+'~'+((i+1)*10);
+						}
+					
+						comment_string += '번째 리뷰</span></p><span class="ps_r btn_arrow_r"></span></div></a><div class="rv_cmt_list"><div class="rv_comment bk_white"><ul id="comment_li" class="comment_li '+i+'" style="min-height:70px"></ul></div></div>';				
 					}
-				
-					comment_string += '번째 리뷰</span></p><span class="ps_r btn_arrow_r"></span></div></a><div class="rv_cmt_list"><div class="rv_comment bk_white"><ul id="comment_li" class="comment_li '+i+'"></ul></div></div>';				
 				}
 				$("#comment_wrap").html(comment_string);
+				console.log(data);
 			},  
 			complete:function(){
 				$('#loading').hide();
@@ -135,7 +148,7 @@
 			data:params,
 			success:function(data){
 				$.each(data,function(key,value){
-					com_string += '<li><div class="comment_title"><span class="title_sub">'+value.wr_name+'</span><span class="date_txt" style="padding:0 4px">'+value.datetime+'</span><span class="comment_re"><span class="rv_sub_info star_b">';
+					com_string += '<li><div class="comment_title"><span class="title_sub"">'+value.wr_name+'</span><div class="comment_re" ><span class="date_txt">'+value.datetime+'</span><span class="rv_sub_info star_b">';
 						
 					for(var i=0; i < 10; i = i +2){
 						if(value.wr_7 > i){
@@ -148,7 +161,7 @@
 							com_string += '<span class="star"><img src="../img/star_off.png"></span>';
 						}				
 					}												
-					com_string += '<span class="star_gd">'+value.wr_7+'점</span></span></span><div class="comment_img"><img src="'+value.mb_photo+'"></div>';
+					com_string += '<span class="star_gd">'+value.wr_7+'점</span></span></div><div class="comment_img"><img src="'+value.mb_photo+'"></div>';
 					if(bo_table == 'sns_review'){
 						var txt_c = 'color_sns';
 					}
