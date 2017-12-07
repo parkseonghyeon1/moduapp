@@ -11,8 +11,22 @@
 		//member['mb_id'] = window.localStorage.getItem("mb_id");
 		member['mb_nick'] = window.localStorage.getItem("mb_nick");
 		member['mb_point'] = window.localStorage.getItem("mb_point");
+		member['mb_point'] = member['mb_point'].format();
 	}  
 	member['mb_id'] = 'shinbyro';	
+	
+	
+	Number.prototype.format = function(){
+		if(this==0) return 0;
+	 
+		var reg = /(^[+-]?\d+)(\d{3})/;
+		var n = (this + '');
+	 
+		while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+	 
+		return n;
+	};
+	
 	
 	// URL에서 GET값 가져오기
 	function getQuerystring(paramName){ 
