@@ -8,14 +8,14 @@
 
 	if(logincheck == 1){
 		
-		//member['mb_id'] = window.localStorage.getItem("mb_id");
+		member['mb_id'] = window.localStorage.getItem("mb_id");
 		member['mb_nick'] = window.localStorage.getItem("mb_nick");
 		member['mb_point'] = window.localStorage.getItem("mb_point");
-		member['mb_point'] = member['mb_point'].format();
+		//member['mb_point'] = member['mb_point'].format();
 	}  
-	member['mb_id'] = 'shinbyro';	
+	//member['mb_id'] = 'shinbyro';	
 	
-	
+	/*
 	Number.prototype.format = function(){
 		if(this==0) return 0;
 	 
@@ -26,6 +26,7 @@
 	 
 		return n;
 	};
+  */
 	
 	
 	// URL에서 GET값 가져오기
