@@ -114,7 +114,7 @@
 	// 블로그 리뷰 불러오기 클릭
 	$(document).on('click','.rv_select',function(){
 		$(this).toggleClass("on");
-		window.open("https://www.instagram.com/oauth/authorize/?client_id=104747e1329a4431803da088bf4270c6&redirect_uri=http://modublog.co.kr/app_public/ajax/a_sns_review.php&response_type=code");
+		//cordova.InAppBrower.open("https://www.instagram.com/oauth/authorize/?client_id=104747e1329a4431803da088bf4270c6&redirect_uri=http://modublog.co.kr/app_public/ajax/a_sns_review.php&response_type=code");
 	});	
 	// 블로그 리뷰 선택
 	$(document).on("click",".rv_title",function(){
