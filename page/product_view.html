@@ -31,15 +31,16 @@
 			<p class="title" id="wr_subject"></p>
 			<span id="pr_subject_sub"></span>
 			<div class="pr_f">
-				<div class="">
-					<span style="font-size:12px;color:#797979;display:inline-block;width:70px">체험기간</span><span id="pr_due" style="font-size:12px"></span>
+				<div class="pr_date">
+					<span class="dt_sub">모집기간</span><span id="wr_10"></span>
 				</div>
-				<div class="">
-					<span style="font-size:12px;color:#797979;display:inline-block;width:70px">리뷰등록</span><span id="pr_review" style="font-size:12px"></span>
+				<div class="pr_date">
+					<span class="dt_sub">체험인원</span><span id="wr_8"></span>
 				</div>
-				<div class="">
-					<span style="font-size:12px;color:#797979;display:inline-block;width:70px">체험발표</span><span id="pr_d_day" style="font-size:12px"></span>
+				<div class="pr_date">
+					<span class="dt_sub">체험발표</span><span id="wr_4"></span>
 				</div>
+			</div>
 			</div>
 		</div>
 		<div class="pr_view_cont">
@@ -135,7 +136,7 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_product.php",
 			data:params,
 			success:function(data){
-				console.log(data);
+				//console.log(data);
 				$('#header h1').html(data.wr_subject);
 				$('#wr_subject').html(data.wr_subject);
 				if(!data.pr_info || !data.wr_google_map){
@@ -156,13 +157,8 @@
 					$('.map_wrap').attr('src','http://modublog.co.kr/app_public/map_load.php?bo_table='+bo_table+'&wr_id='+wr_id);
 				}
 				$('#pr_subject_sub').html(data.pr_subject_sub);
-				$('#pr_d_day').html(data.pr_d_day);
-				$('#pr_due').html(data.pr_due1 + " - " + data.pr_due2);
-				if(data.pr_review2){
-					$('#pr_review').html(data.pr_review1 + " - " + data.pr_review2);
-				}else{
-					$('#pr_review').html(data.pr_review1);
-				}
+				$('#wr_4').html(data.wr_4);
+				$('#wr_8').html(data.wr_8+"명");
 				$('#wr_comment').html(data.wr_comment);
 				$('#pr_rec_num').html(data.pr_rec_num);
 				$('#pr_go').attr("href",data.wr_link1);
@@ -181,6 +177,44 @@
 				
 				$('#wr_google_map').html(data.wr_google_map);
 				$('.tab1_pn').html(data.wr_content);
+				
+				// 타이머
+				CountDownTimer(data.d_count[1]+'/'+data.d_count[2]+'/'+data.d_count[0], 'wr_10');
+
+				function CountDownTimer(dt, id)
+				{
+					var end = new Date(dt);
+
+					var _second = 1000;
+					var _minute = _second * 60;
+					var _hour = _minute * 60;
+					var _day = _hour * 24;
+					var timer;
+
+					function showRemaining() {
+						var now = new Date();
+						var distance = end - now;
+						if (distance < 0) {
+
+							clearInterval(timer);
+							document.getElementById(id).innerHTML = '<span class="color_blog">마감</span>';
+
+							return;
+						}
+						var days = Math.floor(distance / _day);
+						var hours = Math.floor((distance % _day) / _hour);
+						var minutes = Math.floor((distance % _hour) / _minute);
+						var seconds = Math.floor((distance % _minute) / _second);
+
+						document.getElementById(id).innerHTML = '<span class="color_blog">'+days+'</span>'+ '일 ';
+						document.getElementById(id).innerHTML += '<span class="color_blog">'+hours+'</span>' + '시간 ';
+						document.getElementById(id).innerHTML += '<span class="color_blog">'+minutes+'</span>' + '분 ';
+						document.getElementById(id).innerHTML += '<span class="color_blog">'+seconds+'</span>' + '초 남음';
+					}
+
+					timer = setInterval(showRemaining, 1000);
+				}
+				// 타이머 끝
 			
 				// 배너 슬라이드
 				var banner_slide = new Swiper('.detail_bann', { // 소개이미지 슬라이드
@@ -194,8 +228,7 @@
 					},
 					autoplayDisableOnInteraction:false 
 				});
-				//끝	
-				console.log(data);
+				// 배너 슬라이드 끝	
 			},   
 			complete:function(){
 				$('#loading').hide();
@@ -215,7 +248,7 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_comment_view.php",  
 			data:params,			
 			success:function(data){
-				console.log(data);
+				//console.log(data);
 				$.each(data,function(key,value){
 					//if(!value.wr_comment_reply){
 					string_c += '<li style="border-bottom:1px solid #ebebeb"><div class="comment_title"><span class="title_sub">'+value.wr_name+'</span><span class="date_txt">'+value.datetime+'</span><span class="comment_re"></span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div><div class="comment_conts">'+value.wr_content+'</div></li>';
@@ -285,5 +318,10 @@
 		} 
 	}); 
 	</script>
+	<script>
+</script>
+<div id="countdown"></div>
+<div id="newcountdown"></div>
+
 </body>
 </html>

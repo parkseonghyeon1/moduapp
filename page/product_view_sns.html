@@ -33,21 +33,14 @@
 			<p class="title" id="wr_subject"></p>
 			<span id="pr_subject_sub"></span>
 			<div class="pr_f">
-				<div class="pr_d">
-					<span>체험단 신청</span>
-					<span id="pr_due"></span>
+				<div class="pr_date">
+					<span class="dt_sub">모집기간</span><span id="wr_10"></span>
 				</div>
-				<div class="pr_d">
-					<span>체험단 발표</span>
-					<span id="pr_d_day"></span>
+				<div class="pr_date">
+					<span class="dt_sub">체험인원</span><span id="wr_8"></span>
 				</div>
-				<div class="pr_d">
-					<span>리뷰 등록</span>
-					<span id="pr_review">11.24 - 12.08</span>
-				</div>
-				<div class="pr_d">
-					<span>결과발표</span>
-					<span>17.12.14</span>
+				<div class="pr_date">
+					<span class="dt_sub">체험발표</span><span id="wr_4"></span>
 				</div>
 			</div>
 		</div>
@@ -156,9 +149,8 @@
 					$('.map_wrap').attr('src','http://modublog.co.kr/app_public/map_load.php?bo_table='+bo_table+'&wr_id='+wr_id);
 				}
 				$('#pr_subject_sub').html(data.pr_subject_sub);
-				$('#pr_d_day').html(data.pr_d_day);
-				$('#pr_due').html(data.pr_due1 + " - " + data.pr_due2);
-				$('#pr_review').html(data.pr_review1 + " - " + data.pr_review2);
+				$('#wr_4').html(data.wr_4);
+				$('#wr_8').html(data.wr_8+"명");
 				$('#wr_comment').html(data.wr_comment);
 				$('#pr_rec_num').html(data.pr_rec_num);
 				$('#pr_go').attr("href",data.wr_link1)
@@ -177,7 +169,45 @@
 				
 				$('#wr_google_map').html(data.wr_google_map);
 				$('.tab1_pn').html(data.wr_content);
-			
+				
+				/* 타이머 */
+				CountDownTimer(data.d_count[1]+'/'+data.d_count[2]+'/'+data.d_count[0], 'wr_10');
+
+				function CountDownTimer(dt, id)
+				{
+					var end = new Date(dt);
+
+					var _second = 1000;
+					var _minute = _second * 60;
+					var _hour = _minute * 60;
+					var _day = _hour * 24;
+					var timer;
+
+					function showRemaining() {
+						var now = new Date();
+						var distance = end - now;
+						if (distance < 0) {
+
+							clearInterval(timer);
+							document.getElementById(id).innerHTML = '<span class="color_sns">마감</span>';
+
+							return;
+						}
+						var days = Math.floor(distance / _day);
+						var hours = Math.floor((distance % _day) / _hour);
+						var minutes = Math.floor((distance % _hour) / _minute);
+						var seconds = Math.floor((distance % _minute) / _second);
+
+						document.getElementById(id).innerHTML = '<span class="color_sns">'+days+'</span>'+ '일 ';
+						document.getElementById(id).innerHTML += '<span class="color_sns">'+hours+'</span>' + '시간 ';
+						document.getElementById(id).innerHTML += '<span class="color_sns">'+minutes+'</span>' + '분 ';
+						document.getElementById(id).innerHTML += '<span class="color_sns">'+seconds+'</span>' + '초 남음';
+					}
+
+					timer = setInterval(showRemaining, 1000);
+				}
+				/* 타이머 끝 */
+				
 				// 배너 슬라이드
 				var banner_slide = new Swiper('.detail_bann', { // 소개이미지 슬라이드
 					pagination: '.sub-pagination',

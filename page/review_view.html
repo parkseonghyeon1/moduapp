@@ -83,11 +83,12 @@
 			success:function(data){
 				for(var i=0; i < 10; i = i +2){
 					if(data.wr_star > i){
-						string += '<span class="star"><img src="../img/star';
 						if(bo_table == 'sns_review'){
-						string += '_y';
+							txt_ca = '_sns'
+						}else{
+							txt_ca = '_blog'
 						}
-						string += '_on.png"></span>';
+						string += '<span class="star"><img src="../img/star_on'+txt_ca+'.png"></span>';
 					}else{
 						string += '<span class="star"><img src="../img/star_off.png"></span>';
 					}				
@@ -103,7 +104,7 @@
 					comment_string += '<div class="" style="font-size:12px;padding:30px 13px;color:#707070;text-align:center">리뷰가 존재하지 않습니다.</div>';
 				}else{
 					for(var i =0; i < data.c_page_num; i++){
-						comment_string += '<li><a href="#none" data ="';
+						comment_string += '<li><a data ="';
 						if(i == 0){
 							comment_string +=  (i+1);
 						}else{
@@ -148,15 +149,15 @@
 			data:params,
 			success:function(data){
 				$.each(data,function(key,value){
+					if(bo_table == 'sns_review'){
+						txt_ca = '_sns'
+					}else{
+						txt_ca = '_blog'
+					}
 					com_string += '<li><div class="comment_title"><span class="title_sub"">'+value.wr_name+'</span><div class="comment_re" ><span class="date_txt">'+value.datetime+'</span><span class="rv_sub_info star_b">';
-						
 					for(var i=0; i < 10; i = i +2){
 						if(value.wr_7 > i){
-							com_string += '<span class="star"><img src="../img/star';
-							if(bo_table == 'sns_review'){
-							com_string += '_y';
-							}
-							com_string += '_on.png"></span>';
+							com_string += '<span class="star"><img src="../img/star_on'+txt_ca+'.png"></span>';
 						}else{
 							com_string += '<span class="star"><img src="../img/star_off.png"></span>';
 						}				
@@ -166,10 +167,10 @@
 						var txt_c = 'color_sns';
 					}
 					if(value.wr_1 && !value.wr_1_2){
-						com_string += '<a href="'+value.wr_1+'" class="btn_tp1 '+txt_c+'" value="리뷰보기" style="right:0;width:55px">리뷰보기</a>';
+						com_string += '<a href="'+value.wr_1+'" class="btn_tp1 color'+txt_ca+'" value="리뷰보기" style="right:0;width:55px">리뷰보기</a>';
 					}
 					if(value.wr_1_2){
-						com_string += '<a href="'+value.wr_1+'" class="btn_tp1 '+txt_c+'" value="리뷰보기" style="margin-right:16px;width:55px">리뷰보기</a><a href="'+value.wr_1_2+'" class="btn_tp1 '+txt_c+'" value="리뷰보기" style="right:0;width:26px;font-size:15px">+</a>';
+						com_string += '<a href="'+value.wr_1+'" class="btn_tp1 color'+txt_ca+'" style="margin-right:16px;width:55px">리뷰보기</a><a href="'+value.wr_1_2+'" class="btn_tp1 color'+txt_ca+'" style="right:0;width:26px;font-size:15px">+</a>';
 					}						
 					com_string += '</div><div class="comment_conts">'+value.wr_content+'</div></li>';					
 				})

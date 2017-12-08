@@ -27,7 +27,7 @@
 .nav_header2 .on {background:url(../img/icon_arrow_right.png)no-repeat right 16px center;background-size:10px 10px}
 </style>
 <body>
-	<div id="wrap">
+	<div class="list_wrap" id="wrap">
 		<div id="header">
 			<h1>리뷰보기</h1>
 			<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
@@ -114,12 +114,6 @@
 	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
 	
 	<script>
-	
-				//상품 slide - SHARE
-				var swiper = new Swiper('.swiper-container3', {
-					slidesPerView: 'auto',
-					spaceBetween: 12,
-				});
 	// 탭메뉴
 	$(document).on('click','.tab_mn li a', function() {
 		$(".category a").removeClass("on");
@@ -166,13 +160,11 @@
 				url:"http://modublog.co.kr/app_public/ajax/a_review_list.php",   
 				data:params,
 				success:function(data){
-					//console.log(data);
 					$.each(data[0],function(key,value){
-						//블로그 리뷰
 						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
 						for(var i = 0; i < 10; i= i+2){
 							if(value.wr_star > i){
-								string += '<span class="star"><img src="../img/star_on.png"></span>';
+								string += '<span class="star"><img src="../img/star_on_blog.png"></span>';
 							}else{
 								string += '<span class="star"><img src="../img/star_off.png"></span>';
 							}
@@ -216,7 +208,7 @@
 						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
 						for(var i = 0; i < 10; i= i+2){
 							if(value.wr_star > i){
-								string += '<span class="star"><img src="../img/star_on.png"></span>';
+								string += '<span class="star"><img src="../img/star_on_blog.png"></span>';
 							}else{
 								string += '<span class="star"><img src="../img/star_off.png"></span>';
 							}
@@ -260,7 +252,7 @@
 						string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
 						for(var i = 0; i < 10; i= i+2){
 							if(value.wr_star > i){
-								string += '<span class="star"><img src="../img/star_y_on.png"></span>';
+								string += '<span class="star"><img src="../img/star_on_sns.png"></span>';
 							}else{
 								string += '<span class="star"><img src="../img/star_off.png"></span>';
 							}
@@ -310,11 +302,16 @@
 					},
 					success:function(data){
 						$.each(data,function(key,value){
+							if(value.bo_table == 'sns_review'){
+								txt_ca = '_sns'
+							}else{
+								txt_ca = '_blog'
+							}
 							string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
 							for(var i = 0; i < 10; i= i+2){
 								if(value.wr_star > i){
 									if(bo_table == 'sns_review'){
-										string += '<span class="star"><img src="../img/star_y_on.png"></span>';
+										string += '<span class="star"><img src="../img/star_on'+txt_ca+'.png"></span>';
 									}else{
 										string += '<span class="star"><img src="../img/star_on.png"></span>';
 									}
@@ -327,7 +324,7 @@
 							}else{
 								var color = 'blog';
 							}
-							string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_'+color+'">'+value.wr_comment+'</span></span></span></div></div></div></a></li>';			
+							string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color'+txt_ca+'">'+value.wr_comment+'</span></span></span></div></div></div></a></li>';			
 						}); 
 						
 						if(bo_table == 'review'){

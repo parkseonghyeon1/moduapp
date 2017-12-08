@@ -118,7 +118,7 @@
 				
 				//SNS 뿌리기
 				$.each(data[2],function(key,value){
-					string_sn += '<li><a href="product_view_sns.html?bo_table='+value.snn_pr_board+'&wr_id='+value.snn_pr_board_id+'&site_id=sns"><div class="list_item"><div class="list_item_img"><img src="'+value.snn_img+'"></div><div class="list_item_txt"><p class="title">'+value.snn_wr_subject+'</p><span class="conts txt_ov">'+value.snn_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.snn_comment+'</span>&nbsp;/&nbsp;'+value.snn_rec_num+'</span><span class="info_title"><span>조회</span>'+value.snn_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.snn_d_day+'</span></div></div></div></a></li>';
+					string_sn += '<li><a href="product_view_sns.html?bo_table='+value.snn_pr_board+'&wr_id='+value.snn_pr_board_id+'&site_id=sns"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.snn_img+'"></div><div class="list_item_txt"><p class="title">'+value.snn_wr_subject+'</p><span class="conts txt_ov">'+value.snn_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.snn_comment+'</span>&nbsp;/&nbsp;'+value.snn_rec_num+'</span><span class="info_title"><span>조회</span>'+value.snn_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.snn_d_day+'</span></div></div></div></div></a></li>';
 				}); 
 				$("#sns_list").append(string_sn);
 				console.log(data);
@@ -172,7 +172,7 @@
 				$("#sns_list").html("");
 				//SNS 뿌리기
 				$.each(data,function(key,value){
-					string_sn += '<li><a href="product_view_sns.html?bo_table='+value.snn_pr_board+'&wr_id='+value.snn_pr_board_id+'&site_id=sns"><div class="list_item"><div class="list_item_img"><img src="'+value.snn_img+'"></div><div class="list_item_txt"><p class="title">'+value.snn_wr_subject+'</p><span class="conts txt_ov">'+value.snn_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.snn_comment+'</span>&nbsp;/&nbsp;'+value.snn_rec_num+'</span><span class="info_title"><span>조회</span>'+value.snn_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.snn_d_day+'</span></div></div></div></a></li>';
+					string_sn += '<li><a href="product_view_sns.html?bo_table='+value.snn_pr_board+'&wr_id='+value.snn_pr_board_id+'&site_id=sns"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.snn_img+'"></div><div class="list_item_txt"><p class="title">'+value.snn_wr_subject+'</p><span class="conts txt_ov">'+value.snn_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.snn_comment+'</span>&nbsp;/&nbsp;'+value.snn_rec_num+'</span><span class="info_title"><span>조회</span>'+value.snn_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.snn_d_day+'</span></div></div></div></div></a></li>';
 				}); 
 				$("#sns_list").html(string_sn);
 				
@@ -213,7 +213,7 @@
 					success:function(data){
 						//SNS 뿌리기
 						$.each(data,function(key,value){
-							string_sn += '<li><a href="product_view_sns.html?bo_table='+value.snn_pr_board+'&wr_id='+value.snn_pr_board_id+'&site_id=sns"><div class="list_item"><div class="list_item_img"><img src="'+value.snn_img+'"></div><div class="list_item_txt"><p class="title">'+value.snn_wr_subject+'</p><span class="conts txt_ov">'+value.snn_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.snn_comment+'</span>&nbsp;/&nbsp;'+value.snn_rec_num+'</span><span class="info_title"><span>조회</span>'+value.snn_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.snn_d_day+'</span></div></div></div></a></li>';
+							string_sn += '<li><a href="product_view_sns.html?bo_table='+value.snn_pr_board+'&wr_id='+value.snn_pr_board_id+'&site_id=sns"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.snn_img+'"></div><div class="list_item_txt"><p class="title">'+value.snn_wr_subject+'</p><span class="conts txt_ov">'+value.snn_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.snn_comment+'</span>&nbsp;/&nbsp;'+value.snn_rec_num+'</span><span class="info_title"><span>조회</span>'+value.snn_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.snn_d_day+'</span></div></div></div></div></a></li>';
 						}); 
 						$("#sns_list").append(string_sn);
 						
