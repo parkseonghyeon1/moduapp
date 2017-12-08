@@ -83,9 +83,9 @@
 				dataType : 'json',
 				success : function(data){
 					$.each(data,function(key,value){
-						if (value=='failure') {
+						if (data=='failure') {
 							alert("이메일 또는 비밀번호가 일치하지 않습니다");
-						}else if (value!='failure') {
+						}else if (data!='failure') {
 							window.localStorage.setItem("mb_id",value.mb_id);
 							window.localStorage.setItem("mb_nick",value.mb_nick);
 							window.localStorage.setItem("mb_point",value.mb_point);
