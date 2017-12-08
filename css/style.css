@@ -50,9 +50,14 @@ input::placeholder {color:#989898 !important}
 .tab_thr li {width:33.3%}
 .tab_two li {width:50%}
 .ex_info {font-size:12px;padding:40px 0;text-align:center;color:#797979}
-#loading {position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;z-index:9999}
-#loading #load_gif {position:absolute;top:50%;left:50%;width:150px;height:99px;margin-top:-49px;margin-left:-75px}
+.loading {position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;z-index:9999}
+.loading .load {position:absolute;left:50%;top:50%;width:64px;height:64px;margin-top:-32px;margin-left:-32px}
+.loading .load.ld_blog {background:url(../img/load1.gif)no-repeat center}
+.loading .load.ld_sns {background:url(../img/load2.gif)no-repeat center}
+.loading .load.ld_share {background:url(../img/load3.gif)no-repeat center}
+/*#loading #load_gif {position:absolute;top:50%;left:50%;width:150px;height:99px;margin-top:-49px;margin-left:-75px}
 #loading #load_gif img{width:100%;height:100%;vertical-align:top}
+*/
 #loading_bar.on {display:none}
 /* 댓글 */
 #wr_secret,

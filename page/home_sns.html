@@ -23,46 +23,57 @@
 	</script>
 	<div class="list_wrap">
 		<div class="bk_gray">
-	<!-- main banner -->
-	<div class="main_bann bk_gray">
-		<div class="main_bann_nav">
-			<span class="sub-pagination"></span>
-		</div>
-	</div>
-    <div class="main_list">
-        <h1 class="title">MD 추천 콘텐츠</h1>
-		<div class="pd_wrap">
-			<div class="swiper-container1">
-				<div class="swiper-wrapper" id="sns_wrap">
+			<!-- main banner -->
+			<div class="main_bann bk_gray">
+				<div class="main_bann_nav">
+					<span class="sub-pagination"></span>
+				</div>
+			</div>
+			<div class="main_list">
+				<h1 class="title">MD 추천 콘텐츠</h1>
+				<div class="pd_wrap">
+					<div class="swiper-container1">
+						<div class="swiper-wrapper" id="sns_wrap">
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main_list">
+				<h1 class="title">마감임박 콘텐츠</h1>
+				<div class="pd_wrap">
+					<div class="swiper-container2">
+						<div class="swiper-wrapper" id="sns_wrap_end">
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="home_list">
+				<div class="ca_wrap">
+					<div class="swiper-container">
+						<div class="swiper-wrapper home_category sns_ct">
+							<a href="#none" class="on" data="all"><span>전체</span></a>
+							<a href="#none" data="food"><span>맛집</span></a>
+							<a href="#none" data="fashion"><span>패션</span></a>
+							<a href="#none" data="beauty"><span>뷰티</span></a>
+							<a href="#none" data="life"><span>생활</span></a>
+							<a href="#none" data="event"><span>이벤트</span></a>
+						</div>
+					</div>
+				</div>
+				<ul id="sns_list">
 				
-				</div>
+				</ul>
+				<div id="loading_bar" class="off"></div>
 			</div>
 		</div>
-    </div>
-    <div class="home_list">
-		<div class="ca_wrap">
-			<div class="swiper-container">
-				<div class="swiper-wrapper home_category sns_ct">
-					<a href="#none" class="on" data="all"><span>전체</span></a>
-					<a href="#none" data="food"><span>맛집</span></a>
-					<a href="#none" data="fashion"><span>패션</span></a>
-					<a href="#none" data="beauty"><span>뷰티</span></a>
-					<a href="#none" data="life"><span>생활</span></a>
-					<a href="#none" data="event"><span>이벤트</span></a>
-				</div>
-			</div>
-		</div>
-		<ul id="sns_list">
-		
-		</ul>
-		<div id="loading_bar" class="off"></div>
 	</div>
-	
-		</div>
-		
-		</div>
 	<!-- 페이지 로딩 -->
-	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	<div id="loading_wraps"></div>
+	<script>
+		$("#loading_wraps").load("loading.html #lo_sns");
+	</script>
 	
     <script>
 	// 카테고리 on-off
@@ -98,6 +109,7 @@
 	$(document).ready(function(){
 		var string = '';
 		var string_re= '';
+		var string_re2= '';
 		var string_sn = '';
 		$.ajax({      
 			type:"POST",  
@@ -116,8 +128,14 @@
 				}); 
 				$("#sns_wrap").append(string_re);
 				
-				//SNS 뿌리기
+				//마감임박 뿌리기
 				$.each(data[2],function(key,value){
+					string_re2 += '<div class="swiper-slide item"><a href="product_view_sns.html?bo_table='+value.sn_pr_board+'&wr_id='+value.sn_pr_board_id+'&site_id=sns"><div class="sns_c"><div class="item_img"><img src="'+value.sn_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sn_wr_subject+'</span></p><span class="sub_txt color_sns">'+value.sn_pr_ca+'</span><span class="sub_txt item_view">조회&nbsp;'+value.sn_wr_hit+'</span></div></div></a></div>';
+				}); 
+				$("#sns_wrap_end").append(string_re2);
+				
+				//SNS 뿌리기
+				$.each(data[3],function(key,value){
 					string_sn += '<li><a href="product_view_sns.html?bo_table='+value.snn_pr_board+'&wr_id='+value.snn_pr_board_id+'&site_id=sns"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.snn_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.snn_wr_subject+'</p><span class="conts txt_ov">'+value.snn_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.snn_comment+'</span>&nbsp;/&nbsp;'+value.snn_rec_num+'</span><span class="info_title"><span>조회</span>'+value.snn_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.snn_d_day+'</span></div></div></div></div></a></li>';
 				}); 
 				$("#sns_list").append(string_sn);
@@ -138,8 +156,15 @@
 					autoplayDisableOnInteraction:false 
 				});
 				
-				//상품 slide
+				//상품 slide1
 				var swiper = new Swiper('.swiper-container1', {
+					slidesPerView: 'auto',
+					spaceBetween: 12,
+					loop: false,
+					direction: 'horizontal'
+				});
+				//상품 slide2
+				var swiper = new Swiper('.swiper-container2', {
 					slidesPerView: 'auto',
 					spaceBetween: 12,
 					loop: false,
@@ -147,7 +172,7 @@
 				});
 			},   
 			complete:function(){
-				$('#loading').hide();
+				$('.loading').hide();
 			},
 			error:function(e){  
 				console.log(e.responseText);  
@@ -183,7 +208,7 @@
 					$("#loading_bar").attr("class","off");
 				}
 				
-				list = 10;
+				list = 8;
 			},   
 			error:function(e){  
 				console.log(e.responseText);  
@@ -191,8 +216,8 @@
 		})
 	});
 	
-	var list = 10;
-	var list_num = 10;
+	var list = 8;
+	var list_num = 8;
 	var temp = 'all';
 	// 리스트 스크롤
 	$(window).scroll(function() {
@@ -218,7 +243,7 @@
 						$("#sns_list").append(string_sn);
 						
 						if(ca_name != temp){
-							list = 10;
+							list = 8;
 						}
 						
 						list = list + list_num;
@@ -226,7 +251,7 @@
 						temp = ca_name;
 
 						if(!string_sn){
-							list = 10;
+							list = 8;
 							$("#loading_bar").attr("class","on");
 							$("#loading_bar").html("");
 						}else{

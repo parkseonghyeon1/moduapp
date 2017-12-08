@@ -41,7 +41,10 @@
 		</div>
 	</div>
 	<!-- 페이지 로딩 -->
-	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	<div id="loading_wraps"></div>
+	<script>
+		$("#loading_wraps").load("loading.html #lo_blog");
+	</script>
 	
 	<script>
 	// 텍스트 입력 시 버튼 change
@@ -69,7 +72,7 @@
 				$("#image_wrap").attr("src",data.image);
 			},
 			complete:function(){
-				$('#loading').hide();
+				$('.loading').hide();
 			},			
 			error:function(e){  
 				console.log(e.responseText);  
