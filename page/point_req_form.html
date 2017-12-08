@@ -114,7 +114,7 @@
 		</div>
 		<div class="reg_btn">
 			<div class="btn_wrap btn_ok">
-				<a href="#none" id="btn_submit">출금신청</a>
+				<a href="#none" id="btn_submit" class="btn_submit on">출금신청</a>
 			</div>
 			<div class="bottom_txt">출금신청에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
 			<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
@@ -272,7 +272,7 @@
 	}
 	
 	// 등록버튼 클릭
-	$(document).on('click','#btn_submit',function(){
+	$(document).on('click','.btn_submit.on',function(){
 		var wr_1 = $('#wr_1').val();
 		var wr_4 = $('#wr_4').val();
 		var mb_point = $('#mb_point_chk').val();
@@ -327,6 +327,7 @@
 			alert("이용약관에 동의해주세요.");
 			return false;
 		}
+		$(this).attr("class","btn_submit off");
 		
 		$('#point_req_form').ajaxForm({
 			url: "http://modublog.co.kr/app_public/ajax/a_point_update.php",

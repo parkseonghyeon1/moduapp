@@ -23,7 +23,7 @@
 		<input type="hidden" name="w" value="">
 		<input type="hidden" name="mb_id" id="mb_id" value="">
 		<input type="hidden" name="bo_table" value="comu">
-		<div class="m_reg_li">
+		<div class="m_reg_li" style="background:#fff">
 			<ul>
 				<li>
 					<label class="title" for="">카테고리</label>
@@ -63,7 +63,7 @@
 		</div>
 		<div class="reg_btn">
 			<div class="btn_wrap btn_ok">
-				<a href="#none" id="submit_btn">등록하기</a>
+				<a href="#none" id="submit_btn" class="btn_submit on">등록하기</a>
 			</div>
 			<div class="bottom_txt">커뮤니티에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
 			<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
@@ -126,7 +126,7 @@
 	})
 	
 	// 등록하기 버튼
-	$(document).on('click','#submit_btn',function(){
+	$(document).on('click','.btn_submit.on',function(){
 		var ca_name = $('#comu_ct option:selected').val();
 		var wr_subject = $('#wr_subject').val();
 		var wr_content = $('#wr_content').val();
@@ -146,6 +146,7 @@
 			$('#wr_content').focus();
 			return false;
 		}
+		$(this).attr("class","btn_submit off");
 		
 		$('#comu_reg_form').ajaxForm({
 			url: "http://modublog.co.kr/app_public/ajax/a_write.php",

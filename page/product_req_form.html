@@ -126,7 +126,6 @@
 	
 	// 확인 버튼 클릭
 	$(document).on('click','.btn_submit.on',function(){
-		$(this).attr("class","btn_submit off");
 		var w = getQuerystring('w');
 		if(w == 'u'){
 		var ms_id = getQuerystring('ms_id');
@@ -273,6 +272,7 @@
 			$("#mb_homepage").focus();
 			return false;
 		}
+		$(this).attr("class","btn_submit off");
 
 		var params = string_change(string_blank(decodeURI($("#review_reg_form1").serialize())));
 		console.log(params);

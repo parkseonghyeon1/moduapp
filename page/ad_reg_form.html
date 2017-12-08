@@ -142,7 +142,7 @@
 	</div>
 	<div style="padding:0 16px 20px">
 		<div class="btn_wrap btn_ok">
-			<a href="#none" id="btn_submit">문의하기</a>
+			<a href="#none" id="btn_submit" class="btn_submit on">문의하기</a>
 		</div>
 		<div class="bottom_txt">광고문의에 문제가 있을 시 광고/제휴문의 고객센터로<br>전화해주시면 친절히 안내해 드리겠습니다.</div>
 		<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
@@ -185,7 +185,7 @@
 	})
 	</script>
 	<script>
-	$(document).on('click','#btn_submit',function(){
+	$(document).on('click','.btn_submit.on',function(){
 		var regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		var state = $('#state option:selected').val();
 		var data1 = $('#data1 option:selected').val();
@@ -255,6 +255,7 @@
 			alert("이용약관에 동의해주세요.");
 			return false;
 		}
+		$(this).attr("class","btn_submit off");
 		
 		$('#ad_reg_form').ajaxForm({
 			url: "http://modublog.co.kr/app_public/ajax/a_ad_post.php",
