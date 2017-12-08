@@ -129,7 +129,11 @@
 						if(value.wr_18){
 						string += '<a href="'+value.wr_18+'" class="btn_tp1 btn_l">체험안내</a>';
 						}
-						string += '<a href="review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'" class="btn_tp1 btn_r">리뷰'+txt_s+'</a>';
+						if(value.bo_table == 'sns_fashion'){
+							string += '<a href="sns_review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'" class="btn_tp1 btn_r">리뷰'+txt_s+'</a>';
+						}else{
+							string += '<a href="review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'" class="btn_tp1 btn_r">리뷰'+txt_s+'</a>';
+						}
 					}else if(my_p == 'my_p3'){
 						if(value.ms_choice == "n2"){
 							txt_s = "불참";

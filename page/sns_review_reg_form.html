@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>리뷰등록</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.form.min.js"></script>
+	<script src="../js/menu.js"></script>
+</head>
+<body>
+	<div id="header">
+		<h1>리뷰등록</h1>
+		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+	</div>
+	<form id="review_reg_form" method="post">
+	<input type="hidden" name="w" id="w" value="" id="w">
+	<input type="hidden" name="bo_table" value="sns_review">
+	<input type="hidden" name="wr_6" value="" id="wr_6">
+	<input type="hidden" name="mb_id" value="" id="mb_id">
+	<input type="hidden" name="wr_id" value="" id="wr_id">
+	<input type="hidden" name="c_divide" value="sns_review">
+	<input type="hidden" name="comment_id" id="comment_id" value="">
+	
+	<div>
+		<div class="m_reg_li">
+			<p class="title rg_title" id="wr_subject"></p>
+			<ul>
+				<li>
+					<label class="title" for="local">평점</label>
+					<div class="dv_input">
+						<div class="input_txt star_wrap">
+							<div class="re_star">
+								<span id="s_1" value="1" class="star"><img src="../img/star_off.png"></span>
+								<span id="s_2" value="2" class="star"><img src="../img/star_off.png"></span>
+								<span id="s_3" value="3" class="star"><img src="../img/star_off.png"></span>
+								<span id="s_4" value="4" class="star"><img src="../img/star_off.png"></span>
+								<span id="s_5" value="5" class="star"><img src="../img/star_off.png"></span>
+								<input type="hidden" id="wr_7" name="wr_7" value="">
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<p class="title">내용</p>
+					<div class="dv_input">
+						<div class="input_txt">
+							<textarea class="rg_cont" name="wr_content" id="wr_content" placeholder="내용 입력"></textarea>
+						</div>
+					</div>
+				</li>
+				<li>
+					<label class="title" for="data1">리뷰</label>
+					<div id="rv_rs">
+						<div class="dv_input" style="margin-bottom:10px">
+							<span class="rv_select txt_ov">SNS 리뷰 불러오기</span>
+						</div>
+						<!--
+						<div class="rv_list_blog">
+							<ul id="rv_list">
+								
+							</ul>
+						</div>
+						-->
+						<div id="frame_sns">
+						</div>
+					</div>
+					<div class="dv_input" style="margin-bottom:10px">
+						<div class="input_txt">
+							<input class="input rv_input" type="text" name="wr_1" id="wr_1" placeholder="SNS 리뷰 URL 직접 입력하기" required>
+						</div>
+					</div>
+					<div class="dv_input">
+						<div class="input_txt">
+							<input class="input rv_input" type="text" name="wr_1_2" id="wr_1_2" placeholder="SNS 리뷰 URL 추가 입력하기" required>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div style="padding:0 16px 20px">
+		<div class="btn_wrap btn_ok">
+			<a href="#none" id="btn_submit">등록하기</a>
+		</div>
+		<div class="bottom_txt">리뷰등록에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
+		<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
+	</div>
+	</form>
+	
+	<script>
+	// 평점
+	$(".re_star .star").click(function(){
+		$(".star").children().attr("src","../img/star_off.png");
+		var star_id = $(this).attr("id");
+		star_id = star_id.replace("s_","");
+		for(var i=1;i<6;i++){
+			if(i<=star_id){
+				$("#s_"+i).children().attr("src","../img/star_on.png");
+			}
+		}
+		var point = star_id * 2;
+		$("#wr_7").val(point);
+		
+		return false;
+	});
+
+	// 블로그 리뷰 불러오기 클릭
+	$(document).on('click','.rv_select',function(){
+		$(this).toggleClass("on");
+		window.open("https://www.instagram.com/oauth/authorize/?client_id=104747e1329a4431803da088bf4270c6&redirect_uri=http://modublog.co.kr/app_public/ajax/a_sns_review.php&response_type=code");
+	});	
+	// 블로그 리뷰 선택
+	$(document).on("click",".rv_title",function(){
+		$(".rv_title").css("background","none");
+		$(this).css("background","#f2f2f2");
+		
+		var link = $(this).children("a").attr("href");
+		var text = $(this).children("a").html();
+		
+		if($("#wr_1").val() != ''){
+			$("#wr_1_2").val(link);
+		}else{
+			$("#wr_1").val(link);
+		}
+		
+		$(".rv_list_blog").removeClass("on");
+		$(".rv_select").html(text);
+		
+		//리뷰 선택입력 - URL이 있을때 버튼 on
+		if($("#wr_1").val().length > 0 || $("#wr_1").val().length > 0){
+			$('.btn_ok > a').addClass('on');
+		}else{
+			$('.btn_ok > a').removeClass('on');
+		}
+		return false;
+	})
+	
+	// 리뷰 직접입력 - URL이 있을때 버튼 on
+	$('.rv_input').keyup(function(){
+		var wr_1 = $('#wr_1').val();
+		var wr_1_2 = $('#wr_1_2').val();
+		
+		if(wr_1.length > 0 || wr_1_2.length > 0){
+			$('.btn_ok > a').addClass('on');
+		}else{
+			$('.btn_ok > a').removeClass('on');
+		}
+	})
+	
+	$(document).ready(function(){
+		// 블로그 리뷰 리스트(rss) 불러오기
+		var mb_id = member['mb_id'];
+		var params = {"mb_id":mb_id};
+		var string = '';
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_review_blog.php",   
+			data:params,
+			success:function(data){
+				$.each(data[0],function(key,value){
+					string += '<li class="rv_title"><a href="'+value.rv_link[0]+'"><span class="txt_ov">'+value.rv_title[1]+'</span></a></li>';
+				})
+				$('#rv_list').html(string);
+				//console.log(data);
+			},   
+			error:function(e){  
+				console.log(e.responseText);  
+			}  
+		});  
+		
+		// 리뷰 등록|수정 구분
+		var w = getQuerystring('w');
+		$("#w").val(w);
+		
+		// 리뷰 수정일 때 리뷰 불러오기
+		if(w == "cu"){
+			$('#rv_rs').hide();	//블로그 불러오기 hide
+			$('.btn_ok > a').addClass('on');	//버튼 on
+			
+			var wr_id = getQuerystring('wr_id');
+			var mb_id = member['mb_id'];
+			var params = {"mb_id":mb_id,"wr_id":wr_id};
+			$.ajax({      
+				type:"POST",  
+				url:"http://modublog.co.kr/app_public/ajax/a_review_update.php",   
+				data:params,
+				success:function(data){
+					$.each(data,function(key,value){
+						$('#wr_subject').text(data.wr_subject);
+						if(key == 'wr_content' || key == 'wr_1' || key == 'wr_1_2'){
+							$("#"+key).val(value);
+						}
+						var star_p = data.wr_7/2;
+						for(var i=1;i<6;i++){
+							if(i <= star_p){
+								$("#s_"+i).children().attr("src","../img/star_on.png");
+							}
+						}
+						var point = star_p * 2;
+						$("#wr_7").val(point);
+						$("#comment_id").val(data.comment_id);
+					})
+					//console.log(data);
+				},   
+				error:function(e){  
+					console.log(e.responseText);  
+				}  
+			});  
+		}
+	})
+	
+	// 등록버튼 클릭
+	$(document).on('click','#btn_submit',function(){
+		var wr_6 = getQuerystring('ms_id');
+		var wr_id = getQuerystring('wr_id');
+		var mb_id = member['mb_id'];
+		$('#mb_id').val(mb_id);
+		$('#wr_id').val(wr_id);
+		$('#wr_6').val(wr_6);
+		
+		if ($('#wr_7').val() == "") {
+			alert("별점을 남겨주세요.");
+			$('.re_star').focus();
+			return false;
+		}
+		if ($('#wr_content').val() == "") {
+			alert("내용을 입력해주세요.");
+			$('#wr_content').focus();
+			return false;
+		}
+		if ($('#wr_1').val() == ""){
+			alert("리뷰 URL을 선택 또는 입력해주세요.");
+			$('#wr_1').focus();
+			return false;
+		}
+		
+		var params = $(this).closest("form").serialize();
+		
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_comment_write.php",  
+			data:params,			
+			success:function(data){
+				location.href="mypage_01.html";
+				//console.log(data); 
+			},   
+			error:function(e){  
+				console.log(e.responseText);  
+			}  
+		});	
+	})
+	</script>
+</body>
+</html>
