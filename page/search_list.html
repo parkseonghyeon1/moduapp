@@ -31,8 +31,14 @@
 		<div id="loading_bar" class="off">
 		</div>
 	</div>
+	<!--<div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div>-->
 	<!-- 페이지 로딩 -->
-	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	<div id="loading" style="background:#efefef"><div id="load" style="position:absolute;left:0;top:50%;width:100%"><img src="../img/loading2.gif" style="width:100%"></div></div>
+	
+	<script>
+	var popHeight = $("#load").height();
+	$("#load").css("margin-top","-"+popHeight/2+"px");
+	</script>
 	
     <script>
     // 카테고리 on-off
@@ -60,7 +66,7 @@
 			data:params,
 			success:function(data){
 				$.each(data[0],function(key,value){
-					string += '<li><a href="product_view.html?bo_table='+value.bll_pr_board+'&wr_id='+value.bll_pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.bll_img+'"></div><div class="list_item_txt"><p class="title">'+value.bll_wr_subject+'</p><span class="conts txt_ov">'+value.bll_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.bll_comment+'</span>&nbsp;/&nbsp;'+value.bll_rec_num+'</span><span class="info_title"><span>조회</span>'+value.bll_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></div></a></li>';
+					string += '<li><a href="product_view.html?bo_table='+value.bll_pr_board+'&wr_id='+value.bll_pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.bll_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.bll_wr_subject+'</p><span class="conts txt_ov">'+value.bll_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.bll_comment+'</span>&nbsp;/&nbsp;'+value.bll_rec_num+'</span><span class="info_title"><span>조회</span>'+value.bll_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></div></a></li>';
 				}); 
 				$("#search_list").append(string);				
 				console.log(data);
