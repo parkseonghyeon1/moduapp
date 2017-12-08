@@ -30,7 +30,10 @@
 		<div id="loading_bar" class="off">
 	</div>
 	<!-- 페이지 로딩 -->
-	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	<div id="loading_wraps"></div>
+	<script>
+		$("#loading_wraps").load("loading.html #lo_blog");
+	</script>
 	
 	<script>
 	// 문의하기 버튼 로그인 | 비로그인
@@ -82,7 +85,7 @@
 				console.log(data);
 			},   
 			complete:function(){
-				$('#loading').hide();
+				$('.loading').hide();
 			},
 			error:function(e){  
 				console.log(e.responseText);  

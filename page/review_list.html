@@ -84,7 +84,11 @@
 		</div>
 		<input type="hidden" id="check" value="blog">
 	</div>	
-	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	<!-- 페이지 로딩 -->
+	<div id="loading_wraps"></div>
+	<script>
+		$("#loading_wraps").load("loading.html #lo_blog");
+	</script>
 	
 	<script>
 	// 검색 on|off
@@ -180,7 +184,7 @@
 					$(".blog").html(string);
 				},  
 				complete:function(){
-					$('#loading').hide();
+					$('.loading').hide();
 				},
 				error:function(e){  
 					console.log(e.responseText);  

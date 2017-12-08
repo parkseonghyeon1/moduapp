@@ -32,7 +32,11 @@
 			</ul>
 		</div>
 	</div>
-	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif"></div></div>
+	<!-- 페이지 로딩 -->
+	<div id="loading_wraps"></div>
+	<script>
+		$("#loading_wraps").load("loading.html #lo_blog");
+	</script>
 	
 	<script>
 	// 체험단 첫 페이지 불러오기(신청)
@@ -129,9 +133,9 @@
 						string += '<a href="'+value.wr_18+'" class="btn_tp1 btn_l">체험안내</a>';
 						}
 						if(value.bo_table == 'sns_fashion'){
-                            string += '<a href="sns_review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'" class="btn_tp1 btn_r">리뷰'+txt_s+'</a>';
+                            string += '<a href="sns_review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'&bo_table='+value.bo_table+'" class="btn_tp1 btn_r color'+txt_ca+'">리뷰'+txt_s+'</a>';
                         }else{
-                            string += '<a href="review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'" class="btn_tp1 btn_r">리뷰'+txt_s+'</a>';
+                            string += '<a href="review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'&bo_table='+value.bo_table+'" class="btn_tp1 btn_r color'+txt_ca+'">리뷰'+txt_s+'</a>';
                         }
 					}else if(my_p == 'my_p3'){
 						if(value.ms_choice == "n2"){
