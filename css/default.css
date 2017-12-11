@@ -24,7 +24,7 @@ textarea, input[type=text] {box-sizing:border-box;}
 div, textarea, input {outline:none}
 a {-webkit-tap-highlight-color:transparent}
 .ui-loader {display:none !important}
-select {background:#fff}
+select option {background:#fff}
 
 @font-face{
 	font-family: "NotoSansCKJ";

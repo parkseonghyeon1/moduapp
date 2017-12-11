@@ -16,6 +16,11 @@
 	<script src="../js/swiper.min.js"></script>
 	<script src="../js/menu.js"></script>
 </head>
+<style>
+.ca_wrap .category a {width:44px;font-size:10px}
+.ca_wrap {padding-bottom:10px;padding-left:13px;padding-right:13px}
+.ca_wrap .category {padding:0}
+</style>
 <body>
 	<div id="nav_v"></div>
 	<script>
@@ -27,23 +32,20 @@
 			<span class="sub-pagination"></span>
 		</div>
 	</div>
-	<style>
-	
-	</style>
     <!-- blog -->
     <div class="main_list">
         <h1 class="title"><a href="home_blog.html" class="go_a">블로그 추천 콘텐츠</a></h1>
 		<div class="ca_wrap">
-			<div class="swiper-container">
-				<div class="swiper-wrapper category blog_c">
-					<a href="#none" class="on" data="all">전체</a>
-					<a href="#none" data="food">맛집</a>
-					<a href="#none" data="fashion">패션</a>
-					<a href="#none" data="beauty">뷰티</a>
-					<a href="#none" data="life">생활</a>
-					<a href="#none" data="hobby">취미</a>
-					<a href="#none" data="tour">여행</a>
-					<a href="#none" data="special">기타</a>
+			<div class="swiper-container1_1">
+				<div class="swiper-wrapper category blog_c" style="">
+					<div class="swiper-slide" style="width:44px;"><a href="#none" class="on" data="all">전체</a></div>
+					<div class="swiper-slide" style="width:44px"><a href="#none" data="food">맛집</a></div>
+					<div class="swiper-slide" style="width:44px"><a href="#none" data="fashion">패션</a></div>
+					<div class="swiper-slide" style="width:44px"><a href="#none" data="beauty">뷰티</a></div>
+					<div class="swiper-slide" style="width:44px"><a href="#none" data="life">생활</a></div>
+					<div class="swiper-slide" style="width:44px"><a href="#none" data="hobby">취미</a></div>
+					<div class="swiper-slide" style="width:44px"><a href="#none" data="tour">여행</a></div>
+					<div class="swiper-slide" style="width:44px"><a href="#none" data="special">기타</a></div>
 				</div>
 			</div>
 		</div>
@@ -61,14 +63,14 @@
     <div class="main_list">
         <h1 class="title"><a href="home_sns.html" class="go_a">SNS 추천 콘텐츠</a></h1>
 		<div class="ca_wrap">
-			<div class="swiper-container">
+			<div class="swiper-container2_1">
 				<div class="swiper-wrapper category sns_c">
-					<a href="#none" class="on" data="all">전체</a>
-					<a href="#none" data="food">맛집</a>
-					<a href="#none" data="fashion">패션</a>
-					<a href="#none" data="beauty">뷰티</a>
-					<a href="#none" data="life">생활</a>
-					<a href="#none" data="event">이벤트</a>
+					<div class="swiper-slide" style="width:44px;"><a href="#none" class="on" data="all">전체</a></div>
+					<div class="swiper-slide" style="width:44px;"><a href="#none" data="food">맛집</a></div>
+					<div class="swiper-slide" style="width:44px;"><a href="#none" data="fashion">패션</a></div>
+					<div class="swiper-slide" style="width:44px;"><a href="#none" data="beauty">뷰티</a></div>
+					<div class="swiper-slide" style="width:44px;"><a href="#none" data="life">생활</a></div>
+					<div class="swiper-slide" style="width:44px;"><a href="#none" data="event">이벤트</a></div>
 				</div>
 			</div>
 		</div>
@@ -124,7 +126,7 @@
     <script>
     // 카테고리 on-off
     $(document).on("click",".category a",function(){  
-        $(this).parent().children('a').removeClass('on');
+        $(this).parent().parent().children().children('a').removeClass('on');
         $(this).addClass('on');
     })
 	// 배너 slide	
@@ -275,6 +277,16 @@
 				var swiper = new Swiper('.swiper-container4', {
 					slidesPerView: 'auto',
 					spaceBetween: 12,
+				});
+				//카테고리 slide - BLOG
+				var swiper = new Swiper('.swiper-container1_1', {
+					slidesPerView: 'auto',
+					spaceBetween: 6,
+				});
+				//카테고리 slide - SNS
+				var swiper = new Swiper('.swiper-container2_1', {
+					slidesPerView: 'auto',
+					spaceBetween: 6,
 				});
 				
 				console.log(data);

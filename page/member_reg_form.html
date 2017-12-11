@@ -96,47 +96,13 @@
 		</div>
     </form>
 	<!-- 페이지 로딩 -->
-	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
-	<script> 
-	function autoResize(iframeObj){
-		$('iframe').height($('iframe').contents().height());
-		$('iframe').width($('iframe').contents().width());
-		
-		/* 아이프레임에서 읽어들인 페이지의 body */
-		var innerBody = iframeObj.contentWindow.document.body;
-		
-		/*
-		* 특정이벤트 발생시 다시 사이즈 조정!! ( 윤상권님의 지적 )
-		* ex ) 
-		* 항상 들어가야할 내용 입니다. 
-		* 혹시 아이프레임 속에 BODY 에 이미 이벤트가 정의 되어 있을경우를 위해
-		* oldEvent = innerBody.ondbclick; 
-		* 위와 같은 식으로 이벤트를 백업받아놓으면 될듯 합니다.
-		* 1. innerBody.ondbclick = function { resizeFrame(iframeObj, 1);oldEvent; };
-		* 2. innerBody.onmousemove = function { resizeFrame(iframeObj, 1);oldEvent; };
-		* 3. innerBody.onkeydown = function { resizeFrame(iframeObj, 1);oldEvent; };
-		*/
-		//oldEvent = innerBody.ondbclick; 
-		oldEvent = innerBody.onclick;
-		innerBody.onclick = function(){ autoResize(iframeObj, 1);oldEvent; };
-
-
-		/* 높이 다시설정 */
-		var innerHeight = innerBody.scrollHeight + (innerBody.offsetHeight - innerBody.clientHeight);
-		iframeObj.style.height = innerHeight;
-
-		/*---------- 넓이도 함께 자동조정되야 한다면 주석을 풀어주세요~--------------------------------
-				// 넓이 다시설정 
-				var innerWidth = innerBody.scrollWidth + (innerBody.offsetWidth - innerBody.clientWidth);
-				iframeObj.style.width = innerWidth;     
-		---------------------------------------------------------------------------------------------------*/
-		if( !arguments[1] ){        /* 특정 이벤트로 인한 호출시 스크롤을 그냥 둔다. */
-				this.scrollTo(1,1);}
-	}
+	<div id="loading_wraps"></div>
+	<script>
+		$("#loading_wraps").load("loading.html #lo_blog");
 	</script>
+	
 	<script>
 	$(document).ready(function(){	
-		
 		//로그인 되어있는 경우 약관(회원정보수정)
 		if(logincheck == 1){
 			$('#log_title').text("개인정보변경");
@@ -191,9 +157,33 @@
 	$("#register_frame").attr("src","http://modublog.co.kr/app_public/a_test02.html?login_check="+logincheck+"&mb_id="+member['mb_id']);
 	// iframe 로드 후 이벤트
 	$("#register_frame").on("load", function(){
-		$('#loading').hide();
+		$('.loading').hide();
 
 	});
+	
+	/*function autoResize(iframeObj){
+		$('iframe').height($('iframe').contents().height());
+		$('iframe').width($('iframe').contents().width());
+		
+		//아이프레임에서 읽어들인 페이지의 body
+		var innerBody = iframeObj.contentWindow.document.body;
+		
+		//oldEvent = innerBody.ondbclick; 
+		oldEvent = innerBody.onclick;
+		innerBody.onclick = function(){ autoResize(iframeObj, 1);oldEvent; };
+
+
+		//높이 다시설정
+		var innerHeight = innerBody.scrollHeight + (innerBody.offsetHeight - innerBody.clientHeight);
+		iframeObj.style.height = innerHeight;
+
+		//정되야 한다면 주석을 풀어주세요
+				// 넓이 다시설정 
+				//var innerWidth = innerBody.scrollWidth + (innerBody.offsetWidth - innerBody.clientWidth);
+				//iframeObj.style.width = innerWidth;     
+		if( !arguments[1] ){        //특정 이벤트로 인한 호출시 스크롤을 그냥 둔다.
+				this.scrollTo(1,1);}
+	}*/
 	
 	// 프로필 이미지
 	function fileInfo_p(f){
