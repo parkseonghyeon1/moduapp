@@ -10,11 +10,16 @@
 	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/swiper.min.css"/>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/jquery.form.min.js"></script>
+	<script src="../js/swiper.min.js"></script>
 	<script src="../js/menu.js"></script>
 	<script src="../../cordova.js"></script>
 </head>
+<style>
+#img-box.selected {border:3px solid #88cbde}
+</style>
 <body>
 	<div id="header">
 		<h1>리뷰등록</h1>
@@ -29,8 +34,8 @@
 	<input type="hidden" name="c_divide" value="sns_review">
 	<input type="hidden" name="comment_id" id="comment_id" value="">
 	
-	<div>
-		<div class="m_reg_li">
+	<div class="bk_gray">
+		<div class="m_reg_li" style="overflow:hidden">
 			<p class="title rg_title" id="wr_subject"></p>
 			<ul>
 				<li>
@@ -57,45 +62,161 @@
 					</div>
 				</li>
 				<li>
-					<label class="title" for="data1">리뷰</label>
+					<label class="title" for="data1">리뷰<span class="reg_t_sub"> ('URL 선택하기'는 인스타그램만 가능합니다.)</span></label>
 					<div id="rv_rs">
-						
+						<!--<div class="dv_input" style="margin-bottom:10px">
+							<div class="gender_input">
+								<input type="radio" id="ra1" name="mb_sex" value="" class="rv_select">
+								<label for="ra1"><span>URL 입력하기</span></label>
+							</div>
+							<div class="gender_input">
+								<input type="radio" id="ra2" name="mb_sex" value="">
+								<label for="ra2"><span style="border-left:none">사진 선택하기</span></label>
+							</div>
+							</div>	
 						<div class="dv_input" style="margin-bottom:10px">
-							<span class="rv_select txt_ov">SNS 리뷰 불러오기</span>
+						<span class="rv_select txt_ov">SNS 리뷰 불러오기</span>
+					</div>
+						<div class="dv_input">
+							<div class="gender_input">
+								<input type="radio" id="ra1" name="mb_sex" value="">
+								<label for="ra1"><span>URL 입력하기</span></label>
+							</div>
+							<div class="gender_input">
+								<input type="radio" id="ra2" name="mb_sex" value="" class="rv_select">
+								<label for="ra2"><span style="border-left:none">사진 선택하기</span></label>
+							</div>
+						</div>	
+-->
+						
+						<style>
+						#select_review {overflow:hidden}
+						#select_review span {font-size:12px}
+						#select_review #select1, #select_review #select2 {width:48%;float:left;text-align:center;font-size:12px}
+						#select_review span { display: inline-block;width: 2%;color: #ccc;float: left; text-align: center}
+						input[type="checkbox"], input[type="radio"] {-moz-appearance: none;-webkit-appearance: none; -ms-appearance: none;appearance: none;display: none;float: left; margin-right: -2em;opacity: 0;width: 1em;z-index: -1;}
+						input[type="checkbox"] + label, input[type="radio"] + label {padding-left:18px;  text-decoration: none;color: #585858;cursor: pointer; display: inline-block; font-weight: 300; padding-left: 2em; /* padding-right: 1.75em; */ position: relative;}
+						input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + label:before {background: #88cbde;border-color: #88cbde; color: #ffffff;content: '\2714';border-radius:100%}
+						input[type="checkbox"] + label:before, input[type="radio"] + label:before { border-radius: 50%;border: solid 1px #c9c9c9; content: '';color: #fff;display: inline-block; height: 1.3em;left: 0;position: absolute;text-align: center;top:0px; width: 1.3em;}
+						
+						#select-url {display:none}
+						#select-img {height:80px}
+						#sns_wrap div {width:74px;height:74px}
+						#sns_wrap div a {position:relative;display:inline-block;margin-right:13px;width:74px;height:74px;border:3px solid #fff}
+						#sns_wrap div a img {position:absolute;width:100%;margin:auto;top:0;left:0;right:0;bottom:0}
+						</style>
+						<div class="dv_input" style="margin-bottom:10px">
+							<div id="select_review" style="padding:13px 0">
+								<div id="select1"><input type="radio" id="ra1" name="selectImg" value="" class="btn_chk" checked><label for="ra1" id="lbl-ra2">사진 선택하기</label></div>
+								<span>|</span>
+								<div id="select2"><input type="radio" id="ra2" name="selectImg" value=""><label for="ra2" id="lbl-ra1">URL 입력하기</label></div>
+							</div>
 						</div>
-						
-						
-						<div class="rv_list_sns">
-		
+						<div id="select-img">
+							<div class="swiper-container1">
+								<div class="swiper-wrapper" id="rv_list_sns">
+								
+								</div>
+							</div>
 						</div>
-						
 						<div id="frame_sns">
 						</div>
 					</div>
-					<div class="dv_input" style="margin-bottom:10px">
-						<div class="input_txt">
-							<input class="input rv_input" type="text" name="wr_1" id="wr_1" placeholder="SNS 리뷰 URL 직접 입력하기" required>
+					<div id="select-url">
+						<div class="dv_input" style="margin-bottom:10px">
+							<div class="input_txt">
+								<input class="input rv_input wr_1" type="text" name="wr_1" placeholder="SNS에 등록한 사진 링크를 복사·붙여넣기 해주세요." required>
+							</div>
 						</div>
-					</div>
-					<div class="dv_input">
-						<div class="input_txt">
-							<input class="input rv_input" type="text" name="wr_1_2" id="wr_1_2" placeholder="SNS 리뷰 URL 추가 입력하기" required>
+						<div class="dv_input">
+							<div class="input_txt">
+								<input class="input rv_input wr_1_2" type="text" name="wr_1_2" placeholder="SNS에 등록한 사진 링크를 복사·붙여넣기 해주세요." required>
+							</div>
 						</div>
 					</div>
 				</li>
 			</ul>
 		</div>
-	</div>
-	<div style="padding:0 16px 20px">
-		<div class="btn_wrap btn_ok">
-			<a href="#none" id="btn_submit" class="btn_submit on">등록하기</a>
+		<div style="padding:0 16px 20px">
+			<div class="btn_wrap btn_ok">
+				<a href="#none" id="btn_submit" class="btn_submit">등록하기</a>
+			</div>
+			<div class="bottom_txt">리뷰등록에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
+			<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
 		</div>
-		<div class="bottom_txt">리뷰등록에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
-		<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
+		</form>
 	</div>
-	</form>
-	
 	<script>
+	//리뷰 제출방법 선택
+	$(document).ready(function(){
+		$("#select_review").click(function(){
+			if($("#ra1").is(":checked")){
+				$(".selected").attr("class","not_sel");
+				num = 0;
+				$("#lbl-ra1").css("color","#acacac");
+				$("#lbl-ra2").css("color","#585858");
+				$("#select-url").css("display","none");
+				$("#select-img").css("display","block");
+			}else if($("#ra2").is(":checked")){
+				$("#select-url").children().children("input").val("");
+				$("#lbl-ra1").css("color","#585858");
+				$("#lbl-ra2").css("color","#acacac");
+				$("#select-url").css("display","block");
+				$("#select-img").css("display","none");
+			}
+		});
+	});
+	
+	//사진선택
+	var limit = 2;
+	var num = 0;
+	$(document).ready(function(e) {
+		$("#sns_wrap a").click(function() {
+
+			var linked = $(this).attr("href");
+			var class_n = $(this).attr("class");
+			var data = $(this).attr("data");
+
+			if(class_n == "not_sel"){
+				if(num == limit){
+					alert("최대 2개까지만 선택 가능합니다.");
+				}else{	
+					$(this).removeClass();
+					$(this).addClass('selected');
+					if($(".wr_1").val() == ""){
+						$(".wr_1").val(linked);
+						$(".wr_1").attr("id",data);
+					}else if($(".wr_1_2").val() == ""){
+						$(".wr_1_2").val(linked);
+						$(".wr_1_2").attr("id",data);
+					}
+					num = num + 1;
+					$('.btn_ok  a').addClass('on');
+				}
+			}else if(class_n === 'selected'){
+				$(this).removeClass();
+				$(this).addClass('not_sel');
+				if(data == $(".wr_1_2").attr("id")){
+					$(".wr_1_2").val("");
+				}else if(data == $(".wr_1").attr("id")){
+					$(".wr_1").val("");
+				}
+				
+				if($(".wr_1").val() == "" && $(".wr_1_2").val() == ""){
+					$('.btn_ok  a').removeClass('on');
+				}
+				num = num - 1;
+				//if(num == 1){
+				//	$(".write_url2").val("");
+				//}else if(num == 0){
+				//	$(".write_url").val("");
+				//}
+			}
+
+			return false;
+		});
+	});
+
 	// 평점
 	$(".re_star .star").click(function(){
 		$(".star").children().attr("src","../img/star_off.png");
@@ -112,13 +233,8 @@
 		return false;
 	});
 
-	
-
-
-    
-
 	// 블로그 리뷰 불러오기 클릭
-	$(document).on('click','.rv_select',function(){
+	$(document).on('click','#select1',function(){
 		//$(this).toggleClass("on");
 		var ref = window.open("https://www.instagram.com/oauth/authorize/?client_id=104747e1329a4431803da088bf4270c6&redirect_uri=http://modublog.co.kr/app_public/ajax/a_sns_review.php&response_type=code");
 			
@@ -137,7 +253,16 @@
 			        url:"http://modublog.co.kr/app_public/ajax/a_sns_review.php",      
 			        data:params,      
 			        success:function(args){   
-			            $(".rv_list_sns").html(args);    
+			            $("#rv_list_sns").html(args);    
+						if(!args || args.length <= 0){
+							 $("#rv_list_sns").html('<p style="text-align:center;font-size:11px;">사진 선택은 인스타그램만 가능합니다.<br>불러올 사진이 있는지 확인해주세요.</p>');
+						}
+						//사진 slide 
+						var swiper = new Swiper('.swiper-container1', {
+							slidesPerView: 'auto',
+							loop: false,
+							spaceBetween: 13,
+						});
 			        },   
 			        error:function(e){  
 			            alert(e.responseText);  
@@ -155,17 +280,17 @@
 		var link = $(this).children("a").attr("href");
 		var text = $(this).children("a").html();
 		
-		if($("#wr_1").val() != ''){
-			$("#wr_1_2").val(link);
+		if($(".wr_1").val() != ''){
+			$(".wr_1_2").val(link);
 		}else{
-			$("#wr_1").val(link);
+			$(".wr_1").val(link);
 		}
 		
 		$(".rv_list_blog").removeClass("on");
 		$(".rv_select").html(text);
 		
 		//리뷰 선택입력 - URL이 있을때 버튼 on
-		if($("#wr_1").val().length > 0 || $("#wr_1").val().length > 0){
+		if($(".wr_1").val().length > 0 || $(".wr_1").val().length > 0){
 			$('.btn_ok > a').addClass('on');
 		}else{
 			$('.btn_ok > a').removeClass('on');
@@ -175,13 +300,13 @@
 	
 	// 리뷰 직접입력 - URL이 있을때 버튼 on
 	$('.rv_input').keyup(function(){
-		var wr_1 = $('#wr_1').val();
-		var wr_1_2 = $('#wr_1_2').val();
+		var wr_1 = $('.wr_1').val();
+		var wr_1_2 = $('.wr_1_2').val();
 		
 		if(wr_1.length > 0 || wr_1_2.length > 0){
-			$('.btn_ok > a').addClass('on');
+			$('.btn_ok  a').addClass('on');
 		}else{
-			$('.btn_ok > a').removeClass('on');
+			$('.btn_ok  a').removeClass('on');
 		}
 	})
 	
@@ -286,7 +411,7 @@
 			error:function(e){  
 				console.log(e.responseText);  
 			}  
-		});	
+		});
 	})
 	</script>
 </body>

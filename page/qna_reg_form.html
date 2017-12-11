@@ -23,57 +23,59 @@
 		<h1>1:1문의</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-	<form id="qna_reg_form" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="w" value="">
-	<input type="hidden" name="mb_id" id="mb_id" value="">
-	<input type="hidden" name="bo_table" value="qna">
-	<div id="m_reg_wrap">
-		<div class="m_reg_li">
-			<p class="title" style="font-size:11px;text-align:center;padding-top:20px">문의를 남겨주시면 해당 담당자가 확인 후<br>빠른시일내에 답변드리겠습니다.</p>
-			<ul>
-				<li>
-					<p class="title">카테고리</p>
-					<div class="dv_input">
-						<select name="ca_name" id="qna_ct">
-							
-						</select>
-					</div>
-				</li>
-				<li>
-					<p class="title">제목</p>
-					<div class="dv_input">
-						<div class="input_txt">
-							<input class="input" type="text" name="wr_subject" id="wr_subject" placeholder="제목 입력" required>
+	<div class="bk_gray">
+		<form id="qna_reg_form" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="w" value="">
+		<input type="hidden" name="mb_id" id="mb_id" value="">
+		<input type="hidden" name="bo_table" value="qna">
+		<div id="m_reg_wrap">
+			<div class="m_reg_li">
+				<p class="title" style="font-size:11px;text-align:center;padding-top:20px">문의를 남겨주시면 해당 담당자가 확인 후<br>빠른시일내에 답변드리겠습니다.</p>
+				<ul>
+					<li>
+						<p class="title">카테고리</p>
+						<div class="dv_input">
+							<select name="ca_name" id="qna_ct">
+								
+							</select>
 						</div>
-					</div>
-				</li>
-				<li>
-					<p class="title">내용</p>
-					<div class="dv_input">
-						<div class="input_txt">
-							<textarea class="rg_cont" name="wr_content" id="wr_content" placeholder="내용 입력"></textarea>
+					</li>
+					<li>
+						<p class="title">제목</p>
+						<div class="dv_input">
+							<div class="input_txt">
+								<input class="input" type="text" name="wr_subject" id="wr_subject" placeholder="제목 입력" required>
+							</div>
 						</div>
-					</div>
-				</li>
-				<li>
-					<p class="title">이미지</p>
-					<div class="add_photo_b" id="id_file_b">
-						<span class="btn_add_photo">추가버튼</span>
-						<input type="file" onchange="fileInfo_p(this)" name="bf_file[]">
-						<span class="preview_photo" id="id_card_photo"></span>
-					</div>
-				</li>
-			</ul>
+					</li>
+					<li>
+						<p class="title">내용</p>
+						<div class="dv_input">
+							<div class="input_txt">
+								<textarea class="rg_cont" name="wr_content" id="wr_content" placeholder="내용 입력"></textarea>
+							</div>
+						</div>
+					</li>
+					<li>
+						<p class="title">이미지</p>
+						<div class="add_photo_b" id="id_file_b">
+							<span class="btn_add_photo">추가버튼</span>
+							<input type="file" onchange="fileInfo_p(this)" name="bf_file[]">
+							<span class="preview_photo" id="id_card_photo"></span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</form>
+		
+		<div style="padding:0 16px 20px">
+			<div class="btn_wrap btn_ok">
+				<a href="#none" id="submit_btn" class="btn_submit">문의하기</a>
+			</div>
+			<div class="bottom_txt">광고문의에 문제가 있을 시 광고/제휴문의 고객센터로<br>전화해주시면 친절히 안내해 드리겠습니다.</div>
+			<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
 		</div>
-	</div>
-	</form>
-	
-	<div style="padding:0 16px 20px">
-		<div class="btn_wrap btn_ok">
-			<a href="#none" id="submit_btn" class="btn_submit on">문의하기</a>
-		</div>
-		<div class="bottom_txt">광고문의에 문제가 있을 시 광고/제휴문의 고객센터로<br>전화해주시면 친절히 안내해 드리겠습니다.</div>
-		<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
+		
 	</div>
     
 	<script>
