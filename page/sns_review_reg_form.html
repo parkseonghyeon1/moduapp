@@ -96,8 +96,8 @@
 						#select_review span { display: inline-block;width: 2%;color: #ccc;float: left; text-align: center}
 						input[type="checkbox"], input[type="radio"] {-moz-appearance: none;-webkit-appearance: none; -ms-appearance: none;appearance: none;display: none;float: left; margin-right: -2em;opacity: 0;width: 1em;z-index: -1;}
 						input[type="checkbox"] + label, input[type="radio"] + label {padding-left:18px;  text-decoration: none;color: #585858;cursor: pointer; display: inline-block; font-weight: 300; padding-left: 2em; /* padding-right: 1.75em; */ position: relative;}
-						input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + label:before {background: #88cbde;border-color: #88cbde; color: #ffffff;content: '\2714';border-radius:100%}
-						input[type="checkbox"] + label:before, input[type="radio"] + label:before { border-radius: 50%;border: solid 1px #c9c9c9; content: '';color: #fff;display: inline-block; height: 1.3em;left: 0;position: absolute;text-align: center;top:0px; width: 1.3em;}
+						input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + label:before {background: #88cbde;border-color: #88cbde; color: #fff !important;content: '\2714';border-radius:100%}
+						input[type="checkbox"] + label:before, input[type="radio"] + label:before { border-radius: 50%;border: solid 1px #c9c9c9; content: '';color: #fff !important;display: inline-block; height: 1.3em;left: 0;position: absolute;text-align: center;top:0px; width: 1.3em;}
 						
 						#select-url {display:none}
 						#select-img {height:80px}
@@ -115,11 +115,10 @@
 						<div id="select-img">
 							<div class="swiper-container1">
 								<div class="swiper-wrapper" id="rv_list_sns"> 
-									<div class="swiper-slide"><a id="img-box" href="#none2" data="2" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>
+								<!--	<div class="swiper-slide"><a id="img-box" href="#none2" data="2" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>
 									<div class="swiper-slide"><a id="img-box" href="#none3" data="3" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>
 									<div class="swiper-slide"><a id="img-box" href="#none4" data="4" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>
-									<div class="swiper-slide"><a id="img-box" href="#none5" data="5" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>
-									
+									<div class="swiper-slide"><a id="img-box" href="#none5" data="5" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>-->
 								</div>
 							</div>
 						</div>
@@ -153,11 +152,11 @@
 	</div>
 	<script>
 	//사진 slide 
-	var swiper = new Swiper('.swiper-container1', {
+	/*var swiper = new Swiper('.swiper-container1', {
 		slidesPerView: 'auto',
 		loop: false,
 		spaceBetween: 13,
-	}); 
+	});*/
 	//리뷰 제출방법 선택
 	$(document).ready(function(){
 		$("#select_review").click(function(){
@@ -182,7 +181,7 @@
 	var limit = 2;
 	var num = 0;
 	$(document).ready(function(e) {
-		$("#sns_wrap a").click(function() {
+		$("#rv_list_sns a").click(function() {
 
 			var linked = $(this).attr("href");
 			var class_n = $(this).attr("class");
