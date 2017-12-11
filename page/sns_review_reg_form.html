@@ -101,9 +101,9 @@
 						
 						#select-url {display:none}
 						#select-img {height:80px}
-						#sns_wrap div {width:74px;height:74px}
-						#sns_wrap div a {position:relative;display:inline-block;margin-right:13px;width:74px;height:74px;border:3px solid #fff}
-						#sns_wrap div a img {position:absolute;width:100%;margin:auto;top:0;left:0;right:0;bottom:0}
+						#rv_list_sns div {width:74px;height:74px}
+						#rv_list_sns div a {position:relative;display:inline-block;margin-right:13px;width:74px;height:74px;border:3px solid #fff}
+						#rv_list_sns div a img {position:absolute;width:100%;margin:auto;top:0;left:0;right:0;bottom:0}
 						</style>
 						<div class="dv_input" style="margin-bottom:10px">
 							<div id="select_review" style="padding:13px 0">
@@ -114,11 +114,16 @@
 						</div>
 						<div id="select-img">
 							<div class="swiper-container1">
-								<div class="swiper-wrapper" id="rv_list_sns">
-								
+								<div class="swiper-wrapper" id="rv_list_sns"> 
+									<div class="swiper-slide"><a id="img-box" href="#none2" data="2" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>
+									<div class="swiper-slide"><a id="img-box" href="#none3" data="3" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>
+									<div class="swiper-slide"><a id="img-box" href="#none4" data="4" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>
+									<div class="swiper-slide"><a id="img-box" href="#none5" data="5" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>
+									
 								</div>
 							</div>
 						</div>
+						
 						<div id="frame_sns">
 						</div>
 					</div>
@@ -147,6 +152,12 @@
 		</form>
 	</div>
 	<script>
+	//사진 slide 
+	var swiper = new Swiper('.swiper-container1', {
+		slidesPerView: 'auto',
+		loop: false,
+		spaceBetween: 13,
+	}); 
 	//리뷰 제출방법 선택
 	$(document).ready(function(){
 		$("#select_review").click(function(){
@@ -253,16 +264,17 @@
 			        url:"http://modublog.co.kr/app_public/ajax/a_sns_review.php",      
 			        data:params,      
 			        success:function(args){   
-			            $("#rv_list_sns").html(args);    
 						if(!args || args.length <= 0){
 							 $("#rv_list_sns").html('<p style="text-align:center;font-size:11px;">사진 선택은 인스타그램만 가능합니다.<br>불러올 사진이 있는지 확인해주세요.</p>');
+						}else{
+							$("#rv_list_sns").html(args);   
 						}
 						//사진 slide 
 						var swiper = new Swiper('.swiper-container1', {
 							slidesPerView: 'auto',
 							loop: false,
 							spaceBetween: 13,
-						});
+						}); 
 			        },   
 			        error:function(e){  
 			            alert(e.responseText);  
