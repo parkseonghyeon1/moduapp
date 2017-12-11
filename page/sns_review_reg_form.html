@@ -13,6 +13,7 @@
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/jquery.form.min.js"></script>
 	<script src="../js/menu.js"></script>
+	<script src="../../cordova.js"></script>
 </head>
 <body>
 	<div id="header">
@@ -58,18 +59,16 @@
 				<li>
 					<label class="title" for="data1">리뷰</label>
 					<div id="rv_rs">
-						<!--
+						
 						<div class="dv_input" style="margin-bottom:10px">
 							<span class="rv_select txt_ov">SNS 리뷰 불러오기</span>
 						</div>
-						-->
-						<!--
-						<div class="rv_list_blog">
-							<ul id="rv_list">
-								
-							</ul>
+						
+						
+						<div class="rv_list_sns">
+		
 						</div>
-						-->
+						
 						<div id="frame_sns">
 						</div>
 					</div>
@@ -113,10 +112,40 @@
 		return false;
 	});
 
+	
+
+
+    
+
 	// 블로그 리뷰 불러오기 클릭
 	$(document).on('click','.rv_select',function(){
-		$(this).toggleClass("on");
-		//cordova.InAppBrower.open("https://www.instagram.com/oauth/authorize/?client_id=104747e1329a4431803da088bf4270c6&redirect_uri=http://modublog.co.kr/app_public/ajax/a_sns_review.php&response_type=code");
+		//$(this).toggleClass("on");
+		var ref = window.open("https://www.instagram.com/oauth/authorize/?client_id=104747e1329a4431803da088bf4270c6&redirect_uri=http://modublog.co.kr/app_public/ajax/a_sns_review.php&response_type=code");
+			
+		ref.addEventListener("loadstop", function(location){
+			if (location.url.indexOf('code')!= -1) {
+				var str = location.url;
+				str = str.replace("http://modublog.co.kr/app_public/ajax/a_sns_review.php?", "");
+				
+				var code = getQuerystrings(str,'code');	
+				
+				ref.close();
+
+				var params = {"code":code};
+			    $.ajax({      
+			        type:"POST",  
+			        url:"http://modublog.co.kr/app_public/ajax/a_sns_review.php",      
+			        data:params,      
+			        success:function(args){   
+			            $(".rv_list_sns").html(args);    
+			        },   
+			        error:function(e){  
+			            alert(e.responseText);  
+			        }  
+			    });  	
+			}
+		});
+		
 	});	
 	// 블로그 리뷰 선택
 	$(document).on("click",".rv_title",function(){

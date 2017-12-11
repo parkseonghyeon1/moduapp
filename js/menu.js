@@ -45,6 +45,23 @@
 			} 
 		} 
 	} 
+
+  // URL에서 GET값 가져오기
+  function getQuerystrings(url,paramName){ 
+    //url에서 처음부터 '?'까지 삭제 
+    var _tempUrl = url; 
+    //'&'을 기준으로 분리하기 
+    var _tempArray = _tempUrl.split('&'); 
+    //'=' 을 기준으로 분리하기 
+    for(var i = 0; _tempArray.length; i++) { 
+      var _keyValuePair = _tempArray[i].split('='); 
+      if(_keyValuePair[0] == paramName){ 
+        // _keyValuePair[0] : 파라미터 명 
+        // _keyValuePair[1] : 파라미터 값 
+        return _keyValuePair[1]; 
+      } 
+    } 
+  }   
 	
 (function(window) {
       	
