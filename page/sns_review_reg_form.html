@@ -99,17 +99,17 @@
 						input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + label:before {background: #88cbde;border-color: #88cbde; color: #fff !important;content: '\2714';border-radius:100%}
 						input[type="checkbox"] + label:before, input[type="radio"] + label:before { border-radius: 50%;border: solid 1px #c9c9c9; content: '';color: #fff !important;display: inline-block; height: 1.3em;left: 0;position: absolute;text-align: center;top:0px; width: 1.3em;}
 						
-						#select-url {display:none}
-						#select-img {height:80px}
+						#select-url {}
+						#select-img {height:80px;display:none}
 						#rv_list_sns div {width:74px;height:74px}
 						#rv_list_sns div a {position:relative;display:inline-block;margin-right:13px;width:74px;height:74px;border:3px solid #fff}
 						#rv_list_sns div a img {position:absolute;width:100%;margin:auto;top:0;left:0;right:0;bottom:0}
 						</style>
-						<div class="dv_input" style="margin-bottom:10px">
+						<div class="dv_input" style="margin-bottom:10px" id="select-review">
 							<div id="select_review" style="padding:13px 0">
-								<div id="select1"><input type="radio" id="ra1" name="selectImg" value="" class="btn_chk" checked><label for="ra1" id="lbl-ra2">사진 선택하기</label></div>
+								<div id="select1"><input type="radio" id="ra1" name="selectImg" value="" class="btn_chk" checked><label for="ra1" id="lbl-ra2">URL 입력하기</label></div>
 								<span>|</span>
-								<div id="select2"><input type="radio" id="ra2" name="selectImg" value=""><label for="ra2" id="lbl-ra1">URL 입력하기</label></div>
+								<div id="select2"><input type="radio" id="ra2" name="selectImg" value=""><label for="ra2" id="lbl-ra1">사진 선택하기</label></div>
 							</div>
 						</div>
 						<div id="select-img">
@@ -151,12 +151,6 @@
 		</form>
 	</div>
 	<script>
-	//사진 slide 
-	/*var swiper = new Swiper('.swiper-container1', {
-		slidesPerView: 'auto',
-		loop: false,
-		spaceBetween: 13,
-	});*/
 	//리뷰 제출방법 선택
 	$(document).ready(function(){
 		$("#select_review").click(function(){
@@ -165,14 +159,14 @@
 				num = 0;
 				$("#lbl-ra1").css("color","#acacac");
 				$("#lbl-ra2").css("color","#585858");
-				$("#select-url").css("display","none");
-				$("#select-img").css("display","block");
+				$("#select-url").css("display","block");
+				$("#select-img").css("display","none");
 			}else if($("#ra2").is(":checked")){
 				$("#select-url").children().children("input").val("");
 				$("#lbl-ra1").css("color","#585858");
 				$("#lbl-ra2").css("color","#acacac");
-				$("#select-url").css("display","block");
-				$("#select-img").css("display","none");
+				$("#select-url").css("display","none");
+				$("#select-img").css("display","block");
 			}
 		});
 	});
@@ -214,11 +208,6 @@
 				$('.btn_ok  a').removeClass('on');
 			}
 			num = num - 1;
-			//if(num == 1){
-			//	$(".write_url2").val("");
-			//}else if(num == 0){
-			//	$(".write_url").val("");
-			//}
 		}
 
 		return false;
@@ -240,7 +229,7 @@
 		return false;
 	});
 
-	// 블로그 리뷰 불러오기 클릭
+	// 사진선택하기 클릭
 	$(document).on('click','#select1',function(){
 		//$(this).toggleClass("on");
 		var ref = window.open("https://www.instagram.com/oauth/authorize/?client_id=104747e1329a4431803da088bf4270c6&redirect_uri=http://modublog.co.kr/app_public/ajax/a_sns_review.php&response_type=code");
@@ -281,7 +270,7 @@
 		
 	});	
 	// 블로그 리뷰 선택
-	$(document).on("click",".rv_title",function(){
+	/*$(document).on("click",".rv_title",function(){
 		$(".rv_title").css("background","none");
 		$(this).css("background","#f2f2f2");
 		
@@ -305,6 +294,7 @@
 		}
 		return false;
 	})
+	*/
 	
 	// 리뷰 직접입력 - URL이 있을때 버튼 on
 	$('.rv_input').keyup(function(){
@@ -319,11 +309,11 @@
 	})
 	
 	$(document).ready(function(){
-		// 블로그 리뷰 리스트(rss) 불러오기
+		// 인스타그램 사진 불러오기
 		var mb_id = member['mb_id'];
 		var params = {"mb_id":mb_id};
 		var string = '';
-		$.ajax({      
+		/*$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_review_blog.php",   
 			data:params,
@@ -337,7 +327,7 @@
 			error:function(e){  
 				console.log(e.responseText);  
 			}  
-		});  
+		});  */
 		
 		// 리뷰 등록|수정 구분
 		var w = getQuerystring('w');
@@ -345,12 +335,15 @@
 		
 		// 리뷰 수정일 때 리뷰 불러오기
 		if(w == "cu"){
-			$('#rv_rs').hide();	//블로그 불러오기 hide
+			$('#select-review').hide();	//블로그 불러오기 hide
+			$('#select-img').hide();	//블로그 불러오기 hide
+			$('#select-url').show();
 			$('.btn_ok > a').addClass('on');	//버튼 on
 			
+			var bo_table = getQuerystring('bo_table');
 			var wr_id = getQuerystring('wr_id');
 			var mb_id = member['mb_id'];
-			var params = {"mb_id":mb_id,"wr_id":wr_id};
+			var params = {"mb_id":mb_id,"wr_id":wr_id,"bo_table":bo_table};
 			$.ajax({      
 				type:"POST",  
 				url:"http://modublog.co.kr/app_public/ajax/a_review_update.php",   
@@ -358,7 +351,10 @@
 				success:function(data){
 					$.each(data,function(key,value){
 						$('#wr_subject').text(data.wr_subject);
-						if(key == 'wr_content' || key == 'wr_1' || key == 'wr_1_2'){
+						if(key == 'wr_1' || key == 'wr_1_2'){
+							$("."+key).val(value);
+						}
+						if(key == 'wr_content'){
 							$("#"+key).val(value);
 						}
 						var star_p = data.wr_7/2;
@@ -371,7 +367,7 @@
 						$("#wr_7").val(point);
 						$("#comment_id").val(data.comment_id);
 					})
-					//console.log(data);
+					console.log(data);
 				},   
 				error:function(e){  
 					console.log(e.responseText);  
