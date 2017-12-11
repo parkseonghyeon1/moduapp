@@ -17,10 +17,11 @@ input::placeholder {color:#989898 !important}
 .bk_white_li {background:#fff !important;height:100%}
 .bk_b {background:#88cbde}
 .bk_s {background:#edaf07}
+.bk_sh {background:#e7744e}
 .bk_gray {background:#ececec !important}
 .color_blog {color:#88cbde !important}
 .color_sns {color:#edaf07 !important}
-.color_share {color:#ed0707 !important}
+.color_share {color:#e7744e !important}
 .btn_wrap {overflow:hidden;margin:20px 0;}
 .btn_wrap a {display:block;text-align:center;height:48px;line-height:48px;font-size:12px;border-radius:4px;overflow:hidden}
 .btn_tp1 {color:#88cbde;border:1px solid #ebebeb;border-radius:4px !important;overflow:hidden;width:62px;height:26px;line-height:26px;text-align:center;font-size:10px;position:absolute;right:16px;top:50%;margin-top:-13px;background:#fff}

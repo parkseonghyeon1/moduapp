@@ -180,51 +180,48 @@
 	//사진선택
 	var limit = 2;
 	var num = 0;
-	$(document).ready(function(e) {
-		$("#rv_list_sns a").click(function() {
+	$(document).on('click','#rv_list_sns a',function(){
+		var linked = $(this).attr("href");
+		var class_n = $(this).attr("class");
+		var data = $(this).attr("data");
 
-			var linked = $(this).attr("href");
-			var class_n = $(this).attr("class");
-			var data = $(this).attr("data");
-
-			if(class_n == "not_sel"){
-				if(num == limit){
-					alert("최대 2개까지만 선택 가능합니다.");
-				}else{	
-					$(this).removeClass();
-					$(this).addClass('selected');
-					if($(".wr_1").val() == ""){
-						$(".wr_1").val(linked);
-						$(".wr_1").attr("id",data);
-					}else if($(".wr_1_2").val() == ""){
-						$(".wr_1_2").val(linked);
-						$(".wr_1_2").attr("id",data);
-					}
-					num = num + 1;
-					$('.btn_ok  a').addClass('on');
-				}
-			}else if(class_n === 'selected'){
+		if(class_n == "not_sel"){
+			if(num == limit){
+				alert("최대 2개까지만 선택 가능합니다.");
+			}else{	
 				$(this).removeClass();
-				$(this).addClass('not_sel');
-				if(data == $(".wr_1_2").attr("id")){
-					$(".wr_1_2").val("");
-				}else if(data == $(".wr_1").attr("id")){
-					$(".wr_1").val("");
+				$(this).addClass('selected');
+				if($(".wr_1").val() == ""){
+					$(".wr_1").val(linked);
+					$(".wr_1").attr("id",data);
+				}else if($(".wr_1_2").val() == ""){
+					$(".wr_1_2").val(linked);
+					$(".wr_1_2").attr("id",data);
 				}
-				
-				if($(".wr_1").val() == "" && $(".wr_1_2").val() == ""){
-					$('.btn_ok  a').removeClass('on');
-				}
-				num = num - 1;
-				//if(num == 1){
-				//	$(".write_url2").val("");
-				//}else if(num == 0){
-				//	$(".write_url").val("");
-				//}
+				num = num + 1;
+				$('.btn_ok  a').addClass('on');
 			}
+		}else if(class_n === 'selected'){
+			$(this).removeClass();
+			$(this).addClass('not_sel');
+			if(data == $(".wr_1_2").attr("id")){
+				$(".wr_1_2").val("");
+			}else if(data == $(".wr_1").attr("id")){
+				$(".wr_1").val("");
+			}
+			
+			if($(".wr_1").val() == "" && $(".wr_1_2").val() == ""){
+				$('.btn_ok  a').removeClass('on');
+			}
+			num = num - 1;
+			//if(num == 1){
+			//	$(".write_url2").val("");
+			//}else if(num == 0){
+			//	$(".write_url").val("");
+			//}
+		}
 
-			return false;
-		});
+		return false;
 	});
 
 	// 평점
