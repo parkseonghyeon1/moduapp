@@ -19,124 +19,92 @@
 		<h1 id="log_title">회원가입</h1>
 		<a href="javascript:history.back()" class="header_btn_l btn_back go_a">뒤로</a>
 	</div>
-	<form id="mb_form_f" name="mb_form_f" method="post" enctype="multipart/form-data">
-		<input type="hidden" id="mb_name" name="mb_name" val="">
-		<input type="hidden" id="mb_id" name="mb_id" val="">
-		<input type="hidden" id="w" name="w" val="">
-		<input type="hidden" id="mb_nick" name="mb_nick" val="">
-		<input type="hidden" id="mb_sex" name="mb_sex" val="">
-		<input type="hidden" id="mb_email" name="mb_email" val="">
-		<input type="hidden" id="mb_password" name="mb_password" val="">
-		<input type="hidden" id="mb_password_re" name="mb_password_re" val="">
-		<input type="hidden" id="mb_hp1" name="mb_hp1" val="">
-		<input type="hidden" id="mb_hp2" name="mb_hp2" val="">
-		<input type="hidden" id="mb_hp3" name="mb_hp3" val="">
-		<input type="hidden" id="mb_zip" name="mb_zip" val="">
-		<input type="hidden" id="mb_addr1" name="mb_addr1" val="">
-		<input type="hidden" id="mb_addr2" name="mb_addr2" val="">
-		<input type="hidden" id="mb_homepage" name="mb_homepage" val="">
-		<input type="hidden" id="sns_1" name="sns_1" val="">
-		<input type="hidden" id="sns_2" name="sns_2" val="">
-		<input type="hidden" id="nick_chk_val" name="nick_chk_val" val="">
-		<input type="hidden" id="email_chk_val" name="email_chk_val" val="">
-		<div class="bk_white m_profile_box" style="margin-bottom:10px">
-			<div id="img_box1" style="background:url(../img/person.png)center center / cover no-repeat">
-				<!--<input type="file" name="" class="btn_add_img" onchange="fileInfo_b(this)">-->
-				<div style="width:100%;height:100%; background:rgba(0,0,0,.3)" id="bk_profile_img"></div>
-			</div>
-			<div class="profile_info">
-				<p id="mb_name_t"></p>
-				<span id="mb_email_t"></span>
-			</div>
-			<div id="img_box2">
-				<div class="profile_img_b">
-					<div class="profile_img"><img src="" id="mb_photo" onError="this.src='../img/person.png'"></div>
+	<div class="bk_gray">
+		<form id="mb_form_f" name="mb_form_f" method="post" enctype="multipart/form-data">
+			<input type="hidden" id="mb_name" name="mb_name" val="">
+			<input type="hidden" id="mb_id" name="mb_id" val="">
+			<input type="hidden" id="w" name="w" val="">
+			<input type="hidden" id="mb_nick" name="mb_nick" val="">
+			<input type="hidden" id="mb_sex" name="mb_sex" val="">
+			<input type="hidden" id="mb_email" name="mb_email" val="">
+			<input type="hidden" id="mb_password" name="mb_password" val="">
+			<input type="hidden" id="mb_password_re" name="mb_password_re" val="">
+			<input type="hidden" id="mb_hp1" name="mb_hp1" val="">
+			<input type="hidden" id="mb_hp2" name="mb_hp2" val="">
+			<input type="hidden" id="mb_hp3" name="mb_hp3" val="">
+			<input type="hidden" id="mb_zip" name="mb_zip" val="">
+			<input type="hidden" id="mb_addr1" name="mb_addr1" val="">
+			<input type="hidden" id="mb_addr2" name="mb_addr2" val="">
+			<input type="hidden" id="mb_homepage" name="mb_homepage" val="">
+			<input type="hidden" id="sns_1" name="sns_1" val="">
+			<input type="hidden" id="sns_2" name="sns_2" val="">
+			<input type="hidden" id="nick_chk_val" name="nick_chk_val" val="">
+			<input type="hidden" id="email_chk_val" name="email_chk_val" val="">
+			<div class="bk_white m_profile_box" style="margin-bottom:10px">
+				<div id="img_box1" style="background:url(../img/person.png)center center / cover no-repeat">
+					<!--<input type="file" name="" class="btn_add_img" onchange="fileInfo_b(this)">-->
+					<div style="width:100%;height:100%; background:rgba(0,0,0,.3)" id="bk_profile_img"></div>
 				</div>
-				<div class="btn_add_img"><input type="file" name="mb_photo" id="mb_photo" onchange="fileInfo_p(this)"></div>
+				<div class="profile_info">
+					<p id="mb_name_t"></p>
+					<span id="mb_email_t"></span>
+				</div>
+				<div id="img_box2">
+					<div class="profile_img_b">
+						<div class="profile_img"><img src="" id="mb_photo" onError="this.src='../img/person.png'"></div>
+					</div>
+					<div class="btn_add_img"><input type="file" name="mb_photo" id="mb_photo" onchange="fileInfo_p(this)"></div>
+				</div>
 			</div>
-		</div>
-		<div>
-			<iframe src="http://modublog.co.kr/app_public/a_test02.html" id="register_frame" name="register_frame" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" onload="autoResize(this)"></iframe>
-		</div>
-		<div class="m_reg_li terms_wrap">
-			<p class="title">약관동의</p>
-			<div class="terms_use terms_all">
-				<p>모두동의</p>
-				<input type="checkbox" id="chk_all">
-				<label for="chk_all"><span></span></label>
+			<div>
+				<iframe src="http://modublog.co.kr/app_public/a_test02.html" id="register_frame" name="register_frame" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" onload="autoResize(this)"></iframe>
 			</div>
-			<em class="em_b"></em>
-			<div class="terms_use">
-				<span class="ct">[필수]</span><a href="#none">회원약관 동의</a>
-				<input type="checkbox" id="chk_1" name="chk_1" class="chk">
-				<label for="chk_1"><span></span></label>
+			<div class="m_reg_li terms_wrap">
+				<p class="title">약관동의</p>
+				<div class="terms_use terms_all">
+					<p>모두동의</p>
+					<input type="checkbox" id="chk_all">
+					<label for="chk_all"><span></span></label>
+				</div>
+				<em class="em_b"></em>
+				<div class="terms_use">
+					<span class="ct">[필수]</span><a href="#none">회원약관 동의</a>
+					<input type="checkbox" id="chk_1" name="chk_1" class="chk">
+					<label for="chk_1"><span></span></label>
+				</div>
+				<div class="terms_use">
+					<span class="ct">[필수]</span><a href="#none">개인정보 수집 및 이용 동의</a>
+					<input type="checkbox" id="chk_2" name="chk_2" class="chk">
+					<label for="chk_2"><span></span></label>
+				</div>
+				<div class="terms_use">
+					<span class="ct">[필수]</span><a href="#none">체험 상품 정보 메일 및 SMS 수신 동의</a>
+					<input type="checkbox" id="chk_3" name="chk_3" class="chk">
+					<label for="chk_3"><span></span></label>
+				</div>
+				<div class="terms_use">
+					<span class="ct">[필수]</span><a href="#none">정해진 규정 준수 동의</a>
+					<input type="checkbox" id="chk_4" name="chk_4" class="chk">
+					<label for="chk_4"><span></span></label>
+				</div>
 			</div>
-			<div class="terms_use">
-				<span class="ct">[필수]</span><a href="#none">개인정보 수집 및 이용 동의</a>
-				<input type="checkbox" id="chk_2" name="chk_2" class="chk">
-				<label for="chk_2"><span></span></label>
+			<div style="padding:0 16px 20px">
+				<div class="btn_wrap btn_ok">
+					<a href="#none" id="submit_btn" class="btn_submit">회원가입 완료</a>
+				</div>
+				<div class="bottom_txt">회원가입에 문제가 있을 시 일반회원 고객센터로<br>전화해주시면 친절히 안내해 드리겠습니다.</div>
+				<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
 			</div>
-			<div class="terms_use">
-				<span class="ct">[필수]</span><a href="#none">체험 상품 정보 메일 및 SMS 수신 동의</a>
-				<input type="checkbox" id="chk_3" name="chk_3" class="chk">
-				<label for="chk_3"><span></span></label>
-			</div>
-			<div class="terms_use">
-				<span class="ct">[필수]</span><a href="#none">정해진 규정 준수 동의</a>
-				<input type="checkbox" id="chk_4" name="chk_4" class="chk">
-				<label for="chk_4"><span></span></label>
-			</div>
-		</div>
-		<div style="padding:0 16px 20px">
-			<div class="btn_wrap btn_ok">
-				<a href="#none" id="submit_btn" class="btn_submit on">회원가입 완료</a>
-			</div>
-			<div class="bottom_txt">회원가입에 문제가 있을 시 일반회원 고객센터로<br>전화해주시면 친절히 안내해 드리겠습니다.</div>
-			<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
-		</div>
-    </form>
+		</form>
+	</div>
 	<!-- 페이지 로딩 -->
-	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
-	<script> 
-	function autoResize(iframeObj){
-		$('iframe').height($('iframe').contents().height());
-		$('iframe').width($('iframe').contents().width());
-		
-		/* 아이프레임에서 읽어들인 페이지의 body */
-		var innerBody = iframeObj.contentWindow.document.body;
-		
-		/*
-		* 특정이벤트 발생시 다시 사이즈 조정!! ( 윤상권님의 지적 )
-		* ex ) 
-		* 항상 들어가야할 내용 입니다. 
-		* 혹시 아이프레임 속에 BODY 에 이미 이벤트가 정의 되어 있을경우를 위해
-		* oldEvent = innerBody.ondbclick; 
-		* 위와 같은 식으로 이벤트를 백업받아놓으면 될듯 합니다.
-		* 1. innerBody.ondbclick = function { resizeFrame(iframeObj, 1);oldEvent; };
-		* 2. innerBody.onmousemove = function { resizeFrame(iframeObj, 1);oldEvent; };
-		* 3. innerBody.onkeydown = function { resizeFrame(iframeObj, 1);oldEvent; };
-		*/
-		//oldEvent = innerBody.ondbclick; 
-		oldEvent = innerBody.onclick;
-		innerBody.onclick = function(){ autoResize(iframeObj, 1);oldEvent; };
-
-
-		/* 높이 다시설정 */
-		var innerHeight = innerBody.scrollHeight + (innerBody.offsetHeight - innerBody.clientHeight);
-		iframeObj.style.height = innerHeight;
-
-		/*---------- 넓이도 함께 자동조정되야 한다면 주석을 풀어주세요~--------------------------------
-				// 넓이 다시설정 
-				var innerWidth = innerBody.scrollWidth + (innerBody.offsetWidth - innerBody.clientWidth);
-				iframeObj.style.width = innerWidth;     
-		---------------------------------------------------------------------------------------------------*/
-		if( !arguments[1] ){        /* 특정 이벤트로 인한 호출시 스크롤을 그냥 둔다. */
-				this.scrollTo(1,1);}
-	}
+	<div id="loading_wraps"></div>
+	<script>
+		$("#loading_wraps").load("loading.html #lo_blog");
 	</script>
+	
 	<script>
 	$(document).ready(function(){	
-		
 		//로그인 되어있는 경우 약관(회원정보수정)
 		if(logincheck == 1){
 			$('#log_title').text("개인정보변경");
@@ -191,9 +159,33 @@
 	$("#register_frame").attr("src","http://modublog.co.kr/app_public/a_test02.html?login_check="+logincheck+"&mb_id="+member['mb_id']);
 	// iframe 로드 후 이벤트
 	$("#register_frame").on("load", function(){
-		$('#loading').hide();
+		$('.loading').hide();
 
 	});
+	
+	/*function autoResize(iframeObj){
+		$('iframe').height($('iframe').contents().height());
+		$('iframe').width($('iframe').contents().width());
+		
+		//아이프레임에서 읽어들인 페이지의 body
+		var innerBody = iframeObj.contentWindow.document.body;
+		
+		//oldEvent = innerBody.ondbclick; 
+		oldEvent = innerBody.onclick;
+		innerBody.onclick = function(){ autoResize(iframeObj, 1);oldEvent; };
+
+
+		//높이 다시설정
+		var innerHeight = innerBody.scrollHeight + (innerBody.offsetHeight - innerBody.clientHeight);
+		iframeObj.style.height = innerHeight;
+
+		//정되야 한다면 주석을 풀어주세요
+				// 넓이 다시설정 
+				//var innerWidth = innerBody.scrollWidth + (innerBody.offsetWidth - innerBody.clientWidth);
+				//iframeObj.style.width = innerWidth;     
+		if( !arguments[1] ){        //특정 이벤트로 인한 호출시 스크롤을 그냥 둔다.
+				this.scrollTo(1,1);}
+	}*/
 	
 	// 프로필 이미지
 	function fileInfo_p(f){

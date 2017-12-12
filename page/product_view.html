@@ -21,70 +21,71 @@
 		<h1></h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-	<div class="pr_wrap">
-		<div class="detail_bann bk_gray">
-			<div class="swiper-wrapper" id="rolling_wrap">
-			</div>
-		</div>
-				
-		<div class="pr_view_info">
-			<p class="title" id="wr_subject"></p>
-			<span id="pr_subject_sub"></span>
-			<div class="pr_f">
-				<div class="pr_date">
-					<span class="dt_sub">모집기간</span><span id="wr_10"></span>
+	<div class="bk_gray">
+		<div class="pr_wrap">
+			<div class="detail_bann bk_gray">
+				<div class="swiper-wrapper" id="rolling_wrap">
 				</div>
-				<div class="pr_date">
-					<span class="dt_sub">체험인원</span><span id="wr_8"></span>
-				</div>
-				<div class="pr_date">
-					<span class="dt_sub">체험발표</span><span id="wr_4"></span>
-				</div>
-			</div>
-			</div>
-		</div>
-		<div class="pr_view_cont">
-			<ul class="tab_mn tab_thr">
-				<li class="on"><a class="tab1 t_b">체험단 정보</a></li>
-				<li><a class="tab2 t_b">신청자 <span class="color_blog" id="wr_comment"></span>/<span id="pr_rec_num"></span></a></li>
-				<li><a class="tab3 t_b">업체정보</a></li>
-			</ul>
-			<div class="pr_tab_pn">
-				<!-- 체험단 정보 -->
-				<div class="tab1_pn">
-					
-				</div>
-				<!-- 신청자 -->
-				<div class="tab2_pn">
-					<ul id="pd_view_li" class="pd_view_li">
-					
-					</ul>
-					<div id="loading_bar" class="off"></div>
-				</div>				
-				<!-- 업체정보 -->
-				<div class="tab3_pn">
-					<div class="en_info">
-						<p class="title">소개</p>
-						<p class="pr_info"></p>	
-						<p class="title en_loc">위치</p>
-						<div class="wr_google_map"></div>
+			</div>	
+			<div class="pr_view_info">
+				<p class="title" id="wr_subject"></p>
+				<span id="pr_subject_sub"></span>
+				<div class="pr_f">
+					<div class="pr_date">
+						<span class="dt_sub">모집기간</span><span id="wr_10"></span>
 					</div>
-					<div style="padding-top:13px"><iframe class="map_wrap" src="http://modublog.co.kr/app_public/map_load.php" width="100%" frameborder="0" height="280px" noresize></iframe></div>
+					<div class="pr_date">
+						<span class="dt_sub">체험인원</span><span id="wr_8"></span>
+					</div>
+					<div class="pr_date">
+						<span class="dt_sub">체험발표</span><span id="wr_4"></span>
+					</div>
+				</div>
 				</div>
 			</div>
-			<script>
-			// iframe resize
-			function autoResize(i){
-				var iframeHeight=
-				(i).contentWindow.document.body.scrollHeight;
-				(i).height=iframeHeight;
-			}
-			</script>
-		</div>
-		<div class="pr_btn_wrap bk_b">
-			<div class="pr_btn_p">
-				<a id="pr_go">구경하기</a>
-				<a id="req_go">신청하기</a>
+			<div class="pr_view_cont">
+				<ul class="tab_mn tab_thr">
+					<li class="on"><a class="tab1 t_b">체험단 정보</a></li>
+					<li><a class="tab2 t_b">신청자 <span class="color_blog" id="wr_comment"></span>/<span id="pr_rec_num"></span></a></li>
+					<li><a class="tab3 t_b">업체정보</a></li>
+				</ul>
+				<div class="pr_tab_pn">
+					<!-- 체험단 정보 -->
+					<div class="tab1_pn">
+						
+					</div>
+					<!-- 신청자 -->
+					<div class="tab2_pn">
+						<ul id="pd_view_li" class="pd_view_li">
+						
+						</ul>
+						<div id="loading_bar" class="off"></div>
+					</div>				
+					<!-- 업체정보 -->
+					<div class="tab3_pn">
+						<div class="en_info">
+							<p class="title">소개</p>
+							<p class="pr_info"></p>	
+							<p class="title en_loc">위치</p>
+							<div class="wr_google_map"></div>
+						</div>
+						<div style="padding-top:13px"><iframe class="map_wrap" src="http://modublog.co.kr/app_public/map_load.php" width="100%" frameborder="0" height="280px" noresize></iframe></div>
+					</div>
+				</div>
+				<script>
+				// iframe resize
+				function autoResize(i){
+					var iframeHeight=
+					(i).contentWindow.document.body.scrollHeight;
+					(i).height=iframeHeight;
+				}
+				</script>
+			</div>
+			<div class="pr_btn_wrap bk_b">
+				<div class="pr_btn_p">
+					<a id="pr_go">구경하기</a>
+					<a id="req_go">신청하기</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -175,6 +176,7 @@
 				
 				$.each(data.pr_file,function(key,value){
 					string += '<div class="swiper-slide"><div class="main_bann_img"><img alt="" src="'+value+'"></div></div>';
+					console.log(value);
 				}); 
 				$('#rolling_wrap').html(string);
 				
@@ -225,7 +227,7 @@
 					paginationClickable: true, 		
 					centeredSlides: true, 
 					slidesPerView: 1,
-					loop: true,
+					loop: false,
 					autoplay: {
 						delay:3200, // slide 시간 실정
 					},
@@ -234,7 +236,7 @@
 				// 배너 슬라이드 끝	
 			},   
 			complete:function(){
-				$('#loading').hide();
+				$('.loading').hide();
 			},
 			error:function(e){  
 				console.log(e.responseText);  

@@ -25,10 +25,11 @@
 	<!-- 페이지 로딩 -->
 	<div id="loading_wraps"></div>
 	<script>
-		$("#loading_wraps").load("loading.html #lo_blog");
+		//$("#loading_wraps").load("loading.html #lo_blog");
 	</script>
 	
 	<script>
+	/*
 	$(document).ready(function(){
 		var string_no = '';
 		var params = {"bo_table":"notice"};
@@ -48,13 +49,14 @@
 				$('#notice_li').append(string_no);
 			},   
 			complete:function(){
-				$('#loading').hide();
+				$('.loading').hide();
 			},
 			error:function(e){  
 				console.log(e.responseText);  
 			}  
 		});  	
 	})
+	*/
 	</script>
 	<script>
 	var list = 20;

@@ -17,68 +17,83 @@
 	<script src="../js/menu.js"></script>
 </head>
 <style>
+.tab_mn li.on {border-bottom:1px solid #e7744e}
+.tab_mn li.on a.t_b {border-bottom:3px solid #e7744e}
+.ca_wrap .category.blog_c a.on {background:#e7744e}
 </style>
 <body>
 	<div id="header">
-		<h1></h1>
+		<h1>'우리말영어' 스토어팜 링크 공유</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
 	<div class="bk_gray">
 		<div class="pr_wrap">
 			<div class="detail_bann bk_gray">
 				<div class="swiper-wrapper" id="rolling_wrap">
+					<div class="swiper-slide"><div class="main_bann_img"><img alt="" src="../temp-img/view1.jpg"></div></div>
+					<div class="swiper-slide"><div class="main_bann_img"><img alt="" src="../temp-img/view1.jpg"></div></div>
 				</div>
-			</div>
-					
+			</div>	
 			<div class="pr_view_info">
-				<p class="title" id="wr_subject"></p>
-				<span id="pr_subject_sub"></span>
+				<p class="title" id="wr_subject">'우리말영어' 스토어팜 링크 공유</p>
+				<span id="pr_subject_sub">미국원어민 발음소리 우리말로 표기 132시간이면 말하고 듣는다</span>
 				<div class="pr_f">
 					<div class="pr_date">
-						<span class="dt_sub">모집기간</span><span id="wr_10"></span>
+						<span class="dt_sub">목표 click</span><span id="wr_10">5,000</span>
 					</div>
 					<div class="pr_date">
-						<span class="dt_sub">체험인원</span><span id="wr_8"></span>
+						<span class="dt_sub">토탈 Click</span><span id="wr_8">500</span>
 					</div>
 					<div class="pr_date">
-						<span class="dt_sub">체험발표</span><span id="wr_4"></span>
+						<span class="dt_sub">나의 Click</span><span class="color_share" id="wr_4">0</span>
 					</div>
+				</div>
 				</div>
 			</div>
 			<div class="pr_view_cont">
-				<ul class="tab_mn tab_thr">
-					<li class="l_s on"><a class="tab1 t_s">체험단 정보</a></li>
-					<li class="l_s"><a class="tab2 t_s">신청자 <span class="color_sns" id="wr_comment"></span>/<span id="pr_rec_num"></span></a></li>
-					<li class="l_s"><a class="tab3 t_s">업체정보</a></li>
+				<ul class="tab_mn tab_two">
+					<li class="on"><a class="tab1 t_b">쉐어 정보</a></li>
+					<li><a class="tab2 t_b">나만의 URL</a></li>
 				</ul>
 				<div class="pr_tab_pn">
-					<!-- 체험단 정보 -->
+					<!-- 쉐어 정보 -->
 					<div class="tab1_pn">
 						
+						<p>활동 사항</p>
+						- 나만의 URL을 생성하여 각 매체에 공유
+						
 					</div>
-					<!-- 신청자 -->
-					<div class="tab2_pn">
+					<!-- 나만의 URL -->
+					<div class="tab2_pn" style="padding:13px 16px">
+						<div class="ca_wrap" style="height:auto">
+							<div class="category blog_c" style="padding:0 0 16px 0;border-bottom:1px solid #ebebeb">
+								<a href="#none" class="ca_name on" data="" style="width:44px;line-height:20px">링크복사</a>
+								<a href="#none" class="ca_name" data="" style="width:44px;line-height:20px">소스복사</a>
+								<a href="#none" class="ca_name" data="" style="width:44px;line-height:20px">고정위젯</a>
+								<a href="#none" class="ca_name" data="" style="width:44px;line-height:20px">랜덤위젯</a>
+							</div>
+							<!-- 발급 전 -->
+							<a class="btn_tp1 color_share" style="top:13px;right:0;display:none">발급받기</a>
+							<!-- 발급 완료 -->
+							<a class="btn_tp1" style="top:13px;right:0;color:#fff;background:#e7744e;border:1px solid #e7744e">발급완료</a>
+						</div>
 						<ul id="pd_view_li" class="pd_view_li">
 						
+							<p>홍보문구</p>
+							샤이닝스텔라는 최고 수준의 품질로 믿을 수 있는 제품입니다.
+							<p>URL</p>
+							<xmp><a href="http://moduad.com/url/QAmmSMpgk">http://moduad.com/url/QAmmSMpgk</a></xmp>
+							
 						</ul>
 						<div id="loading_bar" class="off"></div>
-					</div>				
-					<!-- 업체정보 -->
-					<div class="tab3_pn">
-						<div class="en_info">
-							<p class="title">소개</p>
-							<p class="pr_info"></p>	
-							<p class="title en_loc">위치</p>
-							<div class="wr_google_map"></div>
-						</div>
-						<div style="padding-top:13px"><iframe class="map_wrap" src="http://modublog.co.kr/app_public/map_load.php" width="100%" frameborder="0" height="330px" noresize></iframe></div>
-					</div>
+					</div>		
 				</div>
 			</div>
-			<div class="pr_btn_wrap bk_s">
+			<!-- 나만의 URL 카테고리 탭에서 링크복사/소스 복사 일때는 복사하기/공유하기 버튼 , 고정위젯/랜덤위젯 일때는 복사하기/위젯미리보기 버튼 -->
+			<div class="pr_btn_wrap bk_sh" style="display:none">
 				<div class="pr_btn_p">
-					<a id="pr_go">구경하기</a>
-					<a id="req_go">신청하기</a>
+					<a id="copy_go">복사하기</a>
+					<a id="sharae_go">공유하기</a>
 				</div>
 			</div>
 		</div>
@@ -86,20 +101,10 @@
 	<!-- 페이지 로딩 -->
 	<div id="loading_wraps"></div>
 	<script>
-		$("#loading_wraps").load("loading.html #lo_blog");
+		//$("#loading_wraps").load("loading.html #lo_share");
 	</script>
 	
 	<script>
-	// 신청하기 버튼 비로그인
-	$(document).on('click','#req_go',function(){
-		if(logincheck==0){
-			var result = confirm('로그인 후 이용 가능한 서비스입니다. 로그인 하시겠습니까?');
-			if(result){
-				location.href="login.html";
-			}
-		}
-	})
-	
 	// 탭메뉴
 	$(document).on('click','.tab_mn li a', function() {
 		$(this).closest('li').addClass('on').siblings().removeClass('on');	
@@ -107,33 +112,57 @@
 		if(tab_s == 'tab1') {
 			$('.tab1_pn').show();
 			$('.tab2_pn').hide();
-			$('.tab3_pn').hide();
-			$('.tab2_pn').attr("id","");
+			$('.pr_btn_wrap').hide();
 		}else if(tab_s == 'tab2') {
 			$('.tab1_pn').hide();
 			$('.tab2_pn').show();
-			$('.tab3_pn').hide();
-			$('.tab2_pn').attr("id","scr_on");
-		}else if(tab_s == 'tab3') {
-			$('.tab1_pn').hide();
-			$('.tab2_pn').hide();
-			$('.tab3_pn').show();
-			$('.tab2_pn').attr("id","");
+			$('.pr_btn_wrap').show();
 		}
 	})
 	
+	$(document).on('click','.category a', function() {
+		$(this).addClass('on').siblings().removeClass('on');	
+	})
+	
+	// 배너 슬라이드
+	var banner_slide = new Swiper('.detail_bann', { // 소개이미지 슬라이드
+		pagination: '.sub-pagination',
+		paginationClickable: true, 		
+		centeredSlides: true, 
+		slidesPerView: 1,
+		loop: false,
+		autoplay: {
+			delay:3200, // slide 시간 실정
+		},
+		autoplayDisableOnInteraction:false 
+	});
+	// 배너 슬라이드 끝	
+	
+	
+	// 신청하기 버튼 비로그인
+	/*$(document).on('click','#req_go',function(){
+		if(logincheck==0){
+			var result = confirm('로그인 후 이용 가능한 서비스입니다. 로그인 하시겠습니까?');
+			if(result){
+				location.href="login.html";
+			}
+		}
+	})*/
+	
+	/*
 	//전체 로딩
 	$(document).ready(function(){
 		var mb_id = member['mb_id'];
 		var bo_table = getQuerystring('bo_table');
 		var wr_id = getQuerystring('wr_id');
-		var params = {"wr_id":wr_id,"mb_id":mb_id,"bo_table":bo_table,"ca_name":"SNS"};
+		var params = {"wr_id":wr_id,"mb_id":mb_id,"bo_table":bo_table,"ca_name":"BLOG"};
 		var string = '';
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_product.php",
 			data:params,
 			success:function(data){
+				//console.log(data);
 				$('#header h1').html(data.wr_subject);
 				$('#wr_subject').html(data.wr_subject);
 				if(!data.pr_info || !data.wr_google_map){
@@ -158,7 +187,7 @@
 				$('#wr_8').html(data.wr_8+"명");
 				$('#wr_comment').html(data.wr_comment);
 				$('#pr_rec_num').html(data.pr_rec_num);
-				$('#pr_go').attr("href",data.wr_link1)
+				$('#pr_go').attr("href",data.wr_link1);
 				
 				if(logincheck==1 && data.cnt == 0){
 					$('#req_go').attr("href","product_req_form.html?bo_table="+data.pr_board+"&wr_id="+data.pr_board_id+"&w=w");
@@ -169,13 +198,14 @@
 				
 				$.each(data.pr_file,function(key,value){
 					string += '<div class="swiper-slide"><div class="main_bann_img"><img alt="" src="'+value+'"></div></div>';
+					console.log(value);
 				}); 
 				$('#rolling_wrap').html(string);
 				
 				$('#wr_google_map').html(data.wr_google_map);
 				$('.tab1_pn').html(data.wr_content);
 				
-				/* 타이머 */
+				// 타이머
 				CountDownTimer(data.d_count[1]+'/'+data.d_count[2]+'/'+data.d_count[0], 'wr_10');
 
 				function CountDownTimer(dt, id)
@@ -194,7 +224,7 @@
 						if (distance < 0) {
 
 							clearInterval(timer);
-							document.getElementById(id).innerHTML = '<span class="color_sns">마감</span>';
+							document.getElementById(id).innerHTML = '<span class="color_blog">마감</span>';
 
 							return;
 						}
@@ -203,30 +233,29 @@
 						var minutes = Math.floor((distance % _hour) / _minute);
 						var seconds = Math.floor((distance % _minute) / _second);
 
-						document.getElementById(id).innerHTML = '<span class="color_sns">'+days+'</span>'+ '일 ';
-						document.getElementById(id).innerHTML += '<span class="color_sns">'+hours+'</span>' + '시간 ';
-						document.getElementById(id).innerHTML += '<span class="color_sns">'+minutes+'</span>' + '분 ';
-						document.getElementById(id).innerHTML += '<span class="color_sns">'+seconds+'</span>' + '초 남음';
+						document.getElementById(id).innerHTML = '<span class="color_blog">'+days+'</span>'+ '일 ';
+						document.getElementById(id).innerHTML += '<span class="color_blog">'+hours+'</span>' + '시간 ';
+						document.getElementById(id).innerHTML += '<span class="color_blog">'+minutes+'</span>' + '분 ';
+						document.getElementById(id).innerHTML += '<span class="color_blog">'+seconds+'</span>' + '초 남음';
 					}
 
 					timer = setInterval(showRemaining, 1000);
 				}
-				/* 타이머 끝 */
-				
+				// 타이머 끝
+			
 				// 배너 슬라이드
 				var banner_slide = new Swiper('.detail_bann', { // 소개이미지 슬라이드
 					pagination: '.sub-pagination',
 					paginationClickable: true, 		
 					centeredSlides: true, 
 					slidesPerView: 1,
-					loop: true,
+					loop: false,
 					autoplay: {
 						delay:3200, // slide 시간 실정
 					},
 					autoplayDisableOnInteraction:false 
 				});
-				//끝	
-				console.log(data);
+				// 배너 슬라이드 끝	
 			},   
 			complete:function(){
 				$('.loading').hide();
@@ -246,19 +275,19 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_comment_view.php",  
 			data:params,			
 			success:function(data){
-				console.log(data);
+				//console.log(data);
 				$.each(data,function(key,value){
 					//if(!value.wr_comment_reply){
 					string_c += '<li style="border-bottom:1px solid #ebebeb"><div class="comment_title"><span class="title_sub">'+value.wr_name+'</span><span class="date_txt">'+value.datetime+'</span><span class="comment_re"></span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div><div class="comment_conts">'+value.wr_content+'</div></li>';
 					//}
-					<!-- <a href="'+value.sns_2+'" class="color_sns btn_comment">SNS 보기</a> -->
+					<!-- <a href="'+value.sns_2+'" class="color_blog btn_comment">SNS 보기</a> -->
 				})
 				//console.log(data);
 				$('#cmt_num').html(data.length);
 				$('#pd_view_li').html(string_c);
 			},   
 			error:function(e){  
-				console.log(e.responseText); 
+				console.log(e.responseText);  
 			}  
 		}); 
 	});
@@ -294,7 +323,7 @@
 								//if(!value.wr_comment_reply){
 								string_c += '<li style="border-bottom:1px solid #ebebeb"><div class="comment_title"><span class="title_sub">'+value.wr_name+'</span><span class="date_txt">'+value.datetime+'</span><span class="comment_re"></span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div><div class="comment_conts">'+value.wr_content+'</div></li>';
 								//}
-								<!-- <a href="'+value.sns_2+'" class="color_sns btn_comment">SNS 보기</a> -->
+								<!-- <a href="'+value.sns_2+'" class="color_blog btn_comment">SNS 보기</a> -->
 							})
 							$('#pd_view_li').append(string_c);
 							
@@ -315,6 +344,10 @@
 			}
 		} 
 	}); 
+	*/
 	</script>
+<div id="countdown"></div>
+<div id="newcountdown"></div>
+
 </body>
 </html>

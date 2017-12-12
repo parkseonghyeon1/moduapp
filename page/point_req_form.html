@@ -19,109 +19,111 @@
 		<h1>출금신청</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-	<form id="point_req_form" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="w" value="">
-		<input type="hidden" name="mb_id" value="" id="mb_id">
-		<input type="hidden" name="bo_table" value="point">
-		<input type="hidden" name="ca_name" value="신청">
-		<div class="m_reg_li">
-			<p class="title rg_title">신청 전 하단의 안내된 내용을<br>꼭 읽어보신 후 포인트 출금 신청 해주세요.</p>
-			<ul>
-				<li>
-					<label class="title" for="">은행</label>
-					<div class="dv_input">
-						<select name="wr_2" id="wr_2">
-							<option value="">은행선택</option>
-							<option value="국민은행">국민은행</option>
-							<option value="하나은행">하나은행</option>
-							<option value="기업은행">기업은행</option>
-							<option value="우리은행">우리은행</option>
-							<option value="신한은행">신한은행</option>
-							<option value="SC제일은행">SC제일은행</option>
-							<option value="농협중앙회">농협중앙회</option>
-							<option value="지역농협">지역농협</option>
-							<option value="씨티은행">씨티은행</option>
-							<option value="대구은행">대구은행</option>
-							<option value="부산은행">부산은행</option>
-						</select>
-					</div>
-				</li>
-				<li>
-					<label class="title" for="">계좌번호</label>
-					<div class="dv_input">
-						<div class="input_txt">
-							<input class="input" type="text" name="wr_subject" id="wr_subject" value="" placeholder="계좌번호 입력" required>
+	<div class="bk_gray">
+		<form id="point_req_form" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="w" value="">
+			<input type="hidden" name="mb_id" value="" id="mb_id">
+			<input type="hidden" name="bo_table" value="point">
+			<input type="hidden" name="ca_name" value="신청">
+			<div class="m_reg_li">
+				<p class="title rg_title">신청 전 하단의 안내된 내용을<br>꼭 읽어보신 후 포인트 출금 신청 해주세요.</p>
+				<ul>
+					<li>
+						<label class="title" for="">은행</label>
+						<div class="dv_input">
+							<select name="wr_2" id="wr_2">
+								<option value="">은행선택</option>
+								<option value="국민은행">국민은행</option>
+								<option value="하나은행">하나은행</option>
+								<option value="기업은행">기업은행</option>
+								<option value="우리은행">우리은행</option>
+								<option value="신한은행">신한은행</option>
+								<option value="SC제일은행">SC제일은행</option>
+								<option value="농협중앙회">농협중앙회</option>
+								<option value="지역농협">지역농협</option>
+								<option value="씨티은행">씨티은행</option>
+								<option value="대구은행">대구은행</option>
+								<option value="부산은행">부산은행</option>
+							</select>
 						</div>
-					</div>
-				</li>
-				<li>
-					<label class="title" for="">금액<span class="reg_t_sub"> (보유포인트 <span class="color_blog" id="mb_point"></span>)</span></label>
-					<input type="hidden" id="mb_point_chk" value="">
-					<input type="hidden" id="mb_point_sum" value="">
-					<div class="dv_input">
-						<div class="input_txt">
-							<input class="input" type="text" name="wr_1" id="wr_1" value="" numberOnly placeholder="출금 금액 입력 (만원 단위로 출금 가능)" required onkeyup="cmaComma(this);" onchange="cmaComma(this);">
+					</li>
+					<li>
+						<label class="title" for="">계좌번호</label>
+						<div class="dv_input">
+							<div class="input_txt">
+								<input class="input" type="text" name="wr_subject" id="wr_subject" value="" placeholder="계좌번호 입력" required>
+							</div>
 						</div>
-					</div>
-					<p class="conf_txt" id="conf_txt_point"></p>
-				</li>
-				<li>
-					<label class="title" for="">예금주</label>
-					<div class="dv_input">
-						<div class="input_txt">
-							<input class="input" type="text" name="wr_4" id="wr_4" value="" placeholder="예금주 입력" required>
+					</li>
+					<li>
+						<label class="title" for="">금액<span class="reg_t_sub"> (보유포인트 <span class="color_blog" id="mb_point"></span>)</span></label>
+						<input type="hidden" id="mb_point_chk" value="">
+						<input type="hidden" id="mb_point_sum" value="">
+						<div class="dv_input">
+							<div class="input_txt">
+								<input class="input" type="text" name="wr_1" id="wr_1" value="" numberOnly placeholder="출금 금액 입력 (만원 단위로 출금 가능)" required onkeyup="cmaComma(this);" onchange="cmaComma(this);">
+							</div>
 						</div>
-					</div>
-				</li>
-				<li>
-					<label class="title" for="">환금금액<span class="reg_t_sub"> (3만원 초과 금액은 3.3% 공제)</span></label>
-					<div class="dv_input">
-						<div class="input_txt">
-							<input class="input" type="text" name="wr_10" id="wr_10" value="" placeholder="0" required readonly>
+						<p class="conf_txt" id="conf_txt_point"></p>
+					</li>
+					<li>
+						<label class="title" for="">예금주</label>
+						<div class="dv_input">
+							<div class="input_txt">
+								<input class="input" type="text" name="wr_4" id="wr_4" value="" placeholder="예금주 입력" required>
+							</div>
 						</div>
-					</div>
-				</li>
-				<li>
-					<label class="title" for="">신분증<span class="reg_t_sub"> (최초 1회만 첨부 - 1MB 이하만 가능)</span></label>
-					<div id="id_card" style="font-size:12px"></div>
-					<input type="hidden" id="id_chk" value="0">
-					<div class="add_photo_b" id="id_file_b">
-						<span class="btn_add_photo">추가버튼</span>
-						<input type="file" onchange="fileInfo_p(this)" name="bf_file[]">
-						<span class="preview_photo" id="id_card_photo"></span>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<div class="m_reg_li terms_wrap">
-			<p class="title">약관동의</p>
-			<div class="terms_use terms_all">
-				<p>모두동의</p>
-				<input type="checkbox" id="chk_all">
-				<label for="chk_all"><span></span></label>
+					</li>
+					<li>
+						<label class="title" for="">환금금액<span class="reg_t_sub"> (3만원 초과 금액은 3.3% 공제)</span></label>
+						<div class="dv_input">
+							<div class="input_txt">
+								<input class="input" type="text" name="wr_10" id="wr_10" value="" placeholder="0" required readonly>
+							</div>
+						</div>
+					</li>
+					<li>
+						<label class="title" for="">신분증<span class="reg_t_sub"> (최초 1회만 첨부 - 1MB 이하만 가능)</span></label>
+						<div id="id_card" style="font-size:12px"></div>
+						<input type="hidden" id="id_chk" value="0">
+						<div class="add_photo_b" id="id_file_b">
+							<span class="btn_add_photo">추가버튼</span>
+							<input type="file" onchange="fileInfo_p(this)" name="bf_file[]">
+							<span class="preview_photo" id="id_card_photo"></span>
+						</div>
+					</li>
+				</ul>
 			</div>
-			<em class="em_b"></em>
-			<div class="terms_use">
-				<span class="ct">[필수]</span><a href="#none">포인트 출금 안내</a>
-				<input type="checkbox" id="chk_1" name="check">
-				<label for="chk_1"><span></span></label>
+			<div class="m_reg_li terms_wrap">
+				<p class="title">약관동의</p>
+				<div class="terms_use terms_all">
+					<p>모두동의</p>
+					<input type="checkbox" id="chk_all">
+					<label for="chk_all"><span></span></label>
+				</div>
+				<em class="em_b"></em>
+				<div class="terms_use">
+					<span class="ct">[필수]</span><a href="#none">포인트 출금 안내</a>
+					<input type="checkbox" id="chk_1" name="check">
+					<label for="chk_1"><span></span></label>
+				</div>
+				<div class="terms_use">
+					<span class="ct">[필수]</span><a href="#none">개인정보 수집 안내</a>
+					<input type="checkbox" id="chk_2" name="check">
+					<label for="chk_2"><span></span></label>
+				</div>
 			</div>
-			<div class="terms_use">
-				<span class="ct">[필수]</span><a href="#none">개인정보 수집 안내</a>
-				<input type="checkbox" id="chk_2" name="check">
-				<label for="chk_2"><span></span></label>
+			<div class="reg_btn">
+				<div class="btn_wrap btn_ok">
+					<a href="#none" id="btn_submit" class="btn_submit">출금신청</a>
+				</div>
+				<div class="bottom_txt">출금신청에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
+				<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
 			</div>
-		</div>
-		<div class="reg_btn">
-			<div class="btn_wrap btn_ok">
-				<a href="#none" id="btn_submit" class="btn_submit on">출금신청</a>
-			</div>
-			<div class="bottom_txt">출금신청에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
-			<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
-		</div>
-	</form>
+		</form>
+	</div>
+	
 	<script>
-		
 	$(document).ready(function(){
 		// 회원정보 불러오기
 		//var mb_id = 'qwe';

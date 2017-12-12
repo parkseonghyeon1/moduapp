@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div id="header">
-		<h1 class="no_title" id="notice_title"></h1>
+		<h1 class="no_title txt_ov" id="notice_title"></h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
 	<div class="notice_view bk_white_li">
@@ -40,7 +40,7 @@
 				$(".notice_conts").append(data.wr_content);
 			},   
 			complete:function(){
-				$('#loading').hide();
+				$('.loading').hide();
 			},
 			error:function(e){  
 				console.log(e.responseText);  

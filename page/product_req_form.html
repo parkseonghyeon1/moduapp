@@ -85,7 +85,10 @@
 		<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
 	</div>
 	<!-- 페이지 로딩 -->
-	<div id="loading"><div id="load_gif"><img src="../img/Loading_icon.gif" style="width:100%;height:100%;vertical-align:top"></div></div>
+	<div id="loading_wraps"></div>
+	<script>
+		$("#loading_wraps").load("loading.html #lo_blog");
+	</script>
 </body>
 
 <script>
@@ -97,7 +100,7 @@
 	}
 	// iframe 로드 후 이벤트
 	$("#product_req_frame").on("load", function(){
-		$('#loading').hide();
+		$('.loading').hide();
 
 	});
 </script>

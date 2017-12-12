@@ -14,43 +14,64 @@
 	<script src="../js/jquery.form.min.js"></script>
 	<script src="../js/menu.js"></script>
 </head>
+<style>
+.rank_b {padding:10px 0 10px 84px;position:relative}
+.rank_b #rk_rank {width:40px;font-size:10px;line-height:33px;position:absolute;left:0;top:10px;display:inline-block;text-align:center}
+.rank_b #rk_view {font-size:10px;color:#9e9e9e;display:block}
+.rank_b #rk_point {font-size:10px;line-height:20px;margin-top:-10px}
+.rank_b #rk_img {width:33px;height:33px;position:absolute;top:10px;left:44px}
+.rank_b #rk_img img {width:100%;height:100%}
+</style>
 <body>
 	<div id="header">
-		<h1>포인트</h1>
+		<h1>모두의 쉐어 랭킹</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
-		<a href="#none" class="header_btn_r btn_help">도움말</a>
 	</div>
 	<div class="bk_gray">
-		<div class="point_info ct_wrap">
-			<p class="title_sub">현재 포인트</p>
-			<span class="point_txt" id="mb_point"></span>
-		</div>
-		<!-- 출금신청 했을때만 show -->
-		<div id="point_req_wrap">
-			
-		</div>	
-		
-		<div class="ca_wrap" style="padding:12px 0;background:#fff">
-			<div class="category blog_c" style="">
-				<a href="#none" class="ca_name on" data="all">전체</a>
-				<a href="#none" class="ca_name" data="plus">적립</a>
-				<a href="#none" class="ca_name" data="minus">사용</a>
+		<div class="ct_wrap list_pn" style="padding: 0 16px">
+			<div class="rank_b">
+				<span class="txt_ov title_sub">용용용</span>
+				<span class="sub_txt" id="rk_view">19,585 view</span>
+				<span class="ps_r color_blog" id="rk_point">195,850 p</span>
+				<span class="color_share" id="rk_rank">240</span>
+				<div id="rk_img"><img src="" onError="this.src='../img/person.png'"></div>
 			</div>
-			<a href="point_req_form.html" class="btn_tp1" id="btn_pay">출금 신청</a>
 		</div>
 		
 		<div class="list_wrap">
-			<ul class="list_pn bk_white" id="point_li">
-			
+			<ul class="list_pn bk_white" id="rank_li">
+				<li>
+					<a href="#none">
+						<div class="rank_b">
+							<span class="txt_ov title_sub">오해피</span>
+							<span class="sub_txt" id="rk_view">81,577 view</span>
+							<span class="ps_r color_blog" id="rk_point">815,770 p</span>
+							<span id="rk_rank">1</span>
+							<div id="rk_img"><img src="" onError="this.src='../img/person.png'"></div>
+						</div>
+					</a>
+				</li>
+				<li>
+					<a href="#none">
+						<div class="rank_b">
+							<div class="">
+								<span class="txt_ov title_sub">엄단아</span>
+								<span class="sub_txt" id="rk_view">19,585 view</span>
+								<span class="ps_r color_blog" id="rk_point">195,850 p</span>
+							</div>
+							<span id="rk_rank">2</span>
+							<div id="rk_img"><img src="" onError="this.src='../img/person.png'"></div>
+						</div>
+					</a>
+				</li>
 			</ul>
-			<!--<p class="alt_txt">최근 적립 사용한 내역이 없습니다.</p>-->
 			<div id="loading_bar" class="off"></div>
 		</div>
 	</div>
 	<!-- 페이지 로딩 -->
 	<div id="loading_wraps"></div>
 	<script>
-		$("#loading_wraps").load("loading.html #lo_blog");
+		//$("#loading_wraps").load("loading.html #lo_blog");
 	</script>
 	<!-- 팝업 -->
 	<div id="pop"></div>
@@ -65,7 +86,7 @@
 	$(document).on('click','.btn_help',function(){
 		$('#pop').load("popup.html");
 	})
-	
+	/*
 	// 첫페이지 ajax
 	$(document).ready(function(){
 		string = '';
@@ -220,6 +241,7 @@
 			}
 		}	
 	})
+	*/
 	</script>
 </body>
 </html>
