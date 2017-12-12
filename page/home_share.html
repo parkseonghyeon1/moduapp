@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>SHARE 홈</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/swiper.min.js"></script>
+	<script src="../js/menu.js"></script>
+</head>
+<style>
+#share_list li {border-bottom:1px solid #e9e9e9}
+.list_b {border-bottom:none}
+.list_item {height:100%}
+.list_item,
+.list_item .list_item_img {height:168px}
+</style>
+<body>
+	<div id="nav_v"></div>
+	<script>
+		$("#nav_v").load("slide_menu.html");
+	</script>
+	
+	<div class="bk_gray">
+		<div class="bk_sh" style="padding:58px 0;margin-bottom:10px;position:relative">
+			<p style="text-align:center;color:#fff;font-size:12px">sdasds</p>
+			<p style="text-align:center;color:#fff;font-size:26px;font-weight:bold">26,780</p>
+			<div style="position:absolute;left:16px;bottom:16px;font-size:10px;color:#fff">모두의쉐어 어뷰징 규제 정책</div>
+		</div>
+		<div class="ct_wrap" style="padding:20px 16px;font-size:11px;">
+			<span style="color:#9e9e9e">유입현황(PV)</span>
+			<span style="font-weight:bold;padding-left:10px">421,798</span>
+		</div>
+		
+		<div class="main_list" style="margin-bottom:10px">
+			<h1 class="title">MD 추천 콘텐츠</h1>
+			<div class="pd_wrap">
+				<div class="swiper-container1">
+					<div class="swiper-wrapper" id="share_wrap">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ct_wrap list_pn" style="padding: 0 16px;margin-bottom:10px" id="me_rank">
+			<div class="rank_b">
+				<span class="txt_ov title_sub" id="mb_nick">닉네임</span>
+				<span class="sub_txt rk_view" id="v_sum">1,230 view</span>
+				<span class="ps_r rk_point color_share" id="p_sum">1,230 p</span>
+				<span class="rk_rank color_share" id="rank" style="text-align:left">1</span>
+				<div class="rk_img"><img src="" onError="this.src='../img/person.png'" id="mb_photo"></div>
+			</div>
+		</div>
+		<div class="">
+			<ul id="share_list" class="bk_white">
+			
+			</ul>
+			<div id="loading_bar" class="off"></div>
+		</div>
+	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading_wraps"></div>
+	<script>
+		$("#loading_wraps").load("loading.html #lo_share");
+	</script>
+	
+	<script>
+	$(document).ready(function(){
+		var string_re = '';
+		var string_sh = '';
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_share.php",          
+			success:function(data){
+				//추천콘텐츠 뿌리기
+				$.each(data[0],function(key,value){
+					string_re += '<div class="swiper-slide item"><a href="product_view_sns.html?bo_table='+value.sh_pr_board+'&wr_id='+value.sh_pr_board_id+'&site_id=sns"><div class="sns_c"><div class="item_img"><img src="'+value.sh_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sh_wr_subject+'</span></p><span class="sub_txt color_share">쉐어</span><span class="sub_txt item_view">클릭&nbsp;'+value.sh_wr_comment_reply+'</span></div></div></a></div>';
+				}); 
+				$("#share_wrap").html(string_re);
+				
+				//SHARE 뿌리기
+				$.each(data[1],function(key,value){
+					string_sh += '<li><a href="#none"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.shh_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.shh_wr_subject+'</p><span class="conts txt_ov">'+value.shh_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span><span>'+value.shh_wr_link2+'</span></div></div></div></div></a></li>';
+				}); 
+				$("#share_list").html(string_sh);
+				
+				console.log(string_sh);
+				//상품 slide1
+				var swiper = new Swiper('.swiper-container1', {
+					slidesPerView: 'auto',
+					spaceBetween: 12,
+					loop: false,
+					direction: 'horizontal'
+				});
+			},   
+			complete:function(){
+				$('.loading').hide();
+			},
+			error:function(e){  
+				console.log(e.responseText);  
+			}  
+		});  
+	})
+	</script>
+</body>
+</html>

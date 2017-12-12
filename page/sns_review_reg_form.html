@@ -19,6 +19,19 @@
 </head>
 <style>
 #img-box.selected {border:3px solid #88cbde}
+#select_review {overflow:hidden}
+#select_review span {font-size:12px}
+#select_review #select1, #select_review #select2 {width:48%;float:left;text-align:center;font-size:12px}
+#select_review span { display: inline-block;width: 2%;color: #ccc;float: left; text-align: center}
+input[type="checkbox"], input[type="radio"] {-moz-appearance: none;-webkit-appearance: none; -ms-appearance: none;appearance: none;display: none;float: left; margin-right: -2em;opacity: 0;width: 1em;z-index: -1;}
+input[type="checkbox"] + label, input[type="radio"] + label {padding-left:18px;  text-decoration: none;color: #585858;cursor: pointer; display: inline-block; font-weight: 300; padding-left: 2em; /* padding-right: 1.75em; */ position: relative;}
+input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + label:before {background: #88cbde;border-color: #88cbde; color: #fff !important;content: '\2714';border-radius:100%}
+input[type="checkbox"] + label:before, input[type="radio"] + label:before { border-radius: 50%;border: solid 1px #c9c9c9; content: '';color: #fff !important;display: inline-block; height: 1.3em;left: 0;position: absolute;text-align: center;top:0px; width: 1.3em;}
+
+#select-img {height:80px;display:none}
+#rv_list_sns div {width:74px;height:74px}
+#rv_list_sns div a {position:relative;display:inline-block;margin-right:13px;width:74px;height:74px;border:3px solid #fff}
+#rv_list_sns div a img {position:absolute;width:100%;margin:auto;top:0;left:0;right:0;bottom:0}
 </style>
 <body>
 	<div id="header">
@@ -64,47 +77,6 @@
 				<li>
 					<label class="title" for="data1">리뷰<span class="reg_t_sub"> ('URL 선택하기'는 인스타그램만 가능합니다.)</span></label>
 					<div id="rv_rs">
-						<!--<div class="dv_input" style="margin-bottom:10px">
-							<div class="gender_input">
-								<input type="radio" id="ra1" name="mb_sex" value="" class="rv_select">
-								<label for="ra1"><span>URL 입력하기</span></label>
-							</div>
-							<div class="gender_input">
-								<input type="radio" id="ra2" name="mb_sex" value="">
-								<label for="ra2"><span style="border-left:none">사진 선택하기</span></label>
-							</div>
-							</div>	
-						<div class="dv_input" style="margin-bottom:10px">
-						<span class="rv_select txt_ov">SNS 리뷰 불러오기</span>
-					</div>
-						<div class="dv_input">
-							<div class="gender_input">
-								<input type="radio" id="ra1" name="mb_sex" value="">
-								<label for="ra1"><span>URL 입력하기</span></label>
-							</div>
-							<div class="gender_input">
-								<input type="radio" id="ra2" name="mb_sex" value="" class="rv_select">
-								<label for="ra2"><span style="border-left:none">사진 선택하기</span></label>
-							</div>
-						</div>	
--->
-						
-						<style>
-						#select_review {overflow:hidden}
-						#select_review span {font-size:12px}
-						#select_review #select1, #select_review #select2 {width:48%;float:left;text-align:center;font-size:12px}
-						#select_review span { display: inline-block;width: 2%;color: #ccc;float: left; text-align: center}
-						input[type="checkbox"], input[type="radio"] {-moz-appearance: none;-webkit-appearance: none; -ms-appearance: none;appearance: none;display: none;float: left; margin-right: -2em;opacity: 0;width: 1em;z-index: -1;}
-						input[type="checkbox"] + label, input[type="radio"] + label {padding-left:18px;  text-decoration: none;color: #585858;cursor: pointer; display: inline-block; font-weight: 300; padding-left: 2em; /* padding-right: 1.75em; */ position: relative;}
-						input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + label:before {background: #88cbde;border-color: #88cbde; color: #fff !important;content: '\2714';border-radius:100%}
-						input[type="checkbox"] + label:before, input[type="radio"] + label:before { border-radius: 50%;border: solid 1px #c9c9c9; content: '';color: #fff !important;display: inline-block; height: 1.3em;left: 0;position: absolute;text-align: center;top:0px; width: 1.3em;}
-						
-						#select-url {}
-						#select-img {height:80px;display:none}
-						#rv_list_sns div {width:74px;height:74px}
-						#rv_list_sns div a {position:relative;display:inline-block;margin-right:13px;width:74px;height:74px;border:3px solid #fff}
-						#rv_list_sns div a img {position:absolute;width:100%;margin:auto;top:0;left:0;right:0;bottom:0}
-						</style>
 						<div class="dv_input" style="margin-bottom:10px" id="select-review">
 							<div id="select_review" style="padding:13px 0">
 								<div id="select1"><input type="radio" id="ra1" name="selectImg" value="" class="btn_chk" checked><label for="ra1" id="lbl-ra2">URL 입력하기</label></div>
@@ -115,10 +87,7 @@
 						<div id="select-img">
 							<div class="swiper-container1">
 								<div class="swiper-wrapper" id="rv_list_sns"> 
-								<!--	<div class="swiper-slide"><a id="img-box" href="#none2" data="2" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>
-									<div class="swiper-slide"><a id="img-box" href="#none3" data="3" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>
-									<div class="swiper-slide"><a id="img-box" href="#none4" data="4" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>
-									<div class="swiper-slide"><a id="img-box" href="#none5" data="5" class="not_sel"><img src="../img/icon_home_on.png" width="100%"></a></div>-->
+								
 								</div>
 							</div>
 						</div>
