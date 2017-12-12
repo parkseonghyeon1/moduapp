@@ -5,6 +5,7 @@
 	}else{
 		logincheck = 1;
 	}
+	logincheck = 1;
 
 	if(logincheck == 1){
 		
