@@ -225,7 +225,7 @@
 				
 				//SHARE 뿌리기
 				$.each(data[3],function(key,value){
-					string_sh += '<div class="swiper-slide item"><a href="#none"><div class="share_c"><div class="item_img"><img src="'+value.sh_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sh_wr_subject+'</span></p><span class="sub_txt color_share">쉐어</span><span class="sub_txt item_view">클릭&nbsp;'+value.sh_wr_comment_reply+'</span></div></div></a></div>';
+					string_sh += '<div class="swiper-slide item"><a href="product_view_share.html?bo_table='+value.sh_bo_table+'&wr_id='+value.sh_wr_id+'&site_id=share"><div class="share_c"><div class="item_img"><img src="'+value.sh_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sh_wr_subject+'</span></p><span class="sub_txt color_share">쉐어</span><span class="sub_txt item_view">조회&nbsp;'+value.sh_wr_comment_reply+'</span></div></div></a></div>';
 				}); 
 				$("#share_wrap").append(string_sh);		
 				

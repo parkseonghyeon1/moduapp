@@ -123,7 +123,7 @@
 	$(document).on('click','.category a', function() {
 		$(this).addClass('on').siblings().removeClass('on');	
 	})
-	
+	/*
 	// 배너 슬라이드
 	var banner_slide = new Swiper('.detail_bann', { // 소개이미지 슬라이드
 		pagination: '.sub-pagination',
@@ -136,6 +136,7 @@
 		},
 		autoplayDisableOnInteraction:false 
 	});
+	*/
 	// 배너 슬라이드 끝	
 	
 	
@@ -149,42 +150,29 @@
 		}
 	})*/
 	
-	/*
+	
 	//전체 로딩
 	$(document).ready(function(){
 		var mb_id = member['mb_id'];
 		var bo_table = getQuerystring('bo_table');
 		var wr_id = getQuerystring('wr_id');
-		var params = {"wr_id":wr_id,"mb_id":mb_id,"bo_table":bo_table,"ca_name":"BLOG"};
+		var params = {"wr_id":wr_id,"mb_id":mb_id,"bo_table":bo_table,"ca_name":"SHARE"};
 		var string = '';
+		//alert(mb_id);
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_product.php",
 			data:params,
 			success:function(data){
-				//console.log(data);
+				console.log(data);
+				$('#wr_10').html(data.wr_8);
+				$('#wr_8').html(data.wr_comment_reply);
 				$('#header h1').html(data.wr_subject);
 				$('#wr_subject').html(data.wr_subject);
-				if(!data.pr_info || !data.wr_google_map){
-					if(!data.pr_info && data.wr_google_map){
-						$('.pr_info').html("등록된 소개정보가 없습니다.");
-						$('.wr_google_map').html(data.wr_google_map);
-						$('.map_wrap').attr('src','http://modublog.co.kr/app_public/map_load.php?bo_table='+bo_table+'&wr_id='+wr_id);
-					}else if(data.pr_info && !data.wr_google_map){
-						$('.wr_google_map').html("등록된 업체정보가 없습니다.");
-						$('.pr_info').html(data.pr_info);
-						$('.map_wrap').hide();
-					}else{
-						$('.tab3_pn').html('<div style="text-align:center;padding-top:30px;font-size:12px">등록된 업체정보가 없습니다.</div>');
-					}
-				}else{
-					$('.pr_info').html(data.pr_info);
-					$('.wr_google_map').html(data.wr_google_map);
-					$('.map_wrap').attr('src','http://modublog.co.kr/app_public/map_load.php?bo_table='+bo_table+'&wr_id='+wr_id);
-				}
 				$('#pr_subject_sub').html(data.pr_subject_sub);
-				$('#wr_4').html(data.wr_4);
-				$('#wr_8').html(data.wr_8+"명");
+				$('#wr_4').html(data.u_count);
+				
+				
 				$('#wr_comment').html(data.wr_comment);
 				$('#pr_rec_num').html(data.pr_rec_num);
 				$('#pr_go').attr("href",data.wr_link1);
@@ -205,44 +193,7 @@
 				$('#wr_google_map').html(data.wr_google_map);
 				$('.tab1_pn').html(data.wr_content);
 				
-				// 타이머
-				CountDownTimer(data.d_count[1]+'/'+data.d_count[2]+'/'+data.d_count[0], 'wr_10');
-
-				function CountDownTimer(dt, id)
-				{
-					var end = new Date(dt);
-
-					var _second = 1000;
-					var _minute = _second * 60;
-					var _hour = _minute * 60;
-					var _day = _hour * 24;
-					var timer;
-
-					function showRemaining() {
-						var now = new Date();
-						var distance = end - now;
-						if (distance < 0) {
-
-							clearInterval(timer);
-							document.getElementById(id).innerHTML = '<span class="color_blog">마감</span>';
-
-							return;
-						}
-						var days = Math.floor(distance / _day);
-						var hours = Math.floor((distance % _day) / _hour);
-						var minutes = Math.floor((distance % _hour) / _minute);
-						var seconds = Math.floor((distance % _minute) / _second);
-
-						document.getElementById(id).innerHTML = '<span class="color_blog">'+days+'</span>'+ '일 ';
-						document.getElementById(id).innerHTML += '<span class="color_blog">'+hours+'</span>' + '시간 ';
-						document.getElementById(id).innerHTML += '<span class="color_blog">'+minutes+'</span>' + '분 ';
-						document.getElementById(id).innerHTML += '<span class="color_blog">'+seconds+'</span>' + '초 남음';
-					}
-
-					timer = setInterval(showRemaining, 1000);
-				}
-				// 타이머 끝
-			
+				/*
 				// 배너 슬라이드
 				var banner_slide = new Swiper('.detail_bann', { // 소개이미지 슬라이드
 					pagination: '.sub-pagination',
@@ -256,6 +207,7 @@
 					autoplayDisableOnInteraction:false 
 				});
 				// 배너 슬라이드 끝	
+				*/
 			},   
 			complete:function(){
 				$('.loading').hide();
@@ -264,7 +216,7 @@
 				console.log(e.responseText);  
 			}  
 		});
-		
+		/*
 		//댓글
 		var bo_table = getQuerystring('bo_table');
 		var wr_id = getQuerystring('wr_id');
@@ -290,8 +242,9 @@
 				console.log(e.responseText);  
 			}  
 		}); 
+		*/
 	});
-	
+	/*
 	// 신청자 댓글 스크롤 목록
 	var bo_table = getQuerystring('bo_table');
 	var wr_id = getQuerystring('wr_id');
