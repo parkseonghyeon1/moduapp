@@ -30,6 +30,17 @@
 	</script>
 	
 	<script>
+	// a 버튼
+	$(document).on("click",".btn_priz",function(){
+		var wr_id = $(this).attr("id");
+		location.href="event_view.html?wr_id="+wr_id;
+		event.stopPropagation();
+	})
+	$(document).on("click",".stop",function(){
+		return false;
+	})
+	
+	// 이벤트 리스트 불러오기
 	$(document).ready(function(){
 		var params = {"bo_table":"event"};
 		var string_ev = '';
@@ -72,17 +83,6 @@
 			}  
 		});  	
 	})
-	</script>
-	<script>
-		$(document).on("click",".btn_priz",function(){
-			var wr_id = $(this).attr("id");
-			location.href="event_view.html?wr_id="+wr_id;
-			event.stopPropagation();
-		})
-		$(document).on("click",".stop",function(){
-			return false;
-		})
-		
 	</script>
 </body>
 </html>

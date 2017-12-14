@@ -17,13 +17,18 @@
 	<script src="../js/menu.js"></script>
 </head>
 <style>
-.tab_mn li.on {border-bottom:1px solid #e7744e}
-.tab_mn li.on a.t_b {border-bottom:3px solid #e7744e}
-.ca_wrap .category.blog_c a.on {background:#e7744e}
+.tab_mn li.on {border-bottom:1px solid #ea5217}
+.tab_mn li.on a.t_b {border-bottom:3px solid #ea5217}
+.ca_wrap .category.blog_c a.on {background:#ea5217}
+
+.pd_view_li p,
+.pd_view_li span {font-size:12px}
+.pd_view_li p {padding-top:12px}
+.pd_view_li span {color:#797979}
 </style>
 <body>
 	<div id="header">
-		<h1>'우리말영어' 스토어팜 링크 공유</h1>
+		<h1 class="no_title txt_ov">'우리말영어' 스토어팜 링크 공유</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
 	<div class="bk_gray">
@@ -51,7 +56,10 @@
 				</div>
 			</div>
 			<div class="pr_view_cont">
-				<ul class="tab_mn tab_two">
+				<ul class="tab_mn" id="tab_url1">
+					<li class="on" style="width:100%"><a class="tab1 t_b">쉐어 정보</a></li>
+				</ul>
+				<ul class="tab_mn tab_two" id="tab_url2" style="display:none">
 					<li class="on"><a class="tab1 t_b">쉐어 정보</a></li>
 					<li><a class="tab2 t_b">나만의 URL</a></li>
 				</ul>
@@ -59,41 +67,43 @@
 					<!-- 쉐어 정보 -->
 					<div class="tab1_pn">
 						
-						<p>활동 사항</p>
-						- 나만의 URL을 생성하여 각 매체에 공유
-						
 					</div>
 					<!-- 나만의 URL -->
 					<div class="tab2_pn" style="padding:13px 16px">
 						<div class="ca_wrap" style="height:auto">
 							<div class="category blog_c" style="padding:0 0 16px 0;border-bottom:1px solid #ebebeb">
-								<a href="#none" class="ca_name on" data="" style="width:44px;line-height:20px">링크복사</a>
-								<a href="#none" class="ca_name" data="" style="width:44px;line-height:20px">소스복사</a>
-								<a href="#none" class="ca_name" data="" style="width:44px;line-height:20px">고정위젯</a>
-								<a href="#none" class="ca_name" data="" style="width:44px;line-height:20px">랜덤위젯</a>
+								<a href="#none" class="ca_name on" data="link" style="width:44px;line-height:20px">링크복사</a>
+								<a href="#none" class="ca_name" data="source" style="width:44px;line-height:20px">소스복사</a>
+								<a href="#none" class="ca_name" data="pix_widget" style="width:44px;line-height:20px">고정위젯</a>
+								<a href="#none" class="ca_name" data="random_widget" style="width:44px;line-height:20px">랜덤위젯</a>
 							</div>
 							<!-- 발급 전 -->
 							<a class="btn_tp1 color_share" style="top:13px;right:0;display:none">발급받기</a>
 							<!-- 발급 완료 -->
-							<a class="btn_tp1" style="top:13px;right:0;color:#fff;background:#e7744e;border:1px solid #e7744e">발급완료</a>
+							<a class="btn_tp1" style="top:13px;right:0;color:#fff;background:#ea5217;border:1px solid #ea5217">발급완료</a>
 						</div>
-						<ul id="pd_view_li" class="pd_view_li">
-						
-							<p>홍보문구</p>
-							샤이닝스텔라는 최고 수준의 품질로 믿을 수 있는 제품입니다.
-							<p>URL</p>
-							<xmp><a href="http://moduad.com/url/QAmmSMpgk">http://moduad.com/url/QAmmSMpgk</a></xmp>
-							
-						</ul>
+						<div class="pd_view_li">
+							<p class="title">홍보문구</p>
+							<span id="url_sub"></span>
+							<p class="title">URL</p>
+							<textarea style="font-size:12px;color:#797979;border:none;max-height:100px;width:100%;resize:none" id="u_url" readonly></textarea>
+							<p class="title">주의사항</p>
+							<span id="url_sub">- 공유 참여시 반드시 나만의 URL을 생성하여 생성된 링크를 공유 하여야 합니다.<br>- 업체 사정으로 인해 상품이 변경 될 수 있습니다.<br>- 활동 포인트는 실시간으로 누적되며, 내 포인트 내역에 실시간으로 기록 됩니다.<br>- 부정 카운트 증가 행위가 발견 될 시, 포인트는 지급 되지 않으며 지급된 포인트도 차감 될 수 있습니다.<br>- 고정위젯은 중복으로 다수 설치가 가능합니다. 여러개의 위젯을 설치하여 포인트를 받으세요.<br>- 랜덤위젯은 페이지 또는 블로그당 1개만 설치하실 수 있습니다. 랜덤위젯 중복설치로 인해 포인트 차감 될 수 있습니다.<br>- 음란, 도박등 부적절한 콘텐츠로 공유하여 해당 제품의 이미지를 실추 시키거나 부당한 방법으로 포인트를 취득 할 시 법적 조치 될 수 있습니다!</span>
+						</div>
 						<div id="loading_bar" class="off"></div>
 					</div>		
 				</div>
 			</div>
+			<input type="hidden" id="url_w" value="">
 			<!-- 나만의 URL 카테고리 탭에서 링크복사/소스 복사 일때는 복사하기/공유하기 버튼 , 고정위젯/랜덤위젯 일때는 복사하기/위젯미리보기 버튼 -->
-			<div class="pr_btn_wrap bk_sh" style="display:none">
-				<div class="pr_btn_p">
-					<a id="copy_go">복사하기</a>
-					<a id="sharae_go">공유하기</a>
+			<div class="pr_btn_wrap bk_sh">
+				<div class="pr_btn_p" id="btn_url_n1">
+					<a id="" class="btn_req on" style="width:100%">발급받기</a>
+					<!--<a id="sharae_go">공유하기</a>-->
+				</div>
+				<div class="pr_btn_p" id="btn_url_n2" style="display:none">
+					<a id="" class="btn_url on">복사하기</a>
+					<a id="" class="btn_share on">공유하기</a>
 				</div>
 			</div>
 		</div>
@@ -101,7 +111,7 @@
 	<!-- 페이지 로딩 -->
 	<div id="loading_wraps"></div>
 	<script>
-		//$("#loading_wraps").load("loading.html #lo_share");
+		$("#loading_wraps").load("loading.html #lo_share");
 	</script>
 	
 	<script>
@@ -112,33 +122,34 @@
 		if(tab_s == 'tab1') {
 			$('.tab1_pn').show();
 			$('.tab2_pn').hide();
-			$('.pr_btn_wrap').hide();
+			//$('.pr_btn_wrap').hide();
 		}else if(tab_s == 'tab2') {
 			$('.tab1_pn').hide();
 			$('.tab2_pn').show();
-			$('.pr_btn_wrap').show();
+			//$('.pr_btn_wrap').show();
 		}
 	})
 	
 	$(document).on('click','.category a', function() {
 		$(this).addClass('on').siblings().removeClass('on');	
+		var url = $('#url_w').val();
+		var mb_id = member['mb_id'];
+		var wr_id = getQuerystring('wr_id');		
+		var type = $(this).attr('data');
+		var string = '';
+		if(type == 'link'){
+			string = url;
+		}else if(type == 'source'){
+			string = '<a target="_blank" href="'+url+'">'+url+'</a>';
+		}else if(type == 'pix_widget'){
+			string = '<a target="_blank" href="'+url+'"><img src="https://moduad.com/img/share_img_p.php?wr_id='+wr_id+'&mb_id='+mb_id+'" style="border:0;"></a>';
+		}else if(type == 'random_widget'){
+			string = '<a target="_blank" href="'+url+'?mb_id='+mb_id+'"><img src="https://moduad.com/img/share_img.php'&mb_id='+mb_id+'" style="border:0;"></a>';
+		}
+		$('#u_url').html(string);
+		
+		
 	})
-	/*
-	// 배너 슬라이드
-	var banner_slide = new Swiper('.detail_bann', { // 소개이미지 슬라이드
-		pagination: '.sub-pagination',
-		paginationClickable: true, 		
-		centeredSlides: true, 
-		slidesPerView: 1,
-		loop: false,
-		autoplay: {
-			delay:3200, // slide 시간 실정
-		},
-		autoplayDisableOnInteraction:false 
-	});
-	*/
-	// 배너 슬라이드 끝	
-	
 	
 	// 신청하기 버튼 비로그인
 	/*$(document).on('click','#req_go',function(){
@@ -149,7 +160,6 @@
 			}
 		}
 	})*/
-	
 	
 	//전체 로딩
 	$(document).ready(function(){
@@ -170,18 +180,31 @@
 				$('#header h1').html(data.wr_subject);
 				$('#wr_subject').html(data.wr_subject);
 				$('#pr_subject_sub').html(data.pr_subject_sub);
+				$('#url_sub').html(data.url_sub);
 				$('#wr_4').html(data.u_count);
-				
-				
 				$('#wr_comment').html(data.wr_comment);
 				$('#pr_rec_num').html(data.pr_rec_num);
 				$('#pr_go').attr("href",data.wr_link1);
+				$('#u_url').html(data.u_url);
+				$('#url_w').val(data.u_url);
+				$('.btn_req').attr('data',data.go_url);
 				
-				if(logincheck==1 && data.cnt == 0){
+				/*if(logincheck==1 && data.cnt == 0){
 					$('#req_go').attr("href","product_req_form.html?bo_table="+data.pr_board+"&wr_id="+data.pr_board_id+"&w=w");
 				}
 				if(data.cnt != 0){
 					$('#req_go').text('신청완료');
+				}*/
+				if(data.u_url){
+					$('#btn_url_n1').hide();
+					$('#btn_url_n2').show();
+					$('#tab_url1').hide();
+					$('#tab_url2').show();
+				}else{
+					$('#btn_url_n1').show();
+					$('#btn_url_n2').hide();
+					$('#tab_url1').show();
+					$('#tab_url2').hide();
 				}
 				
 				$.each(data.pr_file,function(key,value){
@@ -215,89 +238,38 @@
 			error:function(e){  
 				console.log(e.responseText);  
 			}  
-		});
-		/*
-		//댓글
-		var bo_table = getQuerystring('bo_table');
+		}); 
+	});
+		
+	$(document).on('click','.btn_req.on',function(){
+		$(this).removeClass('on');
+		var mb_id = member['mb_id'];
 		var wr_id = getQuerystring('wr_id');
-		var params = {"wr_id":wr_id,"bo_table":bo_table};
-		var string_c = '';
+		var wr_7 = $(this).attr('data');
+		var params = {"wr_id":wr_id,"mb_id":mb_id,"wr_7":wr_7};
+		//console.log(wr_7);
 		$.ajax({      
 			type:"POST",  
-			url:"http://modublog.co.kr/app_public/ajax/a_comment_view.php",  
-			data:params,			
+			url:"http://modublog.co.kr/app_public/ajax/a_share_link.php",
+			data:params,
 			success:function(data){
-				//console.log(data);
-				$.each(data,function(key,value){
-					//if(!value.wr_comment_reply){
-					string_c += '<li style="border-bottom:1px solid #ebebeb"><div class="comment_title"><span class="title_sub">'+value.wr_name+'</span><span class="date_txt">'+value.datetime+'</span><span class="comment_re"></span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div><div class="comment_conts">'+value.wr_content+'</div></li>';
-					//}
-					<!-- <a href="'+value.sns_2+'" class="color_blog btn_comment">SNS 보기</a> -->
-				})
-				//console.log(data);
-				$('#cmt_num').html(data.length);
-				$('#pd_view_li').html(string_c);
+				console.log(data);
+				$('#btn_url_n1').hide();
+				$('#btn_url_n2').show();
+				$('#tab_url1').hide();
+				$('#tab_url2').show();
+				$('.tab_two').children().removeClass('on');
+				$('.tab_two li:nth-child(2)').addClass('on');
+				$('.tab1_pn').hide();
+				$('.tab2_pn').show();
 			},   
+			complete:function(){
+			},
 			error:function(e){  
 				console.log(e.responseText);  
 			}  
-		}); 
-		*/
-	});
-	/*
-	// 신청자 댓글 스크롤 목록
-	var bo_table = getQuerystring('bo_table');
-	var wr_id = getQuerystring('wr_id');
-	var params = {"wr_id":wr_id,"bo_table":bo_table};
-	var string = '';
-	var list = 20;
-	var list_num = 20;
-	
-	$(window).scroll(function(){
-		if($(window).scrollTop() == $(document).height() - $(window).height()){
-			var scr_on = $('.tab2_pn').attr('id'); 
-			var linum = $("#pd_view_li li").length;
-			var loading_class = $("#loading_bar").attr("class");
-			var string_c = '';
-			if(scr_on == "scr_on"){
-				if(linum > 0 && loading_class == 'off'){
-					var params = {"list_ar":list,"wr_id":wr_id,"bo_table":bo_table};
-					var string_no = '';
-					$.ajax({      
-						type:"POST",
-						data:params,			
-						url:"http://modublog.co.kr/app_public/ajax/a_comment_view.php",      
-						beforeSend:function(){
-							$("#loading_bar").attr("class","on");
-							$("#loading_bar").html("<div class='loader_wrap' style='height:66px;background:#fff;border-top:1px solid #ebebeb'><img src='../img/icon_loder.gif'></div>");
-						},
-						success:function(data){
-							$.each(data,function(key,value){
-								//if(!value.wr_comment_reply){
-								string_c += '<li style="border-bottom:1px solid #ebebeb"><div class="comment_title"><span class="title_sub">'+value.wr_name+'</span><span class="date_txt">'+value.datetime+'</span><span class="comment_re"></span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div><div class="comment_conts">'+value.wr_content+'</div></li>';
-								//}
-								<!-- <a href="'+value.sns_2+'" class="color_blog btn_comment">SNS 보기</a> -->
-							})
-							$('#pd_view_li').append(string_c);
-							
-							list = list + list_num;
-							
-							$("#loading_bar").attr("class","off");
-							
-							if(!string_c){
-								$("#loading_bar").attr("class","");
-							}
-							console.log(list);
-						},   
-						error:function(e){  
-							console.log(e.responseText);  
-						}  		
-					})
-				}
-			}
-		} 
-	}); 
-	*/
+		});
+	})
 	</script>
 <div id="countdown"></div>
 <div id="newcountdown"></div>

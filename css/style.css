@@ -84,7 +84,7 @@ input::placeholder {color:#989898 !important}
 .btn_t_bk {width:30px;height:30px;text-indent:-9999px;z-index:2}
 .btn_nav {background:url(../img/icon_nav.png)no-repeat;background-size:20px 20px;background-position:50% 50%}
 .btn_close_on {position:absolute;background:url(../img/icon_cancle_on.png)no-repeat;background-size:16px 16px;background-position:50% 50%}
-.btn_search {background:url(../img/icon_search.png)no-repeat;background-size:20px 20px;background-position:50% 70%}
+.btn_search {background:url(../img/icon_search.png)no-repeat;background-size:20px 20px;background-position:50% 50%}
 .btn_search_on {background:url(../img/icon_search_on.png)no-repeat;background-size:20px 20px;background-position:50% 50%}
 .main_bann {position:relative;width:100%;overflow:hidden}
 .main_bann_nav {position:absolute;right:13px;bottom:13px;z-index:2}
@@ -143,7 +143,7 @@ input::placeholder {color:#989898 !important}
 .list_item {overflow:hidden;height:115px;position:relative;padding-left:125px}
 .list_item .list_item_img {position:absolute;left:0;width:125px;top:0;height:115px}
 .list_item .list_item_img  > img {width:100%;height:100%;vertical-align:top}
-.list_item .list_item_txt {padding:20px 10px}
+.list_item .list_item_txt {padding:20px 13px}
 .list_item .list_item_txt .title {font-size:13px}
 .list_b {width:100%;height:99%;border-bottom:1px solid #e9e9e9}
 .conts {color:#343434;font-size:11px;display:inline-block;line-height:18px;width:96%}
@@ -302,7 +302,7 @@ ui-page {background:#fff;height:100%}
 .event_list li:last-child a .list_conts {border-bottom:none}
 .event_list li .list_txt {position:relative}
 .event_list li .btn_priz {position:absolute;right:0;top:50%;margin-top:-13px;}
-.event_list li a .title_sub {font-size:11px;width:96%;height:18px}
+.event_list li a .title_sub {font-size:11px;width:76%;height:18px}
 .event_list li a .date_txt {display:block;font-size:10px;color:#9e9e9e}
 .event_list li a .event_img {position:relative;padding-top:16px}
 .event_list li a .event_img img {width:100%;vertical-align:top;z-index:1}

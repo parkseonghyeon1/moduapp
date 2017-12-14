@@ -13,7 +13,7 @@ table{border-collapse:collapse;border-spacing:0;border:0 none}
 body{-webkit-text-size-adjust:none}
 input[type=text] {border:none;outline:none}
 input:checked[type=checkbox]{background-color:#666;-webkit-appearance:checkbox}
-html input[type=button],input[type=email],input[type=password],input[type=reset],input[type=search],input[type=submit],input[type=tel],input[type=text]{-webkit-appearance:none;border-radius:0;vertical-align:middle}
+html input[type=button],input[type=email],input[type=password],input[type=reset],input[type=search],input[type=submit],input[type=tel],input[type=text]{-webkit-appearance:none;border-radius:4px;vertical-align:middle}
 body,button,input,select,td,textarea,th,div,p {font-size:16px;line-height:1.5;font-family:NotoSansCKJ,NotoSans,Arial,NanumBarunGothic,dotum,applegothic,sans-serif;color:#303030}
 a,span{color:#303030;text-decoration:none;font-family:NotoSansCKJ,NotoSans,Arial,NanumBarunGothic,dotum,applegothic,sans-serif}
 a:active,a:hover{text-decoration:none}
@@ -30,7 +30,8 @@ select option {background:#fff}
 @font-face{
 	font-family: "NotoSansCKJ";
 	src: url("../font/NotoSansCJKkr-Regular.otf");
-}@font-face{
+}
+@font-face{
 	font-family: "NotoSansCKJ-Bold";
 	src: url("../font/NotoSansCJKkr-Bold.otf");
 }
@@ -43,4 +44,8 @@ select option {background:#fff}
 	src: url("../font/NotoSansCJKkr-Regular.otf");
 	src: url("../font/NotoSans-Regular.eot?#iefix")	format("embedded-opentype"),
 		 url("../font/NotoSans-Regular.woff")		format("woff");
+}
+@font-face{
+	font-family: "Century-Gothic-Bold";
+	src: url("../font/GOTHICB.ttf");
 }
