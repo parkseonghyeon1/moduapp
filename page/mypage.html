@@ -6,7 +6,7 @@
 	<meta name="msapplication-tap-highlight" content="no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
-	<title>SNS 홈</title>
+	<title>마이페이지</title>
 	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
@@ -36,7 +36,6 @@
 				<div class="profile_img_b">
 					<div class="profile_img"><img src="" id="mb_photo" onError="this.src='../img/person.png'"></div>
 				</div>
-				<div class="btn_add_img"><input type="file" name="mb_photo" id="mb_photo" onchange="fileInfo_p(this)"></div>
 			</div>
 		</div>
 		<style>
@@ -84,11 +83,10 @@
 	});	
 
 	$(document).on('click','#logout',function(){
-
-			var ummm = {
-				mb_token : window.localStorage.getItem("mb_token")
-			};
-			$.ajax({
+		var ummm = {
+			mb_token : window.localStorage.getItem("mb_token")
+		};
+		$.ajax({
 			type : 'POST',
 			url : 'http://modublog.co.kr/app_public/push/logout.php',
 			data : ummm,
@@ -97,8 +95,8 @@
 				window.localStorage.removeItem("mb_id");
 				window.localStorage.removeItem("mb_nick");
 				window.localStorage.removeItem("mb_point");
-        		window.localStorage.clear();
-        		location.replace("main.html");
+				window.localStorage.clear();
+				location.replace("main.html");
 			}, error : function(xhr, status, error){
 				alert("오류");
 			}

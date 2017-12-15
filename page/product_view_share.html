@@ -36,10 +36,9 @@
 	</div>
 	<div class="bk_gray">
 		<div class="pr_wrap">
-			<div class="detail_bann bk_gray">
-				<div class="swiper-wrapper" id="rolling_wrap">
-					<div class="swiper-slide"><div class="main_bann_img"><img alt="" src="../temp-img/view1.jpg"></div></div>
-					<div class="swiper-slide"><div class="main_bann_img"><img alt="" src="../temp-img/view1.jpg"></div></div>
+			<div class="detail_bann">
+				<div id="rolling_wrap" class="bk_white">
+				
 				</div>
 			</div>	
 			<div class="pr_view_info">
@@ -141,19 +140,20 @@
 		var params = {"sh_id":sh_id,"wr_id":wr_id,"url":url};
 		
 		window.open("http://modublog.co.kr/app_public/ajax/a_share_social.php?wr_id="+wr_id+"&url="+url+"&sh_id="+sh_id);
-		/*
+		
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_share_social.php",
 			data:params,
 			success:function(data){
-				//alert(data);
+				console.log(data);
 			},
 			error:function(){
 			}
 		})
 		return false;		
-		*/
+		
+		
 		return false;
 	})
 	
@@ -270,7 +270,7 @@
 				}
 				
 				$.each(data.pr_file,function(key,value){
-					string += '<div class="swiper-slide"><div class="main_bann_img"><img alt="" src="'+value+'"></div></div>';
+					string += '<div class="main_bann_img" style="position:relative;width:60%;margin:0 auto"><img alt="" src="'+value+'"></div>';
 					console.log(value);
 				}); 
 				$('#rolling_wrap').html(string);
@@ -278,21 +278,6 @@
 				$('#wr_google_map').html(data.wr_google_map);
 				$('.tab1_pn').html(data.wr_content);
 				
-				/*
-				// 배너 슬라이드
-				var banner_slide = new Swiper('.detail_bann', { // 소개이미지 슬라이드
-					pagination: '.sub-pagination',
-					paginationClickable: true, 		
-					centeredSlides: true, 
-					slidesPerView: 1,
-					loop: false,
-					autoplay: {
-						delay:3200, // slide 시간 실정
-					},
-					autoplayDisableOnInteraction:false 
-				});
-				// 배너 슬라이드 끝	
-				*/	
 			},   
 			complete:function(){
 				$('.loading').hide();
@@ -335,8 +320,5 @@
 		});
 	})
 	</script>
-<div id="countdown"></div>
-<div id="newcountdown"></div>
-
 </body>
 </html>
