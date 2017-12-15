@@ -18,24 +18,11 @@
 </head>
 <style>
 #share_rank li {border-bottom:none}
-#share_list li {border-bottom:1px solid #e9e9e9}
-.conts_info {left:108px}
 .rank_b {padding-left:70px}
 .rank_b .rk_img {left:25px}
 .rank_b .rk_rank {width:25px}
-.list_item {height:134px;padding-left:95px}
-.list_item .list_item_img {width:95px;height:134px}
-.sh_point {display:block;width:28px;height:28px;background:url(../img/icon_share_p1.png)no-repeat;background-size:28px 28px;line-height:28px;text-align:center;color:#fff;font-size:8px}
 
-.share_rl {overflow:hidden}
-.share_rl span {display:inline-block;font-size:11px;line-height:57px}
-.share_rl span:nth-child(1) {color:#9e9e9e}
-.share_rl span:nth-child(2) {padding-left:10px;font-family:Century-Gothic-Bold}
-.share_rl span:nth-child(3) {float:right;font-family:Century-Gothic-Bold;padding-right:12px;background:url(../img/icon_triangle_up.png)no-repeat right center;background-size:7px}
 
-.sh_url_b {position:absolute;right:15px;bottom:13px;overflow:hidden}
-.sh_url_en {display:inline-block;font-size:10px;width:55px;height:27px;border:1px solid #ebebeb;border-radius:4px;overflow:hidden;line-height:27px;text-align:center;margin-right:4px;float:left}
-.sh_share {width:27px;height:27px;border:1px solid #ebebeb;border-radius:4px;overflow:hidden;background-color:#fff;background-image:url(../img/icon_share.png);background-repeat:no-repeat;background-size:12px 12px;background-position:45% 50%;float:left}
 </style>
 <body>
 	<div id="nav_v"></div>
@@ -109,7 +96,7 @@
 		</div>
 		<!-- 쉐어 리스트 -->
 		<div class="">
-			<ul id="share_list" class="bk_white">
+			<ul id="" class="share_list bk_white">
 			
 			</ul>
 			<div id="loading_bar" class="off"></div>
@@ -203,7 +190,7 @@
 					}
 					string_sh += '</div></div></a></li>';
 				}); 
-				$("#share_list").html(string_sh);
+				$(".share_list").html(string_sh);
 				
 				//실시간 현황 뿌리기
 				$.each(data[3],function(key,value){
@@ -243,7 +230,7 @@
 			if($(window).scrollTop() == $(document).height() - $(window).height()){
 				//var mb_id = member['mb_id'];
 				var loading_class = $("#loading_bar").attr("class");
-				var linum = $("#share_list").length;
+				var linum = $(".share_list").length;
 				
 				if(linum > 0 && loading_class == 'off'){
 					var params = {"list_ar":list,"mb_id":mb_id};
@@ -264,7 +251,7 @@
 								}
 								string_sh += '</div></div></a></li>';
 							}); 
-							$("#share_list").append(string_sh);
+							$(".share_list").append(string_sh);
 							
 							console.log(data);
 							list = list + list_num;

@@ -1,0 +1,118 @@
+
+<style>
+::-webkit-scrollbar {width:6px;height:6px;border:3px solid #fff}
+::-webkit-scrollbar-thumb {width:50px;height:30px;background:rgba(0,0,0,.2);border-radius:8px}
+::-webkit-scrollbar-track {background:#efefef}
+
+.share_box{
+	width: 230px;
+	margin: auto;
+	background: #fff;
+	border-radius: .4em;
+	overflow: hidden;
+	webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.2);
+    border: 1px solid #eee;
+}
+.share_box h3 {
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    font-weight: bold;
+	font-size:13px;
+}
+.share {
+	padding:0px;
+	text-align:center;
+}
+.share ul {
+	overflow: hidden;
+	width:184px;
+	margin:16px auto 21px;
+}
+.share li {
+	float: left;
+	width: 48px;
+}
+.share li a {
+	display:block;
+}
+.share li span {
+	display: block;
+    margin-top: 3px;
+    font-size: 12px;
+    padding-top: 56px;
+    background-size: 45px auto;
+	text-align:center;
+	background:url(../img/icon_share_b2.png)no-repeat;
+	background-size:48px auto;
+}
+.share ul li a span.ico_f {
+	background-position:0 -76px;
+}
+.share ul li a span.ico_b {
+	background-position:0 -152px;
+}
+</style>
+<div id="popup" style="width:230px;margin-left:-115px;left:50%">
+	<div id="btn_close"><a></a></div>
+	<!--<div id="btn_close"><a></a></div>-->
+	<div class="share_box">
+		<h3>나의 URL 공유하기</h3>
+		<div class="share">
+			<ul>
+				<li>
+					<a id="share_kakao" class="btn_social" href="">
+						<span class="ico_k">카카오톡</span>
+					</a>
+				</li>
+				<li style="margin:0 20px;">
+					<a id="share_facebook" class="btn_social" href="">
+						<span class="ico_f">페이스북</span>
+					</a>
+				</li>
+				<li>
+					<a id="share_blog" class="btn_social" href="">
+						<span class="ico_b">블로그</span>
+					</a>									
+				</li>							
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="mask"></div>
+
+<script>
+$(document).ready(function(){
+	$("#mask").fadeTo("slow",0.7);
+	$("#popup").show();
+	
+	var popHeight = $("#popup").height();
+	$("#popup").css("margin-top","-"+popHeight/2-6+"px");
+	
+	// 팝업 창 로드 시 부모 창 스크롤방지
+	$('html, body').css({'overflow': 'hidden', 'height': '100%'}); // 모달팝업 중 html,body의 scroll을 hidden시킴 
+	$('#mask').on('scroll touchmove mousewheel', function(event) { // 터치무브와 마우스휠 스크롤방지 
+	event.preventDefault();     
+	event.stopPropagation();     
+	return false; });
+
+	// 팝업 창 닫기 후 부모 창 스크롤방지 해제
+	$('html, body').css({'overflow': 'auto', 'height': '100%'}); //scroll hidden 해제 
+	$('#mask').off('scroll touchmove mousewheel'); // 터치무브 및 마우스휠 스크롤 가능
+});
+// 마스크 클릭 닫기
+$(document).on('click','#mask',function(){  
+	$(this).fadeOut(500);
+	$('#popup').fadeOut(500);
+	$("html").css("overflow-y","scroll");
+});
+// 닫기 버튼
+$(document).on('click','#btn_close',function(){
+	$('#mask').fadeOut(500);
+	$('#popup').fadeOut(500);
+});
+
+</script>

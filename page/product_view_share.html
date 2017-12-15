@@ -14,7 +14,10 @@
 	<script src="../js/jquery.js"></script>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/swiper.min.js"></script>
+	<script src="../js/clipboard.min.js"></script>
 	<script src="../js/menu.js"></script>
+	<script src="../../cordova.js"></script>
+	
 </head>
 <style>
 .tab_mn li.on {border-bottom:1px solid #ea5217}
@@ -56,9 +59,11 @@
 				</div>
 			</div>
 			<div class="pr_view_cont">
+				<!-- 발급 전 -->
 				<ul class="tab_mn" id="tab_url1">
 					<li class="on" style="width:100%"><a class="tab1 t_b">쉐어 정보</a></li>
 				</ul>
+				<!-- 발급 완료 -->
 				<ul class="tab_mn tab_two" id="tab_url2" style="display:none">
 					<li class="on"><a class="tab1 t_b">쉐어 정보</a></li>
 					<li><a class="tab2 t_b">나만의 URL</a></li>
@@ -86,7 +91,7 @@
 							<p class="title">홍보문구</p>
 							<span id="url_sub"></span>
 							<p class="title">URL</p>
-							<textarea style="font-size:12px;color:#797979;border:none;max-height:100px;width:100%;resize:none" id="u_url" readonly></textarea>
+							<textarea style="font-size:12px;color:#797979;border:1px solid #f1f1f1;height:auto;min-height:100px;width:100%;resize:none;display:block;box-sizing:border-box;padding:4px 10px" id="u_url" cols="3" readonly onfocus="this.select()"></textarea>
 							<p class="title">주의사항</p>
 							<span id="url_sub">- 공유 참여시 반드시 나만의 URL을 생성하여 생성된 링크를 공유 하여야 합니다.<br>- 업체 사정으로 인해 상품이 변경 될 수 있습니다.<br>- 활동 포인트는 실시간으로 누적되며, 내 포인트 내역에 실시간으로 기록 됩니다.<br>- 부정 카운트 증가 행위가 발견 될 시, 포인트는 지급 되지 않으며 지급된 포인트도 차감 될 수 있습니다.<br>- 고정위젯은 중복으로 다수 설치가 가능합니다. 여러개의 위젯을 설치하여 포인트를 받으세요.<br>- 랜덤위젯은 페이지 또는 블로그당 1개만 설치하실 수 있습니다. 랜덤위젯 중복설치로 인해 포인트 차감 될 수 있습니다.<br>- 음란, 도박등 부적절한 콘텐츠로 공유하여 해당 제품의 이미지를 실추 시키거나 부당한 방법으로 포인트를 취득 할 시 법적 조치 될 수 있습니다!</span>
 						</div>
@@ -102,12 +107,13 @@
 					<!--<a id="sharae_go">공유하기</a>-->
 				</div>
 				<div class="pr_btn_p" id="btn_url_n2" style="display:none">
-					<a id="" class="btn_url on">복사하기</a>
-					<a id="" class="btn_share on">공유하기</a>
+					<a id="" class="btn_url clipboard" data-clipboard-target="#u_url" >복사하기</a>
+					<a id="" class="btn_share">공유하기</a>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div id="share_wrap"></div>
 	<!-- 페이지 로딩 -->
 	<div id="loading_wraps"></div>
 	<script>
@@ -115,21 +121,78 @@
 	</script>
 	
 	<script>
+	$("#u_url").on('keydown keyup', function () {
+	  $(this).height(1).height( $(this).prop('scrollHeight')+12 );	
+	});
+
+	// 공유하기 버튼
+	$(document).on('click','.btn_share',function(){
+		var wr_link2 = $('#url_sub').text();
+		var url = $('#url_w').val();
+		$("#share_wrap").load("share_pop.html",function(){
+		});
+	})
+	// 공유하기 팝업 각 버튼 (카카오|페이스북|네이버블로그)
+	$(document).on('click','.btn_social',function(){
+		
+		var sh_id = $(this).attr("id");
+		var wr_id = getQuerystring("wr_id");
+		var url = $("#url_w").val();
+		var params = {"sh_id":sh_id,"wr_id":wr_id,"url":url};
+		
+		window.open("http://modublog.co.kr/app_public/ajax/a_share_social.php?wr_id="+wr_id+"&url="+url+"&sh_id="+sh_id);
+		/*
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_share_social.php",
+			data:params,
+			success:function(data){
+				//alert(data);
+			},
+			error:function(){
+			}
+		})
+		return false;		
+		*/
+		return false;
+	})
+	
+	// 복사하기 버튼
+	$(document).ready(function(){
+		if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+			$('.btn_url').on('click', function(e){
+				//select_all_and_copy(document.getElementById("u_url"));
+				$('#u_url').focus();
+			});
+		} else {
+			var clipboard = new Clipboard('.btn_url');
+			clipboard.on('success', function(e) {
+				alert('복사 되었습니다.');
+				e.clearSelection();
+			});
+
+			clipboard.on('error', function(e) {
+				alert('선택된 텍스트를 복사하세요.');
+			});
+		}
+	})
+	
 	// 탭메뉴
-	$(document).on('click','.tab_mn li a', function() {
+	$(document).on('click','#tab_url2 li a', function() {
 		$(this).closest('li').addClass('on').siblings().removeClass('on');	
 		var tab_s = $(this).attr('class').substring(0,4);
 		if(tab_s == 'tab1') {
 			$('.tab1_pn').show();
 			$('.tab2_pn').hide();
-			//$('.pr_btn_wrap').hide();
+			$('.pr_btn_wrap').hide();
 		}else if(tab_s == 'tab2') {
 			$('.tab1_pn').hide();
 			$('.tab2_pn').show();
-			//$('.pr_btn_wrap').show();
+			$('.pr_btn_wrap').show();
 		}
 	})
 	
+	// 나만의URL - 링크 카테고리 탭
 	$(document).on('click','.category a', function() {
 		$(this).addClass('on').siblings().removeClass('on');	
 		var url = $('#url_w').val();
@@ -139,16 +202,14 @@
 		var string = '';
 		if(type == 'link'){
 			string = url;
-		}else if(type == 'source'){
+		}else if(type == 'source'){ 
 			string = '<a target="_blank" href="'+url+'">'+url+'</a>';
 		}else if(type == 'pix_widget'){
 			string = '<a target="_blank" href="'+url+'"><img src="https://moduad.com/img/share_img_p.php?wr_id='+wr_id+'&mb_id='+mb_id+'" style="border:0;"></a>';
 		}else if(type == 'random_widget'){
-			string = '<a target="_blank" href="'+url+'?mb_id='+mb_id+'"><img src="https://moduad.com/img/share_img.php'&mb_id='+mb_id+'" style="border:0;"></a>';
+			string = '<a target="_blank" href="'+url+'?mb_id='+mb_id+'"><img src="https://moduad.com/img/share_img.php?&mb_id='+mb_id+'" style="border:0;"></a>';
 		}
 		$('#u_url').html(string);
-		
-		
 	})
 	
 	// 신청하기 버튼 비로그인
@@ -161,7 +222,7 @@
 		}
 	})*/
 	
-	//전체 로딩
+	// 전체 로딩
 	$(document).ready(function(){
 		var mb_id = member['mb_id'];
 		var bo_table = getQuerystring('bo_table');
@@ -200,6 +261,7 @@
 					$('#btn_url_n2').show();
 					$('#tab_url1').hide();
 					$('#tab_url2').show();
+					$('.pr_btn_wrap').hide();
 				}else{
 					$('#btn_url_n1').show();
 					$('#btn_url_n2').hide();
@@ -230,7 +292,7 @@
 					autoplayDisableOnInteraction:false 
 				});
 				// 배너 슬라이드 끝	
-				*/
+				*/	
 			},   
 			complete:function(){
 				$('.loading').hide();
@@ -254,6 +316,8 @@
 			data:params,
 			success:function(data){
 				console.log(data);
+				$('#u_url').html(data);
+				$('#url_w').val(data);
 				$('#btn_url_n1').hide();
 				$('#btn_url_n2').show();
 				$('#tab_url1').hide();

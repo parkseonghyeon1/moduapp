@@ -18,44 +18,89 @@
 </head>
 <body>
 	<style>
-	#search_list li {border-bottom:none}
+	.search_list li {position:relative;border-bottom:1px solid #e9e9e9}
+	.tab_mn li.on {border-bottom:1px solid #aeaeae}
+	.tab_mn li.on a.t_sh {border-bottom:3px solid #ea5217}
+	.pr_end {position:absolute;top:0;left:0;background:#fff;opacity:.6;width:100%;height:100%} 
 	</style>
 	<div id="header">
 		<h1>검색결과</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-    <div class="list_wrap home_list" style="margin-top:0">
-		<ul id="search_list" class="bk_white">
+	<!-- 전체 검색일경우 탭 -->
+	<ul class="tab_mn tab_thr" style="display:none">
+		<li class="on" id="ex_b"><a class="t_b" id="blog_t">BLOG</a></li>
+		<li id="ex_s"><a class="t_s" id="sns_t">SNS</a></li>
+		<li id="ex_sh"><a class="t_sh" id="share_t">SHARE</a></li>
+	</ul>
+	<!-- 검색결과 리스트 -->
+    <div class="search_list" style="margin-top:0">
+		<ul class="blog_list">
 		
 		</ul>
-		<div id="loading_bar" class="off">
-		</div>
+		<ul class="sns_list">
+		
+		</ul>
+		<ul class="share_list">
+		
+		</ul>
+		<div id="loading_bar" class="off"></div>
 	</div>
+	
 	<!-- 페이지 로딩 -->
 	<div id="loading_wraps"></div>
 	<script>
-		$("#loading_wraps").load("loading.html #lo_blog");
-	</script>
-	
-    <script>
-    // 카테고리 on-off
-    $(document).on("click",".home_category a",function(){  
-        $(this).parent().children('a').removeClass('on');
-        $(this).addClass('on');
-    })
-	
-	// 배너 slide	
-	var swiper_ca = new Swiper('.swiper-container', {
-		slidesPerView: 'auto',
-		spaceBetween: 4,
-		init: true
-	});	
+	// 전체 검색
+	$(document).ready(function(){
+		var site_id = getQuerystring('site_id');
+		if(site_id == 'blog'){
+			$("#loading_wraps").load("loading.html #lo_blog");
+			$('.sns_list').hide();
+			$('.share_list').hide();
+		}else if(site_id == 'sns'){
+			$("#loading_wraps").load("loading.html #lo_sns");
+			$('.blog_list').hide();
+			$('.share_list').hide();
+		}else if(site_id == 'share'){
+			$("#loading_wraps").load("loading.html #lo_share");
+			$('.blog_list').hide();
+			$('.sns_list').hide();
+		}else{
+			$("#loading_wraps").load("loading.html #lo_blog");
+			$('.tab_mn').show();
+			$('.blog_list').show();
+			$('.sns_list').hide();
+			$('.share_list').hide();
+		}
+	})
+	// 전체 검색일때 탭 메뉴
+	$(document).on('click','.tab_mn li a', function() {
+		$(this).closest('li').addClass('on').siblings().removeClass('on');	
+		var tab = $(this).attr('id');
+		if(tab == 'blog_t'){
+			$('.blog_list').show();
+			$('.sns_list').hide();
+			$('.share_list').hide();
+		}else if(tab == 'sns_t'){
+			$('.blog_list').hide();
+			$('.sns_list').show();
+			$('.share_list').hide();
+		}else if(tab == 'share_t'){
+			$('.blog_list').hide();
+			$('.sns_list').hide();
+			$('.share_list').show();
+		}
+	})
     </script>
 	<script>
 	$(document).ready(function(){
-		var string = '';
+		var string_b = '';
+		var string_sn = '';
+		var string_sh = '';
 		var stx = decodeURI(getQuerystring('stx'));
-		var params = {"stx":stx};
+		var site_id = getQuerystring('site_id');
+		var mb_id = member['mb_id'];
+		var params = {"stx":stx,"site_id":site_id,"mb_id":mb_id};
 		
 		$.ajax({      
 			type:"POST",  
@@ -63,32 +108,47 @@
 			data:params,
 			success:function(data){
 				$.each(data[0],function(key,value){
-					string += '<li><a href="product_view.html?bo_table='+value.bll_pr_board+'&wr_id='+value.bll_pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.bll_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.bll_wr_subject+'</p><span class="conts txt_ov">'+value.bll_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.bll_comment+'</span>&nbsp;/&nbsp;'+value.bll_rec_num+'</span><span class="info_title"><span>조회</span>'+value.bll_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></div></a></li>';
+					if(value.bll_d_day != '00'){
+						var d_d = 'D-'
+					}
+					if(value.ca_name == 'BLOG'){
+						string_b += '<li><a href="product_view.html?bo_table='+value.pr_board+'&wr_id='+value.pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.comment+'</span>&nbsp;/&nbsp;'+value.rec_num+'</span><span class="info_title"><span>조회</span>'+value.wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></a>';						
+						if(value.end == '1'){
+							string_b += '<div class="pr_end"></div>';
+						}
+						string_b += '</li>';		
+					}else if(value.ca_name == 'SNS'){
+						string_sn += '<li><a href="product_view_sns.html?bo_table='+value.pr_board+'&wr_id='+value.pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.comment+'</span>&nbsp;/&nbsp;'+value.rec_num+'</span><span class="info_title"><span>조회</span>'+value.wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></a>';						
+						if(value.end == '1'){
+							string_sn += '<div class="pr_end"></div>';
+						}
+						string_sn += '</li>';	
+					}else if(value.ca_name == 'SHARE'){
+						string_sh += '<li><a href="product_view_share.html?bo_table='+value.pr_board+'&wr_id='+value.pr_board_id+'&site_id=share"><div class="share_list"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.subject_sub+'</span><span class="sh_point">+'+value.sh_wr_link2+'p</span><div class="conts_info"><span class="info_title"><span>조회</span>'+value.wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.sh_wr_comment_reply+'</span></div></div><div class="sh_url_b">';
+						if(value.sh_url){
+							string_sh += '<span class="sh_url_en color_share">발급완료</span><input type="button" class="sh_share">';
+						}
+						string_sh += '</div></div></div></a>';						
+						if(value.end == '1'){
+							string_sh += '<div class="pr_end"></div>';
+						}
+						string_sh += '</li>';
+					}
 				}); 
-				$("#search_list").append(string);				
+				$(".blog_list").html(string_b);		
+				$(".sns_list").html(string_sn);		
+				$(".share_list").html(string_sh);
+				if(!string_b){
+					$('.blog_list').html('<li style="font-size:12px;padding:60px 13px;color:#707070;text-align:center;border-bottom:none"><b>&#039;'+stx+'&#039;</b>에 대한 BLOG 상품 검색결과가 없습니다.</li>');
+				}
+				if(!string_sn){
+					$('.sns_list').html('<li style="font-size:12px;padding:60px 13px;color:#707070;text-align:center;border-bottom:none"><b>&#039;'+stx+'&#039;</b>에 대한 SNS 상품 검색결과가 없습니다.</li>');
+				}
+				if(!string_sh){
+					$('.share_list').html('<li style="font-size:12px;padding:60px 13px;color:#707070;text-align:center;border-bottom:none"><b>&#039;'+stx+'&#039;</b>에 대한 SHARE 상품 검색결과가 없습니다.</li>');
+				}
+				
 				console.log(data);
-				
-				//메인배너 slide
-				var banner_slide1 = new Swiper('.main_bann', { // 소개이미지 슬라이드
-					pagination: {
-						el: '.sub-pagination',
-					},
-					paginationClickable: true, 		
-					centeredSlides: true, 
-					slidesPerView: 1,
-					loop: true,
-					autoplay: {
-						delay:4200, // slide 시간 실정
-					},
-					autoplayDisableOnInteraction:false 
-				});
-				
-				//상품 slide
-				var swiper = new Swiper('.swiper-container', {
-					slidesPerView: 'auto',
-					spaceBetween: 12,
-					init: true
-				});
 			},  
 			complete:function(){
 				$('.loading').hide();

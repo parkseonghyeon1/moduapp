@@ -419,6 +419,21 @@ ui-page {background:#fff;height:100%}
 
 
 
+/* 쉐어 홈 */
+.share_rl {overflow:hidden}
+.share_rl span {display:inline-block;font-size:11px;line-height:57px}
+.share_rl span:nth-child(1) {color:#9e9e9e}
+.share_rl span:nth-child(2) {padding-left:10px;font-family:Century-Gothic-Bold}
+.share_rl span:nth-child(3) {float:right;font-family:Century-Gothic-Bold;padding-right:12px;background:url(../img/icon_triangle_up.png)no-repeat right center;background-size:7px}
+.sh_url_b {position:absolute;right:15px;bottom:13px;overflow:hidden}
+.sh_url_en {display:inline-block;font-size:10px;width:55px;height:27px;border:1px solid #ebebeb;border-radius:4px;overflow:hidden;line-height:27px;text-align:center;margin-right:4px;float:left}
+.sh_share {width:27px;height:27px;border:1px solid #ebebeb;border-radius:4px;overflow:hidden;background-color:#fff;background-image:url(../img/icon_share.png);background-repeat:no-repeat;background-size:12px 12px;background-position:45% 50%;float:left}
+.share_list li {border-bottom:1px solid #e9e9e9}
+.share_list .conts_info {left:108px}
+.share_list .list_item {height:134px;padding-left:95px}
+.share_list .list_item .list_item_img {width:95px;height:134px}
+.sh_point {display:block;width:28px;height:28px;background:url(../img/icon_share_p1.png)no-repeat;background-size:28px 28px;line-height:28px;text-align:center;color:#fff;font-size:8px}
+
 /* 쉐어 랭킹 */
 .rank_b {padding:10px 0 10px 84px;position:relative}
 .rank_b .rk_rank {width:38px;font-size:10px;line-height:33px;position:absolute;left:0;top:10px;display:inline-block;text-align:center}
@@ -426,7 +441,6 @@ ui-page {background:#fff;height:100%}
 .rank_b .rk_point {font-size:10px;line-height:20px;margin-top:-10px}
 .rank_b .rk_img {width:33px;height:33px;position:absolute;top:10px;left:40px;border-radius:50%;overflow:hidden}
 .rank_b .rk_img img {width:100%;height:100%}
-
 
 
 
