@@ -35,6 +35,7 @@
 		$.ajax({      
 			type:"POST",
 			data:params,
+			url:"http://modublog.co.kr/app_public/ajax/a_list.php",     
 			success:function(data){
 				$.each(data,function(key,value){
 					if(value.is_notice === true){

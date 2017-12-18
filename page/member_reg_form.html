@@ -123,9 +123,11 @@
 				success: function(args){
 					if(terms_id == 'terms_mb'){
 						$('.terms_title').html("회원약관");
+						$('.terms_sub').html('<h3>- 아래의 약관을 확인하신 후 회원가입 하시길 바랍니다.</h3>');
 						$('.terms_cont').html(args.cf_stipulation);
 					}else if(terms_id == 'terms_pv'){
-						$('.terms_title').html("개인정보 수집 및 이용 동의");
+						$('.terms_sub').html('<h3>- 아래의 약관을 확인하신 후 회원가입 하시길 바랍니다.</h3>');
+						$('.terms_title').html("개인정보 수집 및 이용");
 						$('.terms_cont').html(args.cf_privacy);
 					}
 					console.log(args.cf_privacy);

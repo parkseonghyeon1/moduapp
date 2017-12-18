@@ -22,17 +22,19 @@
 		<h1>메세지함</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-	<div class="message_sort" style="position:relative">
-		<a class="on" id="s_recent">최신순</a>
-		<a id="s_read">안읽은순</a>
-		<input type="button" class="btn_tp1" value="전체 읽음" id="btn_read_all">
-		<input type="hidden" id="sort" value="">
+	<div class="list_wrap">
+		<div class="message_sort" style="position:relative">
+			<a class="on" id="s_recent">최신순</a>
+			<a id="s_read">안읽은순</a>
+			<input type="button" class="btn_tp1" value="전체 읽음" id="btn_read_all">
+			<input type="hidden" id="sort" value="">
+		</div>
+		<ul class="list_pn_sd message_list" id="message_li">
+		
+		</ul>
+		<div id="loading_bar" class="off"></div>
+		<div id="loading_bar2" class="off"></div>
 	</div>
-	<ul class="list_pn_sd message_list" id="message_li">
-	
-	</ul>
-	<div id="loading_bar" class="off"></div>
-	<div id="loading_bar2" class="off"></div>
 	<!-- 페이지 로딩 -->
 	<div id="loading_wraps"></div>
 	<script>

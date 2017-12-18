@@ -2,12 +2,12 @@
 ::-webkit-scrollbar {width:6px;height:6px;border:3px solid #fff}
 ::-webkit-scrollbar-thumb {width:50px;height:30px;background:rgba(0,0,0,.2);border-radius:8px}
 ::-webkit-scrollbar-track {background:#efefef}
-.terms_sub h3 {font-size:12px;margin-top:10px;}
+.terms_sub h3 {font-size:11px;margin-top:10px;}
 .terms_cont {border:1px solid #ebebeb;padding:10px !important;margin-top:6px !important}
 .terms_cont2 {display:none;height:130px;border:1px solid #ebebeb;padding:10px;overflow-y:auto;margin:10px 0 16px 0;font-size:11px}
 .prec {padding-bottom:16px}
 .prec ul li {font-size:11px;color:#707070;padding-left:15px;background:url(../img/icon_bullet.gif) no-repeat 4px 9px;line-height:18px}
-.prec_sub {font-size:12px;font-weight:bold;margin-bottom:4px;padding-left:16px;background:url(../img/icon_bullet.png) no-repeat left center}
+.prec_sub {font-size:11px;font-weight:bold;margin-bottom:4px;padding-left:16px;background:url(../img/icon_bullet.png) no-repeat left center}
 </style>
 
 <div id="popup">
@@ -36,7 +36,7 @@ $(document).ready(function(){
 	$("#popup").show();
 	
 	var popHeight = $("#popup").height();
-	$("#popup").css("margin-top","-"+popHeight/2-6+"px");
+	$("#popup").css("margin-top","-"+popHeight/2-16+"px");
 	
 	// 팝업 창 로드 시 부모 창 스크롤방지
 	$('html, body').css({'overflow': 'hidden', 'height': '100%'}); // 모달팝업 중 html,body의 scroll을 hidden시킴 
