@@ -29,13 +29,11 @@
 	</script>
 	
 	<script>
-	/*
 	$(document).ready(function(){
 		var string_no = '';
 		var params = {"bo_table":"notice"};
 		$.ajax({      
-			type:"POST",  
-			url:"http://modublog.co.kr/app_public/ajax/a_list.php",     
+			type:"POST",
 			data:params,
 			success:function(data){
 				$.each(data,function(key,value){
@@ -56,9 +54,8 @@
 			}  
 		});  	
 	})
-	*/
-	</script>
-	<script>
+	
+	// 목록 스크롤
 	var list = 20;
 	var list_num = 20;
 	$(window).scroll(function() {
@@ -73,7 +70,7 @@
 					data:params,			
 					url:"http://modublog.co.kr/app_public/ajax/a_ajax.php",      
 					beforeSend:function(){
-						$("#loading_bar").attr("class","on");
+						$("#loading_bar").attr("class","");
 						$("#loading_bar").html("<div class='loader_wrap' style='height:56px;background:#fff'><img src='../img/icon_loder.gif'></div>");
 					},
 					success:function(data){

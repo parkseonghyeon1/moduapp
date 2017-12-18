@@ -1,18 +1,36 @@
+<style>
+::-webkit-scrollbar {width:6px;height:6px;border:3px solid #fff}
+::-webkit-scrollbar-thumb {width:50px;height:30px;background:rgba(0,0,0,.2);border-radius:8px}
+::-webkit-scrollbar-track {background:#efefef}
+.terms_sub h3 {font-size:12px;margin-top:10px;}
+.terms_cont {border:1px solid #ebebeb;padding:10px !important;margin-top:6px !important}
+.terms_cont2 {display:none;height:130px;border:1px solid #ebebeb;padding:10px;overflow-y:auto;margin:10px 0 16px 0;font-size:11px}
+.prec {padding-bottom:16px}
+.prec ul li {font-size:11px;color:#707070;padding-left:15px;background:url(../img/icon_bullet.gif) no-repeat 4px 9px;line-height:18px}
+.prec_sub {font-size:12px;font-weight:bold;margin-bottom:4px;padding-left:16px;background:url(../img/icon_bullet.png) no-repeat left center}
+</style>
+
 <div id="popup">
 	<div id="btn_close"><a></a></div>
 	<div id="pop_cont">
-		<p>적립금 안내 </p>
-		<div>
-			<div class="pop_cont_txt">
-			모두의 블로그 포인트는 50,000p 이상 만원 단위로<br>출금이 가능합니다.<br></br>포인트 출금은 이용메뉴 > 포인트출금을 누리시면 신청글 작성이 가능합니다.<br></br>
-			신청자와 예금주는 반드시 동일해야 하며<br></br>신분증 확인이 안될 경우 출금이 불가합니다.<br></br>또한 포인트 출금은 <b>신청하신 날 기준 30일 이내</b>로 입금됩니다. (단, 3.3% 세금공세)<br></br>리뷰 규정 위배 시 해당 포인트가 차감될 수 있으니<br>이점 유의해주시기 바랍니다.<br></br>선정된 체험의 체험여부 또는 리뷰 확인이 불가한 경우,<br>해당 월의 출금은 보류 및 이월되오니 유의바랍니다.<br></br>포인트 출금 시 사용되는 개인정보는 배정된 담당자를 제외하고는<br>열람할 수 없으며, 어떠한 경우에도 외부 유출이 되지 않습니다.
-			</div>
-		</div>
+	
+		<!-- 안내사항 없는경우(일반) -->
+		<p class="terms_title"></p>
+		<div class="terms_sub"></div>
+		<div class="terms_cont"></div>
+		<!-- 끝 -->
+		
+		<!-- 안내사항 있을경우 -->
+		<div class="terms_cont2"></div>
+		<div class="terms_prec"></div>
+		<!-- 끝 -->
+		
 	</div>
 </div>
 <div id="mask"></div>
 
 <script>
+// 팝업 이벤트
 $(document).ready(function(){
 	$("#mask").fadeTo("slow",0.5);
 	$("#popup").show();
@@ -30,7 +48,6 @@ $(document).ready(function(){
 	// 팝업 창 닫기 후 부모 창 스크롤방지 해제
 	$('html, body').css({'overflow': 'auto', 'height': '100%'}); //scroll hidden 해제 
 	$('#mask').off('scroll touchmove mousewheel'); // 터치무브 및 마우스휠 스크롤 가능
-
 });
 // 마스크 클릭 닫기
 $(document).on('click','#mask',function(){  
@@ -45,8 +62,3 @@ $(document).on('click','#btn_close',function(){
 });
 
 </script>
-<style>
-::-webkit-scrollbar {width:6px;height:6px;border:3px solid #fff}
-::-webkit-scrollbar-thumb {width:50px;height:30px;background:rgba(0,0,0,.2);border-radius:8px}
-::-webkit-scrollbar-track {background:#efefef}
-</style>

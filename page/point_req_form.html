@@ -103,12 +103,12 @@
 				</div>
 				<em class="em_b"></em>
 				<div class="terms_use">
-					<span class="ct">[필수]</span><a href="#none">포인트 출금 안내</a>
+					<span class="ct">[필수]</span><a href="#none" class="terms" id="terms_pt">포인트 출금 안내 <span class="ft_10">(전문보기)</span></a>
 					<input type="checkbox" id="chk_1" name="check">
 					<label for="chk_1"><span></span></label>
 				</div>
 				<div class="terms_use">
-					<span class="ct">[필수]</span><a href="#none">개인정보 수집 안내</a>
+					<span class="ct">[필수]</span><a href="#none" class="terms" id="terms_pv">개인정보 수집 안내 <span class="ft_10">(전문보기)</span></a>
 					<input type="checkbox" id="chk_2" name="check">
 					<label for="chk_2"><span></span></label>
 				</div>
@@ -118,10 +118,12 @@
 					<a href="#none" id="btn_submit" class="btn_submit">출금신청</a>
 				</div>
 				<div class="bottom_txt">출금신청에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
-				<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
+				<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 <a href="tel:02-3144-2110">02-3144-2110</a><br>일반회원 고객센터 <a href="tel:02-6392-2121">02-6392-2121</a></div>
 			</div>
 		</form>
 	</div>
+	<!-- 팝업 -->
+	<div id="pop"></div>
 	
 	<script>
 	$(document).ready(function(){
@@ -157,6 +159,31 @@
 			}  		
 		})
 		
+		// 약관동의 팝업 - 불러오기
+		$(document).on('click','.terms',function(){
+			var terms_id = $(this).attr('id');
+			$('#pop').load("popup.html", function(){
+				$.ajax({      
+					url: 'http://modublog.co.kr/app_public/ajax/a_terms.php',
+					//data: {'terms_id':terms_id},
+					type: 'POST',
+					success: function(args){
+						if(terms_id == 'terms_pv'){
+							$('.terms_title').html("개인정보 수집 및 이용 동의");
+							$('.terms_cont').html(args.cf_privacy);
+							$('.terms_sub').html('<h3>- 부정출금 방지를 위하여 본인 신분증상의 주민등록번호를 수집하며, 출금 이후 2년간 정보를 보관합니다.</h3>');
+						}else if(terms_id == 'terms_pt'){
+							$('.terms_title').html("포인트 출금 안내");
+							$('.terms_sub').html('<h3 class="prec_sub">포인트 출금 안내사항</h3>');
+							$('.terms_cont').html('<div class="prec"><ul><li>출금 신청은 만원 단위로 가능합니다.</li><li>포인트 출금은 신청하신 월 기준 말일에 지급됩니다.<span style="display:block;font-size:10px">※ 단, 3.3% (사업소득세 3%, 사업소득지방세 0.3%) 세금공제</span></li><li>리뷰 규정 위배 시 해당 포인트가 차감될 수 있으니 이 점 유의해주시기 바랍니다.</li><li>선정된 체험의 체험여부 또는 리뷰 확인이 불가한 경우, 해당 월의 출금은 보류 및 이월되오니 유의바랍니다</li><li>신분증 확인이 안 될 경우 출금이 불가능합니다.</li><li>신청자와 예금주는 반드시 동일해야 합니다.</li><li>해당 개인정보는 배정된 담당자를 제외하고는 열람할 수 없으며, 어떠한 경우에도 외부 유출이 되지 않습니다.<span style="display:block;font-size:10px">※ 단, 미성년자의 경우 보호자의 신분증 파일과 명의가 일치하는 계좌를 첨부하여야 정상 출금이 가능합니다.</span></li></ul></div>');
+						}
+					}, 
+					error:function(e){  	
+					}  
+				});
+			});
+			return false;
+		})
 		// 약관동의 체크박스
 		// 전체동의 선택 시 모든 체크박스 상태 checked true|false
 		$('#chk_all').click(function(){

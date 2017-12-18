@@ -5,7 +5,7 @@
 	}else{
 		logincheck = 1;
 	}
-	logincheck = 1;
+	//logincheck = 1;
 
 	if(logincheck == 1){
 		member['mb_id'] = window.localStorage.getItem("mb_id");

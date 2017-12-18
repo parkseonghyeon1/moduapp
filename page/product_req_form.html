@@ -67,14 +67,9 @@
 		</div>
 		<em class="em_b"></em>
 		<div class="terms_use">
-			<span class="ct">[필수]</span><a href="#none">체험단 이용약관</a>
+			<span class="ct">[필수]</span><a href="#none" class="terms">체험단 이용약관 및 안내사항 <span class="ft_10">(전문보기)</span></a>
 			<input type="checkbox" id="chk_1" name="check">
 			<label for="chk_1"><span></span></label>
-		</div>
-		<div class="terms_use">
-			<span class="ct">[필수]</span><a href="#none">체험단 안내사항</a>
-			<input type="checkbox" id="chk_2" name="check">
-			<label for="chk_2"><span></span></label>
 		</div>
 	</div>
 	<div class="reg_btn">
@@ -82,13 +77,15 @@
 			<a id="btn_submit" class="btn_submit on">신청하기</a>
 		</div>
 		<div class="bottom_txt">신청하기에 문제가 있을 시 1:1 문의에<br>내용을 남겨주시면 친절히 안내해드리겠습니다.</div>
-		<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
+		<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 <a href="tel:02-3144-2110">02-3144-2110</a><br>일반회원 고객센터 <a href="tel:02-6392-2121">02-6392-2121</a></div>
 	</div>
 	<!-- 페이지 로딩 -->
 	<div id="loading_wraps"></div>
 	<script>
 		$("#loading_wraps").load("loading.html #lo_blog");
 	</script>
+	<!-- 팝업 -->
+	<div id="pop"></div>
 </body>
 
 <script>
@@ -105,6 +102,29 @@
 	});
 </script>
 <script>
+	// 약관동의 팝업 - 불러오기
+	$(document).on('click','.terms',function(){
+		$('#pop').load("popup.html", function(){
+			$.ajax({      
+				url: 'http://modublog.co.kr/app_public/ajax/a_terms.php',
+				//data: {'terms_id':terms_id},
+				type: 'POST',
+				success: function(args){
+					$('.terms_title').html("체험단 이용약관");
+					$('.terms_cont').hide();
+					$('.terms_cont2').show();
+					$('.terms_sub').html('<h3 class="prec_sub">이용약관</h3>');
+					
+					$('.terms_cont2').html(args.cf_stipulation)
+					$('.terms_prec').html('<div class="prec"><h3 class="prec_sub">안내사항</h3><ul><li>체험단으로 선정 시 체험안내 이메일이 발송됩니다.</li><li>업체 사정으로 인해 선정인원은 추후 변경될 수 있습니다.</li><li>상품선택은 참고사항으로 선택하신 상품과 다른 상품에 선정될 수 있습니다.</li><li>반드시 신청자 본인이 체험 하셔야 합니다. (단, 대리체험 가능 상품 예외) 제공받으신 체험 상품은 재판매하실 수 없습니다.</li></ul></div>');
+				}, 
+				error:function(e){  	
+				}  
+			});
+		});
+		return false;
+	})
+	
 	$(document).ready(function(){	
 		//약관동의 체크박스
 		// 전체동의 선택 시 모든 체크박스 상태 checked true|false
@@ -119,7 +139,7 @@
 		})
 		// 모든 체크박스 checked 일 때 확인 버튼 on
 		$('input[name=check]').click(function(){
-			if($('#chk_1').prop('checked') && $('#chk_2').prop('checked')){
+			if($('#chk_1').prop('checked')){
 				$('.btn_ok > a').addClass('on');
 			}else{
 				$('.btn_ok > a').removeClass('on');
@@ -156,10 +176,9 @@
 		}
 
 		var agree1 = $('#chk_1:checkbox:checked').val();
-		var agree2 = $('#chk_2:checkbox:checked').val();
 		// 첫 친성일때만 동의
 		if(w != 'u'){
-			if(agree1 != 'on' || agree2 != 'on'){
+			if(agree1 != 'on'){
 				alert("이용약관에 동의해주세요.");
 				return false;
 			}

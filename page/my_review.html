@@ -24,7 +24,6 @@
 	<div id="header">
 		<h1>등록리뷰</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
-		<a href="" class="header_btn_r btn_search2">검색</a>
 	</div>
 	<div class="list_wrap">
 		<ul class="rv_list bk_white" id="rv_li">
@@ -52,18 +51,24 @@
 			success:function(data){
 				console.log(data);
 				$.each(data[0],function(key,value){
-					//블로그 리뷰
+					if(value.tbl_name == 'sns_review'){
+						var txt_ca = '_sns'
+					}else{
+						var txt_ca = '_blog'
+					}
+					//리뷰 목록 불러오기
 					string += '<li><a href="'+value.wr_1+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
 					for(var i = 0; i < 10; i= i+2){
 						if(value.wr_star > i){
-							string += '<span class="star"><img src="../img/star_on.png"></span>';
+							string += '<span class="star"><img src="../img/star_on'+txt_ca+'.png"></span>';
 						}else{
 							string += '<span class="star"><img src="../img/star_off.png"></span>';
 						}
 					}
-					string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_blog">'+value.wr_comment+'</span></span></span></div></div></div></a></li>';			
+					string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color'+txt_ca+'">'+value.wr_comment+'</span></span></span></div></div></div></a></li>';			
 				}); 
 				$("#rv_li").html(string);
+				console.log(data);
 			},   
 			complete:function(){
 				$('.loading').hide();
@@ -73,91 +78,6 @@
 			}  
 		});  
 	})
-	/*
-	var list = 20;
-	var list_num = 20;
-	//var temp = 'all';
-	// 리스트 스크롤
-	$(window).scroll(function() {
-		if($(window).scrollTop() == $(document).height() - $(window).height()){
-			//console.log(temp+"1");
-			if($("#check").val() == 'blog'){
-				var bo_table = 'review';
-				var loading_bar = 'loading_bar';
-				var ca_name = $('.blog_c .on').attr('data');
-			}else{
-				var bo_table = 'sns_review';
-				var ca_name = $('.sns_c .on').attr('data');
-				var loading_bar = 'loading_bar2';
-			}
-			//console.log(temp+"2");
-			var linum = $(".blog li").length;
-			var loading_class = $("#"+loading_bar).attr("class");
-			
-			if(linum > 0 && loading_class == 'off'){
-				var params = {"list_ar":list,"bo_table":bo_table,"ca_name":ca_name};
-				var string = '';
-				$.ajax({      
-					type:"POST",
-					data:params,			
-					url:"http://modublog.co.kr/app_public/ajax/a_ajax.php",      
-					beforeSend:function(){
-						$("#"+loading_bar).html("<div class='loader_wrap' style='height:115px;background:#fff'><img src='../img/icon_loder.gif'></div>");
-					},
-					success:function(data){
-						$.each(data,function(key,value){
-							string += '<li><a href="review_view.html?bo_table='+bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
-							for(var i = 0; i < 10; i= i+2){
-								if(value.wr_star > i){
-									if(bo_table == 'sns_review'){
-										string += '<span class="star"><img src="../img/star_y_on.png"></span>';
-									}else{
-										string += '<span class="star"><img src="../img/star_on.png"></span>';
-									}
-								}else{
-									string += '<span class="star"><img src="../img/star_off.png"></span>';
-								}
-							}
-							if(bo_table == 'sns_review'){
-								var color = 'sns';
-							}else{
-								var color = 'blog';
-							}
-							string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color_'+color+'">'+value.wr_comment+'</span></span></span></div></div></a></li>';			
-						}); 
-						
-						if(bo_table == 'review'){
-							$(".blog").append(string);
-						}else{
-							$(".sns").append(string);
-						}
-						if(ca_name != temp){
-							list = 20;
-						}
-						console.log(list);
-						
-						list = list + list_num;
-						
-						console.log(temp+"/"+ca_name);
-						
-						temp = ca_name;
-						
-						if(!string){
-							list = 20;
-							$("#"+loading_bar).attr("class","");
-							$("#"+loading_bar).html("");
-						}
-					},   
-					error:function(e){  
-						console.log(e.responseText);  
-					}  		
-				})
-			}
-		}	
-	})
-	*/
 	</script>
-	
-
 </body>
 </html>

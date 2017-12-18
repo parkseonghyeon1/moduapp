@@ -64,7 +64,7 @@
 			<div class="nav_footer">
 				<ul class="nav_mn3">
 					<li><a href="setting.html">설정</a></li>
-					<li><a href="#none">개인정보</a></li>
+					<li><a href="#none" class="terms">개인정보</a></li>
 					<li><a href="ad_reg_form.html" class="go_a">광고문의</a></li>
 				</ul>
 			</div>
@@ -77,8 +77,28 @@
 		</div>
 	</nav>
 	<div id="c-mask" class="c-mask"></div><!-- /c-mask -->
+	<!-- 팝업 -->
+	<div id="pop"></div>
 	
 	<script>
+	// 약관동의 팝업 - 불러오기
+	$(document).on('click','.terms',function(){
+		$(".c-mask").trigger('click');
+		$('#pop').load("popup.html", function(){
+			$.ajax({      
+				url: 'http://modublog.co.kr/app_public/ajax/a_terms.php',
+				//data: {'terms_id':terms_id},
+				type: 'POST',
+				success: function(args){
+					$('.terms_title').html("개인정보 취급방침");
+					$('.terms_cont').html(args.cf_privacy);
+				}, 
+				error:function(e){  	
+				}  
+			});
+		});
+		return false;
+	})
 	// 검색 on|off
 	$(document).on('click','#search_on_off',function(){
 		$('#search_b').toggleClass('on');

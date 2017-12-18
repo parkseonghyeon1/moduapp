@@ -68,12 +68,12 @@
 				</div>
 				<em class="em_b"></em>
 				<div class="terms_use">
-					<span class="ct">[필수]</span><a href="#none">회원약관 동의</a>
+					<span class="ct">[필수]</span><a href="#none" id="terms_mb" class="terms">회원약관 동의 <span class="ft_10">(전문보기)</span></a>
 					<input type="checkbox" id="chk_1" name="chk_1" class="chk">
 					<label for="chk_1"><span></span></label>
 				</div>
 				<div class="terms_use">
-					<span class="ct">[필수]</span><a href="#none">개인정보 수집 및 이용 동의</a>
+					<span class="ct">[필수]</span><a href="#none" id="terms_pv" class="terms">개인정보 수집 및 이용 동의 <span class="ft_10">(전문보기)</span></a>
 					<input type="checkbox" id="chk_2" name="chk_2" class="chk">
 					<label for="chk_2"><span></span></label>
 				</div>
@@ -93,7 +93,7 @@
 					<a href="#none" id="submit_btn" class="btn_submit">회원가입 완료</a>
 				</div>
 				<div class="bottom_txt">회원가입에 문제가 있을 시 일반회원 고객센터로<br>전화해주시면 친절히 안내해 드리겠습니다.</div>
-				<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 02-3144-2110<br>일반회원 고객센터 02-6392-2121</div>
+				<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 <a href="tel:02-3144-2110">02-3144-2110</a><br>일반회원 고객센터 <a href="tel:02-6392-2121">02-6392-2121</a></div>
 			</div>
 		</form>
 	</div>
@@ -102,8 +102,41 @@
 	<script>
 		$("#loading_wraps").load("loading.html #lo_blog");
 	</script>
+	<!-- 팝업 -->
+	<div id="pop"></div>
 	
 	<script>
+	// 카테고리 on-off
+    $(document).on("click",".category a",function(){  
+        $(this).parent().children('a').removeClass('on');
+        $(this).addClass('on');
+    })
+	
+	// 약관동의 팝업 - 불러오기
+	$(document).on('click','.terms',function(){
+		var terms_id = $(this).attr('id');
+		$('#pop').load("popup.html", function(){
+			$.ajax({      
+				url: 'http://modublog.co.kr/app_public/ajax/a_terms.php',
+				//data: {'terms_id':terms_id},
+				type: 'POST',
+				success: function(args){
+					if(terms_id == 'terms_mb'){
+						$('.terms_title').html("회원약관");
+						$('.terms_cont').html(args.cf_stipulation);
+					}else if(terms_id == 'terms_pv'){
+						$('.terms_title').html("개인정보 수집 및 이용 동의");
+						$('.terms_cont').html(args.cf_privacy);
+					}
+					console.log(args.cf_privacy);
+				}, 
+				error:function(e){  	
+				}  
+			});
+		});
+		return false;
+	})
+	
 	$(document).ready(function(){	
 		//로그인 되어있는 경우 약관(회원정보수정)
 		if(logincheck == 1){
@@ -160,7 +193,6 @@
 	// iframe 로드 후 이벤트
 	$("#register_frame").on("load", function(){
 		$('.loading').hide();
-
 	});
 	
 	/*function autoResize(iframeObj){

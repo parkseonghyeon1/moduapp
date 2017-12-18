@@ -22,6 +22,7 @@ input::placeholder {color:#989898 !important}
 .color_blog {color:#88cbde !important}
 .color_sns {color:#edaf07 !important}
 .color_share {color:#ea5217 !important}
+.ft_10 {font-size:10px}
 .btn_wrap {overflow:hidden;margin:20px 0;}
 .btn_wrap a {display:block;text-align:center;height:48px;line-height:48px;font-size:12px;border-radius:4px;overflow:hidden}
 .btn_tp1 {color:#88cbde;border:1px solid #ebebeb;border-radius:4px !important;overflow:hidden;width:62px;height:26px;line-height:26px;text-align:center;font-size:10px;position:absolute;right:16px;top:50%;margin-top:-13px;background:#fff}
@@ -72,8 +73,8 @@ input::placeholder {color:#989898 !important}
 #popup {width:90%;margin:0 5%;position:absolute;top:50%;margin-top:-210px;z-index:999;display:none}
 #popup #pop_cont {background:#fff;border-radius:0.4em;overflow:hidden;padding:0 16px}
 #popup .pop_cont_txt {height:300px;overflow-y:auto}
-#popup #pop_cont p {font-size:15px;text-align:center;border-bottom:1px solid #ebebeb;padding:16px 0}
-#popup #pop_cont div {padding:16px 0;font-size:11px;color:#707070}
+#popup #pop_cont p {font-size:15px;text-align:center;border-bottom:1px solid #ebebeb;height:50px;line-height:50px}
+#popup #pop_cont .terms_cont {font-size:11px;color:#707070;height:240px;overflow-y:auto;overflow-x:hidden;padding:0 6px;margin:16px 0}
 #popup #btn_close {position:relative;height:16px;padding:0 4px 10px}
 #popup #btn_close a {position:absolute;right:0;top:0;width:16px;height:16px;background:url(../img/icon_cancle.png)no-repeat;background-size:16px 16px;}
 #mask {position:absolute;top:0;left:0;width:100%;height:100%;background:#000;z-index:99;opacity:.5;display:none;overflow-y:}
@@ -175,6 +176,7 @@ input::placeholder {color:#989898 !important}
 .btn_ok a.on {background:#88cbde;color:#fff;border:1px solid #88cbde;}
 .btn_pw a {border:1px solid #c6c6c6;background:#fff}
 .log_footer {position:absolute;bottom:0px;left:0;width:100%;height:60px;color:#909090;font-size:11px;text-align:center}
+.log_footer a {color:#909090}
 .n_ov_f {position:relative !important}
 
 /* 회원가입 | 광고문의 | 신청 | 리뷰등록 register */
@@ -209,6 +211,7 @@ input::placeholder {color:#989898 !important}
 #btn_zip {margin-top:0;top:8px}
 .bottom_txt {text-align:center;font-size:11px;color:#717171;padding-top:10px}
 .bottom_txt.bt_footer {font-size:10px;color:#909090}
+.bottom_txt.bt_footer a {color:#909090}
 .m_b input[type=text] {height:44px}
 .em_b {margin:13px 0;border-top:1px solid #ebebeb;display:block;height:1}
 .reg_btn {padding:0 16px 20px}
