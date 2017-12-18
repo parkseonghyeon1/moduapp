@@ -69,49 +69,48 @@
         location.replace(url);
         return false;
     });
-    $(function(){
-		//로그인 체크 기능
-        $('#loginclick').click(function(){
-			var ummm = {
-			mb_id : $("#val1").val(),
-			password : $("#val2").val(),
-			mb_token : $("#val3").val()
-			};
+    
+	//로그인 체크 기능
+	$('#loginclick').click(function(){
+		var ummm = {
+		mb_id : $("#val1").val(),
+		password : $("#val2").val(),
+		mb_token : $("#val3").val()
+		};
 
-			$.ajax({
-				type : 'POST',
-				url : 'http://modublog.co.kr/app_public/ajax/a_login.php/',
-				data : ummm,
-				dataType : 'json',
-				success : function(data){
+		$.ajax({
+			type : 'POST',
+			url : 'http://modublog.co.kr/app_public/ajax/a_login.php/',
+			data : ummm,
+			dataType : 'json',
+			success : function(data){
+				if (data=='failure') {
+					alert("이메일 또는 비밀번호가 일치하지 않습니다");	
+				}else if (data!='failure') {	
 					$.each(data,function(key,value){
-						if (data=='failure') {
-							alert("이메일 또는 비밀번호가 일치하지 않습니다");
-						}else if (data!='failure') {
-							window.localStorage.setItem("mb_id",value.mb_id);
-							window.localStorage.setItem("mb_nick",value.mb_nick);
-							window.localStorage.setItem("mb_point",value.mb_point);
-							window.localStorage.setItem("mb_name",value.mb_name);
-							window.localStorage.setItem("mb_zip1",value.mb_zip1);
-							window.localStorage.setItem("mb_addr1",value.mb_addr1);
-							window.localStorage.setItem("mb_addr2",value.mb_addr2);
-							window.localStorage.setItem("mb_hp",value.mb_hp);
-							window.localStorage.setItem("mb_email",value.mb_email);
-							window.localStorage.setItem("mb_homepage",value.mb_homepage);
-							window.localStorage.setItem("mb_sns1",value.mb_sns1);
-							window.localStorage.setItem("mb_sns2",value.mb_sns2);
-							window.localStorage.setItem("mb_token",value.mb_token);
-							location.replace('main.html');
-						}
+						window.localStorage.setItem("mb_id",value.mb_id);
+						window.localStorage.setItem("mb_nick",value.mb_nick);
+						window.localStorage.setItem("mb_point",value.mb_point);
+						window.localStorage.setItem("mb_name",value.mb_name);
+						window.localStorage.setItem("mb_zip1",value.mb_zip1);
+						window.localStorage.setItem("mb_addr1",value.mb_addr1);
+						window.localStorage.setItem("mb_addr2",value.mb_addr2);
+						window.localStorage.setItem("mb_hp",value.mb_hp);
+						window.localStorage.setItem("mb_email",value.mb_email);
+						window.localStorage.setItem("mb_homepage",value.mb_homepage);
+						window.localStorage.setItem("mb_sns1",value.mb_sns1);
+						window.localStorage.setItem("mb_sns2",value.mb_sns2);
+						window.localStorage.setItem("mb_token",value.mb_token);
+						location.replace('main.html');
 					});
-					
-				}, error : function(xhr, status, error){
-					var error_confirm = confirm('데이터 전송 오류입니다. 확인을 누르시면 페이지가 새로고침됩니다.');
-					document.location.reload();
 				}
-			});
-		});		
-    });
+			}, error : function(xhr, status, error){
+				var error_confirm = confirm('데이터 전송 오류입니다. 확인을 누르시면 페이지가 새로고침됩니다.');
+				document.location.reload();
+			}
+		});
+	});		
+   
 	</script>
 	<script>
 	document.addEventListener("deviceready", onDeviceReady, false);
