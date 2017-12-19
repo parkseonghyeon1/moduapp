@@ -231,7 +231,7 @@
 				
 				//띠배너
 				$.each(data[4],function(key,value){
-					string_line += '<div class="swiper-slide"><div class="sub_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.li_image_file+'"></div></div>';
+					string_line += '<div class="swiper-slide"><a href="'+value.li_bo_table+'?wr_id='+value.li_wr_id+'" style="display:block"><div class="sub_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.li_image_file+'"></div></a></div>';
 				});
 				$("#line_wrap").append(string_line); 		
 
@@ -262,7 +262,6 @@
 					paginationClickable: true, 		
 					centeredSlides: true, 
 					slidesPerView: 1,
-					loop: true,
 					autoplay: {
 						delay:10000, // slide 시간 실정
 					},

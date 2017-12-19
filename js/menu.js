@@ -11,10 +11,10 @@
 		member['mb_id'] = window.localStorage.getItem("mb_id");
 		member['mb_nick'] = window.localStorage.getItem("mb_nick");
 		member['mb_point'] = window.localStorage.getItem("mb_point");
-		member['mb_n_point'] = member['mb_point'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		//member['mb_n_point'] = member['mb_point'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		//member['mb_point'] = member['mb_point'].format();
 	}  
-	//member['mb_id'] = 'shinbyro';	
+	member['mb_id'] = 'shinbyro';	
 	
 	/*
 	Number.prototype.format = function(){

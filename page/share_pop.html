@@ -3,62 +3,10 @@
 ::-webkit-scrollbar {width:6px;height:6px;border:3px solid #fff}
 ::-webkit-scrollbar-thumb {width:50px;height:30px;background:rgba(0,0,0,.2);border-radius:8px}
 ::-webkit-scrollbar-track {background:#efefef}
-
-.share_box{
-	width: 230px;
-	margin: auto;
-	background: #fff;
-	border-radius: .4em;
-	overflow: hidden;
-	webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.2);
-    -moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.2);
-    box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.2);
-    border: 1px solid #eee;
-}
-.share_box h3 {
-    height: 45px;
-    line-height: 45px;
-    text-align: center;
-    border-bottom: 1px solid #eee;
-    font-weight: bold;
-	font-size:13px;
-}
-.share {
-	padding:0px;
-	text-align:center;
-}
-.share ul {
-	overflow: hidden;
-	width:184px;
-	margin:16px auto 21px;
-}
-.share li {
-	float: left;
-	width: 48px;
-}
-.share li a {
-	display:block;
-}
-.share li span {
-	display: block;
-    margin-top: 3px;
-    font-size: 12px;
-    padding-top: 56px;
-    background-size: 45px auto;
-	text-align:center;
-	background:url(../img/icon_share_b2.png)no-repeat;
-	background-size:48px auto;
-}
-.share ul li a span.ico_f {
-	background-position:0 -76px;
-}
-.share ul li a span.ico_b {
-	background-position:0 -152px;
-}
 </style>
+
 <div id="popup" style="width:230px;margin-left:-115px;left:50%">
 	<div id="btn_close"><a></a></div>
-	<!--<div id="btn_close"><a></a></div>-->
 	<div class="share_box">
 		<h3>나의 URL 공유하기</h3>
 		<div class="share">
@@ -86,7 +34,7 @@
 
 <script>
 $(document).ready(function(){
-	$("#mask").fadeTo("slow",0.7);
+	$("#mask").fadeTo("slow",0.6);
 	$("#popup").show();
 	
 	var popHeight = $("#popup").height();

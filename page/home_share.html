@@ -21,8 +21,6 @@
 .rank_b {padding-left:70px}
 .rank_b .rk_img {left:25px}
 .rank_b .rk_rank {width:25px}
-
-
 </style>
 <body>
 	<div id="nav_v"></div>
@@ -184,7 +182,11 @@
 				
 				//SHARE 리스트 뿌리기
 				$.each(data[2],function(key,value){
-					string_sh += '<li><a href="product_view_share.html?bo_table='+value.shh_pr_board+'&wr_id='+value.shh_pr_board_id+'&site_id=share"><div class="list_item"><div class="list_item_img"><img src="'+value.shh_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.shh_wr_subject+'</p><span class="conts txt_ov">'+value.shh_subject_sub+'</span><span class="sh_point">+'+value.shh_wr_link2+'p</span><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div><div class="sh_url_b">';
+					string_sh += '<li><a href="product_view_share.html?bo_table='+value.shh_pr_board+'&wr_id='+value.shh_pr_board_id+'&site_id=share"><div class="list_item"><div class="list_item_img"><img src="'+value.shh_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.shh_wr_subject+'</p><span class="conts txt_ov">'+value.shh_subject_sub+'</span><div class="sh_pw"><span class="sh_point">+'+value.shh_wr_link2+'p</span>';
+					if(value.shh_wr_link2 == '20'){
+						string_sh += '<span class="sh_fix"></span>';
+					}
+					string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div><div class="sh_url_b">';
 					if(value.shh_url == '1'){
 						string_sh += '<span class="sh_url_en color_share">발급완료</span><input type="button" class="sh_share">';
 					}
@@ -245,7 +247,11 @@
 						},
 						success:function(data){
 							$.each(data[0],function(key,value){
-								string_sh += '<li><a href="product_view_share.html?bo_table='+value.shh_pr_board+'&wr_id='+value.shh_pr_board_id+'&site_id=share"><div class="list_item"><div class="list_item_img"><img src="'+value.shh_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.shh_wr_subject+'</p><span class="conts txt_ov">'+value.shh_subject_sub+'</span><span class="sh_point">+'+value.shh_wr_link2+'p</span><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div><div class="sh_url_b">';
+								string_sh += '<li><a href="product_view_share.html?bo_table='+value.shh_pr_board+'&wr_id='+value.shh_pr_board_id+'&site_id=share"><div class="list_item"><div class="list_item_img"><img src="'+value.shh_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.shh_wr_subject+'</p><span class="conts txt_ov">'+value.shh_subject_sub+'</span><div class="sh_pw"><span class="sh_point">+'+value.shh_wr_link2+'p</span>';
+								if(value.shh_wr_link2 == '20'){
+									string_sh += '<span class="sh_fix"></span>';
+								}
+								string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div><div class="sh_url_b">';
 								if(value.shh_url == '1'){
 									string_sh += '<span class="sh_url_en color_share">발급완료</span><input type="button" class="sh_share">';
 								}
