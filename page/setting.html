@@ -6,17 +6,18 @@
 	<meta name="msapplication-tap-highlight" content="no" />
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
-	<title>회원탈퇴</title>
+	<title>설정</title>
 	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
 	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/jquery.form.min.js"></script>
 	<script src="../js/menu.js"></script>
+	<script src="../../cordova.js"></script>
 </head>
 <body>
 	<div id="header">
-		<h1>설정</h1>
+		<h1 id="add">설정</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
 	<div class="bk_gray" style="height:100%">
@@ -25,19 +26,19 @@
 				<li>
 					<div class="terms_use">
 						<a>SNS 알림 설정</a>
-						<input type="checkbox" id="chk_1" name="check">
+						<input type="checkbox" id="chk_1" name="alarm_c" value="1" checked>
 						<label for="chk_1"><span></span></label>
 					</div>
 				</li>
 				<li>
 					<div class="terms_use">
 						<a style="text-decoration:none">광고성 알림 설정</a>
-						<input type="checkbox" id="chk_2" name="check">
+						<input type="checkbox" id="chk_2" name="ad_c" value="1" checked>
 						<label for="chk_2"><span></span></label>
 					</div>
 				</li>
 				<li>
-					<p>버전정보<span id="version">현재버전 2.16 (최신버전)</span></p>
+					<p id="asas">버전정보<span id="version">현재버전 2.16 (최신버전)</span></p><input class="input" type="hidden" id="token" name="token">
 				</li>
 			</ul>
 		</div>
@@ -50,4 +51,56 @@
 		</div>
 	</div>
 </body>
+<script>
+	$("#chk_1").change(function(){
+		var chk = $("input:checkbox[id='chk_1']").is(":checked");
+		var mb_token = $("#token").val();
+
+		var ummm = {"chk":chk,"mb_token":mb_token,"mb_set":"mb_set1"};
+		$.ajax({
+			type : 'POST',
+			url : 'http://modublog.co.kr/app_public/ajax/a_push_check.php/',
+			data : ummm,
+			dataType : 'json',
+			success : function(data){
+				//alert(data);
+			}, error : function(xhr, status, error){
+				var error_confirm = confirm('데이터 전송 오류입니다. 확인을 누르시면 페이지가 새로고침됩니다.');
+				document.location.reload();
+			}
+		});
+    })
+	$("#chk_2").change(function(){	
+		var chk = $("input:checkbox[id='chk_2']").is(":checked");
+		var mb_token = $("#token").val();
+
+		var ummm = {"chk":chk,"mb_token":mb_token,"mb_set":"mb_set2"};
+		$.ajax({
+			type : 'POST',
+			url : 'http://modublog.co.kr/app_public/ajax/a_push_check.php/',
+			data : ummm,
+			dataType : 'json',
+			success : function(data){
+				//console.log(data);
+				
+			}, error : function(xhr, status, error){
+				var error_confirm = confirm('데이터 전송 오류입니다. 확인을 누르시면 페이지가 새로고침됩니다.');
+				document.location.reload();
+			}
+		});
+    })
+</script>
+<script>
+	document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+	    FCMPlugin.getToken(
+	      function(token){
+	        $("#token").val(token);
+	      },
+	      function(err){
+	        console.log('error retrieving token: ' + err);
+	      }
+	    )
+	}
+	</script>
 </html>
