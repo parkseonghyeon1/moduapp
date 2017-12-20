@@ -17,7 +17,6 @@
 	<script src="../js/menu.js"></script>
 </head>
 <style>
-.ca_wrap .category a {width:44px;font-size:10px}
 .ca_wrap {padding-bottom:10px;padding-left:13px;padding-right:13px}
 .ca_wrap .category {padding:0}
 </style>
@@ -321,26 +320,6 @@
 					string_bl += '<div class="swiper-slide item"><a href="product_view.html?bo_table='+value.bl_bo_table+'&wr_id='+value.bl_wr_id+'&site_id=blog"><div class="blog_c"><div class="item_img"><img src="'+value.bl_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.bl_wr_subject+'</span></p><span class="sub_txt color_blog">'+value.bl_pr_ca+'</span><span class="sub_txt item_view">조회&nbsp;'+value.bl_wr_hit+'</span></div></div></a></div>';
 				}); 
 				$("#blog_wrap").html(string_bl);
-				//상품 slide - BLOG
-				var swiper1 = new Swiper('.swiper-container1', {
-					slidesPerView: 'auto',
-					spaceBetween: 12,
-				});
-				//상품 slide - SNS
-				var swiper2 = new Swiper('.swiper-container2', {
-					slidesPerView: 'auto',
-					spaceBetween: 12,
-				});
-				//상품 slide - SHARE
-				var swiper3 = new Swiper('.swiper-container3', {
-					slidesPerView: 'auto',
-					spaceBetween: 12,
-				});
-				//상품 slide - EVENT
-				var swiper4 = new Swiper('.swiper-container4', {
-					slidesPerView: 'auto',
-					spaceBetween: 12,
-				});
 			},   
 			error:function(e){  
 				console.log(e.responseText);  
@@ -369,26 +348,6 @@
 					string_sn += '<div class="swiper-slide item"><a href="product_view_sns.html?bo_table='+value.sn_bo_table+'&wr_id='+value.sn_wr_id+'&site_id=sns"><div class="sns_c"><div class="item_img"><img src="'+value.sn_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sn_wr_subject+'</span></p><span class="sub_txt color_sns">'+value.sn_pr_ca+'</span><span class="sub_txt item_view">조회&nbsp;'+value.sn_wr_hit+'</span></div></div></a></div>';
 				}); 
 				$("#sns_wrap").append(string_sn);
-				//상품 slide - BLOG
-				var swiper1 = new Swiper('.swiper-container1', {
-					slidesPerView: 'auto',
-					spaceBetween: 12,
-				});
-				//상품 slide - SNS
-				var swiper2 = new Swiper('.swiper-container2', {
-					slidesPerView: 'auto',
-					spaceBetween: 12,
-				});
-				//상품 slide - SHARE
-				var swiper3 = new Swiper('.swiper-container3', {
-					slidesPerView: 'auto',
-					spaceBetween: 12,
-				});
-				//상품 slide - EVENT
-				var swiper4 = new Swiper('.swiper-container4', {
-					slidesPerView: 'auto',
-					spaceBetween: 12,
-				});
 			},   
 			error:function(e){  
 				console.log(e.responseText);  

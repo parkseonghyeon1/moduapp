@@ -57,7 +57,7 @@
 						var txt_ca = '_blog'
 					}
 					//리뷰 목록 불러오기
-					string += '<li><a href="'+value.wr_1+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
+					string += '<li><a href="'+value.wr_1+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_content+'</span><span class="rv_sub_info star_b">';
 					for(var i = 0; i < 10; i= i+2){
 						if(value.wr_star > i){
 							string += '<span class="star"><img src="../img/star_on'+txt_ca+'.png"></span>';
