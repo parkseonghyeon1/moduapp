@@ -19,7 +19,7 @@
 .color_share {color:#ea5217 !important}
 .ft_10 {font-size:0.83em}
 #header {position:relative;background:#fff;height:44px;line-height:44px;border-bottom:1px solid #dcdcdc;text-align:center}
-#header h1 {font-size:1.16em;font-weight:normal}
+#header h1 {font-size:1.1em;font-weight:normal}
 
 /* 버튼 */
 .header_btn_l {position:absolute;top:0;left:0;width:45px;height:45px;overflow:hidden;text-indent:-9999px}
@@ -29,8 +29,8 @@
 .btn_search2 {background:url(../img/icon_search_bl.png)no-repeat;background-size:17px 17px;background-position:50% 50%}
 .btn_help {background:url(../img/icon_help.png)no-repeat;background-size:17px 17px;background-position:50% 50%}
 .btn_wrap {overflow:hidden;margin:20px 0;}
-.btn_wrap a {display:block;text-align:center;height:48px;line-height:48px;font-size:1em;border-radius:4px;overflow:hidden}
-.btn_tp1 {color:#88cbde;border:1px solid #ebebeb;border-radius:4px !important;overflow:hidden;width:62px;height:26px;line-height:26px;text-align:center;font-size:0.83em;position:absolute;right:16px;top:50%;margin-top:-13px;background:#fff}
+.btn_wrap a {display:block;text-align:center;height:48px;line-height:48px;font-size:0.9em;border-radius:4px;overflow:hidden}
+.btn_tp1 {color:#88cbde;border:1px solid #ebebeb;border-radius:4px !important;overflow:hidden;width:62px;height:26px;line-height:26px;text-align:center;font-size:0.73em;position:absolute;right:16px;top:50%;margin-top:-13px;background:#fff}
 
 /* 기타 */
 .ct_wrap {background:#fff;border-bottom:1px solid #d8d8d8;margin-bottom:10px}
@@ -44,11 +44,11 @@
 .tab_mn li {float:left;width:33.3%;border-bottom:1px solid #aeaeae}
 .tab_mn li.on {border-bottom:1px solid #88cbde}
 .tab_mn li.l_s.on {border-bottom:1px solid #edaf07}
-.tab_mn li a {display:block;text-align:center;font-size:1em;padding:13px 0 12px;border-bottom:3px solid #fff}	
+.tab_mn li a {display:block;text-align:center;font-size:0.9em;padding:13px 0 12px;border-bottom:3px solid #fff}	
 .tab_mn li.on a.t_s {border-bottom:3px solid #edaf07}
 .tab_thr li {width:33.3%}
 .tab_two li {width:50%}
-.ex_info {font-size:1em;padding:40px 0;text-align:center;color:#797979}
+.ex_info {font-size:0.9em;padding:40px 0;text-align:center;color:#797979}
 .loading {position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:9999}
 .loading .load {position:absolute;left:50%;top:50%;width:64px;height:64px;margin-top:-32px;margin-left:-32px}
 .loading .load.ld_blog {background:url(../img/load1.gif)no-repeat center}
@@ -81,7 +81,7 @@
 /* register form input */
 input[type=text],
 input[type=password],
-select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizing:border-box;padding:0 13px;height:44px}
+select {border:0;outline:none;box-shadow:none;font-size:0.9em !important;box-sizing:border-box;padding:0 13px;height:44px}
 .dv_input {border:1px solid #c6c6c6;border-radius:4px;overflow:hidden}
 .dv_input input[type=text],
 .dv_input input[type=password] {width:100%;height:50px}
@@ -103,13 +103,13 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .main_bann_img > img {width:100%;height:100%;vertical-align:top}
 .bann_txt {position:absolute;left:16px;bottom:25px;z-index:2;text-align:left}
 .bann_txt > p {color:#fff;font-size:1.5em}
-.bann_txt > span {color:#fff;display:inline-block;font-size:1em}
+.bann_txt > span {color:#fff;display:inline-block;font-size:0.9em}
 .sub_bann {position:relative;width:100%;overflow:hidden;margin-top:10px}
 .sub_bann_nav {position:absolute;width:30px;bottom:0px !important;left:50%;margin-left:-15px;text-align:center}
 .sub_bann_img {position:relative;z-index:1}
 .sub_bann_img > img {width:100%;vertical-align:top}
 .main_list {margin-top:10px;background:#fff;padding:16px 0;border-top:1px solid #f8f8f8;border-bottom:1px solid #d5d5d5;overflow:hidden;position:relative}
-.main_list > h1 {font-size:1.08em;padding:0 16px 10px}
+.main_list > h1 {font-size:1em;padding:0 16px 10px}
 .main_list .item {float:left;width:119px;text-align:left;margin-right:10px;position:relative;line-height:normal}
 .main_list .item .item_img {position:relative;width:119px;height:119px;border:1px solid #d7d6d7;border-radius:6px;overflow:hidden}
 .main_list .item .item_img > img {width:100%;position:absolute;top:0;left:0;margin:auto;bottom:0;right:0}
@@ -130,9 +130,10 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .ca_wrap {height:28px;position:relative;padding-bottom:5px}
 .pd_wrap {height:166px}
 .ca_wrap .category {padding:0 16px}
-.ca_wrap .category a {font-size:0.75em;color:#707070;margin-right:4px;background:#fff;border-radius:20px;display:inline-block;line-height:28px;width:40px;text-align:center}
+.ca_wrap .category a {font-size:0.8em;color:#707070;margin-right:4px;background:#fff;border-radius:20px;display:inline-block;line-height:28px;width:48px;text-align:center}
 /*.ca_wrap .category a span {padding:0 8px}*/
 /*.ca_wrap .category a {font-size:0.75em;color:#707070;padding:6px 8px;margin-right:4px;background:#fff;border-radius:20px;overflow:hidden;display:inline-block}*/
+.ca_wrap .category .swiper-slide {width:48px}
 .ca_wrap .category a:last-child {margin-right:0} 
 .ca_wrap .category a.on {color:#fff}
 .ca_wrap .category.blog_c a.on {background:#88cbde}
@@ -141,7 +142,7 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 /* 블로그·SNS·SHARE 홈 | 나의체험단 리스트 */
 .home_list {background:#fff;margin-top:10px}
 .home_category {padding:2px 8px 6px;border-bottom:1px solid #efefef}
-.home_category a span {display:inline-block;font-size:1em;color:#ccc;width:40px;text-align:center;margin-right:5px}
+.home_category a span {display:inline-block;font-size:0.9em;color:#ccc;width:40px;text-align:center;margin-right:5px}
 .home_category a span:last-child {margin-right:0}
 .home_category.blog_ct a.on span {color:#88cbde}
 .home_category.sns_ct a.on span {color:#edaf07}
@@ -149,10 +150,10 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .list_item {overflow:hidden;height:115px;position:relative;padding-left:125px}
 .list_item .list_item_img {position:absolute;left:0;width:125px;top:0;height:115px}
 .list_item .list_item_img  > img {width:100%;height:100%;vertical-align:top}
-.list_item .list_item_txt {padding:20px 13px}
-.list_item .list_item_txt .title {font-size:1.08em}
+.list_item .list_item_txt {padding:16px 13px}
+.list_item .list_item_txt .title {font-size:0.9em}
 .list_b {width:100%;height:99%;border-bottom:1px solid #e9e9e9}
-.conts {color:#343434;font-size:0.9em;display:inline-block;line-height:18px;width:96%}
+.conts {color:#343434;font-size:0.88em;display:inline-block;line-height:18px;width:96%}
 .conts_info {font-size:0.75em;color:#797979;position:absolute;bottom:20px;left:135px}
 .conts_info > span,
 .conts_info .info_title > span
@@ -168,7 +169,7 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .share_rl span:nth-child(2) {padding-left:10px;font-family:Century-Gothic-Bold}
 .share_rl span:nth-child(3) {float:right;font-family:Century-Gothic-Bold;padding-right:12px;background:url(../img/icon_triangle_up.png)no-repeat right center;background-size:7px}
 .sh_url_b {position:absolute;right:15px;bottom:13px;overflow:hidden}
-.sh_url_en {display:inline-block;font-size:0.83em;width:55px;height:27px;border:1px solid #ebebeb;border-radius:4px;overflow:hidden;line-height:27px;text-align:center;margin-right:4px;float:left}
+.sh_url_en {display:inline-block;font-size:0.8em;width:55px;height:27px;border:1px solid #ebebeb;border-radius:4px;overflow:hidden;line-height:27px;text-align:center;margin-right:4px;float:left}
 .sh_share {width:27px;height:27px;border:1px solid #ebebeb;border-radius:4px;overflow:hidden;background-color:#fff;background-image:url(../img/icon_share.png);background-repeat:no-repeat;background-size:12px 12px;background-position:45% 50%;float:left}
 .share_list li {border-bottom:1px solid #e9e9e9}
 .share_list .conts_info {left:108px}
@@ -188,12 +189,12 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .dv_input .input_txt2,
 .dv_input .input_txt3 {border-top:1px solid #ebebeb}
 .log_info2 {text-align:center;font-size:0.9em;padding:0px 16px 30px}
-.p_txt {font-size:1em;padding:24px 0 30px;text-align:center;font-family:NotoSansCKJ-Bold}
+.p_txt {font-size:0.9em;padding:24px 0 30px;text-align:center;font-family:NotoSansCKJ-Bold}
 .btn_ok {height:50px;line-height:50px}
 .btn_ok a {background:#f4f4f4;color:#c6c6c6;border:1px solid #c6c6c6;}
 .btn_ok a.on {background:#88cbde;color:#fff;border:1px solid #88cbde;}
 .btn_pw a {border:1px solid #c6c6c6;background:#fff}
-.log_footer {position:absolute;bottom:0px;left:0;width:100%;height:60px;color:#909090;font-size:0.9em;text-align:center}
+.log_footer {position:absolute;bottom:0px;left:0;width:100%;height:60px;color:#909090;font-size:0.8em;text-align:center}
 .log_footer a {color:#909090}
 .n_ov_f {position:relative !important}
 
@@ -201,7 +202,7 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .m_reg_li {background:#fff;margin-bottom:8px}
 .m_reg_li li {padding:0 16px 22px}
 .m_reg_li li:first-child {padding-top:22px}
-.m_reg_li li .title {font-size:1em;padding-bottom:13px;display:block}
+.m_reg_li li .title {font-size:0.9em;padding-bottom:13px;display:block}
 .conf_input {position:relative;}
 .conf_input input {padding-right:80px}
 .conf_input .conf_stat {position:absolute;top:50%;right:8px;width:58px;height:28px;line-height:28px;margin-top:-14px;color:#fff;background:#88cbde;font-size:0.9em;text-align:center;border-radius:4px;overflow:hidden;font-family:NotoSansCKJ}
@@ -213,7 +214,7 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .gender_input input[type=radio] + label span {text-align:center;display:block;font-size:0.9em;line-height:44px;color:#989898}
 .gender_input input[type=radio]:checked + label span {background:#88cbde;color:#fff}
 .terms_wrap {padding:22px 16px}
-.terms_wrap .title {font-size:1em;padding-bottom:20px}
+.terms_wrap .title {font-size:0.9em;padding-bottom:20px}
 .terms_all {padding-bottom:0 !important}
 .terms_all p {font-size:0.83em}
 .terms_use {position:relative;padding-right:30px;font-size:0.9em;padding-bottom:20px}
@@ -227,8 +228,8 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .tel_input select {width:80px;border:1px solid #c6c6c6;float:left;border-radius:4px;overflow:hidden}
 .tel_input em {float:left;display:inline-block;line-height:40px;margin:0 4px}
 #btn_zip {margin-top:0;top:8px}
-.bottom_txt {text-align:center;font-size:0.9em;color:#717171;padding-top:10px}
-.bottom_txt.bt_footer {font-size:0.83em;color:#909090}
+.bottom_txt {text-align:center;font-size:0.8em;color:#717171;padding-top:10px}
+.bottom_txt.bt_footer {font-size:0.73em;color:#909090}
 .bottom_txt.bt_footer a {color:#909090}
 .m_b input[type=text] {height:44px}
 .em_b {margin:13px 0;border-top:1px solid #ebebeb;display:block;height:1}
@@ -238,7 +239,7 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 /* 회원정보 수정 */
 .m_profile_box {position:relative;border-bottom:1px solid #d5d5d5}
 .m_profile_box .profile_info {height:112px}
-.m_profile_box .profile_info p {padding-top:50px;text-align:center;font-size:1em}
+.m_profile_box .profile_info p {padding-top:50px;text-align:center;font-size:0.9em}
 .m_profile_box .profile_info span {display:block;text-align:center;color:#9e9e9e;font-size:0.83em}
 .m_profile_box .btn_add_img {width:30px;height:30px;border-radius:50%;overflow:hidden;position:absolute;background:#fff;z-index:3;box-shadow:0px 1px 3px 0px rgba(0,0,0,0.3);}
 .m_profile_box #img_box1 {position:relative;width:100%;height:150px}
@@ -270,11 +271,11 @@ ui-page {background:#fff;height:100%}
 .list_pn li .list_txt {padding:12px 0}
 .list_pn li .date_txt {font-size:0.83em;color:#9e9e9e;display:block;padding-top:2px} 
 .list_pn li .btn_arrow_r {background:url(../img/icon_arrow_right.png)no-repeat;background-size:13px 14px}
-.list_pn_sd li .title_sub {font-size:1em}
+.list_pn_sd li .title_sub {font-size:0.9em}
 .list_pn_sd li .btn_arrow_r {background:url(../img/icon_arrow_bottom.png)no-repeat;background-size:13px 14px}
 .list_pn_sd li.on  .btn_arrow_r{background:url(../img/icon_arrow_top.png)no-repeat;background-size:13px 14px}
 .list_pn_sd li .list_txt p {height:48px;}
-.list_pn_sd li .list_txt p span {font-size:1em;line-height:48px}
+.list_pn_sd li .list_txt p span {font-size:0.9em;line-height:48px}
 .list_pn .title_sub {font-size:0.9em;display:block;max-height:20px;width:80%;padding-bottom:2px}
 .answer {display:none;}
 .answer img {max-width:100%}
@@ -292,7 +293,7 @@ ui-page {background:#fff;height:100%}
 .ps_r {position:absolute;right:0;top:50%;}
 
 /* 공지사항 상세 */
-.notice_view {font-size:1em;height:100%}
+.notice_view {font-size:0.9em;height:100%}
 .notice_view div {padding:16px 22px;background:#fff}
 .no_title {text-align:left;padding:0 45px}
 
@@ -304,7 +305,7 @@ ui-page {background:#fff;height:100%}
 .comu_view .comu_li .title_sub {font-size:0.9em}
 .comment textarea {background:#fff;width:100%;height:90px;padding:10px;font-size:0.9em;resize:none;border:1px solid #c6c6c6;border-radius:4px;overflow:hidden;outline:none}
 .comu_comment .btn_ok {margin-top:8px;margin-bottom:0}
-.comu_conts {font-size:1em;padding-top:18px}
+.comu_conts {font-size:0.9em;padding-top:18px}
 .comment_list {border-top:1px solid #d7d7d7}
 .comment_list ul {padding-top:8px}
 .comment_list li {border-top:1px solid #ebebeb}
@@ -312,7 +313,7 @@ ui-page {background:#fff;height:100%}
 .comment_title .title_sub {font-size:0.9em;display:inline-block;padding:10px 4px}
 .comment_title .date_txt {font-size:0.83em;display:inline-block;padding:12px 0;color:#9e9e9e}
 .comment_title .btn_comment {font-size:0.83em}
-.comment_conts {font-size:1em;padding-bottom:13px}
+.comment_conts {font-size:0.9em;padding-bottom:13px}
 .comment_img {width:24px;height:24px;border-radius:50%;overflow:hidden;position:absolute;top:50%;margin-top:-12px;left:0}
 .comment_img img {width:100%;height:100%}
 .comment_re222 {font-size:0.83em;display:inline-block;padding:13px 0}
@@ -340,7 +341,7 @@ ui-page {background:#fff;height:100%}
 
 /* 메세지함 목록 */
 .message_sort {padding:13px 16px}
-.message_sort a {font-size:1em;display:inline-block;padding:0 13px;margin-right:10px}
+.message_sort a {font-size:0.9em;display:inline-block;padding:0 13px;margin-right:10px}
 .message_sort a.on {color:#88cbde;background:url(../img/icon_sort_on.png)no-repeat left center;background-size:10px 10px}
 .message_list .title_sub {display:block;max-height:20px;width:90%}
 .message_list .date_txt {display:block;font-size:0.83em;color:#9e9e9e}
@@ -351,16 +352,16 @@ ui-page {background:#fff;height:100%}
 .pr_wrap {overflow:hidden;width:100%}
 .pr_view_info {padding:20px 16px;background:#fff;border-bottom:1px solid #dbdbdb;margin-bottom:10px}
 .pr_view_info .pr_f {overflow:hidden;padding-top:13px}
-.pr_view_info .pr_f .pr_date span {font-size:1em;display:inline-block}
+.pr_view_info .pr_f .pr_date span {font-size:0.9em;display:inline-block}
 .pr_view_info .pr_f .pr_date .dt_sub {width:70px;color:#797979}
 .pr_view_info .title {font-size:1.08em}
 .pr_view_info #pr_subject_sub {display:block;font-size:0.9em;color:#797979}
 .pr_d span:first-child {width:70px;display:block;font-size:0.83em}
 .pr_d span:last-child {display:block;font-size:0.66em}
 .en_info {padding:0 16px}
-.en_info p {font-size:1em}
+.en_info p {font-size:0.9em}
 .en_info .pr_info {padding-top:10px}
-.en_info .wr_google_map {color:#797979;font-size:1em}
+.en_info .wr_google_map {color:#797979;font-size:0.9em}
 .en_info .en_loc {padding:23px 0 10px}
 .tab_mn li.on a.t_b {border-bottom:3px solid #88cbde}
 .pr_view_cont {background:#fff;width:100%}
@@ -374,7 +375,7 @@ ui-page {background:#fff;height:100%}
 .pd_view_li li:last-child {border-bottom:none !important}
 .pr_btn_wrap {position:fixed;bottom:0;left:0;padding:10px 0;width:100%;z-index:2}
 .pr_btn_wrap .pr_btn_p {overflow:hidden;padding:0 18px}
-.pr_btn_wrap .pr_btn_p a {display:block;width:47%;color:#fff;text-align:center;padding:8px 0;font-size:1em;border:1px solid #fff;border-radius:4em;overflow:hidden}
+.pr_btn_wrap .pr_btn_p a {display:block;width:47%;color:#fff;text-align:center;padding:8px 0;font-size:0.9em;border:1px solid #fff;border-radius:4em;overflow:hidden}
 .pr_btn_wrap .pr_btn_p a:first-child {float:left}
 .pr_btn_wrap .pr_btn_p a:last-child {float:right}
 
@@ -386,12 +387,12 @@ ui-page {background:#fff;height:100%}
 .rv_list li .rv_sub_info {padding-top:10px;display:inline-block}
 .rv_img img {width:100%;vertical-align:top}
 .rv_txt {padding:20px 16px}
-.rv_txt p {font-size:1em}
+.rv_txt p {font-size:0.9em}
 .rv_cont {font-size:0.9em}
 .rv_num_box {padding-left:10px;background:url(../img/icon_bar.png)no-repeat left center;margin-left:8px}
 .rv_cmt_list {display:none;border-top:1px solid #efefef}
 .rv_cmt_list .comment_li {border-top:none !important}
-.rv_btn_b {position:absolute;bottom:0;right:16px;width:118px;height:54px}
+.rv_btn_b {position:absolute;bottom:0;right:13px;width:118px;height:54px}
 .rv_btn_b .btn_l {width:55px;left:0;color:#949494}
 .rv_btn_b .btn_r {right:0;width:55px}
 
@@ -402,11 +403,11 @@ ui-page {background:#fff;height:100%}
 .re_star .star img {width:18px;vertical-align:center}
 .rg_title {font-size:0.9em;text-align:center;padding-top:20px}
 .rg_cont {resize:none;height:132px;width:100%;box-sizing:border-box;border:none;padding:13px;font-size:0.9em}
-.rv_select {display:block;height:50px;line-height:50px;font-size:1em;padding:0 10px;width:96%}
+.rv_select {display:block;height:50px;line-height:50px;font-size:0.9em;padding:0 10px;width:96%}
 .rv_list_blog {display:none}
 .rv_list_blog.on {display:block}
 #rv_list {margin-top:-11px;margin-bottom:10px;border:1px solid #c6c6c6;border-top:none}
-#rv_list li {font-size:1em;padding:0 16px;line-height:40px;height:40px;border-bottom:1px solid #ebebeb}
+#rv_list li {font-size:0.9em;padding:0 16px;line-height:40px;height:40px;border-bottom:1px solid #ebebeb}
 #rv_list li:last-child {border-bottom:none}
 #rv_list li span {display:inline-block;width:96%}
 
@@ -419,9 +420,9 @@ ui-page {background:#fff;height:100%}
 .point_txt {margin-top:-12px;line-height:24px;font-size:0.75em;color:#9e9e9e}
 .po_info {padding:18px 16px}
 .po_info .po_txt {padding-left:64px;position:relative}
-.po_info .po_txt p {font-size:1em}
+.po_info .po_txt p {font-size:0.9em}
 .po_info .po_txt span {display:block;font-size:0.9em;color:#909090;padding-top:4px} 
-.po_info .po_txt .pa_state {font-size:1em;position:absolute;left:0;top:0;color:#88cbde}
+.po_info .po_txt .pa_state {font-size:0.9em;position:absolute;left:0;top:0;color:#88cbde}
 .alt_txt {font-size:0.9em;color:#9e9e9e;text-align:right;padding:10px 16px;}
 
 /* 설정 */
@@ -430,13 +431,13 @@ ui-page {background:#fff;height:100%}
 .setting_li li:last-child {border-bottom:none}
 .setting_li li .terms_use input[type=checkbox] + label span {top:50%;margin-top:-8px}
 .setting_li li a,
-.setting_li li p {height:48px;line-height:48px;text-decoration:none;font-size:1em}
+.setting_li li p {height:48px;line-height:48px;text-decoration:none;font-size:0.9em}
 .btm_info {padding-top:20px}
 #ad_bann img {width:100%}
 #version {position:absolute;right:16px;font-size:0.83em;color:#979797}
 
 /* 쉐어 랭킹 */
-.rank_b {padding:10px 0 10px 84px;position:relative}
+.rank_b {padding:6px 0 6px 84px;position:relative}
 .rank_b .rk_rank {width:38px;font-size:0.83em;line-height:33px;position:absolute;left:0;top:10px;display:inline-block;text-align:center}
 .rank_b .rk_view {font-size:0.83em;color:#9e9e9e;display:block}
 .rank_b .rk_point {font-size:0.83em;line-height:20px;margin-top:-10px}
@@ -482,7 +483,7 @@ ui-page {background:#fff;height:100%}
 .share li span {
 	display: block;
     margin-top: 3px;
-    font-size: 1em;
+    font-size: 0.88em;
     padding-top: 56px;
     background-size: 45px auto;
 	text-align: center;

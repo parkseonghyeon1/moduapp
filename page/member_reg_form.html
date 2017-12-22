@@ -113,7 +113,8 @@
     })
 	
 	// 약관동의 팝업 - 불러오기
-	$(document).on('click','.terms',function(){
+	$(document).on('click','.terms',function(e){
+		e.preventDefault();
 		var terms_id = $(this).attr('id');
 		$('#pop').load("popup.html", function(){
 			$.ajax({      
