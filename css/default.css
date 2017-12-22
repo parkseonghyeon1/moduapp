@@ -24,6 +24,7 @@ textarea, input[type=text] {box-sizing:border-box}
 div, textarea, input {outline:none}
 a, span {font-family:'NotoSansCKJ','돋음',Dotum,Arial,applegothic,sans-serif}
 a {-webkit-tap-highlight-color:transparent;-webkit-tap-highlight-color:rgba(0,0,0,0);text-decoration:none;color:#303030;font-size:1em}
+select, select option {background:#fff !important}
 /* all */
 ::-webkit-input-placeholder { color:#989898; }
 ::-moz-placeholder { color:#989898; } /* firefox 19+ */
