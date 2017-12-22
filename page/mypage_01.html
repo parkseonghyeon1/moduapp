@@ -149,7 +149,10 @@
 						string += '<a class="btn_tp1 btn_r" style="color:#949494">'+txt_s+'</a>';
 					}
 					string += '</div></div>';
-					if(my_p == 'my_p3' || value.wr_10 == '종료'){
+					if(my_p == 'my_p1' && value.wr_10 == '종료'){
+						string+= '<div class="end_mask"></div>';
+					}
+					if(my_p == 'my_p3'){
 						string+= '<div class="end_mask"></div>';
 					}
 					string+='</li>';

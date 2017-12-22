@@ -128,7 +128,7 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .swiper-wrapper .item:first-child {padding-left:16px}
 /*.ca_wrap {height:28px;position:relative;padding-bottom:5px;border-bottom:1px solid #e9e9e9}*/
 .ca_wrap {position:relative;height:32px;}
-.ca_wrap2 {position:relative}
+.ca_wrap2 {position:relative;padding:10px 8px 8px;border:1px solid #efefef;overflow:hidden}
 .pd_wrap {height:166px}
 .ca_wrap .category {padding:0 16px}
 .ca_wrap .category a {width:45px !important;font-size:1em;color:#707070;margin-right:6px;background:#fff;border-radius:20px;display:inline-block;line-height:27px;width:40px;text-align:center}
@@ -142,9 +142,10 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 
 /* 블로그·SNS·SHARE 홈 | 나의체험단 리스트 */
 .home_list {background:#fff;margin-top:10px}
-.home_category {padding:10px 8px 8px;border-bottom:1px solid #efefef}
+.home_category {}
 .home_category a span {display:inline-block;font-size:1em;color:#ccc;width:45px;text-align:center;margin-right:5px}
 .ca_wrap .category .swiper-slide {width:45px}
+.ca_wrap2 .swiper-slide {width:45px}
 .home_category a span:last-child {margin-right:0}
 .home_category.blog_ct a.on span {color:#88cbde}
 .home_category.sns_ct a.on span {color:#edaf07}

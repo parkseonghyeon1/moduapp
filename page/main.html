@@ -39,7 +39,7 @@
 			<div class="ca_wrap">
 				<div class="swiper-container1_1">
 					<div class="swiper-wrapper category blog_c">
-						<div class="swiper-slide"><a href="#" class="on" data="all">전체</a></div>
+						<div class="swiper-slide"><a href="#none" class="on" data="all">전체</a></div>
 						<div class="swiper-slide"><a href="#none" data="food">맛집</a></div>
 						<div class="swiper-slide"><a href="#none" data="fashion">패션</a></div>
 						<div class="swiper-slide"><a href="#none" data="beauty">뷰티</a></div>
@@ -265,11 +265,21 @@
 						delay:10000, // slide 시간 실정
 					},
 				});	
-				
 				//상품 slide - BLOG
 				var swiper1 = new Swiper('.swiper-container1', {
+					initialSlide: 0,
 					slidesPerView: 'auto',
 					spaceBetween: 12,
+					init: true,
+				});
+				//상품 slide - SNS 
+				var swiper2 = new Swiper('.swiper-container2', {
+					initialSlide: 0,
+					slidesPerView: 'auto',
+					spaceBetween: 12,
+					init: true,
+					//observer: true,
+					//observeParents: true,
 				});
 				//상품 slide - SHARE
 				var swiper3 = new Swiper('.swiper-container3', {
@@ -281,7 +291,6 @@
 					slidesPerView: 'auto',
 					spaceBetween: 12,
 				});
-				
 				console.log(data);
 			},   
 			complete:function(){
@@ -315,6 +324,10 @@
 					string_bl += '<div class="swiper-slide item"><a href="product_view.html?bo_table='+value.bl_bo_table+'&wr_id='+value.bl_wr_id+'&site_id=blog"><div class="blog_c"><div class="item_img"><img src="'+value.bl_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.bl_wr_subject+'</span></p><span class="sub_txt color_blog">'+value.bl_pr_ca+'</span><span class="sub_txt item_view">조회&nbsp;'+value.bl_wr_hit+'</span></div></div></a></div>';
 				}); 
 				$("#blog_wrap").html(string_bl);
+				
+				var swiper1 = document.querySelector('.swiper-container1').swiper;
+				swiper1.update();
+				swiper1.slideTo(0,20);
 			}, 
 			complete:function(){
 			
@@ -328,6 +341,7 @@
 	
 	// SNS 카테고리 선택
 	$(document).on('click','.sns_c a',function(){
+			
 		var data = $(this).attr("data");
 		var params = {"bo_table":data,"type":"sns"};
 		$("#sns_wrap").html("");
@@ -341,35 +355,18 @@
 				$("#sns_wrap").html("<div class='loader_wrap'><img src='../img/icon_loder.gif'></div>");
 			},        
 			success:function(data){
-				//$('.swiper-container2').addClass('swiper2_on');
-				//$('.swiper2_on').removeClass('swiper-container2');
 				$("#sns_wrap").html("");
 				//SNS 뿌리기
 				$.each(data,function(key,value){
 					string_sn += '<div class="swiper-slide item"><a href="product_view_sns.html?bo_table='+value.sn_bo_table+'&wr_id='+value.sn_wr_id+'&site_id=sns"><div class="sns_c"><div class="item_img"><img src="'+value.sn_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sn_wr_subject+'</span></p><span class="sub_txt color_sns">'+value.sn_pr_ca+'</span><span class="sub_txt item_view">조회&nbsp;'+value.sn_wr_hit+'</span></div></div></a></div>';
 				}); 
 				$("#sns_wrap").append(string_sn);
-				//상품 slide - SNS
-				//var swiper2 = new Swiper('.swiper2_on', {
-				//	slidesPerView: 'auto',
-				//	spaceBetween: 12,
-				//});
-				//상품 slide - SNS
-				var swiper2 = new Swiper('.swiper-container2', {
-					slidesPerView: 'auto',
-					spaceBetween: 12,
-					init: true,
-					on: {
-						init: function () {
-						  console.log('swiper initialized');
-						},
-					},
-				});
+				
+				var swiper2 = document.querySelector('.swiper-container2').swiper;
+				swiper2.update();
+				swiper2.slideTo(0,20);
 			},  
 			complete:function(){
-				// init Swiper
-				swiper2.init();
-			
 			},   
 			error:function(e){  
 				console.log(e.responseText);  
