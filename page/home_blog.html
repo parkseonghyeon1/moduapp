@@ -51,7 +51,7 @@
 			</div>
 		</div>
 		<div class="home_list">
-			<div class="ca_wrap">
+			<div class="ca_wrap2">
 				<div class="swiper-container">
 					<div class="swiper-wrapper home_category blog_ct">
 						<a href="#none" class="on" data="all"><span>전체</span></a>
@@ -122,7 +122,7 @@
 				
 				//블로그 뿌리기
 				$.each(data[3],function(key,value){
-					string_bl += '<li><a href="product_view.html?bo_table='+value.bll_pr_board+'&wr_id='+value.bll_pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.bll_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.bll_wr_subject+'</p><span class="conts txt_ov">'+value.bll_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.bll_comment+'</span>&nbsp;/&nbsp;'+value.bll_rec_num+'</span><span class="info_title"><span>조회</span>'+value.bll_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></div></a></li>';
+					string_bl += '<li><a href="product_view.html?bo_table='+value.bll_pr_board+'&wr_id='+value.bll_pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.bll_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.bll_wr_subject+'</p><span class="conts txt_ov">'+value.bll_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.bll_comment+'</span>/'+value.bll_rec_num+'</span><span class="info_title"><span>조회</span>'+value.bll_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></div></a></li>';
 				}); 
 				$("#blog_list").append(string_bl);
 				console.log(data);
@@ -181,7 +181,7 @@
 				$("#blog_list").html("");
 				//블로그 뿌리기
 				$.each(data,function(key,value){
-					string_bl += '<li><a href="product_view.html?bo_table='+value.bll_pr_board+'&wr_id='+value.bll_pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.bll_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.bll_wr_subject+'</p><span class="conts txt_ov">'+value.bll_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.bll_comment+'</span>&nbsp;/&nbsp;'+value.bll_rec_num+'</span><span class="info_title"><span>조회</span>'+value.bll_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></div></a></li>';
+					string_bl += '<li><a href="product_view.html?bo_table='+value.bll_pr_board+'&wr_id='+value.bll_pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.bll_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.bll_wr_subject+'</p><span class="conts txt_ov">'+value.bll_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.bll_comment+'</span>/'+value.bll_rec_num+'</span><span class="info_title"><span>조회</span>'+value.bll_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></div></a></li>';
 				}); 
 				$("#blog_list").html(string_bl);
 				
@@ -223,7 +223,7 @@
 					success:function(data){
 						//블로그 뿌리기
 						$.each(data,function(key,value){
-							string_bl += '<li><a href="product_view.html?bo_table='+value.bll_pr_board+'&wr_id='+value.bll_pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.bll_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.bll_wr_subject+'</p><span class="conts txt_ov">'+value.bll_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.bll_comment+'</span>&nbsp;/&nbsp;'+value.bll_rec_num+'</span><span class="info_title"><span>조회</span>'+value.bll_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></div></a></li>';
+							string_bl += '<li><a href="product_view.html?bo_table='+value.bll_pr_board+'&wr_id='+value.bll_pr_board_id+'&site_id=blog"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.bll_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.bll_wr_subject+'</p><span class="conts txt_ov">'+value.bll_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_blog">'+value.bll_comment+'</span>/'+value.bll_rec_num+'</span><span class="info_title"><span>조회</span>'+value.bll_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.bll_d_day+'</span></div></div></div></div></a></li>';
 						}); 
 						$("#blog_list").append(string_bl);
 						

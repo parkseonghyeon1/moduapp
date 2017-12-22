@@ -18,6 +18,7 @@
 </head>
 <body>
 	<style>
+	.search_list ul {background:#fff}
 	.search_list li {position:relative;border-bottom:1px solid #e9e9e9}
 	.tab_mn li.on {border-bottom:1px solid #aeaeae}
 	.tab_mn li.on a.t_sh {border-bottom:3px solid #ea5217}
@@ -27,28 +28,30 @@
 		<h1>검색결과</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
 	</div>
-	<!-- 전체 검색일경우 탭 -->
-	<ul class="tab_mn tab_thr" style="display:none">
-		<li class="on" id="ex_b"><a class="t_b" id="blog_t">BLOG</a></li>
-		<li id="ex_s"><a class="t_s" id="sns_t">SNS</a></li>
-		<li id="ex_sh"><a class="t_sh" id="share_t">SHARE</a></li>
-	</ul>
-	<!-- 검색결과 리스트 -->
-    <div class="search_list" style="margin-top:0">
-		<ul class="blog_list">
-		
+	<div class="list_wrap">
+		<!-- 전체 검색일경우 탭 -->
+		<ul class="tab_mn tab_thr" style="display:none">
+			<li class="on" id="ex_b"><a class="t_b" id="blog_t">BLOG</a></li>
+			<li id="ex_s"><a class="t_s" id="sns_t">SNS</a></li>
+			<li id="ex_sh"><a class="t_sh" id="share_t">SHARE</a></li>
 		</ul>
-		<ul class="sns_list">
-		
-		</ul>
-		<ul class="share_list">
-		
-		</ul>
-		<div id="loading_bar" class="off"></div>
+		<!-- 검색결과 리스트 -->
+		<div class="search_list" style="margin-top:0">
+			<ul class="blog_list">
+			
+			</ul>
+			<ul class="sns_list">
+			
+			</ul>
+			<ul class="share_list">
+			
+			</ul>
+			<div id="loading_bar" class="off"></div>
+		</div>
 	</div>
-	
 	<!-- 페이지 로딩 -->
 	<div id="loading_wraps"></div>
+	
 	<script>
 	// 전체 검색
 	$(document).ready(function(){
