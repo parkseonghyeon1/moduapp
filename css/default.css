@@ -15,8 +15,6 @@ input[type=text] {border:none;outline:none}
 input:checked[type=checkbox]{background-color:#666;-webkit-appearance:checkbox}
 html input[type=button],input[type=email],input[type=password],input[type=reset],input[type=search],input[type=submit],input[type=tel],input[type=text]{-webkit-appearance:none;border-radius:4px;vertical-align:middle}
 body,button,input,select,td,textarea,th,p {line-height:1.5;font:1em/1.6 'NotoSansCKJ','돋음',Dotum,Arial,applegothic,sans-serif;font-size:9pt;color:#303030}
-body,button,input,select,td,textarea,th {line-height:1.5;font:1em/1.6 'NotoSansCKJ','돋음',Dotum,Arial,applegothic,sans-serif;font-size:11pt;color:#303030}
-body,button,input,select,td,textarea,th,p {line-height:1.5;font:1em/1.6 'NotoSansCKJ','돋음',Dotum,Arial,applegothic,sans-serif;font-size:11pt;color:#303030}
 a:active,a:hover{text-decoration:none}
 address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:400}
 button::-moz-focus-inner{border:0;padding:0}
@@ -26,8 +24,8 @@ textarea, input[type=text] {box-sizing:border-box}
 div, textarea, input {outline:none}
 a, span {font-family:'NotoSansCKJ','돋음',Dotum,Arial,applegothic,sans-serif}
 a {-webkit-tap-highlight-color:transparent;-webkit-tap-highlight-color:rgba(0,0,0,0);text-decoration:none;color:#303030;font-size:1em}
-select, select option {background:#fff !important}
 /* all */
+select, select option {background:#fff !important}
 ::-webkit-input-placeholder { color:#989898; }
 ::-moz-placeholder { color:#989898; } /* firefox 19+ */
 :-ms-input-placeholder { color:#989898; } /* ie */

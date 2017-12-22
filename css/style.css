@@ -348,7 +348,6 @@ ui-page {background:#fff;height:100%}
 .message_sort a.on {color:#88cbde;background:url(../img/icon_sort_on.png)no-repeat left center;background-size:10px 10px}
 .message_list .title_sub {display:block;max-height:20px;width:90%}
 .message_list .date_txt {display:block;font-size:0.83em;color:#9e9e9e}
-/*.btn_read_all {position:absolute;right:16px;width:60px;font-size:0.83em;top:50%;margin-top:-14px;border:1px solid #ebebeb;border-radius:4px !important;overflow:hidden;display:inline-block;height:26px;background:#fff;color:#88cbde}*/
 .r_memo {color:#909090}
 
 /* 상품 상세 */
