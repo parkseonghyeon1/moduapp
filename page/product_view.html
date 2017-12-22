@@ -15,6 +15,7 @@
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/swiper.min.js"></script>
 	<script src="../js/menu.js"></script>
+	<script src="../../cordova.js"></script>
 </head>
 <body>
 	<div id="header">
@@ -166,6 +167,7 @@
 				$('#wr_comment').html(data.wr_comment);
 				$('#pr_rec_num').html(data.pr_rec_num);
 				$('#pr_go').attr("href",data.wr_link1);
+
 				
 				if(logincheck==1 && data.cnt == 0){
 					$('#req_go').attr("href","product_req_form.html?bo_table="+data.pr_board+"&wr_id="+data.pr_board_id+"&w=w");
@@ -322,6 +324,13 @@
 			}
 		} 
 	}); 
+
+	$(document).on('click','#pr_go',function(){
+        var url = $(this).attr("href");
+        window.open(url);
+        return false;
+    });
+
 	</script>
 	<script>
 </script>
