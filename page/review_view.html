@@ -15,6 +15,7 @@
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/swiper.min.js"></script>
 	<script src="../js/menu.js"></script>
+	<script src="../../cordova.js"></script>
 </head>
 <style>
 .star_b span {margin-right:3px;font-size:9px;color:#797979}
@@ -170,10 +171,10 @@
 						var txt_c = 'color_sns';
 					}
 					if(value.wr_1 && !value.wr_1_2){
-						com_string += '<a href="'+value.wr_1+'" class="btn_tp1 color'+txt_ca+'" value="리뷰보기" style="right:0;width:55px">리뷰보기</a>';
+						com_string += '<a href="'+value.wr_1+'" class="btn_tp1 go_inapp color'+txt_ca+'" value="리뷰보기" style="right:0;width:55px">리뷰보기</a>';
 					}
 					if(value.wr_1_2){
-						com_string += '<a href="'+value.wr_1+'" class="btn_tp1 color'+txt_ca+'" style="margin-right:16px;width:55px">리뷰보기</a><a href="'+value.wr_1_2+'" class="btn_tp1 color'+txt_ca+'" style="right:0;width:26px;font-size:15px">+</a>';
+						com_string += '<a href="'+value.wr_1+'" class="btn_tp1 go_inapp color'+txt_ca+'" style="margin-right:16px;width:55px">리뷰보기</a><a href="'+value.wr_1_2+'" class="btn_tp1 go_inapp color'+txt_ca+'" style="right:0;width:26px;font-size:15px">+</a>';
 					}						
 					com_string += '</div><div class="comment_conts">'+value.wr_content+'</div></li>';					
 				})
@@ -186,8 +187,14 @@
 		
 		//$('html,body').animate({scrollTop : $(this).parent('li').offset().top},400);
 		$(this).closest('li').toggleClass('on').find('.rv_cmt_list').slideToggle().end().siblings().removeClass('on').find('.rv_cmt_list').slideUp();
-		
+
 	})
+
+	$(document).on('click','.go_inapp',function(){
+        var url = $(this).attr("href");
+        window.open(url);
+        return false;
+    });
 	</script>	
 </body>
 </html>

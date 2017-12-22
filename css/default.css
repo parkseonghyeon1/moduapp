@@ -14,7 +14,15 @@ table{border-collapse:collapse;border-spacing:0;border:0 none}
 input[type=text] {border:none;outline:none}
 input:checked[type=checkbox]{background-color:#666;-webkit-appearance:checkbox}
 html input[type=button],input[type=email],input[type=password],input[type=reset],input[type=search],input[type=submit],input[type=tel],input[type=text]{-webkit-appearance:none;border-radius:4px;vertical-align:middle}
+<<<<<<< HEAD
 body,button,input,select,td,textarea,th,p {line-height:1.5;font:1em/1.6 'NotoSansCKJ','돋음',Dotum,Arial,applegothic,sans-serif;font-size:9pt;color:#303030}
+=======
+<<<<<<< HEAD
+body,button,input,select,td,textarea,th {line-height:1.5;font:1em/1.6 'NotoSansCKJ','돋음',Dotum,Arial,applegothic,sans-serif;font-size:11pt;color:#303030}
+=======
+body,button,input,select,td,textarea,th,p {line-height:1.5;font:1em/1.6 'NotoSansCKJ','돋음',Dotum,Arial,applegothic,sans-serif;font-size:11pt;color:#303030}
+>>>>>>> f8b35f5f15e11526fcf77eac11196027505a5322
+>>>>>>> 56916399d32d0700f4d7696289fac49dfbecd4b8
 a:active,a:hover{text-decoration:none}
 address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:400}
 button::-moz-focus-inner{border:0;padding:0}

@@ -15,6 +15,7 @@
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/swiper.min.js"></script>
 	<script src="../js/menu.js"></script>
+	<script src="../../cordova.js"></script>
 </head>
 <style>
 </style>
@@ -315,6 +316,12 @@
 			}
 		} 
 	}); 
+
+	$(document).on('click','#pr_go',function(){
+        var url = $(this).attr("href");
+        window.open(url);
+        return false;
+    });
 	</script>
 </body>
 </html>

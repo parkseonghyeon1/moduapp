@@ -201,7 +201,7 @@ input[type="checkbox"] + label:before, input[type="radio"] + label:before { bord
 	// 사진선택하기 클릭
 	$(document).on('click','#select1',function(){
 		//$(this).toggleClass("on");
-		var ref = window.open("https://www.instagram.com/oauth/authorize/?client_id=104747e1329a4431803da088bf4270c6&redirect_uri=http://modublog.co.kr/app_public/ajax/a_sns_review.php&response_type=code");
+		var ref = window.open("https://www.instagram.com/oauth/authorize/?client_id=104747e1329a4431803da088bf4270c6&redirect_uri=http://modublog.co.kr/app_public/ajax/a_sns_review.php&response_type=code","_blank","location=no");
 			
 		ref.addEventListener("loadstop", function(location){
 			if (location.url.indexOf('code')!= -1) {
