@@ -39,14 +39,14 @@
 			<div class="ca_wrap">
 				<div class="swiper-container1_1">
 					<div class="swiper-wrapper category blog_c">
-						<div class="swiper-slide"><a href="" class="on" data="all">전체</a></div>
-						<div class="swiper-slide"><a href="" data="food">맛집</a></div>
-						<div class="swiper-slide"><a href="" data="fashion">패션</a></div>
-						<div class="swiper-slide"><a href="" data="beauty">뷰티</a></div>
-						<div class="swiper-slide"><a href="" data="life">생활</a></div>
-						<div class="swiper-slide"><a href="" data="hobby">취미</a></div>
-						<div class="swiper-slide"><a href="" data="tour">여행</a></div>
-						<div class="swiper-slide"><a href="" data="special">기타</a></div>
+						<div class="swiper-slide"><a href="#" class="on" data="all">전체</a></div>
+						<div class="swiper-slide"><a href="#none" data="food">맛집</a></div>
+						<div class="swiper-slide"><a href="#none" data="fashion">패션</a></div>
+						<div class="swiper-slide"><a href="#none" data="beauty">뷰티</a></div>
+						<div class="swiper-slide"><a href="#none" data="life">생활</a></div>
+						<div class="swiper-slide"><a href="#none" data="hobby">취미</a></div>
+						<div class="swiper-slide"><a href="#none" data="tour">여행</a></div>
+						<div class="swiper-slide"><a href="#none" data="special">기타</a></div>
 					</div>
 				</div>
 			</div>
@@ -323,6 +323,7 @@
 				console.log(e.responseText);  
 			}  		
 		})
+		return false;
 	})
 	
 	// SNS 카테고리 선택
@@ -374,7 +375,7 @@
 				console.log(e.responseText);  
 			}
 		})
-				
+		return false;		
 	})	
 	</script>
 </body>
