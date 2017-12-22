@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>사전예약</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.form.min.js"></script>
+	<script src="../js/menu.js"></script>
+</head>
+<body>
+	<form method="" id="">
+		<div>
+			<ul>
+				<li>
+					<label for="modu_mb"><span>모블회원</span></label>
+					<input type="radio" id="modu_mb" name="check" value="1">
+					<label for="modu_mb_n"><span>신규회원</span></label>
+					<input type="radio" id="modu_mb_n" name="check" value="0">
+				</li>
+				<li>
+					<label for="os1"><span>안드로이드</span></label>
+					<input type="radio" id="os1" name="os" value="1">
+					<label for="os2"><span>IOS</span></label>
+					<input type="radio" id="os2" name="os" value="0">
+				</li>
+				<li>
+					<input class="input" type="text" name="mb_hp1" id="mb_hp1" maxlength="3" value="" numberonly="true" required><em>-</em>
+					<input class="input" type="text" name="mb_hp2" id="mb_hp2" maxlength="4" value="" numberonly="true" required><em >-</em>
+					<input class="input" type="text" name="mb_hp3" id="mb_hp3" maxlength="4" value="" numberonly="true" required>
+				</li>
+			</ul>
+		</div>
+		<a href="#none" id="btn_submit">사전예약하기</a>
+	</form>
+	<script>
+	$(document).on('click','#btn_submit',function(){
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/e/index.php",          
+			data:params,
+			success:function(data){
+				console.log(data);
+			},   
+			complete:function(){
+				$('.loading').hide();
+			},
+			error:function(e){  
+				console.log(e.responseText);  
+			}  
+		});  
+	</script>
+</body>
+</html>
+
+
+
+

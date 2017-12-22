@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 body,html{height:100%}
-body{-webkit-text-size-adjust:none;font-size:12px}
+body{-webkit-text-size-adjust:none;font-size:11pt}
 blockquote,body,button,code,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,input,legend,li,ol,p,pre,select,td,textarea,th,ul{margin:0;padding:0}
 fieldset,img{border:0 none}
 dl,li,menu,ol,ul{list-style:none}
@@ -14,7 +14,7 @@ table{border-collapse:collapse;border-spacing:0;border:0 none}
 input[type=text] {border:none;outline:none}
 input:checked[type=checkbox]{background-color:#666;-webkit-appearance:checkbox}
 html input[type=button],input[type=email],input[type=password],input[type=reset],input[type=search],input[type=submit],input[type=tel],input[type=text]{-webkit-appearance:none;border-radius:4px;vertical-align:middle}
-body,button,input,select,td,textarea,th {line-height:1.5;font:1em/1.6 'NotoSansCKJ','돋음',Dotum,Arial,applegothic,sans-serif;font-size:12px;color:#303030}
+body,button,input,select,td,textarea,th,p {line-height:1.5;font:1em/1.6 'NotoSansCKJ','돋음',Dotum,Arial,applegothic,sans-serif;font-size:11pt;color:#303030}
 a:active,a:hover{text-decoration:none}
 address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:400}
 button::-moz-focus-inner{border:0;padding:0}
@@ -22,6 +22,7 @@ body {background:#ececec}
 /*body {background:#fff}*/
 textarea, input[type=text] {box-sizing:border-box}
 div, textarea, input {outline:none}
+a, span {font-family:'NotoSansCKJ','돋음',Dotum,Arial,applegothic,sans-serif}
 a {-webkit-tap-highlight-color:transparent;-webkit-tap-highlight-color:rgba(0,0,0,0);text-decoration:none;color:#303030;font-size:1em}
 /* all */
 ::-webkit-input-placeholder { color:#989898; }

@@ -18,7 +18,6 @@
 	<div id="header">
 		<h1>나의체험단</h1>
 		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
-		<!--<a class="header_btn_r btn_search2">검색</a>-->
 	</div>
 	<div class="list_wrap">
 		<ul class="tab_mn tab_thr" id="pr_view_mn">
@@ -64,7 +63,11 @@
 					if(my_p == 'my_p1'){
 						string += '<a class="btn_tp1 btn_l" id="btn_cancle" data="'+value.wr_id+'|'+value.ms_id+'|'+value.mb_id+'|'+value.bo_table+'">신청취소</a><a href="product_req_form.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'&ms_id='+value.ms_id+'&w=u"  class="btn_tp1 btn_r color'+txt_ca+'">신청수정</a>';
 					}
-					string += '</div></div></li>';
+					string += '</div></div>';
+					if(value.wr_10 == '종료'){
+						string+= '<div class="end_mask"></div>';
+					}
+					string += '</li>';
 				}); 
 				$("#my_list").append(string);
 				
@@ -146,7 +149,7 @@
 						string += '<a class="btn_tp1 btn_r" style="color:#949494">'+txt_s+'</a>';
 					}
 					string += '</div></div>';
-					if(my_p == 'my_p3'){
+					if(my_p == 'my_p3' || value.wr_10 == '종료'){
 						string+= '<div class="end_mask"></div>';
 					}
 					string+='</li>';
