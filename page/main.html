@@ -230,7 +230,11 @@
 				
 				//띠배너
 				$.each(data[4],function(key,value){
-					string_line += '<div class="swiper-slide"><a href="'+value.li_bo_table+'?wr_id='+value.li_wr_id+'" style="display:block" id="'+value.li_br_id+'"><div class="sub_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.li_image_file+'"></div></a></div>';
+					string_line += '<div class="swiper-slide"><a href="'+value.li_bo_table+'?wr_id='+value.li_wr_id+'" style="display:block" id="'+value.li_br_id+'"';
+					if(value.li_bo_table == ''){
+						string_line += ' class="link_y"';
+					}
+					string_line += '><div class="sub_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.li_image_file+'"></div></a></div>';
 				});
 				$("#line_wrap").append(string_line); 		
 
@@ -375,7 +379,7 @@
 	})
 	
 	// 메인 배너 클릭
-	$(document).on('click','.main_bann a',function(){
+	$(document).on('click','.bann_wrap a',function(){
 		var br_id = $(this).attr('id');
 		var class_id = $(this).attr('class');
 		var link = $(this).attr('href');
