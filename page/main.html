@@ -200,11 +200,12 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_main.php",          
 			success:function(data){
 				//메인배너
-				$.each(data[0],function(key,value){
+				$.each(data[0],function(key,value){ 
+					string += '<div class="swiper-slide"><a href="'+value.bn_bo_table+'?wr_id='+value.bn_wr_id+'" style="display:block" id="'+value.bn_br_id+'"';
 					if(value.bn_bo_table == ''){
-						var link_use = 'link_y';
-					} 
-					string += '<div class="swiper-slide"><a href="'+value.bn_bo_table+'?wr_id='+value.bn_wr_id+'" style="display:block" id="'+value.bn_br_id+'" class="'+link_use+'"><div class="main_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.image_file+'"></div><div class="bann_txt"><p class="title"></p><span></span></div></a></div>';
+						string += ' class="link_y"';
+					}
+					string += '><div class="main_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.image_file+'"></div><div class="bann_txt"><p class="title"></p><span></span></div></a></div>';
 				}); 
 				$('.main_bann').append('<div class="swiper-wrapper" id="rolling_wrap"></div>');
 				$("#rolling_wrap").append(string);
@@ -374,8 +375,9 @@
 	})
 	
 	// 메인 배너 클릭
-	$(document).on('click','.main_bann a.link_y',function(){
+	$(document).on('click','.main_bann a',function(){
 		var br_id = $(this).attr('id');
+		var class_id = $(this).attr('class');
 		var tbl_id = 'banner';
 		var params = {"br_id":br_id,"tbl_id":tbl_id};
 		$.ajax({      
@@ -383,15 +385,16 @@
 			data:params,			
 			url:"http://modublog.co.kr/app_public/ajax/a_banner_check.php",   
 			success:function(data){
+				if(class_id == 'link_y'){
 				window.open(data);
+				}
 			},  
 			complete:function(){
 			},   
 			error:function(e){  
 				console.log(e.responseText);  
 			}
-		})
-		return false;		
+		})	
 	})
 	</script>
 </body>

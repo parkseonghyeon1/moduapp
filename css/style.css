@@ -489,7 +489,7 @@ ui-page {background:#fff;height:100%}
 /* 설정 */
 .setting_li ul {background:#fff;padding:0 16px}
 .setting_li li {border-bottom:1px solid #ebebeb}
-.setting_li li:last-child {border-bottom:none}
+.setting_li li:nth-child(2) {border-bottom:none !important}
 .setting_li li .terms_use input[type=checkbox] + label span {top:50%;margin-top:-8px}
 .setting_li li a,
 .setting_li li p {height:48px;line-height:48px;text-decoration:none;font-size:1em}

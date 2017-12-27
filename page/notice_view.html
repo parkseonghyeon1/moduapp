@@ -36,6 +36,10 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_view.php",          
 			data:params,
 			success:function(data){
+				if(!data.wr_id){
+					alert("해당 글이 존재하지 않습니다. 글이 삭제되었거나 이동된 경우입니다.");
+					location.href="notice_list.html"
+				}
 				$("#notice_title").html('[공지] '+data.wr_subject);
 				$(".notice_conts").append(data.wr_content);
 			},   
