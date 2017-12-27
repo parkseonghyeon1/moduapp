@@ -120,11 +120,15 @@
 						}
 						string_sn += '</li>';	
 					}else if(value.ca_name == 'SHARE'){
-						string_sh += '<li><a href="product_view_share.html?bo_table='+value.pr_board+'&wr_id='+value.pr_board_id+'&site_id=share"><div class="share_list"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.subject_sub+'</span><span class="sh_point">+'+value.sh_wr_link2+'p</span><div class="conts_info"><span class="info_title"><span>조회</span>'+value.wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.sh_wr_comment_reply+'</span></div></div><div class="sh_url_b">';
-						if(value.sh_url){
-							string_sh += '<span class="sh_url_en color_share">발급완료</span><input type="button" class="sh_share">';
+						string_sh += '<li><a href="product_view_share.html?bo_table='+value.pr_board+'&wr_id='+value.pr_board_id+'&site_id=share"><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.subject_sub+'</p><span class="conts txt_ov">'+value.wr_subject+'</span><div class="sh_pw"><span class="sh_point">+'+value.sh_wr_link2+'p</span>';
+						if(value.sh_wr_link2 == '20'){
+							string_sh += '<span class="sh_fix"></span>';
 						}
-						string_sh += '</div></div></div></a>';						
+						string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.sh_wr_comment_reply+'</span></div></div><div class="sh_url_b">';
+						if(value.sh_url == '1'){
+							string_sh += '<span class="sh_url_en color_share">발급완료</span><span class="sh_share"></span>';
+						}
+						string_sh += '</div></div></a>';						
 						if(value.end == '1'){
 							string_sh += '<div class="pr_end"></div>';
 						}

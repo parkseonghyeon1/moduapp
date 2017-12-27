@@ -96,6 +96,7 @@
 			<div id="loading_bar" class="off"></div>
 		</div>
 	</div>
+	<div id="share_wrap"></div>
 	<!-- 페이지 로딩 -->
 	<div id="loading_wraps"></div>
 	<script>
@@ -104,6 +105,7 @@
 	
 	
 	<script>
+	// 쉐어 공지, 실시간 현황, 랭킹 슬라이드
 	$(".bottom_btn1").click(function(){
 		$('.sd_list1 li:first').animate( {marginTop: '-20px'}, 400, function(){
 			$(this).detach().appendTo('ul.sd_list1').removeAttr('style');
@@ -136,6 +138,13 @@
 		}, 8500);
 	}	
 	
+	$(document).on('click','.sh_share',function(){
+		var wr_link2 = $('#url_sub').text();
+		var url = $('#url_w').val();
+		$("#share_wrap").load("share_pop.html",function(){
+		
+		});
+	})
 	// a 버튼
 	$(document).on("click",".btn_priz",function(){
 		//var wr_id = $(this).attr("id");
@@ -184,7 +193,7 @@
 					}
 					string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div><div class="sh_url_b">';
 					if(value.shh_url == '1'){
-						string_sh += '<span class="sh_url_en color_share">발급완료</span><input type="button" class="sh_share">';
+						string_sh += '<span class="sh_url_en color_share">발급완료</span><span class="sh_share"></span>';
 					}
 					string_sh += '</div></div></a></li>';
 				}); 
@@ -249,7 +258,7 @@
 								}
 								string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div><div class="sh_url_b">';
 								if(value.shh_url == '1'){
-									string_sh += '<span class="sh_url_en color_share">발급완료</span><input type="button" class="sh_share">';
+									string_sh += '<span class="sh_url_en color_share">발급완료</span><span class="sh_share"></span>';
 								}
 								string_sh += '</div></div></a></li>';
 							}); 

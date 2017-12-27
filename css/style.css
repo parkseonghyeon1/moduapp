@@ -409,6 +409,10 @@ ui-page {background:#fff;height:100%}
 /* 쉐어 상세 */
 .pr_view_cont .tab_mn li.on {border-bottom:1px solid #ea5217}
 .pr_view_cont .tab_mn li.on a.t_b {border-bottom:3px solid #ea5217}
+.ca_wrap_source {position:relative}
+.ca_wrap_source a {padding:2px 6px 4px;border-radius:6em;overflow:hidden;font-size:0.9em;margin-right:4px}
+.ca_wrap_source a.on {background:#ea5217;color:#fff} 
+.ca_wrap_source .btn_tp1 {top:10px;right:0;color:#fff;background:#ea5217;border:1px solid #ea5217;font-size:1em;padding:0}
 
 /* 별점 */
 .star_b span {margin-right:3px;font-size:9px;color:#797979}

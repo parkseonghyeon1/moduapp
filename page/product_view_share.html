@@ -62,18 +62,13 @@
 						
 					</div>
 					<!-- 나만의 URL -->
-					<div class="tab2_pn" style="padding:13px 16px">
-						<div class="ca_wrap" style="height:auto">
-							<div class="category blog_c" style="padding:0 0 16px 0;border-bottom:1px solid #ebebeb">
-								<a href="#none" class="ca_name on" data="link" style="width:56px;line-height:24px">링크복사</a>
-								<a href="#none" class="ca_name" data="source" style="width:56px;line-height:24px">소스복사</a>
-								<a href="#none" class="ca_name" data="pix_widget" style="width:56px;line-height:24px">고정위젯</a>
-								<a href="#none" class="ca_name" data="random_widget" style="width:56px;line-height:24px">랜덤위젯</a>
-							</div>
-							<!-- 발급 전 -->
-							<a class="btn_tp1 color_share" style="top:13px;right:0;display:none">발급받기</a>
-							<!-- 발급 완료 -->
-							<a class="btn_tp1" style="top:8px;right:0;color:#fff;background:#ea5217;border:1px solid #ea5217">발급완료</a>
+					<div class="tab2_pn">
+						<div class="ca_wrap_source" style="padding:0 0 16px 0;border-bottom:1px solid #ebebeb">
+							<a href="#none" class="ca_name on" data="link" style="width:56px;line-height:24px">링크복사</a>
+							<a href="#none" class="ca_name" data="source" style="width:56px;line-height:24px">소스복사</a>
+							<a href="#none" class="ca_name" data="pix_widget" style="width:56px;line-height:24px">고정위젯</a>
+							<a href="#none" class="ca_name" data="random_widget" style="width:56px;line-height:24px">랜덤위젯</a>
+							<a class="btn_tp1">발급완료</a>
 						</div>
 						<div class="pd_view_li">
 							<p class="title">홍보문구</p>
@@ -122,7 +117,6 @@
 	})
 	// 공유하기 팝업 각 버튼 (카카오|페이스북|네이버블로그)
 	$(document).on('click','.btn_social',function(){
-		
 		var sh_id = $(this).attr("id");
 		var wr_id = getQuerystring("wr_id");
 		var url = $("#url_w").val();
@@ -140,10 +134,7 @@
 			error:function(){
 			}
 		})
-		return false;		
-		
-		
-		return false;
+		return false;	
 	})
 	
 	// 복사하기 버튼
@@ -182,7 +173,7 @@
 	})
 	
 	// 나만의URL - 링크 카테고리 탭
-	$(document).on('click','.category a', function() {
+	$(document).on('click','.ca_wrap_source a', function() {
 		$(this).addClass('on').siblings().removeClass('on');	
 		var url = $('#url_w').val();
 		var mb_id = member['mb_id'];
