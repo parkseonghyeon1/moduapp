@@ -378,6 +378,7 @@
 	$(document).on('click','.main_bann a',function(){
 		var br_id = $(this).attr('id');
 		var class_id = $(this).attr('class');
+		var link = $(this).attr('href');
 		var tbl_id = 'banner';
 		var params = {"br_id":br_id,"tbl_id":tbl_id};
 		$.ajax({      
@@ -387,6 +388,8 @@
 			success:function(data){
 				if(class_id == 'link_y'){
 				window.open(data);
+				}else{
+					location.href=link;
 				}
 			},  
 			complete:function(){
@@ -395,6 +398,7 @@
 				console.log(e.responseText);  
 			}
 		})	
+		return false;
 	})
 	</script>
 </body>
