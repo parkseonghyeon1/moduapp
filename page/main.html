@@ -28,7 +28,7 @@
 	
 	<div class="bk_gray">
 		<!-- main banner -->
-		<div class="main_bann bk_gray">
+		<div class="bann_wrap main_bann bk_gray">
 			<div class="main_bann_nav">
 				<span class="sub-pagination"></span>
 			</div>
@@ -97,7 +97,7 @@
 			</div>
 		</div>
 		
-		<div class="sub_bann">
+		<div class="bann_wrap sub_bann">
 			<div class="swiper-wrapper" id="line_wrap"></div>
 			<div class="sub_bann_nav" style="position:absolute;right:13px;bottom:13px;z-index:2">
 				<span class="sub-pagination"></span>
@@ -153,7 +153,6 @@
 		}
     });
 	*/
-    
     $('.p_message').click(function(){
         window.localStorage.removeItem("mb_id");
         window.localStorage.removeItem("mb_nick");
@@ -205,7 +204,7 @@
 			success:function(data){
 				//메인배너
 				$.each(data[0],function(key,value){
-					string += '<div class="swiper-slide"><a href="'+value.bn_bo_table+'?wr_id='+value.bn_wr_id+'" style="display:block"><div class="main_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.image_file+'"></div><div class="bann_txt"><p class="title"></p><span></span></div></a></div>';
+					string += '<div class="swiper-slide"><a href="'+value.bn_bo_table+'?wr_id='+value.bn_wr_id+'" style="display:block" id="'+value.bn_br_id+'"><div class="main_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.image_file+'"></div><div class="bann_txt"><p class="title"></p><span></span></div></a></div>';
 				}); 
 				$('.main_bann').append('<div class="swiper-wrapper" id="rolling_wrap"></div>');
 				$("#rolling_wrap").append(string);
@@ -230,7 +229,7 @@
 				
 				//띠배너
 				$.each(data[4],function(key,value){
-					string_line += '<div class="swiper-slide"><a href="'+value.li_bo_table+'?wr_id='+value.li_wr_id+'" style="display:block"><div class="sub_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.li_image_file+'"></div></a></div>';
+					string_line += '<div class="swiper-slide"><a href="'+value.li_bo_table+'?wr_id='+value.li_wr_id+'" style="display:block" id="'+value.li_br_id+'"><div class="sub_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.li_image_file+'"></div></a></div>';
 				});
 				$("#line_wrap").append(string_line); 		
 
@@ -341,7 +340,6 @@
 	
 	// SNS 카테고리 선택
 	$(document).on('click','.sns_c a',function(){
-			
 		var data = $(this).attr("data");
 		var params = {"bo_table":data,"type":"sns"};
 		$("#sns_wrap").html("");
@@ -373,7 +371,27 @@
 			}
 		})
 		return false;		
-	})	
+	})
+	
+	// 메인 배너 클릭
+	$(document).on('click','.main_bann a',function(){
+		var br_id = $(this).attr('id');
+		var params = {"br_id":br_id};
+		$.ajax({      
+			type:"POST",
+			data:params,			
+			url:"http://modublog.co.kr/app_public/ajax/a_banner_check.php",   
+			success:function(data){
+				console.log(data);			
+			},  
+			complete:function(){
+			},   
+			error:function(e){  
+				console.log(e.responseText);  
+			}
+		})
+		return false;		
+	})
 	</script>
 </body>
 </html>
