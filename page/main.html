@@ -17,10 +17,6 @@
 	<script src="../js/menu.js"></script>
 	<script src="../../cordova.js"></script>
 </head>
-<style>
-.ca_wrap {padding-bottom:10px;padding-left:13px;padding-right:13px}
-.ca_wrap .category {padding:0}
-</style>
 <body>
 	<div id="nav_v"></div>
 	<script>
@@ -205,7 +201,10 @@
 			success:function(data){
 				//메인배너
 				$.each(data[0],function(key,value){
-					string += '<div class="swiper-slide"><a href="'+value.bn_bo_table+'?wr_id='+value.bn_wr_id+'" style="display:block" id="'+value.bn_br_id+'"><div class="main_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.image_file+'"></div><div class="bann_txt"><p class="title"></p><span></span></div></a></div>';
+					if(value.bn_bo_table == ''){
+						var link_use = 'link_y';
+					} 
+					string += '<div class="swiper-slide"><a href="'+value.bn_bo_table+'?wr_id='+value.bn_wr_id+'" style="display:block" id="'+value.bn_br_id+'" class="'+link_use+'"><div class="main_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.image_file+'"></div><div class="bann_txt"><p class="title"></p><span></span></div></a></div>';
 				}); 
 				$('.main_bann').append('<div class="swiper-wrapper" id="rolling_wrap"></div>');
 				$("#rolling_wrap").append(string);
@@ -375,8 +374,7 @@
 	})
 	
 	// 메인 배너 클릭
-	
-	$(document).on('click','.main_bann a',function(){
+	$(document).on('click','.main_bann a.link_y',function(){
 		var br_id = $(this).attr('id');
 		var params = {"br_id":br_id};
 		$.ajax({      
@@ -394,7 +392,6 @@
 		})
 		return false;		
 	})
-	
 	</script>
 </body>
 </html>

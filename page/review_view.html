@@ -17,23 +17,6 @@
 	<script src="../js/menu.js"></script>
 	<script src="../../cordova.js"></script>
 </head>
-<style>
-.star_b span {margin-right:3px;font-size:9px;color:#797979}
-.star_b img {width:9px}
-.answer2 {border-top:1px solid #ebebeb}
-.rv_comment li:last-child {border-bottom:none !important}
-.star_b span {margin-right:2px}
-.star_b img {width:8px}
-
-#rv_view .comment_re {overflow:hidden}
-#rv_view .comment_title {padding-left:40px;margin-bottom:4px}
-#rv_view .comment_title .title_sub {padding:0}
-#rv_view .date_txt {padding:0 8px 0 0}
-#rv_view .comment_img {width:33px;height:33px;margin-top:-16px}
-#rv_view .comment_re span {float:left}
-#rv_view .star {font-size:10px !important}
-#rv_view .star_gd {font-size:9px}
-</style>
 <body>
 	<div id="header">
 		<h1>리뷰보기</h1>
@@ -41,22 +24,22 @@
 	</div>
 	<div class="bk_gray">
 		<div id="rv_view">
-				<div class="rv_img"><img></div>
-				<div class="rv_txt pr_view_info">
-					<p class="title" id="wr_subject"></p>
-					
-					<span class="rv_sub_info star_b" style="padding-bottom:13px;display:block">
-						<span id="star_wrap"></span>
-						<span id="reivew_star"></span>
-						<span class="rv_num_box">리뷰 <span id="rv_num"></span></span>
-					</span>
-					
-					<div class="review_cont" id="pr_subject_sub"></div>
-				</div>
-				<div class="list_wrap">
-					<ul class="list_pn_sd list_sd bk_white" id="comment_wrap">
-					</ul>
-				</div>
+			<div class="rv_img"><img></div>
+			<div class="rv_txt pr_view_info">
+				<p class="title" id="wr_subject"></p>
+				
+				<span class="rv_sub_info star_b" style="padding-bottom:13px;display:block">
+					<span id="star_wrap"></span>
+					<span id="reivew_star"></span>
+					<span class="rv_num_box">리뷰 <span id="rv_num"></span></span>
+				</span>
+				
+				<div class="review_cont" id="pr_subject_sub"></div>
+			</div>
+			<div class="list_wrap">
+				<ul class="list_pn_sd list_sd bk_white" id="comment_wrap">
+				</ul>
+			</div>
 		</div>
 	</div>
 	<!-- 페이지 로딩 -->
@@ -166,7 +149,7 @@
 							com_string += '<span class="star"><img src="../img/star_off.png"></span>';
 						}				
 					}												
-					com_string += '<span class="star_gd">'+value.wr_7+'점</span></span></div><div class="comment_img"><img src="'+value.mb_photo+'"></div>';
+					com_string += '</span><span class="star_gd">'+value.wr_7+'점</span></div><div class="comment_img"><img src="'+value.mb_photo+'"></div>';
 					if(bo_table == 'sns_review'){
 						var txt_c = 'color_sns';
 					}

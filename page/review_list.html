@@ -16,16 +16,6 @@
 	<script src="../js/swiper.min.js"></script>
 	<script src="../js/menu.js"></script>
 </head>
-<style>
-.star_b span {margin-right:3px;font-size:9px;color:#797979}
-.star_b img {width:9px}
-#c_tab_b.on {border-bottom:1px solid #88cbde}
-#c_tab_s.on {border-bottom:1px solid #edaf07}
-	
-#search_b {display:none}
-#search_b.on {display:block}
-.nav_header2 .on {background:url(../img/icon_arrow_right.png)no-repeat right 16px center;background-size:10px 10px}
-</style>
 <body>
 	<div class="list_wrap" id="wrap">
 		<div id="header">
@@ -46,16 +36,18 @@
 		</ul>
 		
 		<!-- 블로그 리뷰 -->
-		<div class="swiper-container ca_wrap tab_blog" id="tab_blog">
-			<div class="swiper-wrapper category blog_c">
-				<a href="#none" class="t_b on" data="all">전체</span></a>
-				<a href="#none" class="t_b" data="맛집">맛집</a>
-				<a href="#none" class="t_b" data="패션">패션</a>
-				<a href="#none" class="t_b" data="뷰티">뷰티</a>
-				<a href="#none" class="t_b" data="생활">생활</a>
-				<a href="#none" class="t_b" data="취미">취미</span></a>
-				<a href="#none" class="t_b" data="여행">여행</a>
-				<a href="#none" class="t_b" data="이벤트"></a>
+		<div class="ca_wrap ca_wrap3 tab_blog">
+			<div class="swiper-container1_1">
+				<div class="swiper-wrapper category blog_c">
+					<div class="swiper-slide"><a href="#none" class="t_b on" data="all">전체</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b" data="맛집">맛집</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b" data="패션">패션</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b" data="뷰티">뷰티</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b" data="생활">생활</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b" data="취미">취미</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b" data="여행">여행</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b" data="이벤트">이벤트</a></div>
+				</div>
 			</div>
 		</div>
 		<div class="tab_blog list_wrap">
@@ -66,14 +58,16 @@
 		</div>
 		
 		<!-- SNS 리뷰 -->
-		<div class="swiper-container ca_wrap tab_sns" id="tab_sns">
-			<div class="swiper-wrapper category sns_c">
-				<a href="#none" class="t_s on" data="all">전체</a>
-				<a href="#none" class="t_s" data="맛집">맛집</a>
-				<a href="#none" class="t_s" data="패션">패션</a>
-				<a href="#none" class="t_s" data="뷰티">뷰티</a>
-				<a href="#none" class="t_s" data="생활">생활</a>
-				<a href="#none" class="t_s" data="이벤트">이벤트</a>
+		<div class="ca_wrap ca_wrap3 tab_sns">
+			<div class="swiper-container2_1">
+				<div class="swiper-wrapper category sns_c">
+					<div class="swiper-slide"><a href="#none" class="t_b on" data="all">전체</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b" data="맛집">맛집</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b" data="패션">패션</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b" data="뷰티">뷰티</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b" data="생활">생활</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b" data="이벤트">이벤트</a></div>
+				</div>
 			</div>
 		</div>
 		<div class="tab_sns list_wrap">
@@ -124,40 +118,45 @@
 		 }
 	});
 	
+    // 카테고리 on-off
+    $(document).on("click",".category a",function(){  
+        $(this).parent().parent().children().children('a').removeClass('on');
+        $(this).addClass('on');
+    })
+	
 	// 탭메뉴
-	$(document).on('click','.tab_mn li a', function() {
-		$(".category a").removeClass("on");
-		$(".category a:first-child").addClass("on");
+    $(document).on('click','.tab_mn li a', function() {
+		//$(".category a").removeClass("on");
+		//$(".category a:first-child").addClass("on");
 		$(this).closest('li').addClass('on').siblings().removeClass('on');	
 		var tab_s = $(this).attr('class').substring(0,4);
 		if(tab_s == 'tab1') {
 			$('.tab_blog').show();
 			$('.tab_sns').hide();
 			//$('.tab2_pn').attr("id","");
-			var swiper1 = new Swiper('#tab_blog', {
-			slidesPerView: 'auto',
-			spaceBetween: 12,
-		});
+			var swiper1 = document.querySelector('.swiper-container1_1').swiper;
+			swiper1.update();
 		}else if(tab_s == 'tab2') {
 			$('.tab_blog').hide();
 			$('.tab_sns').show();
 			//$('.tab2_pn').attr("id","scr_on");
-			var swiper2 = new Swiper('#tab_sns', {
-			slidesPerView: 'auto',
-			spaceBetween: 12,
-		});
+			var swiper2 = document.querySelector('.swiper-container2_1').swiper;
+			swiper2.update();
 		}
 	})
-	// 카테고리 on-off
-	/*
-    $(document).on("click",".category a",function(){  
-        $(this).parent().children('a').removeClass('on');
-        $(this).addClass('on');
-    })
-	*/
-	</script>
-	<script>
+	//카테고리 slide - BLOG
+	var swiper1_1 = new Swiper('.swiper-container1_1', {
+		slidesPerView: 'auto',
+		spaceBetween: 6,
+	});
+	//카테고리 slide - SNS
+	var swiper2_1 = new Swiper('.swiper-container2_1', {
+		slidesPerView: 'auto',
+		spaceBetween: 6,
+	});
+    </script>
 	
+	<script>
 	//페이지 첫 로딩시 ajax
 	$(document).ready(function(){	
 		var string = '';
