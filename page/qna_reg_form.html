@@ -56,7 +56,7 @@
 						<p class="title">이미지</p>
 						<div class="add_photo_b" id="id_file_b">
 							<span class="btn_add_photo">추가버튼</span>
-							<input type="file" onchange="fileInfo_p(this)" name="bf_file[]">
+							<input type="file" onchange="fileInfo_p(this)" name="bf_file[]" id="img_file">
 							<span class="preview_photo" id="id_card_photo"></span>
 						</div>
 					</li>
@@ -84,7 +84,8 @@
 		var fileSize = Math.round(file[0].size);
 		
         if(fileSize > maxSize){
-            alert("첨부파일 사이즈는 1MB 이내로 등록 가능합니다.");
+			$('#img_file').attr('class','file_size_n')
+            //alert("첨부파일 사이즈는 1MB 이내로 등록 가능합니다.");
             //return;
         }else if(file[0].type.indexOf('image') < 0){ // 선택한 파일이 이미지인지 확인
 			alert('이미지 파일만 선택하세요.');
@@ -148,6 +149,10 @@
 		if(wr_content == ''){
 			alert("내용을 입력해주세요.");
 			$('#wr_content').focus();
+			return false;
+		}
+		if($('#img_file').attr('class') == 'file_size_n'){
+			alert("첨부파일 사이즈는 1MB 이내로 등록 가능합니다.");
 			return false;
 		}
 		$(this).attr("class","btn_submit off");
