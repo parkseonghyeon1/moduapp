@@ -191,11 +191,11 @@
 					if(value.shh_wr_link2 == '20'){
 						string_sh += '<span class="sh_fix"></span>';
 					}
-					string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div><div class="sh_url_b">';
+					string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div></div></a>';
 					if(value.shh_url == '1'){
-						string_sh += '<span class="sh_url_en color_share">발급완료</span><span class="sh_share"></span>';
+						string_sh += '<div class="sh_url_b"><span class="sh_url_en color_share">발급완료</span><a class="sh_share"></span></div>';
 					}
-					string_sh += '</div></div></a></li>';
+					string_sh += '</li>';
 				}); 
 				$(".share_list").html(string_sh);
 				
@@ -256,11 +256,11 @@
 								if(value.shh_wr_link2 == '20'){
 									string_sh += '<span class="sh_fix"></span>';
 								}
-								string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div><div class="sh_url_b">';
+								string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div></div></a>';
 								if(value.shh_url == '1'){
-									string_sh += '<span class="sh_url_en color_share">발급완료</span><span class="sh_share"></span>';
+									string_sh += '<div class="sh_url_b"><span class="sh_url_en color_share">발급완료</span><a class="sh_share"></a></div>';
 								}
-								string_sh += '</div></div></a></li>';
+								string_sh += '</li>';
 							}); 
 							$(".share_list").append(string_sh);
 							
