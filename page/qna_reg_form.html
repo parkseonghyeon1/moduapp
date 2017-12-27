@@ -82,9 +82,10 @@
 		// file 은 배열이므로 file[0] 으로 접근
 		var maxSize = 1048576;
 		var fileSize = Math.round(file[0].size);
+		$('#img_file').attr('class','');
 		
         if(fileSize > maxSize){
-			$('#img_file').attr('class','file_size_n')
+			$('#img_file').attr('class','file_size_n');
             //alert("첨부파일 사이즈는 1MB 이내로 등록 가능합니다.");
             //return;
         }else if(file[0].type.indexOf('image') < 0){ // 선택한 파일이 이미지인지 확인
