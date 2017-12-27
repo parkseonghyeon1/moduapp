@@ -66,6 +66,10 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_view.php",          
 			data:params,
 			success:function(data){
+				if(!data.wr_id){
+					alert("해당 글이 존재하지 않습니다. 글이 삭제되었거나 이동된 경우입니다.");
+					location.href="qna_list.html"
+				}
 				$("#datetime").html(data.wr_datetime);
 				$("#comu_title").html(data.wr_subject);
 				$("#comu_conts").append(data.wr_content);
@@ -133,7 +137,7 @@
 	})
 	</script>
 	<script> 
-	// 댓글-댓글
+	// 대댓글
 	$(document).on('click','.btn_comment',function(){
 		var wr_id = getQuerystring('wr_id');
 		var comment_id = $(this).attr("id");

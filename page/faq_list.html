@@ -36,7 +36,6 @@
 	$(document).on('click','.list_sd > li > a', function() {
 		//$('html,body').animate({scrollTop : $(this).parent('li').offset().top},400);
 		$(this).closest('li').toggleClass('on').find('.answer').slideToggle().end().siblings().removeClass('on').find('.answer').slideUp();	
-		
 	})
 	</script>
 	<script>

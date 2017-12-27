@@ -62,9 +62,8 @@
 			$(this).next().children('a').removeClass('on');
 		}
 	})
-	</script>
-	<script>
-	// 
+	
+	// 첫 페이지 로딩 
 	$(document).ready(function(){
 		var wr_id = getQuerystring('wr_id');
 		var params = {"wr_id":wr_id,"bo_table":"comu"};
@@ -73,6 +72,10 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_view.php",          
 			data:params,
 			success:function(data){
+				if(!data.wr_id){
+					alert("해당 글이 존재하지 않습니다. 글이 삭제되었거나 이동된 경우입니다.");
+					location.href="comu_list.html"
+				}
 				$("#wr_name").html(data.wr_name);
 				$("#comu_cate").html("["+data.ca_name+"]");
 				$("#comu_img").attr("src",data.mb_photo);
@@ -85,14 +88,16 @@
 				}
 				$("#image_wrap").attr("src",data.image);
 			},   
+			complete:function(){
+				$('.loading').hide();
+			},
 			error:function(e){  
 				console.log(e.responseText);  
 			}  
 		});  	
 	})
-	</script>
-	<script>
-	//
+	
+	// 댓글 로딩
 	$(document).ready(function(){
 		var wr_id = getQuerystring('wr_id');
 		var params = {"wr_id":wr_id,"bo_table":"comu"};
@@ -111,9 +116,9 @@
 					
 					string_c += '<div class="comment_title"><span class="title_sub">'+value.wr_name+'</span><span class="date_txt" style="padding:0 4px">'+value.datetime+'</span><span class="comment_re">';
 					
-					//if(member['mb_id']){
+					if(member['mb_id']){
 						string_c += '<a href="#none" class="color_blog btn_comment" id="'+value.wr_id+'">답글</a>';
-					//}
+					}
 					
 					string_c += '</span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div>';
 					
@@ -129,9 +134,6 @@
 				$('#comment_num2').html("댓글 "+data.length);
 				$('#comment_li').append(string_c);
 			},   
-			complete:function(){
-				$('.loading').hide();
-			},
 			error:function(e){  
 				console.log(e.responseText);  
 			}  
@@ -141,8 +143,7 @@
 		
 		$('#cmt_box').html(comment1);
 	})
-	</script>
-	<script> 
+
 	// 대댓글 폼
 	$(document).on('click','.btn_comment',function(){ 
 		var wr_id = getQuerystring('wr_id');

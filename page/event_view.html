@@ -48,8 +48,8 @@
 			$(this).next().children('a').removeClass('on');
 		}
 	})
-	</script>
-	<script>
+	
+	// 첫 페이지 불러오기
 	$(document).ready(function(){
 		var wr_id = getQuerystring('wr_id');
 		var params = {"wr_id":wr_id,"bo_table":"event"};
@@ -69,8 +69,8 @@
 			}  
 		});  	
 	})
-	</script>
-	<script>
+	
+	// 댓글 불러오기
 	$(document).ready(function(){
 		var wr_id = getQuerystring('wr_id');
 		var params = {"wr_id":wr_id,"bo_table":"event"};
@@ -116,9 +116,8 @@
 		
 		$('#cmt_box').html(comment1);
 	})
-	</script>
-	<script> 
-	// 댓글-댓글
+	
+	// 대댓글
 	$(document).on('click','.btn_comment',function(){
 		var wr_id = getQuerystring('wr_id');
 		var comment_id = $(this).attr("id");

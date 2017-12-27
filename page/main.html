@@ -376,7 +376,8 @@
 	// 메인 배너 클릭
 	$(document).on('click','.main_bann a.link_y',function(){
 		var br_id = $(this).attr('id');
-		var params = {"br_id":br_id};
+		var tbl_id = 'banner';
+		var params = {"br_id":br_id,"tbl_id":tbl_id};
 		$.ajax({      
 			type:"POST",
 			data:params,			

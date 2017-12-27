@@ -73,14 +73,6 @@
 						<div style="padding-top:13px"><iframe class="map_wrap" src="http://modublog.co.kr/app_public/map_load.php" width="100%" frameborder="0" height="280px" noresize></iframe></div>
 					</div>
 				</div>
-				<script>
-				// iframe resize
-				function autoResize(i){
-					var iframeHeight=
-					(i).contentWindow.document.body.scrollHeight;
-					(i).height=iframeHeight;
-				}
-				</script>
 			</div>
 			<div class="pr_btn_wrap bk_b">
 				<div class="pr_btn_p">
@@ -97,6 +89,13 @@
 	</script>
 	
 	<script>
+	// iframe resize
+	function autoResize(i){
+		var iframeHeight=
+		(i).contentWindow.document.body.scrollHeight;
+		(i).height=iframeHeight;
+	}
+	
 	// 신청하기 버튼 비로그인
 	$(document).on('click','#req_go',function(){
 		if(logincheck==0){
