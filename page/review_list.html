@@ -105,6 +105,11 @@
 	// 검색
 	$(document).on("click",".bt_search_on",function(){
 		var stx = $("#stx_wrap").val();
+		if(stx.length <= 1){
+			alert("검색어를 2자이상 적어주세요.");
+			$("#stx_wrap").focus();
+			return false;
+		}
 		if(stx){
 			location.href="review_search_list.html?stx="+stx;
 		}

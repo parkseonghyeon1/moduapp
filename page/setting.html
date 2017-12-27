@@ -48,7 +48,7 @@
 		<div id="ad_bann"><img src="../temp-img/ev_banner.jpg"></div>
 		<div class="btm_info">
 			<div class="bottom_mn">
-				<a href="member_reg_form.html">회원가입</a><span>ㅣ<span><a href="#none">로그아웃</a>
+				<a class="log_hd" href="member_reg_form.html">회원가입</a><span class="log_hd">ㅣ</span><a href="#none">로그아웃</a>
 			</div>
 			<div class="log_footer n_ov_f">광고/제휴문의 고객센터 <a href="tel:02-3144-2110">02-3144-2110</a><br>일반회원 고객센터 <a href="tel:02-6392-2121">02-6392-2121</a></div>
 		</div>
@@ -94,6 +94,9 @@
     })
 </script>
 <script>
+	if(logincheck == 1){
+		$('.log_hd').hide();
+	}
 	$(document).ready(function(){
 		document.addEventListener("deviceready", onDeviceReady, false);
 	    function onDeviceReady() {

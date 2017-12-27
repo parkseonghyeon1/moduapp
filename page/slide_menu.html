@@ -76,6 +76,7 @@
 	<div id="pop"></div>
 	
 	<script>
+	logincheck=1;
 	// 약관동의 팝업 - 불러오기
 	$(document).on('click','.terms',function(){
 		$(".c-mask").trigger('click');
@@ -174,7 +175,8 @@
 		$('.nav_mn1').hide();         
 	}else{
 		$('.nav_profile').removeClass('on');
-		$('.nav_profile').html('<div class="p_img"><img src="http://modublog.co.kr/data/mb_photo/'+member['mb_id']+'" alt="" id="profile_img"></div><div class="mb_info"><p class="title p_name txt_ov"><a href="mypage.html" class="go_a">'+member['mb_nick']+'</a></p><span class="p_point">'+member['mb_n_point']+'</span><div class="p_message"><a href="message_list.html" class="go_a" id="msg_num"></a></div></div>');
+		$('.nav_profile').html('<div class="p_img"><img src="http://modublog.co.kr/data/mb_photo/'+member['mb_id']+'" alt="" id="profile_img" ></div><div class="mb_info"><p class="title p_name txt_ov"><a href="mypage.html" class="go_a">'+member['mb_nick']+'</a></p><span class="p_point">'+member['mb_n_point']+'</span><div class="p_message"><a href="message_list.html" class="go_a" id="msg_num"></a></div></div>');
+		$('#profile_img').attr('onError','this.src="../img/person.png"');
 
 		var mb_id = member['mb_id'];
 		var params = {"mb_id":mb_id};

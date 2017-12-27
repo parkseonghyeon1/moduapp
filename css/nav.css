@@ -18,7 +18,7 @@
 .nav_profile {position:relative;height:80px;background:#fff;padding:0 16px;overflow:hidden}
 .nav_profile.on {background:url(../img/icon_arrow_right.png)no-repeat right 16px center;background-size:10px 10px}
 .nav_profile.on .mb_info {padding-right:0;}
-.nav_profile .p_name {font-size:1.2em;color:#303030;padding-top:5px}
+.nav_profile .p_name {font-size:1.2em;color:#303030;padding-top:3px}
 .nav_profile .p_point {color:#979797;font-size:0.83em;display:block}
 .p_img {position:absolute;top:50%;left:16px;width:50px;height:50px;border-radius:50%;overflow:hidden;margin-top:-25px}
 .p_img img {position:absolute;top:0;bottom:0;left:0;right:0;vertical-align:top;width:100%;height:100%}

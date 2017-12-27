@@ -87,7 +87,6 @@
 				url:"http://modublog.co.kr/app_public/ajax/a_review_list.php",   
 				data:params,
 				success:function(data){
-					//console.log(data);
 					$.each(data[0],function(key,value){
 						if(value.bo_table == 'sns_review'){
 							txt_ca = '_sns'
@@ -105,6 +104,7 @@
 						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color'+txt_ca+'">'+value.wr_comment+'</span></span></span></div></div></div></a></li>';			
 					}); 
 					$(".blog").html(string);
+					console.log(data);
 				},  
 				complete:function(){
 					$('.loading').hide();

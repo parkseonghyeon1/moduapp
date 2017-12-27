@@ -407,8 +407,8 @@ ui-page {background:#fff;height:100%}
 .pr_btn_wrap .pr_btn_p a:first-child {float:left}
 .pr_btn_wrap .pr_btn_p a:last-child {float:right}
 /* 쉐어 상세 */
-.pr_view_cont .tab_mn li.on {border-bottom:1px solid #ea5217}
-.pr_view_cont .tab_mn li.on a.t_b {border-bottom:3px solid #ea5217}
+.pr_view_cont.pr_share .tab_mn li.on {border-bottom:1px solid #ea5217}
+.pr_view_cont.pr_share .tab_mn li.on a.t_b {border-bottom:3px solid #ea5217}
 .ca_wrap_source {position:relative}
 .ca_wrap_source a {padding:2px 6px 4px;border-radius:6em;overflow:hidden;font-size:0.9em;margin-right:4px}
 .ca_wrap_source a.on {background:#ea5217;color:#fff} 
@@ -432,7 +432,7 @@ ui-page {background:#fff;height:100%}
 .rv_cont {font-size:0.9em}
 .rv_num_box {padding-left:10px;background:url(../img/icon_bar.png)no-repeat left center;margin-left:8px}
 .rv_cmt_list {display:none;border-top:1px solid #efefef}
-.rv_cmt_list .comment_li {border-top:none !important}
+.rv_cmt_list .comment_li {border-top:none !important;padding-top:6px}
 .rv_btn_b {position:absolute;bottom:0;right:16px;width:118px;height:54px}
 .rv_btn_b .btn_l {width:55px;left:0;color:#949494}
 .rv_btn_b .btn_r {right:0;width:55px}
