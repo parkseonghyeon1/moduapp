@@ -15,6 +15,7 @@
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/swiper.min.js"></script>
 	<script src="../js/menu.js"></script>
+	<script src="../../cordova.js"></script>
 </head>
 <style>
 .ca_wrap {padding-bottom:10px;padding-left:13px;padding-right:13px}
@@ -374,6 +375,7 @@
 	})
 	
 	// 메인 배너 클릭
+	
 	$(document).on('click','.main_bann a',function(){
 		var br_id = $(this).attr('id');
 		var params = {"br_id":br_id};
@@ -382,7 +384,7 @@
 			data:params,			
 			url:"http://modublog.co.kr/app_public/ajax/a_banner_check.php",   
 			success:function(data){
-				console.log(data);			
+				window.open(data);
 			},  
 			complete:function(){
 			},   
@@ -392,6 +394,7 @@
 		})
 		return false;		
 	})
+	
 	</script>
 </body>
 </html>
