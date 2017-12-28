@@ -7,7 +7,7 @@
 .nav_mn1 {background:#fff;width:232px}
 .nav_mn2 {background:#fff;width:232px;margin-top:8px}
 .nav_mn2 li:last-child {border-bottom:solid 1px #e9e9e9 !important}
-.nav_mn3 {overflow:hidden;padding:0 16px}
+.nav_mn3 {overflow:hidden;height:33px}
 .nav_mn3 li {float:left;width:33.3%}
 .nav_mn3 li a {text-align:center;font-size:11px;display:block;color:#979797;background:url(../img/icon_bar.png)no-repeat left}
 .nav_mn3 li:first-child a {background:none}
@@ -26,7 +26,7 @@
 .p_message {position:absolute;right:0;width:30px;height:43px;top:20px}
 .p_message a {position:relative;display:block;background:url(../img/icon_message.png)no-repeat;background-size:26px 19px;background-position:50% 50%;height:43px}
 .p_message a span {position:absolute;bottom:10px;right:0px;width:13px;height:13px;border-radius:50%;overflow:hidden;background:#f14742;text-align:center;color:#fff;font-size:0.58em;line-height:13px}
-.nav_footer {position:absolute;bottom:18px;left:0;width:100%}
+.nav_footer {position:absolute;bottom:0;left:0;width:100%}
 
 .nav_right_mn {float:left;width:64px}
 .nav_right_mn a {display:block;height:49px;text-indent:-9999px}

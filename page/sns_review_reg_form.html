@@ -20,8 +20,8 @@
 <style>
 input[type="checkbox"], input[type="radio"] {-moz-appearance: none;-webkit-appearance: none; -ms-appearance: none;appearance: none;display: none;float: left; margin-right: -2em;opacity: 0;width: 1em;z-index: -1;}
 input[type="checkbox"] + label, input[type="radio"] + label {padding-left:18px;  text-decoration: none;color: #585858;cursor: pointer; display: inline-block; font-weight: 300; padding-left: 2em; /* padding-right: 1.75em; */ position: relative;}
-input[type="checkbox"]:checked + label:before, input[type="radio"]:checked + label:before {background: #88cbde;border-color: #88cbde; color: #fff !important;content: '\2714';border-radius:100%}
-input[type="checkbox"] + label:before, input[type="radio"] + label:before { border-radius: 50%;border: solid 1px #c9c9c9; content: '';color: #fff !important;display: inline-block; height: 1.3em;left: 0;position: absolute;text-align: center;top:0px; width: 1.3em;}
+input[type=radio]:checked + label span {background:url(../img/icon_check.png)no-repeat;background-size: 15px 15px;border: none;width: 15px;height: 15px;}
+input[type=radio] + label span {position: absolute;top: 2px;left: 0;width: 13px;height: 13px;border: 1px solid #747474;border-radius: 4px;overflow: hidden;}
 </style>
 <body>
 	<div id="header">
@@ -69,9 +69,9 @@ input[type="checkbox"] + label:before, input[type="radio"] + label:before { bord
 					<div id="rv_rs">
 						<div class="dv_input" style="margin-bottom:10px" id="select-review">
 							<div id="select_review" style="padding:13px 0">
-								<div id="select1"><input type="radio" id="ra1" name="selectImg" value="" class="btn_chk" checked><label for="ra1" id="lbl-ra2">URL 입력하기</label></div>
+								<div id="select1"><input type="radio" id="ra1" name="selectImg" value="" class="btn_chk" checked><label for="ra1" id="lbl-ra2">URL 입력하기<span></span></label></div>
 								<span>|</span>
-								<div id="select2"><input type="radio" id="ra2" name="selectImg" value=""><label for="ra2" id="lbl-ra1">사진 선택하기</label></div>
+								<div id="select2"><input type="radio" id="ra2" name="selectImg" value=""><label for="ra2" id="lbl-ra1">사진 선택하기<span></span></label></div>
 							</div>
 						</div>
 						<div id="select-img">
@@ -189,7 +189,7 @@ input[type="checkbox"] + label:before, input[type="radio"] + label:before { bord
 	});
 
 	// 사진선택하기 클릭
-	$(document).on('click','#select1',function(){
+	$(document).on('click','#select2',function(){
 		//$(this).toggleClass("on");
 		var ref = window.open("https://www.instagram.com/oauth/authorize/?client_id=104747e1329a4431803da088bf4270c6&redirect_uri=http://modublog.co.kr/app_public/ajax/a_sns_review.php&response_type=code","_blank","location=no");
 			

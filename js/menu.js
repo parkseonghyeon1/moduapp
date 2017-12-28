@@ -12,7 +12,6 @@
 		member['mb_nick'] = window.localStorage.getItem("mb_nick");
 		member['mb_point'] = window.localStorage.getItem("mb_point");
 		member['mb_n_point'] = member['mb_point'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		//member['mb_point'] = member['mb_point'].format();
 	}  
 	//member['mb_id'] = 'shinbyro';	
 	
@@ -44,7 +43,14 @@
 				return _keyValuePair[1]; 
 			} 
 		} 
-	} 
+	}
+	
+	$(document).on('click','.btn_back',function(){
+		var ch = getQuerystring('ch');
+		if(ch){
+			$(this).attr('href','main.html');
+		}
+	})
 
   // URL에서 GET값 가져오기
   function getQuerystrings(url,paramName){ 
