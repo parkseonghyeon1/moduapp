@@ -264,12 +264,6 @@
 				//console.log(data);
 				$('#cmt_num').html(data.length);
 				$('#pd_view_li').html(string_c);
-				
-				if(data.length < 20){
-					$("#loading_bar").attr("class","on");
-				}else{
-					$("#loading_bar").attr("class","off");
-				}
 			},   
 			error:function(e){  
 				console.log(e.responseText);  
@@ -316,17 +310,11 @@
 							
 							$("#loading_bar").attr("class","off");
 							
-							console.log(list);
-						},  
-						complete:function(){
 							if(!string_c){
-								list = 20;
-								$("#loading_bar").attr("class","on");
-								$("#loading_bar").html("");
-							}else{
-								$("#loading_bar").attr("class","off");
+								$("#loading_bar").attr("class","");
 							}
-						},	 
+							console.log(list);
+						},   
 						error:function(e){  
 							console.log(e.responseText);  
 						}  		

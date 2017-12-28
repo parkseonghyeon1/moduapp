@@ -55,6 +55,7 @@
 		<input type="hidden" name="wr_review" id="wr_review"  val="">
 		<input type="hidden" name="mb_homepage" id="mb_homepage" val="">
 		<input type="hidden" name="wr_3" id="wr_3" val="">
+		<input type="hidden" name="wr_3_check" id="wr_3_check" val="">
 		<input type="hidden" name="w" id="w" val="">
 	</form>
 	<iframe id="product_req_frame" name="product_req_frame" src="http://modublog.co.kr/app_public/product_req_form.php" class="request" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" onload="autoResize(this)"></iframe>
@@ -248,7 +249,10 @@
 			*/
 		}
 
-		if(data['wr_3']){	//상품선택일때
+		$('#wr_3_check').val(string_change(decodeURI(data['wr_3_check'])));	
+		var wr_3_check = $('#wr_3_check').val();
+
+		if(wr_3_check==1){	//상품선택일때
 			$('#wr_3').val(string_change(decodeURI(data['wr_3'])));	
 			//$('#mb_homepage').val(string_change(data['mb_homepage']));
 			//$('#wr_content').val(string_blank(decodeURI(data['wr_content'])));
