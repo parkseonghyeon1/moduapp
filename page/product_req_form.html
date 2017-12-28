@@ -117,7 +117,7 @@
 					$('.terms_sub').html('<h3 class="prec_sub">이용약관</h3>');
 					
 					$('.terms_cont2').html(args.cf_stipulation)
-					$('.terms_prec').html('<div class="prec"><h3 class="prec_sub">안내사항</h3><ul><li>체험단으로 선정 시 체험안내 이메일이 발송됩니다.</li><li>업체 사정으로 인해 선정인원은 추후 변경될 수 있습니다.</li><li>상품선택은 참고사항으로 선택하신 상품과 다른 상품에 선정될 수 있습니다.</li><li>반드시 신청자 본인이 체험 하셔야 합니다. (단, 대리체험 가능 상품 예외) 제공받으신 체험 상품은 재판매하실 수 없습니다.</li></ul></div>');
+					$('.terms_prec').html('<div class="prec"><h3 class="prec_sub">안내사항</h3><ul><li>업체 사정으로 인해 선정인원은 추후 변경될 수 있습니다.</li><li>선택지는 참고사항으로, 이와 다르게 선정되실 수 있습니다.</li><li>반드시 신청자 본인만 체험 가능합니다. (단, 대리체험 가능상품 제외)</li><li>제공 받으신 체험 상품은 재판매가 불가하오니 유의바랍니다.</li></ul></div>');
 				}, 
 				error:function(e){  	
 				}  
@@ -193,8 +193,8 @@
 			$('#mb_hp2').val(data['mb_hp2']);
 			$('#mb_hp3').val(data['mb_hp3']);
 			$('#wr_content2').val(string_blank(decodeURI(data['wr_content2'])));	
-			//$('#wr_content').val(string_blank(decodeURI(data['wr_content'])));
-			//$('#mb_homepage').val(string_change(data['mb_homepage']));						
+			$('#wr_content').val(string_blank(decodeURI(data['wr_content'])));
+			$('#mb_homepage').val(string_change(data['mb_homepage']));						
 
 			var mb_zip = $('#mb_zip').val();
 			var mb_addr1 = $('#mb_addr1').val();
@@ -203,8 +203,8 @@
 			var mb_hp2 = $('#mb_hp2').val();
 			var mb_hp3 = $('#mb_hp3').val();
 			var wr_content2 = $('#wr_content2').val();
-			//var wr_content = $('#wr_content').val();
-			//var mb_homepage = $('#mb_homepage').val();
+			var wr_content = $('#wr_content').val();
+			var mb_homepage = $('#mb_homepage').val();
 			if(mb_zip == ''){
 				alert("우편번호를 입력하세요.");
 				$("#mb_zip").focus();
@@ -254,10 +254,10 @@
 
 		if(wr_3_check==1){	//상품선택일때
 			$('#wr_3').val(string_change(decodeURI(data['wr_3'])));	
-			//$('#mb_homepage').val(string_change(data['mb_homepage']));
-			//$('#wr_content').val(string_blank(decodeURI(data['wr_content'])));
+			$('#mb_homepage').val(string_change(data['mb_homepage']));
+			$('#wr_content').val(string_blank(decodeURI(data['wr_content'])));
 			var wr_3 = $('#wr_3').val();
-			//var wr_content = $('#wr_content').val();
+			var wr_content = $('#wr_content').val();
 			var mb_homepage = $('#mb_homepage').val();
 			if(wr_3 == ''){
 				alert("상품을 선택해주세요.");

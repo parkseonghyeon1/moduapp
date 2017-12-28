@@ -21,8 +21,8 @@
 	</div>
 	<div class="list_wrap">
 		<ul class="tab_mn tab_thr" id="pr_view_mn">
-			<li class="on"><a class="tab1 t_b" id="my_p1">신청</a></li>
-			<li><a class="tab2 t_b" id="my_p2">선정</a></li>
+			<li class="on"><a class="tab1 t_b" id="my_p1">선정</a></li>
+			<li><a class="tab2 t_b" id="my_p2">신청</a></li>
 			<li><a class="tab3 t_b" id="my_p3">취소/불참</a></li>
 		</ul>
 		<div class="home_list" style="margin-top:0">
@@ -59,15 +59,25 @@
 					if(value.bo_table == 'sns_fashion'){
 						string +='_sns';
 					}
-					string += '.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.image+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">선택상품 : '+value.choice+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color'+txt_ca+'">'+value.comment+'</span>/'+value.wr_8+'</span><span>&nbsp;'+value.wr_10+'</span></div></div></div><div class="rv_btn_b">';
+					string += '.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.image+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">선택상품 : '+value.choice+'</span><div class="conts_info"><span class="info_title"><span>리뷰&nbsp;<span class="color'+txt_ca+'">'+value.wr_11+'</span></span></div></div></div><div class="rv_btn_b">';
 					if(my_p == 'my_p1'){
-						string += '<a class="btn_tp1 btn_l" id="btn_cancle" data="'+value.wr_id+'|'+value.ms_id+'|'+value.mb_id+'|'+value.bo_table+'">신청취소</a><a href="product_req_form.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'&ms_id='+value.ms_id+'&w=u"  class="btn_tp1 btn_r color'+txt_ca+'">신청수정</a>';
+						if(value.review){
+							txt_s = "수정";
+							w = "cu";
+						}else{
+							txt_s = "등록";
+							w = "c";
+						}
+						if(value.wr_18){
+						string += '<a href="guide_view.html?wr_id='+value.wr_18_id+'" class="btn_tp1 btn_l">체험안내</a>';
+						}
+						if(value.bo_table == 'sns_fashion'){
+                            string += '<a href="sns_review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'&bo_table='+value.bo_table+'" class="btn_tp1 btn_r color'+txt_ca+'">리뷰'+txt_s+'</a>';
+                        }else{
+                            string += '<a href="review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'&bo_table='+value.bo_table+'" class="btn_tp1 btn_r color'+txt_ca+'">리뷰'+txt_s+'</a>';
+                        }
 					}
-					string += '</div></div>';
-					if(value.wr_10 == '종료'){
-						string+= '<div class="end_mask"></div>';
-					}
-					string += '</li>';
+					string += '</div></div></li>';
 				}); 
 				$("#my_list").append(string);
 				
@@ -103,17 +113,14 @@
 			success:function(data){
 				$.each(data[0],function(key,value){
 					if(value.bo_table == 'sns_fashion'){
+						var sns_url = '_sns';
 						txt_ca = '_sns';
 					}else{
 						txt_ca = '_blog';
 					}
-					string += '<li><a href="product_view';
-					if(value.bo_table == 'sns_fashion'){
-						string +='_sns';
-					}
-					string += '.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.image+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">선택상품 : '+value.choice+'</span><div class="conts_info"><span class="info_title">';
-					if(my_p == 'my_p2'){
-						string+='<span >리뷰&nbsp;<span class="color'+txt_ca+'">'+value.wr_11+'</span></span>';
+					string += '<li><a href="product_view'+sns_url+'.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.image+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">선택상품 : '+value.choice+'</span><div class="conts_info"><span class="info_title">';
+					if(my_p == 'my_p1'){
+						string+='<span>리뷰&nbsp;<span class="color'+txt_ca+'">'+value.wr_11+'</span></span>';
 					}else{
 						string += '<span>신청</span><span class="color'+txt_ca+'">'+value.comment+'</span>/'+value.wr_8+'</span>';
 						if(my_p == 'my_p3'){
@@ -122,9 +129,7 @@
 						string +='<span>&nbsp;'+value.wr_10+'</span>';
 					}
 					string += '</div></div></div><div class="rv_btn_b">';
-					if(my_p == 'my_p1' || my_p == ''){
-						string += '<a class="btn_tp1 btn_l" id="btn_cancle" data="'+value.wr_id+'|'+value.ms_id+'|'+value.mb_id+'|'+value.bo_table+'">신청취소</a><a href="product_req_form.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'&ms_id='+value.ms_id+'&w=u"  class="btn_tp1 btn_r color'+txt_ca+'">신청수정</a>';
-					}else if(my_p == 'my_p2'){
+					if(my_p == 'my_p1'){
 						if(value.review){
 							txt_s = "수정";
 							w = "cu";
@@ -133,13 +138,15 @@
 							w = "c";
 						}
 						if(value.wr_18){
-						string += '<a href="'+value.wr_18+'" class="btn_tp1 btn_l">체험안내</a>';
+						string += '<a href="guide_view.html?wr_id='+value.wr_18_id+'" class="btn_tp1 btn_l">체험안내</a>';
 						}
 						if(value.bo_table == 'sns_fashion'){
                             string += '<a href="sns_review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'&bo_table='+value.bo_table+'" class="btn_tp1 btn_r color'+txt_ca+'">리뷰'+txt_s+'</a>';
                         }else{
                             string += '<a href="review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'&bo_table='+value.bo_table+'" class="btn_tp1 btn_r color'+txt_ca+'">리뷰'+txt_s+'</a>';
                         }
+					}else if(my_p == 'my_p2'){
+						string += '<a class="btn_tp1 btn_l" id="btn_cancle" data="'+value.wr_id+'|'+value.ms_id+'|'+value.mb_id+'|'+value.bo_table+'">신청취소</a><a href="product_req_form.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'&ms_id='+value.ms_id+'&w=u"  class="btn_tp1 btn_r color'+txt_ca+'">신청수정</a>';
 					}else if(my_p == 'my_p3'){
 						if(value.ms_choice == "n2"){
 							txt_s = "불참";
@@ -149,7 +156,7 @@
 						string += '<a class="btn_tp1 btn_r" style="color:#949494">'+txt_s+'</a>';
 					}
 					string += '</div></div>';
-					if(my_p == 'my_p1' && value.wr_10 == '종료'){
+					if(my_p == 'my_p2' && value.wr_10 == '종료'){
 						string+= '<div class="end_mask"></div>';
 					}
 					if(my_p == 'my_p3'){

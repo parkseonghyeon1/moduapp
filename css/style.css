@@ -425,7 +425,7 @@ ui-page {background:#fff;height:100%}
 #tab_sns {padding:12px 0 10px;background:#fff;border-bottom:1px solid #e9e9e9}
 #c_tab_b.on {border-bottom:1px solid #88cbde}
 #c_tab_s.on {border-bottom:1px solid #edaf07}
-/*.tab_sns {display:none;}*/
+.tab_sns {display:none;}
 .rv_list li .rv_sub_info {padding-top:10px;display:inline-block}
 .rv_img img {width:100%;vertical-align:top}
 .rv_txt {padding:20px 16px}
@@ -567,6 +567,7 @@ ui-page {background:#fff;height:100%}
 .notice_conts img,
 .comu_conts img {max-width:100%}
 .post-view {width:100% !important}
+.__se_tbl td p {margin-left:0 !important}
 #postViewArea {padding:0}
 #event_li img {max-width:100%}
 

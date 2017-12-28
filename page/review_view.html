@@ -66,6 +66,10 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_review_view.php",
 			data:params,
 			success:function(data){
+				if(!data.wr_id){
+					alert("해당 글이 존재하지 않습니다. 글이 삭제되었거나 이동된 경우입니다.");
+					location.href="review_list.html"
+				}
 				for(var i=0; i < 10; i = i +2){
 					if(data.wr_star > i){
 						if(bo_table == 'sns_review'){
