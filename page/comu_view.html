@@ -159,23 +159,19 @@
 		}
 	})
 	
-	// 비로그인
-	/*$(document).on('click','#val1',function(){
-		if(member['mb_id']){
-			return;
-		}else{
-			var con = confirm("로그인이 필요합니다. 로그인 하시겠습니까?");
-			if(con){
-				location.replace("login.html");
-			}else{
-				location.reload();
-			}
-		}
-	});*/
-	
 	// 댓글등록
 	$(document).on('click','.btn_ok a',function(){
 		var wr_content = $(this).parent().prev().val();
+		
+		if(logincheck==0){
+			var result = confirm('로그인 후 이용 가능한 서비스입니다. 로그인 하시겠습니까?');
+			if(result){
+				location.href="login.html";
+			}else{
+				$('#val1').val("");
+				return false;
+			}
+		}
 		
 		if(wr_content == ''){
 			alert("댓글을 입력해주세요.");
