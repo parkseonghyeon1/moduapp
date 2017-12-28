@@ -192,8 +192,8 @@
 			$('#mb_hp2').val(data['mb_hp2']);
 			$('#mb_hp3').val(data['mb_hp3']);
 			$('#wr_content2').val(string_blank(decodeURI(data['wr_content2'])));	
-			$('#wr_content').val(string_blank(decodeURI(data['wr_content'])));
-			$('#mb_homepage').val(string_change(data['mb_homepage']));						
+			//$('#wr_content').val(string_blank(decodeURI(data['wr_content'])));
+			//$('#mb_homepage').val(string_change(data['mb_homepage']));						
 
 			var mb_zip = $('#mb_zip').val();
 			var mb_addr1 = $('#mb_addr1').val();
@@ -202,74 +202,75 @@
 			var mb_hp2 = $('#mb_hp2').val();
 			var mb_hp3 = $('#mb_hp3').val();
 			var wr_content2 = $('#wr_content2').val();
-			var wr_content = $('#wr_content').val();
-			var mb_homepage = $('#mb_homepage').val();
+			//var wr_content = $('#wr_content').val();
+			//var mb_homepage = $('#mb_homepage').val();
 			if(mb_zip == ''){
-			alert("우편번호를 입력하세요.");
-			$("#mb_zip").focus();
-			return false;
+				alert("우편번호를 입력하세요.");
+				$("#mb_zip").focus();
+				return false;
 			}
 			if(mb_addr1 == ''){
-			alert("주소를 입력하세요.");
-			$("#mb_addr1").focus();
-			return false;
+				alert("주소를 입력하세요.");
+				$("#mb_addr1").focus();
+				return false;
 			}
 			if(mb_addr2 == ''){
-			alert("나머지주소를 입력하세요.");
-			$("#mb_addr2").focus();
-			return false;
+				alert("나머지주소를 입력하세요.");
+				$("#mb_addr2").focus();
+				return false;
 			}
 			if(mb_hp1 == ''){
-			alert("핸드폰번호를 입력하세요.");
-			$("#mb_hp1").focus();
-			return false;
+				alert("핸드폰번호를 입력하세요.");
+				$("#mb_hp1").focus();
+				return false;
 			}
 			if(mb_hp2 == ''){
-			alert("핸드폰번호를 입력하세요.");
-			$("#mb_hp2").focus();
-			return false;
+				alert("핸드폰번호를 입력하세요.");
+				$("#mb_hp2").focus();
+				return false;
 			}
 			if(mb_hp3 == ''){
-			alert("핸드폰번호를 입력하세요.");
-			$("#mb_hp3").focus();
-			return false;
+				alert("핸드폰번호를 입력하세요.");
+				$("#mb_hp3").focus();
+				return false;
 			}
-			if(wr_content2 == ''){
-			alert("특이사항을 입력하세요.");
-			$("#wr_content2").focus();
-			return false;
-			}
+			/*
 			if(wr_content == ''){
-			alert("신청사연을 입력하세요.");
-			$("#wr_content").focus();
-			return false;
+				alert("신청사연을 입력하세요.");
+				$("#wr_content").focus();
+				return false;
 			}
 			if(mb_homepage == ''){
-			alert("블로그주소를 입력하세요.");
-			$("#mb_homepage").focus();
-			return false;
+				alert("블로그주소를 입력하세요.");
+				$("#mb_homepage").focus();
+				return false;
 			}
-
+			*/
 		}
 
 		if(data['wr_3']){	//상품선택일때
-
 			$('#wr_3').val(string_change(decodeURI(data['wr_3'])));	
-			$('#mb_homepage').val(string_change(data['mb_homepage']));
-			$('#wr_content').val(string_blank(decodeURI(data['wr_content'])));
+			//$('#mb_homepage').val(string_change(data['mb_homepage']));
+			//$('#wr_content').val(string_blank(decodeURI(data['wr_content'])));
 			var wr_3 = $('#wr_3').val();
-			var wr_content = $('#wr_content').val();
+			//var wr_content = $('#wr_content').val();
 			var mb_homepage = $('#mb_homepage').val();
+			if(wr_3 == ''){
+				alert("상품을 선택해주세요.");
+				return false;
+			}
+			/*
 			if(wr_content == ''){
-			alert("신청사연을 입력하세요.");
-			$("#wr_content").focus();
-			return false;
+				alert("신청사연을 입력하세요.");
+				$("#wr_content").focus();
+				return false;
 			}
 			if(mb_homepage == ''){
-			alert("블로그주소를 입력하세요.");
-			$("#mb_homepage").focus();
-			return false;
+				alert("블로그주소를 입력하세요.");
+				$("#mb_homepage").focus();
+				return false;
 			}
+			*/
 		}
 		
 		$('#ms_id').val(ms_id);

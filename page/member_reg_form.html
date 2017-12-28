@@ -13,6 +13,15 @@
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/jquery.form.min.js"></script>
 	<script src="../js/menu.js"></script>
+	<script type="text/javascript">
+	// iframe resize
+	/*function autoResize(i)
+	{
+		var iframeHeight=
+		(i).contentWindow.document.body.scrollHeight;
+		(i).height=iframeHeight+10;
+	}*/
+	</script>
 </head>
 <body>
 	<div id="header">
@@ -106,6 +115,25 @@
 	<div id="pop"></div>
 	
 	<script>
+	/*window.onload = function() {
+		var lastHeight = 0;
+		var curHeight = 0;
+		var targetFrame = document.getElementById('register_frame'); // custom id 입력
+	 
+		targetFrame.onload = function(){
+			curHeight = targetFrame.contentWindow.document.body.scrollHeight + 'px';
+			targetFrame.style.height = curHeight;
+		}
+	 
+		setInterval(function(){
+			curHeight = targetFrame.contentWindow.document.body.scrollHeight + 'px';
+			if ( curHeight != lastHeight ) {
+			  targetFrame.style.height = curHeight;
+			  lastHeight = curHeight;
+			}
+		},500);
+	}*/
+
 	// 카테고리 on-off
     $(document).on("click",".category a",function(){  
         $(this).parent().children('a').removeClass('on');

@@ -214,6 +214,7 @@
 					data:params,			
 					url:"http://modublog.co.kr/app_public/ajax/a_blog_ajax.php",      
 					beforeSend:function(){
+						$("#loading_bar").attr("class","");
 						$("#loading_bar").html("<div class='loader_wrap' style='height:115px'><img src='../img/icon_loder.gif'></div>");
 					},
 					success:function(data){
@@ -228,9 +229,11 @@
 						}
 						
 						list = list + list_num;
-						
 						temp = ca_name;
 						
+						$("#loading_bar").attr("class","off");
+					},  
+					complete:function(){
 						if(!string_bl){
 							list = 8;
 							$("#loading_bar").attr("class","on");
@@ -238,7 +241,7 @@
 						}else{
 							$("#loading_bar").attr("class","off");
 						}
-					},   
+					},	 
 					error:function(e){  
 						console.log(e.responseText);  
 					}  		

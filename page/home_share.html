@@ -22,7 +22,7 @@
 		$("#nav_v").load("slide_menu.html");
 	</script>
 	
-	<div class="home_share bk_gray">
+	<div class="wrapper home_share bk_gray">
 		<!-- 메인 -->
 		<div class="sh_my_info bk_sh" style="padding:58px 0;margin-bottom:10px;position:relative;text-align:center">
 			<p style="text-align:center;color:#fff;font-size:1em" id="mb_nick"></p>
@@ -73,7 +73,7 @@
 			<h1 class="title">MD 추천 콘텐츠</h1>
 			<div class="pd_wrap">
 				<div class="swiper-container1">
-					<div class="swiper-wrapper" id="share_wrap">
+					<div class="swiper-wrapper" id="share_rec">
 					
 					</div>
 				</div>
@@ -96,6 +96,8 @@
 			<div id="loading_bar" class="off"></div>
 		</div>
 	</div>
+	<input type="hidden" id="share_wr_id" value="">
+	<input type="hidden" id="share_url" value="">
 	<div id="share_wrap"></div>
 	<!-- 페이지 로딩 -->
 	<div id="loading_wraps"></div>
@@ -138,21 +140,35 @@
 		}, 8500);
 	}	
 	
+	// 공유하기 버튼
 	$(document).on('click','.sh_share',function(){
-		var wr_link2 = $('#url_sub').text();
-		var url = $('#url_w').val();
-		$("#share_wrap").load("share_pop.html",function(){
+		var share_wr_id = $(this).attr('id');	//wr_id값 가져오기
+		var share_url = $(this).attr('data');	//url 가져오기
+		$('#share_wr_id').val(share_wr_id);
+		$('#share_url').val(share_url);
 		
-		});
+		$("#share_wrap").load("share_pop.html");
 	})
-	// a 버튼
-	$(document).on("click",".btn_priz",function(){
-		//var wr_id = $(this).attr("id");
-		//location.href="event_view.html?wr_id="+wr_id;
-		//event.stopPropagation();
-	})
-	$(document).on("click",".stop",function(){
-		//return false;
+	// 공유하기 팝업 각 버튼 (카카오|페이스북|네이버블로그)
+	$(document).on('click','.btn_social',function(){
+		var sh_id = $(this).attr("id");
+		var wr_id = $('#share_wr_id').val();
+		var url = $('#share_url').val();
+		var params = {"sh_id":sh_id,"wr_id":wr_id,"url":url};
+		
+		window.open("http://modublog.co.kr/app_public/ajax/a_share_social.php?wr_id="+wr_id+"&url="+url+"&sh_id="+sh_id);
+		
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_share_social.php",
+			data:params,
+			success:function(data){
+				console.log(data);
+			},
+			error:function(){
+			}
+		})
+		return false;	
 	})
 	
 	// SHARE 홈 불러오기
@@ -183,7 +199,7 @@
 				$.each(data[1],function(key,value){
 					string_re += '<div class="swiper-slide item"><a href="product_view_share.html?bo_table='+value.sh_pr_board+'&wr_id='+value.sh_pr_board_id+'&site_id=share"><div class="sns_c"><div class="item_img"><img src="'+value.sh_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sh_wr_subject+'</span></p><span class="sub_txt color_share">쉐어</span><span class="sub_txt item_view">클릭&nbsp;'+value.sh_wr_comment_reply+'</span></div></div></a></div>';
 				}); 
-				$("#share_wrap").html(string_re);
+				$("#share_rec").html(string_re);
 				
 				//SHARE 리스트 뿌리기
 				$.each(data[2],function(key,value){
@@ -192,8 +208,8 @@
 						string_sh += '<span class="sh_fix"></span>';
 					}
 					string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div></div></a>';
-					if(value.shh_url == '1'){
-						string_sh += '<div class="sh_url_b"><span class="sh_url_en color_share">발급완료</span><a class="sh_share"></span></div>';
+					if(value.shh_link == '1'){
+						string_sh += '<div class="sh_url_b"><span class="sh_url_en color_share">발급완료</span><a class="sh_share" id="'+value.shh_pr_board_id+'" data="'+value.shh_url+'"></span></div>';
 					}
 					string_sh += '</li>';
 				}); 
@@ -220,7 +236,7 @@
 					direction: 'horizontal'
 				});
 				
-				//console.log(data);
+				console.log(data);
 			},   
 			complete:function(){
 				$('.loading').hide();
@@ -257,8 +273,8 @@
 									string_sh += '<span class="sh_fix"></span>';
 								}
 								string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div></div></a>';
-								if(value.shh_url == '1'){
-									string_sh += '<div class="sh_url_b"><span class="sh_url_en color_share">발급완료</span><a class="sh_share"></a></div>';
+								if(value.shh_link == '1'){
+									string_sh += '<div class="sh_url_b"><span class="sh_url_en color_share">발급완료</span><a class="sh_share" id="'+value.shh_pr_board_id+'" data="'+value.shh_url+'"></a></div>';
 								}
 								string_sh += '</li>';
 							}); 

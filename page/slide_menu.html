@@ -60,7 +60,7 @@
 				<ul class="nav_mn3">
 					<li><a href="setting.html">설정</a></li>
 					<li><a href="#none" class="terms">개인정보</a></li>
-					<li><a href="ad_reg_form.html" class="go_a">광고문의</a></li>
+					<li><a href="ad_reg_form.html" id="btn_write">광고문의</a></li>
 				</ul>
 			</div>
 		</div>
@@ -76,6 +76,21 @@
 	<div id="pop"></div>
 	
 	<script>
+	// 글쓰기 버튼 로그인 | 비로그인
+	$(document).on('click','#btn_write',function(){
+		if(logincheck==0){
+			var result = confirm('로그인 후 이용 가능한 서비스입니다. 로그인 하시겠습니까?');
+			if(result){
+				location.href="login.html";
+			}else{
+				return false;
+			}
+		}else{
+			$('#btn_write').attr('href','ad_reg_form.html');
+		}
+		return false;
+	})
+	
 	// 약관동의 팝업 - 불러오기
 	$(document).on('click','.terms',function(){
 		$(".c-mask").trigger('click');

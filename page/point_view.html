@@ -181,6 +181,7 @@
 					data:params,			
 					url:"http://modublog.co.kr/app_public/ajax/a_point_ajax.php",      
 					beforeSend:function(){
+						$("#loading_bar").attr("class","");
 						$("#loading_bar").html("<div class='loader_wrap' style='height:61px;background:#fff'><img src='../img/icon_loder.gif'></div>");
 					},
 					success:function(data){
