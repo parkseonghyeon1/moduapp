@@ -162,10 +162,22 @@
 		var comment_id = $(this).attr("data");
 		var result = confirm('한번 삭제한 자료는 복구할수없습니다. 정말 삭제하시겠습니까?');
 		
-		//본글 삭제
+		//댓글 삭제
 		if(result){
-			alert("댓글삭제");
-			location.href="comu_list.html";
+			var params1 = { bo_table : "event",wr_id : wr_id ,comment_id : comment_id };
+				$.ajax({      
+					type:"POST",  
+					url:"http://modublog.co.kr/app_public/ajax/a_delete_comment.php",  
+					data:params1,			
+					success:function(data){
+						location.reload();
+					},   
+					error:function(e){  
+						console.log(e.responseText);  
+					}  
+				});
+			
+			//location.href="comu_list.html";
 		}else{
 			return false;
 		}
