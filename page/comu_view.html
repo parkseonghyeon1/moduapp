@@ -129,10 +129,10 @@
 					string_c += '<div class="comment_title"><span class="title_sub"><span class="nick_ov">'+value.wr_name+'</span></span><span class="date_txt" style="padding:0 4px">'+value.datetime+'</span><span class="comment_re">';
 					
 					if(mb_id){
-						string_c += '<a href="#none" class="color_blog btn_comment comm" data="'+value.wr_id+'" id="comm_re">답글</a>';
+						string_c += '<a href="#none" class="color_blog btn_comment comm" id="comm_re" data="'+value.wr_id+'">답글</a>';
 					}
 					if(value.mb_id == mb_id){
-						string_c += '<a href="#none" class="comment_edit comm" id="comm_edit">수정</a><a href="#none" class="comment_edit">삭제</a>';
+						string_c += '<a href="#none" class="comment_edit comm" id="comm_edit" data="'+value.wr_id+'">수정</a><a href="#none" class="comment_edit">삭제</a>';
 					}
 					
 					string_c += '</span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div>';
@@ -167,7 +167,11 @@
 		//새 댓글
 		if(comm_id == 'comm_re'){
 			var comment2 = '<div class="comu_box comment comment_re2" style="padding:8px 0 13px"><form id="comment_input"><input type="hidden" name="w" value="c"><input type="hidden" name="bo_table" value="comu"><img class="icon_secret2" src="../img/icon_lock.png"><input type="checkbox" id="wr_secret_r" name="wr_secret" value="secret"><label for="wr_secret_r"><span></span></label><input type="hidden" name="comment_id" value="'+comment_id+'"><input type="hidden" name="wr_id" value="'+wr_id+'"><textarea type="text" class="input" name="wr_content" id="val1" placeholder="댓글을 입력하세요."></textarea><div class="btn_wrap btn_ok" style="margin-bottom:0"><a href="#none" id="">등록하기</a></div><input type="hidden" name="mb_id" value="'+member['mb_id']+'"></form></div>';
-			$(this).parent().parent().parent().parent('li').toggleClass('on_r').siblings().removeClass('on_r').find('.comment_box').html("");
+			if($(this).parent().parent().parent().parent('li').attr('class') == 'on_e'){
+				$(this).parent().parent().parent().parent('li').removeClass('on_e').addClass('on_r');
+			}else{
+				$(this).parent().parent().parent().parent('li').toggleClass('on_r').siblings().removeClass('on_r').find('.comment_box').html("");
+			}
 		//댓글 수정
 		}else if(comm_id == 'comm_edit'){
 			var comment_cont = $(this).parent().parent().next('.comment_conts').text();
@@ -209,6 +213,8 @@
 		}
 		
 		var params = $(this).closest("form").serialize();
+		console.log(params);
+		/*
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_comment_write.php",  
@@ -220,6 +226,7 @@
 				console.log(e.responseText);  
 			}  
 		});
+		*/
 	});
 	</script>
 </body>
