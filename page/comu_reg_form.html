@@ -21,9 +21,10 @@
 	</div>
 	<div class="bk_gray">
 		<form id="comu_reg_form" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="w" value="">
+			<input type="hidden" name="w" id="w" value="">
 			<input type="hidden" name="mb_id" id="mb_id" value="">
 			<input type="hidden" name="bo_table" value="comu">
+			<input type="hidden" name="wr_id" id="wr_id" value="">
 			<div class="m_reg_li" style="background:#fff">
 				<ul>
 					<li>
@@ -71,8 +72,13 @@
 			</div>
 		</form>
 	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading_wraps"></div>
 	<script>
+		$("#loading_wraps").load("loading.html #lo_blog");
+	</script>
 	
+	<script>
 	// 파일 첨부
 	function fileInfo_p(f){
 		var file = f.files; // 파일의 정보
@@ -90,8 +96,13 @@
 		
 		var reader = new FileReader(); // FileReader 객체 사용
 		reader.onload = function(rst){
-			$('#id_card_photo').html('<img id="id_photo" style="position:absolute;top:0;left:0;bottom:0;right:0;vertical-align:middle;width:100%;height:100%;vertical-align:top;border:none">');
+			$('#id_card_photo').html('<img id="id_photo" style="position:absolute;top:0;left:0;bottom:0;right:0;margin:auto;vertical-align:middle;vertical-align:top;border:none">');
 			$('#id_photo').attr("src", rst.target.result); 
+			var imgHeight = $('#id_photo').height();
+			var imgWidth = $('#id_photo').width();
+			if(imgHeight >= imgWidth){
+				$('#id_photo').css('height','100px')
+			}
 			//$('#img_box1').css('background','url('+rst.target.result+')center center / cover no-repeat');
 			// append 메소드를 사용해서 이미지 추가
 			// 이미지는 base64 문자열로 추가
@@ -100,20 +111,56 @@
 	}
 	
 	// 커뮤니티 카테고리 불러오기
-	$('#mb_id').val(member['mb_id']);
 	$(document).ready(function(){
-		var params = {"bo_table":"comu"};
+		var wr_id = getQuerystring('wr_id');
+		var mb_id = member['mb_id'];
+		var w = getQuerystring('w');
+		$('#wr_id').val(wr_id);
+		$('#mb_id').val(mb_id);
+		$('#w').val(w);
+		
+		var params1 = {"bo_table":"comu"};
+		var params2 = {"wr_id":wr_id,"bo_table":"comu"};
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_category.php",          
-			data:params,
+			data:params1,
 			success:function(data){
 				$('#comu_ct').html(data);
 			},   
 			error:function(e){  
 				console.log(e.responseText);  
 			}  
-		});  	
+		});
+		if(w == 'u'){
+			$.ajax({      
+				type:"POST",  
+				url:"http://modublog.co.kr/app_public/ajax/a_view.php",          
+				data:params2,
+				success:function(data){
+					if(!data.wr_id){
+						alert("해당 글이 존재하지 않습니다. 글이 삭제되었거나 이동된 경우입니다.");
+						location.href="comu_list.html"
+					}
+					if(data.image){
+						$('.comu_f').html('<img id="image_wrap" src="'+data.image+'">');
+					}
+					//$("#comu_img").attr("src",data.mb_photo);
+					
+					$("#comu_ct").val(data.ca_name).prop("selected", true);
+					
+					$("#wr_subject").val(data.wr_subject);
+					$("#wr_content").val(data.wr_content);
+				},   
+				complete:function(){
+					$('.btn_submit').addClass('on');
+					$('.loading').hide();
+				},
+				error:function(e){  
+					console.log(e.responseText);  
+				}  
+			});
+		}
 	});
 	
 	// 내용 입력했을때 버튼 on
@@ -150,6 +197,8 @@
 		}
 		$(this).attr("class","btn_submit off");
 		
+		var params = $(this).closest("form").serialize();
+		console.log(params);
 		$('#comu_reg_form').ajaxForm({
 			url: "http://modublog.co.kr/app_public/ajax/a_write.php",
 			enctype: "multipart/form-data",
@@ -161,6 +210,7 @@
 			}  
 		});
 		$("#comu_reg_form").submit();
+		
 	})
 	</script>
 </body>

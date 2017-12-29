@@ -83,7 +83,7 @@
 					location.href="comu_list.html"
 				}
 				if(data.mb_id == mb_id){
-					$('.btn_edit').html('<a href="comu_reg_form.html?w=u">수정</a><a href="#none">삭제</a>');
+					$('.btn_edit').html('<a href="comu_reg_form.html?wr_id='+wr_id+'&w=u">수정</a><a href="#none" class="btn_delete" id="delete_comm" data="'+wr_id+'">삭제</a>');
 				}
 				if(data.image){
 					$('.comu_f').html('<img id="image_wrap" src="'+data.image+'">');
@@ -132,7 +132,7 @@
 						string_c += '<a href="#none" class="color_blog btn_comment comm" id="comm_re" data="'+value.wr_id+'">답글</a>';
 					}
 					if(value.mb_id == mb_id){
-						string_c += '<a href="#none" class="comment_edit comm" id="comm_edit" data="'+value.wr_id+'">수정</a><a href="#none" class="comment_edit">삭제</a>';
+						string_c += '<a href="#none" class="comment_edit comm" id="comm_edit" data="'+value.wr_id+'">수정</a><a href="#none" class="btn_delete" id="delete_comm_sub" data="'+value.wr_id+'">삭제</a>';
 					}
 					
 					string_c += '</span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div>';
@@ -192,7 +192,33 @@
 		}
 	})
 	
-	// 댓글등록
+	// 삭제 버튼 클릭 (본글, 댓글)
+	$(document).on('click','.btn_delete',function(){
+		var wr_id = getQuerystring('wr_id');
+		var del_id = $(this).attr('id');
+		var comment_id = $(this).attr("data");
+		var result = confirm('한번 삭제한 자료는 복구할수없습니다. 정말 삭제하시겠습니까?');
+		
+		//본글 삭제
+		if(del_id == 'delete_comm'){
+			if(result){
+				alert("본글삭제");
+				location.href="comu_list.html";
+			}else{
+				return false;
+			}
+		//댓글 삭제
+		}else if(del_id == 'delete_comm_sub'){
+			if(result){
+				alert("댓글삭제");
+				location.reload();
+			}else{
+				return false;
+			}
+		}
+	})
+	
+	// 확인 버튼 클릭 (댓글 수정 및 등록)
 	$(document).on('click','.btn_ok a',function(){
 		var wr_content = $(this).parent().prev().val();
 		

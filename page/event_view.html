@@ -73,6 +73,7 @@
 	// 댓글 불러오기
 	$(document).ready(function(){
 		var wr_id = getQuerystring('wr_id');
+		var mb_id = member['mb_id'];
 		var params = {"wr_id":wr_id,"bo_table":"event"};
 		var string_c = '';
 		$.ajax({      
@@ -89,9 +90,13 @@
 					
 					string_c += '<div class="comment_title"><span class="title_sub">'+value.wr_name+'</span><span class="date_txt" style="padding:0 4px">'+value.datetime+'</span><span class="comment_re">';
 					
-					if(member['mb_id']){
-						string_c += '<a href="#none" class="color_blog btn_comment" id="'+value.wr_id+'">답글</a>';
+					if(mb_id){
+						string_c += '<a href="#none" class="color_blog btn_comment comm" id="comm_re" data="'+value.wr_id+'">답글</a>';
 					}
+					if(value.mb_id == mb_id){
+						string_c += '<a href="#none" class="comment_edit comm" id="comm_edit" data="'+value.wr_id+'">수정</a><a href="#none" class="btn_delete" id="delete_comm_sub" data="'+value.wr_id+'">삭제</a>';
+					}
+					
 					
 					string_c += '</span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div>';
 					
@@ -100,7 +105,7 @@
 					}else{
 						string_c += '<div class="comment_conts">'+value.wr_content+'</div>';
 					}
-					string_c += '</div><div class="test"></div></li>';
+					string_c += '</div><div class="comment_box"></div></li>';
 					
 				})
 				console.log(data);
@@ -118,17 +123,51 @@
 	})
 	
 	// 대댓글
-	$(document).on('click','.btn_comment',function(){
+	$(document).on('click','.comm',function(){
 		var wr_id = getQuerystring('wr_id');
-		var comment_id = $(this).attr("id");
-		var comment = '<div class="comu_box comment comment_re2" style="padding:8px 0 13px"><form id="comment_input"><input type="hidden" name="w" value="c"><img class="icon_secret2" src="../img/icon_lock.png"><input type="hidden" name="bo_table" value="event"><input type="checkbox" id="wr_secret_r" name="wr_secret" value="secret"><label for="wr_secret_r"><span></span></label><input type="hidden" name="comment_id" value="'+comment_id+'"><input type="hidden" name="wr_id" value="'+wr_id+'"><textarea type="text" class="input" name="wr_content" id="val1" placeholder="댓글을 입력하세요."></textarea><div class="btn_wrap btn_ok" style="margin-bottom:0"><a href="#none" id="">등록하기</a></div><input type="hidden" name="mb_id" value="'+member['mb_id']+'"><form></div>';
+		var comm_id = $(this).attr("id");
+		var comment_id = $(this).attr("data");
 		
-		$(this).parent().parent().parent().parent('li').toggleClass('on').siblings().removeClass('on').find('.test').html("");
+		//새댓글
+		if(comm_id == 'comm_re'){
+			var comment2 = '<div class="comu_box comment comment_re2" style="padding:8px 0 13px"><form id="comment_input"><input type="hidden" name="w" value="c"><img class="icon_secret2" src="../img/icon_lock.png"><input type="hidden" name="bo_table" value="event"><input type="checkbox" id="wr_secret_r" name="wr_secret" value="secret"><label for="wr_secret_r"><span></span></label><input type="hidden" name="comment_id" value="'+comment_id+'"><input type="hidden" name="wr_id" value="'+wr_id+'"><textarea type="text" class="input" name="wr_content" id="val1" placeholder="댓글을 입력하세요."></textarea><div class="btn_wrap btn_ok" style="margin-bottom:0"><a href="#none" id="">등록하기</a></div><input type="hidden" name="mb_id" value="'+member['mb_id']+'"><form></div>';
+			if($(this).parent().parent().parent().parent('li').attr('class') == 'on_e'){
+				$(this).parent().parent().parent().parent('li').removeClass('on_e').addClass('on_r');
+			}else{
+				$(this).parent().parent().parent().parent('li').toggleClass('on_r').siblings().removeClass('on_r').find('.comment_box').html("");
+			}
+		//댓글 수정
+		}else if(comm_id == 'comm_edit'){
+			var comment_cont = $(this).parent().parent().next('.comment_conts').text();
+			var comment2 = '<div class="comu_box comment comment_re2" style="padding:8px 0 13px"><form id="comment_input"><input type="hidden" name="w" value="cu"><input type="hidden" name="bo_table" value="event"><img class="icon_secret2" src="../img/icon_lock.png"><input type="checkbox" id="wr_secret_r" name="wr_secret" value="secret"><label for="wr_secret_r"><span></span></label><input type="hidden" name="comment_id" value="'+comment_id+'"><input type="hidden" name="wr_id" value="'+wr_id+'"><textarea type="text" class="input" name="wr_content" id="val1" placeholder="댓글을 입력하세요.">'+comment_cont+'</textarea><div class="btn_wrap btn_ok" style="margin-bottom:0"><a href="#none" id="" class="on">수정하기</a></div><input type="hidden" name="mb_id" value="'+member['mb_id']+'"></form></div>';
+			if($(this).parent().parent().parent().parent('li').attr('class') == 'on_r'){
+				$(this).parent().parent().parent().parent('li').removeClass('on_r').addClass('on_e');
+			}else{
+				$(this).parent().parent().parent().parent('li').toggleClass('on_e').siblings().removeClass('on_e').find('.comment_box').html("");
+			}
+		}
 		
 		var cmt_re = $(this).parent().parent().parent().parent('li').attr('class');
 		
-		if(cmt_re == 'on'){
-			$(this).parent().parent().parent().next('.test').html(comment);
+		if(cmt_re == 'on_r' || cmt_re == 'on_e'){
+			$(this).parent().parent().parent().next('.comment_box').html(comment2);
+		}else{
+			$(this).parent().parent().parent().next('.comment_box').html("");
+		}
+	})
+	
+	// 삭제 버튼 클릭 (본글, 댓글)
+	$(document).on('click','.btn_delete',function(){
+		var wr_id = getQuerystring('wr_id');
+		var comment_id = $(this).attr("data");
+		var result = confirm('한번 삭제한 자료는 복구할수없습니다. 정말 삭제하시겠습니까?');
+		
+		//본글 삭제
+		if(result){
+			alert("댓글삭제");
+			location.href="comu_list.html";
+		}else{
+			return false;
 		}
 	})
 	
