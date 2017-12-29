@@ -112,15 +112,12 @@
 	
 	// 커뮤니티 카테고리 불러오기
 	$(document).ready(function(){
-		var wr_id = getQuerystring('wr_id');
 		var mb_id = member['mb_id'];
 		var w = getQuerystring('w');
-		$('#wr_id').val(wr_id);
 		$('#mb_id').val(mb_id);
 		$('#w').val(w);
-		
 		var params1 = {"bo_table":"comu"};
-		var params2 = {"wr_id":wr_id,"bo_table":"comu"};
+		
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_category.php",          
@@ -128,11 +125,20 @@
 			success:function(data){
 				$('#comu_ct').html(data);
 			},   
+			complete:function(){
+				$('.btn_submit').addClass('on');
+				$('.loading').hide();
+			},
 			error:function(e){  
 				console.log(e.responseText);  
 			}  
 		});
 		if(w == 'u'){
+			var wr_id = getQuerystring('wr_id');
+			$('#wr_id').val(wr_id);
+			
+			var params2 = {"wr_id":wr_id,"bo_table":"comu"};
+			
 			$.ajax({      
 				type:"POST",  
 				url:"http://modublog.co.kr/app_public/ajax/a_view.php",          
@@ -152,10 +158,6 @@
 					$("#wr_subject").val(data.wr_subject);
 					$("#wr_content").val(data.wr_content);
 				},   
-				complete:function(){
-					$('.btn_submit').addClass('on');
-					$('.loading').hide();
-				},
 				error:function(e){  
 					console.log(e.responseText);  
 				}  
