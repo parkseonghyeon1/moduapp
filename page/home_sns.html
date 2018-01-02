@@ -199,7 +199,7 @@
 				$("#sns_list").html(string_sn);
 				
 				if(data.length <= 0){
-					$("#loading_bar").attr("class","on");
+					$("#loading_bar").attr("class","");
 					$('#sns_list').html('<p class="ex_info">등록된 상품이 존재하지 않습니다.</p>');
 				}else{
 					$("#loading_bar").attr("class","off");
@@ -221,7 +221,9 @@
 		if($(window).scrollTop() == $(document).height() - $(window).height()){
 			var loading_class = $("#loading_bar").attr("class");
 			var ca_name = $('.home_category .on').attr("data");
-			if(loading_class == 'off'){
+			var linum = $("#sns_list").length;
+
+			if(linum > 0 && loading_class == 'off'){
 				var bo_table = $('.home_category .on').attr("data");
 				var params = {"bo_table":bo_table,"type":"sns","list":list};
 				string_sn = '';

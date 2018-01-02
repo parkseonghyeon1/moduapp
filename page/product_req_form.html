@@ -311,7 +311,11 @@
 				console.log(data);
 			},   
 			complete:function(){
-				alert("신청이 및 변경이 완료되었습니다");
+				if($('#w').val() == 'u'){
+					alert("변경이 완료되었습니다.");
+				}else{
+					alert("신청이 완료되었습니다.");
+				}
 				location.replace("mypage_01.html");
 			},
 			error:function(e){  

@@ -265,8 +265,11 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_comment_write.php",  
 			data:params,			
 			success:function(data){
+
+			},  
+			complete:function(){
 				location.reload();
-			},   
+			},
 			error:function(e){  
 				console.log(e.responseText);  
 			}  

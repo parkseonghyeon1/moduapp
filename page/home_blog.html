@@ -182,14 +182,17 @@
 				$("#blog_list").html(string_bl);
 				
 				if(data.length <= 0){
-					$("#loading_bar").attr("class","on");
+					$("#loading_bar").attr("class","");
 					$('#blog_list').html('<p class="ex_info">등록된 상품이 존재하지 않습니다.</p>');
 				}else{
 					$("#loading_bar").attr("class","off");
 				}
-				
+
 				list = 10;
-			},   
+			},   			
+			complete:function(){
+
+			},
 			error:function(e){  
 				console.log(e.responseText);  
 			}  		
@@ -205,7 +208,9 @@
 		if($(window).scrollTop() == $(document).height() - $(window).height()){
 			var loading_class = $("#loading_bar").attr("class");
 			var ca_name = $('.home_category .on').attr("data");
-			if(loading_class == 'off'){
+			var linum = $("#blog_list").length;
+			
+			if(linum > 0 && loading_class == 'off'){
 				var bo_table = $('.home_category .on').attr("data");
 				var params = {"bo_table":bo_table,"type":"blog","list":list};
 				string_bl = '';
@@ -232,6 +237,8 @@
 						temp = ca_name;
 						
 						$("#loading_bar").attr("class","off");
+						
+						console.log(data);
 					},  
 					complete:function(){
 						if(!string_bl){

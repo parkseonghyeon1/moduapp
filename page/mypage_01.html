@@ -30,6 +30,7 @@
 			<ul id="my_list">
 			
 			</ul>
+			<div class="my_li_month" id="my_li_stat">* 최근 4개월 이내 신청한 상품만 노출됩니다.</div>
 		</div>
 	</div>
 	<!-- 페이지 로딩 -->
@@ -130,6 +131,7 @@
 						string +='<span>&nbsp;'+value.wr_10+'</span>';
 					}
 					string += '</div></div></div><div class="rv_btn_b">';
+					//선정
 					if(my_p == 'my_p1'){
 						if(value.review){
 							txt_s = "수정";
@@ -146,8 +148,10 @@
                         }else{
                             string += '<a href="review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'&bo_table='+value.bo_table+'" class="btn_tp1 btn_r color'+txt_ca+'">리뷰'+txt_s+'</a>';
                         }
+					//신청
 					}else if(my_p == 'my_p2'){
 						string += '<a class="btn_tp1 btn_l" id="btn_cancle" data="'+value.wr_id+'|'+value.ms_id+'|'+value.mb_id+'|'+value.bo_table+'">신청취소</a><a href="product_req_form.html?bo_table='+value.bo_table+'&wr_id='+value.wr_id+'&ms_id='+value.ms_id+'&w=u"  class="btn_tp1 btn_r color'+txt_ca+'">신청수정</a>';
+					//취소불참
 					}else if(my_p == 'my_p3'){
 						if(value.ms_choice == "n2"){
 							txt_s = "불참";
@@ -157,6 +161,7 @@
 						string += '<a class="btn_tp1 btn_r" style="color:#949494">'+txt_s+'</a>';
 					}
 					string += '</div></div>';
+					//마감상품mask
 					if(my_p == 'my_p2' && value.wr_10 == '종료'){
 						string+= '<div class="end_mask"></div>';
 					}
@@ -166,7 +171,14 @@
 					string+='</li>';
 				}); 
 				$("#my_list").html(string);
-				
+
+				if(!string){
+					$('#my_li_stat').attr('class','my_li_non');
+					$('#my_li_stat').html('최근 4개월 이내 해당하는 체험단이 없습니다.');
+				}else{
+					$('#my_li_stat').attr('class','my_li_month');
+					$('#my_li_stat').html('* 최근 4개월 이내 신청한 상품만 노출됩니다.');
+				}
 				console.log(data);
 			}, 
 			complete:function(){
