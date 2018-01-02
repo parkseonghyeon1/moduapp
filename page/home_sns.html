@@ -205,7 +205,7 @@
 					$("#loading_bar").attr("class","off");
 				}
 				
-				list = 8;
+				list = 10;
 			},   
 			error:function(e){  
 				console.log(e.responseText);  
@@ -213,8 +213,8 @@
 		})
 	});
 	
-	var list = 8;
-	var list_num = 8;
+	var list = 10;
+	var list_num = 10;
 	var temp = 'all';
 	// 리스트 스크롤
 	$(window).scroll(function() {
@@ -241,7 +241,7 @@
 						$("#sns_list").append(string_sn);
 						
 						if(ca_name != temp){
-							list = 8;
+							list = 10;
 						}
 						
 						list = list + list_num;
@@ -251,7 +251,7 @@
 					}, 
 					complete:function(){
 						if(!string_sn){
-							list = 8;
+							list = 10;
 							$("#loading_bar").attr("class","on");
 							$("#loading_bar").html("");
 						}else{
