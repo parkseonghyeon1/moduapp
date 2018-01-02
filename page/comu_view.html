@@ -202,40 +202,16 @@
 		//본글 삭제
 		if(del_id == 'delete_comm'){
 			if(result){
-				var params1 = { bo_table : "comu",wr_id : wr_id ,comment_id : comment_id };
-				$.ajax({      
-					type:"POST",  
-					url:"http://modublog.co.kr/app_public/ajax/a_delete.php",  
-					data:params1,			
-					success:function(data){
-						location.href="comu_list.html";
-					},   
-					error:function(e){  
-						console.log(e.responseText);  
-					}  
-				});
-				
+				alert("본글삭제");
+				location.href="comu_list.html";
 			}else{
 				return false;
 			}
 		//댓글 삭제
 		}else if(del_id == 'delete_comm_sub'){
 			if(result){
-				var params1 = { bo_table : "comu",wr_id : wr_id ,comment_id : comment_id };
-				
-				$.ajax({      
-					type:"POST",  
-					url:"http://modublog.co.kr/app_public/ajax/a_delete_comment.php",  
-					data:params1,			
-					success:function(data){
-						location.reload();
-					},   
-					error:function(e){  
-						console.log(e.responseText);  
-					}  
-				});
-
-				//location.reload();
+				alert("댓글삭제");
+				location.reload();
 			}else{
 				return false;
 			}
@@ -264,7 +240,7 @@
 		
 		var params = $(this).closest("form").serialize();
 		console.log(params);
-		
+		/*
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_comment_write.php",  
@@ -276,7 +252,7 @@
 				console.log(e.responseText);  
 			}  
 		});
-		
+		*/
 	});
 	</script>
 </body>
