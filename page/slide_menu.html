@@ -83,13 +83,11 @@
 			var result = confirm('로그인 후 이용 가능한 서비스입니다. 로그인 하시겠습니까?');
 			if(result){
 				location.href="login.html";
+				return false;
 			}else{
 				return false;
 			}
-		}else{
-			$('#btn_write').attr('href','ad_reg_form.html');
 		}
-		return false;
 	})
 	
 	// 약관동의 팝업 - 불러오기

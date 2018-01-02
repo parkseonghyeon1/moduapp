@@ -153,7 +153,7 @@
 						$('.pr_info').html(data.pr_info);
 						$('.map_wrap').hide();
 					}else{
-						$('.tab3_pn').html('<div style="text-align:center;padding-top:30px;font-size:12px">등록된 업체정보가 없습니다.</div>');
+						$('.tab3_pn').html('<div class="no_info">등록된 업체정보가 없습니다.</div>');
 					}
 				}else{
 					$('.pr_info').html(data.pr_info);
@@ -264,6 +264,15 @@
 				//console.log(data);
 				$('#cmt_num').html(data.length);
 				$('#pd_view_li').html(string_c);
+
+				if(!string_c){
+					$("#pd_view_li").html('<div class="no_info">신청자가 존재하지 않습니다.</div>');
+				}
+				if(data.length < 20 ){
+					$("#loading_bar").attr("class","on");
+				}else{
+					$("#loading_bar").attr("class","off");
+				}
 			},   
 			error:function(e){  
 				console.log(e.responseText);  

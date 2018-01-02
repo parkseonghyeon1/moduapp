@@ -243,6 +243,10 @@
 					string_event += '<a href="event_view.html?&wr_id='+value.ev_wr_id+'"><div class="item event_c"><div class="item_img"><img src="'+value.ev_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.ev_wr_subject+'</span></p><span class="sub_txt item_view txt_ov">'+value.ev_wr_content+'</span></div></div></a>';
 				});
 				$("#event_wrap").append(string_event); 	
+				
+				if(!string_event){
+					$("#event_wrap").html('<div class="pd_no">진행중인 이벤트가 존재하지 않습니다.</div>');
+				}
 
 				//메인배너 slide
 				var banner_slide1 = new Swiper('.main_bann', { // 소개이미지 슬라이드

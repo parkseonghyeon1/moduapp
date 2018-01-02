@@ -39,7 +39,7 @@
 		<div class="ca_wrap ca_wrap3 tab_blog">
 			<div class="swiper-container1_1">
 				<div class="swiper-wrapper category blog_c">
-					<div class="swiper-slide"><a href="#none" class="t_b on" data="all">전체</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_b t_all on" data="all">전체</a></div>
 					<div class="swiper-slide"><a href="#none" class="t_b" data="맛집">맛집</a></div>
 					<div class="swiper-slide"><a href="#none" class="t_b" data="패션">패션</a></div>
 					<div class="swiper-slide"><a href="#none" class="t_b" data="뷰티">뷰티</a></div>
@@ -61,12 +61,12 @@
 		<div class="ca_wrap ca_wrap3 tab_sns">
 			<div class="swiper-container2_1">
 				<div class="swiper-wrapper category sns_c">
-					<div class="swiper-slide"><a href="#none" class="t_b on" data="all">전체</a></div>
-					<div class="swiper-slide"><a href="#none" class="t_b" data="맛집">맛집</a></div>
-					<div class="swiper-slide"><a href="#none" class="t_b" data="패션">패션</a></div>
-					<div class="swiper-slide"><a href="#none" class="t_b" data="뷰티">뷰티</a></div>
-					<div class="swiper-slide"><a href="#none" class="t_b" data="생활">생활</a></div>
-					<div class="swiper-slide"><a href="#none" class="t_b" data="이벤트">이벤트</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_s t_all on" data="all">전체</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_s" data="맛집">맛집</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_s" data="패션">패션</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_s" data="뷰티">뷰티</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_s" data="생활">생활</a></div>
+					<div class="swiper-slide"><a href="#none" class="t_s" data="이벤트">이벤트</a></div>
 				</div>
 			</div>
 		</div>
@@ -131,8 +131,8 @@
 	
 	// 탭메뉴
     $(document).on('click','.tab_mn li a', function() {
-		//$(".category a").removeClass("on");
-		//$(".category a:first-child").addClass("on");
+		$('.ca_wrap a').removeClass("on");
+		$('.t_all').addClass("on");
 		$(this).closest('li').addClass('on').siblings().removeClass('on');	
 		var tab_s = $(this).attr('class').substring(0,4);
 		if(tab_s == 'tab1') {
@@ -232,6 +232,9 @@
 					}); 
 					$(".blog").html(string);
 					
+					if(!string){
+						$('.blog').html('<li class="no_info_li">해당 리뷰가 존재하지 않습니다.</li>');
+					}
 				},   
 				error:function(e){  
 					console.log(e.responseText);  
@@ -275,6 +278,9 @@
 					}); 
 					$(".sns").html(string);
 					
+					if(!string){
+						$('.sns').html('<li class="no_info_li">해당 리뷰가 존재하지 않습니다.</li>');
+					}
 				},   
 				error:function(e){  
 					console.log(e.responseText);  

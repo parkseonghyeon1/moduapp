@@ -139,13 +139,13 @@
 				$(".sns_list").html(string_sn);		
 				$(".share_list").html(string_sh);
 				if(!string_b){
-					$('.blog_list').html('<li style="font-size:12px;padding:60px 13px;color:#707070;text-align:center;border-bottom:none"><b>&#039;'+stx+'&#039;</b>에 대한 BLOG 상품 검색결과가 없습니다.</li>');
+					$('.blog_list').html('<li class="no_info_li"><b>&#039;'+stx+'&#039;</b>에 대한 BLOG 상품 검색결과가 없습니다.</li>');
 				}
 				if(!string_sn){
-					$('.sns_list').html('<li style="font-size:12px;padding:60px 13px;color:#707070;text-align:center;border-bottom:none"><b>&#039;'+stx+'&#039;</b>에 대한 SNS 상품 검색결과가 없습니다.</li>');
+					$('.sns_list').html('<li class="no_info_li"><b>&#039;'+stx+'&#039;</b>에 대한 SNS 상품 검색결과가 없습니다.</li>');
 				}
 				if(!string_sh){
-					$('.share_list').html('<li style="font-size:12px;padding:60px 13px;color:#707070;text-align:center;border-bottom:none"><b>&#039;'+stx+'&#039;</b>에 대한 SHARE 상품 검색결과가 없습니다.</li>');
+					$('.share_list').html('<li class="no_info_li"><b>&#039;'+stx+'&#039;</b>에 대한 SHARE 상품 검색결과가 없습니다.</li>');
 				}
 				
 				console.log(data);

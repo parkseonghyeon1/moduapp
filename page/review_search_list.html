@@ -104,7 +104,11 @@
 						string += '<span>'+value.wr_star+'점</span><span class="rv_num_box">리뷰&nbsp;<span class="color'+txt_ca+'">'+value.wr_comment+'</span></span></span></div></div></div></a></li>';			
 					}); 
 					$(".blog").html(string);
-					console.log(data);
+					
+					if(!string){
+						$('.blog').html('<li><b>&#039;'+stx+'&#039;</b>에 대한 리뷰 검색결과가 없습니다.</li>');
+					}
+					//console.log(data);
 				},  
 				complete:function(){
 					$('.loading').hide();
