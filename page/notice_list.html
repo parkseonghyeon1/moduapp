@@ -39,7 +39,7 @@
 			success:function(data){
 				$.each(data,function(key,value){
 					if(value.is_notice === true){
-						subject = '[공지] '+ value.wr_subject;
+						subject = '<span class="color_notice">[공지]</span> '+ value.wr_subject;
 					}else{
 						subject = value.wr_subject;
 					}

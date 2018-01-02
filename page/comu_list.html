@@ -57,7 +57,12 @@
 			data:params,
 			success:function(data){
 				$.each(data,function(key,value){
-					string_c += '<li><a href="comu_view.html?wr_id='+value.wr_id+'"><div class="comu_li"><div class="list_txt"><span class="txt_ov title_sub"><span class="color_blog">['+value.ca_name+']&nbsp;</span>'+value.wr_subject+'</span><span class="sub_txt nick_ov">'+value.wr_name+'</span><span class="sub_txt">'+value.datetime+'</span><span class="sub_txt">조회&nbsp;'+value.wr_hit+'</span>';
+					if(value.is_notice === true){
+						var color_txt = 'color_notice';
+					}else{
+						var color_txt = 'color_blog';
+					}
+					string_c += '<li><a href="comu_view.html?wr_id='+value.wr_id+'"><div class="comu_li"><div class="list_txt"><span class="txt_ov title_sub"><span class="'+color_txt+'">['+value.ca_name+']&nbsp;</span>'+value.wr_subject+'</span><span class="sub_txt nick_ov">'+value.wr_name+'</span><span class="sub_txt">'+value.datetime+'</span><span class="sub_txt">조회&nbsp;'+value.wr_hit+'</span>';
 					if(value.wr_comment != 0){
 					string_c += '<span class="ps_r comment_txt">('+value.wr_comment+')</span>';
 					}
