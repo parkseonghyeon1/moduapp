@@ -194,21 +194,26 @@
 	
 	// 삭제 버튼 클릭 (본글, 댓글)
 	$(document).on('click','.btn_delete',function(){
-		var wr_id = getQuerystring('wr_id');
 		var del_id = $(this).attr('id');
+		var wr_id = getQuerystring('wr_id');
 		var comment_id = $(this).attr("data");
+		var mb_id = member['mb_id'];
+		var params1 = {"bo_table":"comu","wr_id":wr_id,"comment_id":comment_id,"mb_id":mb_id};
 		var result = confirm('한번 삭제한 자료는 복구할수없습니다. 정말 삭제하시겠습니까?');
 		
 		//본글 삭제
 		if(del_id == 'delete_comm'){
 			if(result){
-				var params1 = { bo_table : "comu",wr_id : wr_id ,comment_id : comment_id };
                 $.ajax({      
                     type:"POST",  
                     url:"http://modublog.co.kr/app_public/ajax/a_delete.php",  
                     data:params1,            
                     success:function(data){
-                        location.href="comu_list.html";
+						if(data == 'is_comment'){
+							alert("이 글과 관련된 코멘트가 존재하므로 삭제 할 수 없습니다.");
+						}else{
+							location.href="comu_list.html";
+						}
                     },   
                     error:function(e){  
                         console.log(e.responseText);  
@@ -220,13 +225,18 @@
 		//댓글 삭제
 		}else if(del_id == 'delete_comm_sub'){
 			if(result){
-				var params1 = { bo_table : "comu",wr_id : wr_id ,comment_id : comment_id };
                 $.ajax({      
                     type:"POST",  
                     url:"http://modublog.co.kr/app_public/ajax/a_delete_comment.php",  
                     data:params1,            
                     success:function(data){
-                        location.reload();
+						if(data == 'no_comment'){
+							alert("등록된 코멘트가 없거나 코멘트 글이 아닙니다.");
+						}else if(data == 'is_comment'){
+							alert("이 코멘트와 관련된 답변코멘트가 존재하므로 삭제 할 수 없습니다.");
+						}else{
+							location.reload();
+						}
                     },   
                     error:function(e){  
                         console.log(e.responseText);  
@@ -260,12 +270,13 @@
 		
 		var params = $(this).closest("form").serialize();
 		
+		
 		$.ajax({      
 			type:"POST",  
 			url:"http://modublog.co.kr/app_public/ajax/a_comment_write.php",  
 			data:params,			
 			success:function(data){
-
+				//console.log(data);
 			},  
 			complete:function(){
 				location.reload();

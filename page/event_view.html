@@ -156,26 +156,33 @@
 		}
 	})
 	
-	// 삭제 버튼 클릭 (본글, 댓글)
+	// 삭제 버튼 클릭 (댓글)
 	$(document).on('click','.btn_delete',function(){
+		var del_id = $(this).attr('id');
 		var wr_id = getQuerystring('wr_id');
 		var comment_id = $(this).attr("data");
+		var params1 = {"bo_table":"event","wr_id":wr_id,"comment_id":comment_id};
 		var result = confirm('한번 삭제한 자료는 복구할수없습니다. 정말 삭제하시겠습니까?');
 		
 		//댓글 삭제
 		if(result){
-			var params1 = { bo_table : "event",wr_id : wr_id ,comment_id : comment_id };
-				$.ajax({      
-					type:"POST",  
-					url:"http://modublog.co.kr/app_public/ajax/a_delete_comment.php",  
-					data:params1,			
-					success:function(data){
+			$.ajax({      
+				type:"POST",  
+				url:"http://modublog.co.kr/app_public/ajax/a_delete_comment.php",  
+				data:params1,			
+				success:function(data){
+					if(data == 'no_comment'){
+						alert("등록된 코멘트가 없거나 코멘트 글이 아닙니다.");
+					}else if(data == 'is_comment'){
+						alert("이 코멘트와 관련된 답변코멘트가 존재하므로 삭제 할 수 없습니다.");
+					}else{
 						location.reload();
-					},   
-					error:function(e){  
-						console.log(e.responseText);  
-					}  
-				});
+					}
+				},   
+				error:function(e){  
+					console.log(e.responseText);  
+				}  
+			});
 			
 			//location.href="comu_list.html";
 		}else{
