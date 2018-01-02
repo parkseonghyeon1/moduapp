@@ -72,7 +72,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="pd_wrap">
+			<div class="pd_wrap pd_sns">
 				<div class="swiper-container2">
 					<div class="swiper-wrapper" id="sns_wrap">
 					
@@ -329,6 +329,10 @@
 				}); 
 				$("#blog_wrap").html(string_bl);
 				
+				if(!string_bl){
+					$("#blog_wrap").html('<div class="pd_no">해당 상품이 존재하지 않습니다.</div>');
+				}
+
 				var swiper1 = document.querySelector('.swiper-container1').swiper;
 				swiper1.update();
 				swiper1.slideTo(0,20);
@@ -365,6 +369,10 @@
 				}); 
 				$("#sns_wrap").append(string_sn);
 				
+				if(!string_sn){
+					$("#sns_wrap").html('<div class="pd_no">해당 상품이 존재하지 않습니다.</div>');
+				}
+
 				var swiper2 = document.querySelector('.swiper-container2').swiper;
 				swiper2.update();
 				swiper2.slideTo(0,20);

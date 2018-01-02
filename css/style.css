@@ -101,7 +101,7 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .pr_end {position:absolute;top:0;left:0;background:#fff;opacity:.6;width:100%;height:100%} 
 
 /* 카테고리 메뉴 (메인, 블로그 홈, SNS 홈, 전체리뷰) */
-.pd_wrap {height:166px}
+.pd_wrap {height:166px;position:relative}
 .ca_wrap {position:relative;height:27px;padding:0 13px 10px;overflow:hidden}
 .ca_wrap.ca_wrap2 {padding:10px 8px 8px;border:1px solid #efefef;height:auto}
 .ca_wrap.ca_wrap3 {padding-top:10px;border-bottom:1px solid #e9e9e9}
@@ -157,6 +157,7 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .main_list .item .item_txt .sub_txt {float:left;font-size:0.83em;color:#797979;display:block}
 .item_a {display:inline-block}
 .item_view {color:#797979;padding-left:4px}
+.pd_no {position:absolute;width:100%;height:20px;top:60px;text-align:center}
 .swiper-wrapper .item:first-child {padding-left:16px}
 
 /* 블로그·SNS·SHARE 홈 | 나의체험단 리스트 */
