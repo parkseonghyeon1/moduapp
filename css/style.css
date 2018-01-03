@@ -582,7 +582,8 @@ ui-page {background:#fff;height:100%}
 .comu_conts img {max-width:100%}
 .comu_f #image_wrap {max-width:100%;margin-top:10px}
 .post-view {width:100% !important}
-.__se_tbl td p {margin-left:0 !important}
+.__se_tbl td p {margin-left:0 !important;background:#fff !important}
+
 #postViewArea {padding:0}
 #event_li img {max-width:100%}
 
