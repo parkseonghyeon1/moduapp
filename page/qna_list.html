@@ -59,7 +59,7 @@
 			data:params,
 			success:function(data){
 				$.each(data,function(key,value){
-					string_c += '<li><a id="'+value.wr_id+'"><div class="comu_li"><div class="list_txt"><span class="txt_ov title_sub"><span class="color_blog">['+value.ca_name+']&nbsp;</span>'+value.wr_subject+'</span><span class="sub_txt">'+value.datetime+'</span><span class="sub_txt answer_stat">';
+					string_c += '<li><a href="#none" id="'+value.wr_id+'"><div class="comu_li"><div class="list_txt"><span class="txt_ov title_sub"><span class="color_blog">['+value.ca_name+']&nbsp;</span>'+value.wr_subject+'</span><span class="sub_txt">'+value.datetime+'</span><span class="sub_txt answer_stat">';
 					if(!value.is_notice == true){
 						if(value.wr_comment == 0){
 						string_c +=  '대기';
@@ -81,6 +81,12 @@
 					//console.log(value.wr_comment);
 				})
 				$('#qna_li').append(string_c);
+				
+				if(data.length <= 0){
+					$("#loading_bar").attr("class","");
+					$('#qna_li').html('<p class="no_info_li">문의하신 글이 없습니다.</p>');
+				}
+				
 				console.log(data);
 			},   
 			complete:function(){
@@ -94,6 +100,7 @@
 	// 리스트 슬라이드
 	$(document).on('click','.list_pn > li > a', function() {
 		$(this).closest('li').toggleClass('on').find('.answer').slideToggle().end().siblings().removeClass('on').find('.answer').slideUp();
+		return false;
 	})
 	</script>
 	<script>
@@ -111,23 +118,47 @@
 					data:params,			
 					url:"http://modublog.co.kr/app_public/ajax/a_ajax.php",      
 					beforeSend:function(){
+						$("#loading_bar").attr("class","");
 						$("#loading_bar").html("<div class='loader_wrap' style='height:56px;background:#fff'><img src='../img/icon_loder.gif'></div>");
 					},
 					success:function(data){
 						$.each(data,function(key,value){
-							string_c += '<li><a href="qna_view.html?wr_id='+value.wr_id+'"><div class="comu_li"><div class="list_txt"><span class="txt_ov title_sub"><span class="">['+value.ca_name+']&nbsp;</span>'+value.wr_subject+'</span><span class="sub_txt">'+value.wr_name+'</span><span class="sub_txt">'+value.datetime+'</span><span class="sub_txt">조회&nbsp;'+value.wr_hit+'</span></div><div class="comment_img"><img src="'+value.mb_photo+'"></div></div></a></li>';
+							string_c += '<li><a href="#none" id="'+value.wr_id+'"><div class="comu_li"><div class="list_txt"><span class="txt_ov title_sub"><span class="color_blog">['+value.ca_name+']&nbsp;</span>'+value.wr_subject+'</span><span class="sub_txt">'+value.datetime+'</span><span class="sub_txt answer_stat">';
+							if(!value.is_notice == true){
+								if(value.wr_comment == 0){
+								string_c +=  '대기';
+								}else{
+								string_c +=  '<span class="color_blog">완료</span>';
+								}
+							}
+							string_c += '</span></div></div></a><div class="answer"><div><span style="display:block"><span class="color_blog" style="padding-right:5px">Q.</span>'+value.wr_content+'</span>';
+							
+							if(value.wr_comment != 0){
+								string_c += '<span style="display:block;padding-top:13px">';
+								for(var i=0; i < value.wr_comment; i++){
+									string_c += '<span style="position:relative;padding-left:18px;padding-top:0px;display:block;min-height:15px"><span style="position:absolute;left:0;padding-right:5px;color:#fa5600">A.</span>'+value.c_content[i]+'<br></span>';
+								}
+								string_c += '</span>';
+							}
+							
+							string_c += '</div></div></li>';
 						})
 						
 						$('#qna_li').append(string_c);
 						
 						list = list + list_num;
 						
-						$("#loading_bar").attr("class","off");
+						if(data.length < 20){
+							$("#loading_bar").attr("class","on");
+						}else{
+							$("#loading_bar").attr("class","off");
+						}	
 						
-						if(!string_c){
-							$("#loading_bar").attr("class","");
-							$("#loading_bar").html("");
-						}
+						/*if(data.length < 20){
+							$("#loading_bar").attr("class","on");
+						}else{
+							$("#loading_bar").attr("class","off");
+						}	*/
 					},   
 					error:function(e){  
 						console.log(e.responseText);  

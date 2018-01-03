@@ -52,7 +52,7 @@
 .ex_info {font-size:1em;padding:40px 0;text-align:center;color:#797979}
 .no_info_li {font-size:12px;padding:60px 13px;color:#707070;text-align:center;border-bottom:none}
 .no_info {text-align:center;padding-top:30px;font-size:12px}
-.loading {position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:9999}
+.loading {position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:9999;overflow:hidden}
 .loading .load {position:absolute;left:50%;top:50%;width:64px;height:64px;margin-top:-32px;margin-left:-32px}
 .loading .load.ld_blog {background:url(../img/load1.gif)no-repeat center}
 .loading .load.ld_sns {background:url(../img/load2.gif)no-repeat center}
@@ -454,7 +454,7 @@ ui-page {background:#fff;height:100%}
 #rv_view .rv_comment li:last-child {border-bottom:none !important}
 #rv_view .comment_re {overflow:hidden}
 #rv_view .comment_title {padding-left:40px;margin-bottom:4px}
-#rv_view .comment_title .title_sub {padding:0 6px 0 0}
+#rv_view .comment_title .title_sub {padding:0 8px 0 0}
 #rv_view .date_txt {padding:0 8px 0 0}
 #rv_view .comment_img {width:33px;height:33px;margin-top:-16px}
 #rv_view .comment_re span {float:left}
