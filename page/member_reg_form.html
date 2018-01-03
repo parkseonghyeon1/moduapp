@@ -13,15 +13,6 @@
 	<script src="../js/jquery.min.js"></script>
 	<script src="../js/jquery.form.min.js"></script>
 	<script src="../js/menu.js"></script>
-	<script type="text/javascript">
-	// iframe resize
-	/*function autoResize(i)
-	{
-		var iframeHeight=
-		(i).contentWindow.document.body.scrollHeight;
-		(i).height=iframeHeight+10;
-	}*/
-	</script>
 </head>
 <body>
 	<div id="header">
@@ -65,8 +56,8 @@
 					<div class="btn_add_img"><input type="file" name="mb_photo" id="mb_photo" onchange="fileInfo_p(this)"></div>
 				</div>
 			</div>
-			<div>
-				<iframe src="http://modublog.co.kr/app_public/a_test02.html" id="register_frame" name="register_frame" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" onload="autoResize(this)"></iframe>
+			<div id="aa">
+				<iframe src="http://modublog.co.kr/app_public/a_test02.html" id="register_frame" name="register_frame" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%"></iframe>
 			</div>
 			<div class="m_reg_li terms_wrap">
 				<p class="title">약관동의</p>
@@ -115,25 +106,26 @@
 	<div id="pop"></div>
 	
 	<script>
-	/*window.onload = function() {
+	// iframe 높이
+	$(window).ready(function() {
 		var lastHeight = 0;
 		var curHeight = 0;
-		var targetFrame = document.getElementById('register_frame'); // custom id 입력
-	 
-		targetFrame.onload = function(){
-			curHeight = targetFrame.contentWindow.document.body.scrollHeight + 'px';
-			targetFrame.style.height = curHeight;
-		}
-	 
+		var targetFrame = $('#register_frame'); // custome id 입력
+		
+		$( "#register_frame" ).on('load', function() { 
+			curHeight = targetFrame.contents().find('form').height();
+			console.log(curHeight);
+			targetFrame.css('height', curHeight + 'px' );
+		});
+		
 		setInterval(function(){
-			curHeight = targetFrame.contentWindow.document.body.scrollHeight + 'px';
+			curHeight = targetFrame.contents().find('form').height();
 			if ( curHeight != lastHeight ) {
-			  targetFrame.style.height = curHeight;
-			  lastHeight = curHeight;
+			  targetFrame.css('height', (lastHeight = curHeight) + 'px' );
 			}
-		},500);
-	}*/
-
+		  },500);
+	});
+	
 	// 카테고리 on-off
     $(document).on("click",".category a",function(){  
         $(this).parent().children('a').removeClass('on');
@@ -213,42 +205,12 @@
 		}
 	})
 	
-	// iframe resize
-	function autoResize(i){
-	    var iframeHeight=
-	    (i).contentWindow.document.body.scrollHeight;
-	    (i).height=iframeHeight;
-	}
 	//iframe
 	$("#register_frame").attr("src","http://modublog.co.kr/app_public/a_test02.html?login_check="+logincheck+"&mb_id="+member['mb_id']);
 	// iframe 로드 후 이벤트
 	$("#register_frame").on("load", function(){
 		$('.loading').hide();
 	});
-	
-	/*function autoResize(iframeObj){
-		$('iframe').height($('iframe').contents().height());
-		$('iframe').width($('iframe').contents().width());
-		
-		//아이프레임에서 읽어들인 페이지의 body
-		var innerBody = iframeObj.contentWindow.document.body;
-		
-		//oldEvent = innerBody.ondbclick; 
-		oldEvent = innerBody.onclick;
-		innerBody.onclick = function(){ autoResize(iframeObj, 1);oldEvent; };
-
-
-		//높이 다시설정
-		var innerHeight = innerBody.scrollHeight + (innerBody.offsetHeight - innerBody.clientHeight);
-		iframeObj.style.height = innerHeight;
-
-		//정되야 한다면 주석을 풀어주세요
-				// 넓이 다시설정 
-				//var innerWidth = innerBody.scrollWidth + (innerBody.offsetWidth - innerBody.clientWidth);
-				//iframeObj.style.width = innerWidth;     
-		if( !arguments[1] ){        //특정 이벤트로 인한 호출시 스크롤을 그냥 둔다.
-				this.scrollTo(1,1);}
-	}*/
 	
 	// 프로필 이미지
 	function fileInfo_p(f){

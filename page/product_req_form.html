@@ -90,12 +90,26 @@
 </body>
 
 <script>
-	// iframe resize
-	function autoResize(i){
-	    var iframeHeight=
-	    (i).contentWindow.document.body.scrollHeight;
-	    (i).height=iframeHeight;
-	}
+	// iframe 높이
+	$(window).ready(function() {
+		var lastHeight = 0;
+		var curHeight = 0;
+		var targetFrame = $('#product_req_frame'); // custome id 입력
+		
+		$( "#product_req_frame" ).on('load', function() { 
+			curHeight = targetFrame.contents().find('form').height();
+			console.log(curHeight);
+			targetFrame.css('height', curHeight + 'px' );
+		});
+		
+		setInterval(function(){
+			curHeight = targetFrame.contents().find('form').height();
+			if ( curHeight != lastHeight ) {
+			  targetFrame.css('height', (lastHeight = curHeight) + 'px' );
+			}
+		  },500);
+	});
+	
 	// iframe 로드 후 이벤트
 	$("#product_req_frame").on("load", function(){
 		$('.loading').hide();
