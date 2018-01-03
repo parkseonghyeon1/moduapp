@@ -247,10 +247,14 @@
 			success:function(data){
 				console.log(data);
 				$.each(data,function(key,value){
-					//if(!value.wr_comment_reply){
-					string_c += '<li style="border-bottom:1px solid #ebebeb"><div class="comment_title"><span class="title_sub">'+value.wr_name+'</span><span class="date_txt">'+value.datetime+'</span><span class="comment_re"></span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div><div class="comment_conts">'+value.wr_content+'</div></li>';
-					//}
-					<!-- <a href="'+value.sns_2+'" class="color_sns btn_comment">SNS 보기</a> -->
+					if(value.product === false){
+						var class_df = ' no_sub';
+						var product = '';
+					}else{
+						var class_df = ' ant_sub';
+						var product = value.product;
+					}
+					string_c += '<li><div id="rv_view"><div class="comment_title'+class_df+'"><span class="title_sub">'+value.wr_name+'</span><span class="date_txt">'+value.datetime+'</span><div class="comment_re"><span class="rv_sub_info">'+product+'</span></div><div class="comment_img"><img src="'+value.mb_photo+'"></div></div><div class="comment_conts">'+value.wr_content+'</div></div></li>';
 				})
 				//console.log(data);
 				$('#cmt_num').html(data.length);
@@ -299,10 +303,14 @@
 						},
 						success:function(data){
 							$.each(data,function(key,value){
-								//if(!value.wr_comment_reply){
-								string_c += '<li style="border-bottom:1px solid #ebebeb"><div class="comment_title"><span class="title_sub">'+value.wr_name+'</span><span class="date_txt">'+value.datetime+'</span><span class="comment_re"></span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div><div class="comment_conts">'+value.wr_content+'</div></li>';
-								//}
-								<!-- <a href="'+value.sns_2+'" class="color_sns btn_comment">SNS 보기</a> -->
+								if(value.product === false){
+									var class_df = ' no_sub';
+									var product = '';
+								}else{			
+									var class_df = ' ant_sub';
+									var product = value.product;
+								}
+								string_c += '<li><div id="rv_view"><div class="comment_title'+class_df+'"><span class="title_sub">'+value.wr_name+'</span><span class="date_txt">'+value.datetime+'</span><div class="comment_re"><span class="rv_sub_info">'+product+'</span></div><div class="comment_img"><img src="'+value.mb_photo+'"></div></div><div class="comment_conts">'+value.wr_content+'</div></div></li>';
 							})
 							$('#pd_view_li').append(string_c);
 							
