@@ -34,15 +34,15 @@ input:-moz-placeholder { color:#989898; }
 
 @font-face{
 	font-family: "NotoSansCKJ";
-	src: url("../font/NotoSansCJKkr-Regular.otf");
+	src: url("../font/NotoSansKR-Regular.otf");
 }
 @font-face{
 	font-family: "NotoSansCKJ-Bold";
-	src: url("../font/NotoSansCJKkr-Bold.otf");
+	src: url("../font/NotoSansKR-Bold.otf");
 }
 @font-face{
 	font-family: "NotoSansCKJ-Medium";
-	src: url("../font/NotoSansCJKkr-Medium.otf");
+	src: url("../font/NotoSansKR-Medium.otf");
 }
 @font-face{
 	font-family: "Century-Gothic-Bold";
