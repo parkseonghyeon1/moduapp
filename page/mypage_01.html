@@ -30,7 +30,7 @@
 			<ul id="my_list">
 			
 			</ul>
-			<div class="my_li_month" id="my_li_stat">* 최근 4개월 이내 신청한 상품만 노출됩니다.</div>
+			<div class="my_li_month" id="my_li_stat"></div>
 		</div>
 	</div>
 	<!-- 페이지 로딩 -->
@@ -82,6 +82,8 @@
 					string += '</div></div></li>';
 				}); 
 				$("#my_list").append(string);
+				
+				$('#my_li_stat').html("* 최근 4개월 이내 신청한 상품만 노출됩니다.");
 				
 				console.log(data);
 			}, 
@@ -171,13 +173,19 @@
 					string+='</li>';
 				}); 
 				$("#my_list").html(string);
-
+				
+				
+				
 				if(!string){
 					$('#my_li_stat').attr('class','my_li_non');
 					$('#my_li_stat').html('최근 4개월 이내 해당하는 체험단이 없습니다.');
 				}else{
 					$('#my_li_stat').attr('class','my_li_month');
-					$('#my_li_stat').html('* 최근 4개월 이내 신청한 상품만 노출됩니다.');
+					if(my_p == 'my_p1'){
+						$('#my_li_stat').html("* 최근 4개월 이내 신청한 상품만 노출됩니다.");
+					}else if(my_p == 'my_p2' || my_p == 'my_p3'){
+						$('#my_li_stat').html("* 최근 4개월 이내 선정된 상품만 노출됩니다.");
+					}
 				}
 				console.log(data);
 			}, 

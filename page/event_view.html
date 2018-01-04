@@ -81,6 +81,8 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_comment_view.php",  
 			data:params,			
 			success:function(data){
+				var secret_chk = '0';
+				var secret_img = '';
 				$.each(data,function(key,value){
 					if(!value.wr_comment_reply){
 						string_c += '<li><div>';
@@ -94,19 +96,23 @@
 						string_c += '<a href="#none" class="color_blog btn_comment comm" id="comm_re" data="'+value.wr_id+'">답글</a>';
 					}
 					if(value.mb_id == mb_id){
-						string_c += '<a href="#none" class="comment_edit comm" id="comm_edit" data="'+value.wr_id+'">수정</a><a href="#none" class="btn_delete" id="delete_comm_sub" data="'+value.wr_id+'">삭제</a>';
+						if(value.icon_secret){
+							secret_chk = '1';
+						}
+						string_c += '<a href="#none" class="comment_edit comm" id="comm_edit" data="'+value.wr_id+'" data-secret="'+secret_chk+'">수정</a><a href="#none" class="btn_delete" id="delete_comm_sub" data="'+value.wr_id+'">삭제</a>';
 					}
 					
 					
 					string_c += '</span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div>';
 					
-					if(value.icon_secret && value.mb_id != member['mb_id']){
-						string_c += '<div class="comment_conts">비밀글입니다.</div>';
+					if(value.icon_secret && value.mb_id != mb_id){
+						string_c += '<div class="comment_conts"><img class="icon_secret_c" src="../img/icon_secret.gif">비밀글입니다.</div>';
+					}else if(value.icon_secret && value.mb_id == mb_id){
+						string_c += '<div class="comment_conts"><img class="icon_secret_c" src="../img/icon_secret.gif">'+value.wr_content+'</div>';
 					}else{
 						string_c += '<div class="comment_conts">'+value.wr_content+'</div>';
 					}
 					string_c += '</div><div class="comment_box"></div></li>';
-					
 				})
 				console.log(data);
 				$('#comment_num').html("댓글 "+data.length);
@@ -116,18 +122,19 @@
 				console.log(e.responseText);  
 			}  
 		});  
-		
+		//댓글 폼
 		var comment1 = '<form id="comment_input"><input type="hidden" name="w" value="c"><input type="hidden" name="bo_table" value="event"><input type="hidden" name="comment_id" value="0"><div style="position:relative;height:20px;"><img class="icon_secret" src="../img/icon_lock.png"><input type="checkbox" id="wr_secret" name="wr_secret" value="secret"><label for="wr_secret"><span></span></label></div><input type="hidden" name="wr_id" value="'+wr_id+'"><textarea type="text" class="input" name="wr_content" id="val1" placeholder="댓글을 입력하세요."></textarea><div class="btn_wrap btn_ok" style="margin-bottom:0"><a href="#none" id="">등록하기</a></div><input type="hidden" name="mb_id" value="'+member['mb_id']+'"><form>';
 		
 		$('#cmt_box').html(comment1);
 	})
 	
-	// 대댓글
+	// 대댓글 폼
 	$(document).on('click','.comm',function(){
 		var wr_id = getQuerystring('wr_id');
 		var comm_id = $(this).attr("id");
 		var comment_id = $(this).attr("data");
-		
+		var secret_chk = $(this).attr("data-secret");
+		var secret_chked = '';
 		//새댓글
 		if(comm_id == 'comm_re'){
 			var comment2 = '<div class="comu_box comment comment_re2" style="padding:8px 0 13px"><form id="comment_input"><input type="hidden" name="w" value="c"><img class="icon_secret2" src="../img/icon_lock.png"><input type="hidden" name="bo_table" value="event"><input type="checkbox" id="wr_secret_r" name="wr_secret" value="secret"><label for="wr_secret_r"><span></span></label><input type="hidden" name="comment_id" value="'+comment_id+'"><input type="hidden" name="wr_id" value="'+wr_id+'"><textarea type="text" class="input" name="wr_content" id="val1" placeholder="댓글을 입력하세요."></textarea><div class="btn_wrap btn_ok" style="margin-bottom:0"><a href="#none" id="">등록하기</a></div><input type="hidden" name="mb_id" value="'+member['mb_id']+'"><form></div>';
@@ -138,8 +145,11 @@
 			}
 		//댓글 수정
 		}else if(comm_id == 'comm_edit'){
+			if(secret_chk == '1'){
+				var secret_chked = 'checked';
+			}
 			var comment_cont = $(this).parent().parent().next('.comment_conts').text();
-			var comment2 = '<div class="comu_box comment comment_re2" style="padding:8px 0 13px"><form id="comment_input"><input type="hidden" name="w" value="cu"><input type="hidden" name="bo_table" value="event"><img class="icon_secret2" src="../img/icon_lock.png"><input type="checkbox" id="wr_secret_r" name="wr_secret" value="secret"><label for="wr_secret_r"><span></span></label><input type="hidden" name="comment_id" value="'+comment_id+'"><input type="hidden" name="wr_id" value="'+wr_id+'"><textarea type="text" class="input" name="wr_content" id="val1" placeholder="댓글을 입력하세요.">'+comment_cont+'</textarea><div class="btn_wrap btn_ok" style="margin-bottom:0"><a href="#none" id="" class="on">수정하기</a></div><input type="hidden" name="mb_id" value="'+member['mb_id']+'"></form></div>';
+			var comment2 = '<div class="comu_box comment comment_re2" style="padding:8px 0 13px"><form id="comment_input"><input type="hidden" name="w" value="cu"><input type="hidden" name="bo_table" value="event"><img class="icon_secret2" src="../img/icon_lock.png"><input type="checkbox" id="wr_secret_r" name="wr_secret" value="secret" '+secret_chked+'><label for="wr_secret_r"><span></span></label><input type="hidden" name="comment_id" value="'+comment_id+'"><input type="hidden" name="wr_id" value="'+wr_id+'"><textarea type="text" class="input" name="wr_content" id="val1" placeholder="댓글을 입력하세요.">'+comment_cont+'</textarea><div class="btn_wrap btn_ok" style="margin-bottom:0"><a href="#none" id="" class="on">수정하기</a></div><input type="hidden" name="mb_id" value="'+member['mb_id']+'"></form></div>';
 			if($(this).parent().parent().parent().parent('li').attr('class') == 'on_r'){
 				$(this).parent().parent().parent().parent('li').removeClass('on_r').addClass('on_e');
 			}else{

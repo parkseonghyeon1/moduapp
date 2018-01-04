@@ -59,15 +59,22 @@
 			data:params,
 			success:function(data){
 				$.each(data,function(key,value){
-					string_c += '<li><a href="#none" id="'+value.wr_id+'"><div class="comu_li"><div class="list_txt"><span class="txt_ov title_sub"><span class="color_blog">['+value.ca_name+']&nbsp;</span>'+value.wr_subject+'</span><span class="sub_txt">'+value.datetime+'</span><span class="sub_txt answer_stat">';
+					if(value.is_notice === true){
+						var color_txt = 'color_notice';
+						var q_txt = '';
+					}else{
+						var color_txt = 'color_blog';
+						var q_txt = 'Q.';
+					}
+					string_c += '<li><a href="#none" id="'+value.wr_id+'"><div class="comu_li"><div class="list_txt"><span class="txt_ov title_sub"><span class="'+color_txt+'">['+value.ca_name+']&nbsp;</span>'+value.wr_subject+'</span><span class="sub_txt">'+value.datetime+'</span><span class="sub_txt answer_stat">';
 					if(!value.is_notice == true){
 						if(value.wr_comment == 0){
-						string_c +=  '대기';
+							string_c +=  '대기';
 						}else{
-						string_c +=  '<span class="color_blog">완료</span>';
+							string_c +=  '<span class="color_blog">완료</span>';
 						}
 					}
-					string_c += '</span></div></div></a><div class="answer"><div><span style="display:block"><span class="color_blog" style="padding-right:5px">Q.</span>'+value.wr_content+'</span>';
+					string_c += '</span></div></div></a><div class="answer"><div><span style="display:block"><span class="color_blog" style="padding-right:5px">'+q_txt+'</span>'+value.wr_content+'</span>';
 					
 					if(value.wr_comment != 0){
 						string_c += '<span style="display:block;padding-top:13px">';
