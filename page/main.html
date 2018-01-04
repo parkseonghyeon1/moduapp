@@ -403,7 +403,7 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_banner_check.php",   
 			success:function(data){
 				if(class_id == 'link_y'){
-				window.open(data);
+					cordova.InAppBrowser.open(data);
 				}else{
 					location.href=link;
 				}

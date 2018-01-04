@@ -244,9 +244,12 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_comment_write.php",  
 			data:params,			
 			success:function(data){
-				location.href="mypage_01.html";
 				//console.log(data); 
-			},   
+				location.href="mypage_01.html";
+			},    
+			complete:function(){
+				//location.href="mypage_01.html";
+			},
 			error:function(e){  
 				console.log(e.responseText);  
 			}  

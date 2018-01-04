@@ -164,6 +164,7 @@
 	<script>
 	//페이지 첫 로딩시 ajax
 	$(document).ready(function(){	
+		$("#check").val("blog");
 		var string = '';
 		var bo_table = 'review';
 		var ca_name = 'all';
@@ -318,6 +319,7 @@
 					data:params,			
 					url:"http://modublog.co.kr/app_public/ajax/a_ajax.php",      
 					beforeSend:function(){
+						$("#"+loading_bar).attr('class','');
 						$("#"+loading_bar).html("<div class='loader_wrap' style='height:115px;background:#fff'><img src='../img/icon_loder.gif'></div>");
 					},
 					success:function(data){
@@ -351,17 +353,19 @@
 						if(ca_name != temp){
 							list = 20;
 						}
-						console.log(list);
+						//console.log(list);
 						
 						list = list + list_num;
 						
-						console.log(temp+"/"+ca_name);
+						//console.log(temp+"/"+ca_name);
 						
 						temp = ca_name;
 						
+						$("#"+loading_bar).attr("class","off");
+						
 						if(!string){
 							list = 20;
-							$("#"+loading_bar).attr("class","");
+							$("#"+loading_bar).attr("class","on");
 							$("#"+loading_bar).html("");
 						}
 					},   
