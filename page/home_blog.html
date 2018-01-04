@@ -68,7 +68,7 @@
 			<ul id="blog_list">
 			
 			</ul>
-			<div id="loading_bar" class="off"></div>
+			<div id="loading_bar" class=""></div>
 		</div>
 	</div>
 	<!-- 페이지 로딩 -->
@@ -155,6 +155,9 @@
 			},   
 			complete:function(){
 				$('.loading').hide();
+				if(string_bl){
+					$("#loading_bar").attr("class","off");
+				}
 			},
 			error:function(e){  
 				console.log(e.responseText);  
@@ -172,7 +175,10 @@
 		$.ajax({      
 			type:"POST",
 			data:params,			
-			url:"http://modublog.co.kr/app_public/ajax/a_blog_sub.php",      
+			url:"http://modublog.co.kr/app_public/ajax/a_blog_sub.php", 
+			beforeSend:function(){
+				$("#loading_bar").attr("class","");
+			},     
 			success:function(data){
 				$("#blog_list").html("");
 				//블로그 뿌리기
@@ -182,16 +188,21 @@
 				$("#blog_list").html(string_bl);
 				
 				if(data.length <= 0){
-					$("#loading_bar").attr("class","");
+					$("#loading_bar").attr("class","on");
 					$('#blog_list').html('<p class="ex_info">등록된 상품이 존재하지 않습니다.</p>');
-				}else{
-					$("#loading_bar").attr("class","off");
+				}else if(data.length > 0 && data.length < 10){
+					$("#loading_bar").attr("class","on");
 				}
 
 				list = 10;
+				console.log(data);
 			},   			
 			complete:function(){
-
+				if(string_bl){
+					$("#loading_bar").attr("class","off");
+				}else if(!string_bl){
+					$("#loading_bar").attr("class","on");
+				}
 			},
 			error:function(e){  
 				console.log(e.responseText);  
@@ -232,10 +243,11 @@
 						if(ca_name != temp){
 							list = 10;
 						}
-						
+						//console.log("list: "+list);
 						list = list + list_num;
 						temp = ca_name;
-						
+						//console.log("list2: "+list);
+
 						$("#loading_bar").attr("class","off");
 						
 						console.log(data);
@@ -245,8 +257,6 @@
 							list = 10;
 							$("#loading_bar").attr("class","on");
 							$("#loading_bar").html("");
-						}else{
-							$("#loading_bar").attr("class","off");
 						}
 					},	 
 					error:function(e){  

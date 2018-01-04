@@ -65,7 +65,7 @@
 			<ul id="sns_list">
 			
 			</ul>
-			<div id="loading_bar" class="off"></div>
+			<div id="loading_bar" class=""></div>
 		</div>
 	</div>
 	<!-- 페이지 로딩 -->
@@ -171,6 +171,9 @@
 			},   
 			complete:function(){
 				$('.loading').hide();
+				if(string_sn){
+					$("#loading_bar").attr("class","off");
+				}
 			},
 			error:function(e){  
 				console.log(e.responseText);  
@@ -190,6 +193,9 @@
 			type:"POST",
 			data:params,			
 			url:"http://modublog.co.kr/app_public/ajax/a_sns_sub.php",      
+			beforeSend:function(){
+				$("#loading_bar").attr("class","");
+			},     
 			success:function(data){
 				$("#sns_list").html("");
 				//SNS 뿌리기
@@ -199,14 +205,19 @@
 				$("#sns_list").html(string_sn);
 				
 				if(data.length <= 0){
-					$("#loading_bar").attr("class","");
+					$("#loading_bar").attr("class","on");
 					$('#sns_list').html('<p class="ex_info">등록된 상품이 존재하지 않습니다.</p>');
-				}else{
-					$("#loading_bar").attr("class","off");
+				}else if(data.length > 0 && data.length < 10){
+					$("#loading_bar").attr("class","on");
 				}
 				
 				list = 10;
-			},   
+			},     
+			complete:function(){
+				if(string_sn){
+					$("#loading_bar").attr("class","off");
+				}
+			},
 			error:function(e){  
 				console.log(e.responseText);  
 			}  		
