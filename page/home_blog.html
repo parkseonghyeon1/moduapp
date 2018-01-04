@@ -24,7 +24,7 @@
 	
 	<div class="bk_gray">
 		<!-- main banner -->
-		<div class="main_bann">
+		<div class="bann_wrap main_bann">
 			<div class="main_bann_nav">
 				<span class="sub-pagination"></span>
 			</div>
@@ -101,7 +101,11 @@
 			success:function(data){
 				//메인배너
 				$.each(data[0],function(key,value){
-					string += '<div class="swiper-slide"><a href="'+value.link+'" style="display:block"><div class="main_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.image_file+'"></div><div class="bann_txt"><p class="title"></p><span></span></div></a></div>';
+					string += '<div class="swiper-slide"><a href="'+value.bn_bo_table+'?wr_id='+value.bn_wr_id+'" style="display:block" id="'+value.bn_br_id+'"';
+					if(value.bn_bo_table == ''){
+						string += ' class="link_y"';
+					}
+					string += '><div class="main_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.image_file+'"></div><div class="bann_txt"><p class="title"></p><span></span></div></a></div>';
 				}); 
 				$('.main_bann').append('<div class="swiper-wrapper" id="rolling_wrap"></div>');
 				$("#rolling_wrap").append(string);
@@ -265,6 +269,33 @@
 				})
 			}			
 		}
+	})
+	
+	// 메인 배너 클릭
+	$(document).on('click','.bann_wrap a',function(){
+		var br_id = $(this).attr('id');
+		var class_id = $(this).attr('class');
+		var link = $(this).attr('href');
+		var tbl_id = 'banner';
+		var params = {"br_id":br_id,"tbl_id":tbl_id};
+		$.ajax({      
+			type:"POST",
+			data:params,			
+			url:"http://modublog.co.kr/app_public/ajax/a_banner_check.php",   
+			success:function(data){
+				if(class_id == 'link_y'){
+					cordova.InAppBrowser.open(data);
+				}else{
+					location.href=link;
+				}
+			},  
+			complete:function(){
+			},   
+			error:function(e){  
+				console.log(e.responseText);  
+			}
+		})	
+		return false;
 	})
 	</script>
 </body>

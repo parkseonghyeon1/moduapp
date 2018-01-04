@@ -52,6 +52,7 @@
 .ex_info {font-size:1em;padding:40px 0;text-align:center;color:#797979}
 .no_info_li {font-size:12px;padding:60px 13px;color:#707070;text-align:center;border-bottom:none}
 .no_info {text-align:center;padding-top:30px;font-size:12px}
+.empty_img_sub {font-size:0.83em;text-align:center;padding-top:40px}
 .loading {position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:9999;overflow:hidden}
 .loading .load {position:absolute;left:50%;top:50%;width:64px;height:64px;margin-top:-32px;margin-left:-32px}
 .loading .load.ld_blog {background:url(../img/load1.gif)no-repeat center}
@@ -168,7 +169,7 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .home_list {background:#fff;margin-top:10px}
 /*.home_list li {border-bottom:1px solid #e9e9e9}*/
 .list_item {overflow:hidden;height:115px;position:relative;padding-left:125px}
-.list_item .list_item_img {position:absolute;left:0;width:125px;top:0;height:115px}
+.list_item .list_item_img {position:absolute;left:0;width:125px;top:0;height:115px;background:#fafafa}
 .list_item .list_item_img  > img {width:100%;height:100%;vertical-align:top}
 .list_item .list_item_txt {padding:20px 13px}
 .list_item .list_item_txt .title {font-size:1.08em}
