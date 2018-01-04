@@ -286,7 +286,7 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .ui-page {background:#fff}
 .list_wrap ul li:last-child {border-bottom:none !important}
 .list_pn,
-.list_pn_sd {padding:0 16px;background:#fff}
+.list_pn_sd {padding:0 16px;background:#fff;overflow:hidden}
 .list_pn li,
 .list_pn_sd li {border-bottom:1px solid #ebebeb}
 .list_pn li > a,
