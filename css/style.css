@@ -280,9 +280,11 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .bottom_mn span {font-size:0.9em;color:#b0b0b0}
 
 /* 공지사항 | 커뮤니티 | QnA | 메세지 목록 */
+.list_wrap {height:100%}
 .list_wrap,
-list_pn,
-ui-page {background:#fff;height:100%}
+.list_pn,
+.ui-page {background:#fff}
+.list_wrap ul li:last-child {border-bottom:none !important}
 .list_pn,
 .list_pn_sd {padding:0 16px;background:#fff}
 .list_pn li,
