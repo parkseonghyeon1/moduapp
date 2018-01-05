@@ -224,13 +224,9 @@
 				}); 
 				$("#share_rank").html(string_rk);
 				
-				//
-				$.each(data[5],function(key,value){
-					
-				}); 
+				//닉네임, 포인트 불러오기
 				$('#mb_nick_t').html(data[5].mb_nick);
 				$('#mb_point_t').html(data[5].mb_point);
-				console.log(data[5].mb_nick);
 				
 				//추천콘텐츠 slide
 				var swiper = new Swiper('.swiper-container1', {
@@ -239,6 +235,8 @@
 					loop: false,
 					direction: 'horizontal'
 				});
+				
+				//console.log(data);
 			},   
 			complete:function(){
 				$('.loading').hide();
