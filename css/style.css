@@ -183,7 +183,7 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 .conts_info > span,
 .conts_info .info_title > span
  {color:#797979}
-.conts_info .info_title {display:inline-block;margin-right:4px}
+.conts_info .info_title {display:inline-block;margin-right:6px}
 .conts_info .info_title > span:first-child {padding-right:4px}
 /* 블로그 */
 #blog_wrap a {display:inline-block}
