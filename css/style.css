@@ -63,7 +63,7 @@
 #loading_bar.on {display:none}
 
 /* popup */
-#popup {width:90%;margin:0 5%;position:absolute;top:50%;margin-top:-210px;z-index:999;display:none}
+#popup {width:88%;margin:0 6%;position:absolute;top:50%;margin-top:-210px;z-index:999;display:none}
 #popup #pop_cont {background:#fff;border-radius:0.4em;overflow:hidden;padding:0 16px}
 #popup .pop_cont_txt {height:300px;overflow-y:auto}
 #popup #pop_cont p {font-size:1.25em;text-align:center;border-bottom:1px solid #ebebeb;height:50px;line-height:50px}
@@ -431,7 +431,7 @@ select {border:0;outline:none;box-shadow:none;font-size:1em !important;box-sizin
 /* 쉐어 상세 */
 .pr_view_cont.pr_share .tab_mn li.on {border-bottom:1px solid #ea5217}
 .pr_view_cont.pr_share .tab_mn li.on a.t_b {border-bottom:3px solid #ea5217}
-.pd_link {font-size:12px;color:#797979;border:1px solid #f1f1f1;height:auto;min-height:100px;width:100%;resize:none;display:block;box-sizing:border-box;padding:4px 10px}
+.pd_link {font-size:12px;color:#797979;border:1px solid #f1f1f1;height:auto;min-height:100px;width:100%;resize:none;display:block;box-sizing:border-box;padding:4px 10px;border-radius:4px;overflow:hidden}
 .ca_wrap_source {position:relative}
 .ca_wrap_source a {padding:2px 6px 4px;border-radius:6em;overflow:hidden;font-size:0.9em;margin-right:4px}
 .ca_wrap_source a.on {background:#ea5217;color:#fff} 
