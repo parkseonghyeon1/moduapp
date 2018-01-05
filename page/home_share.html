@@ -26,8 +26,8 @@
 	<div class="wrapper home_share bk_gray">
 		<!-- 메인 -->
 		<div class="sh_my_info bk_sh">
-			<p id="mb_nick"></p>
-			<a href="point_view.html"><span id="mb_point"></span></a>
+			<p id="mb_nick_t"></p>
+			<a href="point_view.html"><span id="mb_point_t"></span></a>
 			<div class="slide_info">
 				<ul class="sd_list1" id="share_notice">
 				
@@ -164,7 +164,7 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_share_social.php",
 			data:params,
 			success:function(data){
-				console.log(data);
+				//console.log(data);
 			},
 			error:function(){
 			}
@@ -174,12 +174,7 @@
 	
 	// SHARE 홈 불러오기
 	$(document).ready(function(){
-		var mb_nick = member['mb_nick'];
-		var mb_point = member['mb_n_point'];
 		var mb_id = member['mb_id'];
-		$('#mb_point').text(mb_point);
-		$('#mb_nick').text(mb_nick);
-		
 		var string_no = '';
 		var string_re = '';
 		var string_sh = '';
@@ -229,6 +224,14 @@
 				}); 
 				$("#share_rank").html(string_rk);
 				
+				//
+				$.each(data[5],function(key,value){
+					
+				}); 
+				$('#mb_nick_t').html(data[5].mb_nick);
+				$('#mb_point_t').html(data[5].mb_point);
+				console.log(data[5].mb_nick);
+				
 				//추천콘텐츠 slide
 				var swiper = new Swiper('.swiper-container1', {
 					slidesPerView: 'auto',
@@ -236,8 +239,6 @@
 					loop: false,
 					direction: 'horizontal'
 				});
-				
-				console.log(data);
 			},   
 			complete:function(){
 				$('.loading').hide();
@@ -281,7 +282,7 @@
 							}); 
 							$(".share_list").append(string_sh);
 							
-							console.log(data);
+							//console.log(data);
 							list = list + list_num;
 							$("#loading_bar").attr("class","off");
 						},  

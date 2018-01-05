@@ -24,12 +24,14 @@
 	</script>
 	
 	<div class="bk_gray">
-		<!-- main banner -->
+		<!-- 메인배너 -->
 		<div class="bann_wrap main_bann bk_gray">
 			<div class="main_bann_nav">
 				<span class="sub-pagination"></span>
 			</div>
 		</div>
+		<!-- 메인배너 end -->
+		
 		<!-- blog -->
 		<div class="main_list">
 			<h1 class="title"><a href="home_blog.html" class="go_a">블로그 추천 콘텐츠</a></h1>
@@ -93,14 +95,13 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="bann_wrap sub_bann">
-			<div class="swiper-wrapper" id="line_wrap"></div>
-			<div class="sub_bann_nav" style="position:absolute;right:13px;bottom:13px;z-index:2">
-				<span class="sub-pagination"></span>
-			</div>
-		</div>
 		<!-- share end -->
+		
+		<!-- 띠배너 -->
+		<div id="line_bann">
+		
+		</div>
+		<!-- 띠배너 end -->
 		
 		<!-- event -->
 		<div class="main_list">
@@ -141,15 +142,6 @@
 	});
     </script>
 	<script>
-	/*
-	$(document).ready(function(){
-		if (logincheck==0) {
-			$('.nav_profile').html('<a href="login.html" class="go_a">로그인</a>');         
-		}else{
-			$('.nav_profile').html('<div class="p_img_wrap"><div class="p_img"><img src="http://modublog.co.kr/data/mb_photo/'+member['mb_id']+'" alt="" id="profile_img"></div></div><p class="title p_name"><a href="member_edit_form.html" class="go_a">'+member['mb_nick']+'</a></p><span class="p_point">'+member['mb_point']+'</span><div class="p_message"><a href="#none"><span class="title">1</span></a></div>');      
-		}
-    });
-	*/
     $('.p_message').click(function(){
         window.localStorage.removeItem("mb_id");
         window.localStorage.removeItem("mb_nick");
@@ -230,13 +222,15 @@
 				
 				//띠배너
 				$.each(data[4],function(key,value){
-					string_line += '<div class="swiper-slide"><a href="'+value.li_bo_table+'?wr_id='+value.li_wr_id+'" style="display:block" id="'+value.li_br_id+'"';
-					if(value.li_bo_table == ''){
-						string_line += ' class="link_y"';
+					if(value.li_image_file){
+						string_line += '<div class="bann_wrap sub_bann"><div class="swiper-wrapper"><div class="swiper-slide"><a href="'+value.li_bo_table+'?wr_id='+value.li_wr_id+'" style="display:block" id="'+value.li_br_id+'"';
+						if(value.li_bo_table == ''){
+							string_line += ' class="link_y"';
+						}
+						string_line += '><div class="sub_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.li_image_file+'"></div></a></div></div><div class="sub_bann_nav" style="position:absolute;right:13px;bottom:13px;z-index:2"><span class="sub-pagination"></span></div></div>';
 					}
-					string_line += '><div class="sub_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.li_image_file+'"></div></a></div>';
 				});
-				$("#line_wrap").append(string_line); 		
+				$("#line_bann").append(string_line); 		
 
 				//이벤트
 				$.each(data[5],function(key,value){
@@ -262,7 +256,6 @@
 					},
 					autoplayDisableOnInteraction:false 
 				});
-				
 				//띠배너 slide
 				var banner_slide2 = new Swiper('.sub_bann', { // 소개이미지 슬라이드
 					pagination: '.sub-pagination',
@@ -390,7 +383,7 @@
 		return false;		
 	})
 	
-	// 메인 배너 클릭
+	// 배너 클릭
 	$(document).on('click','.bann_wrap a',function(){
 		var br_id = $(this).attr('id');
 		var class_id = $(this).attr('class');

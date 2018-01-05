@@ -198,12 +198,12 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_message_count.php",  
 			data:params,			
 			success:function(data){
-				console.log(data);
+				//console.log(data);
 				if(data.cnt){
 					$('#msg_num').html('<span class="title">'+data.cnt+'</span>');
 				}
 				$('#mb_nick').html(data.mb_nick);
-				$('#mb_point').html(data.mb_point+"P");
+				$('#mb_point').html(data.mb_point+"p");
 			},   
 			error:function(e){  
 				console.log(e.responseText); 
