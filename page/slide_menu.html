@@ -188,7 +188,7 @@
 		$('.nav_mn1').hide();         
 	}else{
 		$('.nav_profile').removeClass('on');
-		$('.nav_profile').html('<div class="p_img"><img src="http://modublog.co.kr/data/mb_photo/'+member['mb_id']+'" alt="" id="profile_img" ></div><div class="mb_info"><p class="title p_name txt_ov"><a href="mypage.html" class="go_a">'+member['mb_nick']+'</a></p><span class="p_point">'+member['mb_n_point']+'</span><div class="p_message"><a href="message_list.html" class="go_a" id="msg_num"></a></div></div>');
+		$('.nav_profile').html('<div class="p_img"><img src="http://modublog.co.kr/data/mb_photo/'+member['mb_id']+'" alt="" id="profile_img" ></div><div class="mb_info"><p class="title p_name txt_ov"><a href="mypage.html" class="go_a" id="mb_nick"></a></p><span class="p_point" id="mb_point"></span><div class="p_message"><a href="message_list.html" class="go_a" id="msg_num"></a></div></div>');
 		$('#profile_img').attr('onError','this.src="../img/person.png"');
 
 		var mb_id = member['mb_id'];
@@ -199,9 +199,11 @@
 			data:params,			
 			success:function(data){
 				console.log(data);
-				if(data){
-					$('#msg_num').html('<span class="title">'+data+'</span>');
+				if(data.cnt){
+					$('#msg_num').html('<span class="title">'+data.cnt+'</span>');
 				}
+				$('#mb_nick').html(data.mb_nick);
+				$('#mb_point').html(data.mb_point+"P");
 			},   
 			error:function(e){  
 				console.log(e.responseText); 
