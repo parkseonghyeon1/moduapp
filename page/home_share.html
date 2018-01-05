@@ -82,7 +82,7 @@
 		</div>
 		<!-- 추천 콘텐츠 -->
 		<div class="main_list" style="margin-bottom:10px">
-			<h1 class="title">고수익 콘텐츠</h1>
+			<h1 class="title">프리미엄 콘텐츠</h1>
 			<div class="pd_wrap">
 				<div class="swiper-container1">
 					<div class="swiper-wrapper" id="share_fix">
@@ -205,13 +205,13 @@
 			
 				//추천콘텐츠 뿌리기
 				$.each(data[1],function(key,value){
-					string_re += '<div class="swiper-slide item"><a href="product_view_share.html?bo_table='+value.sh_pr_board+'&wr_id='+value.sh_pr_board_id+'&site_id=share"><div class="sns_c"><div class="item_img"><img src="'+value.sh_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sh_wr_subject+'</span></p><span class="sub_txt color_share">쉐어</span><span class="sub_txt item_view">클릭&nbsp;'+value.sh_wr_comment_reply+'</span></div></div></a></div>';
+					string_re += '<div class="swiper-slide item"><a href="product_view_share.html?bo_table='+value.sh_pr_board+'&wr_id='+value.sh_pr_board_id+'&site_id=share"><div class="sns_c"><div class="item_img"><img src="'+value.sh_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sh_wr_subject+'</span></p><span class="sub_txt color_share">쉐어</span><span class="sub_txt item_view">조회&nbsp;'+value.sh_wr_hit+'</span></div></div></a></div>';
 				}); 
 				$("#share_rec").html(string_re);
 				
 				//고정위젯 콘텐츠 뿌리기
 				$.each(data[2],function(key,value){
-					string_re2 += '<div class="swiper-slide item"><a href="product_view_share.html?bo_table='+value.sh_pr_board+'&wr_id='+value.sh_pr_board_id+'&site_id=share"><div class="sns_c"><div class="item_img"><img src="'+value.sh_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sh_wr_subject+'</span></p><span class="sub_txt color_share">쉐어</span><span class="sub_txt item_view">클릭&nbsp;'+value.sh_wr_comment_reply+'</span></div></div></a></div>';
+					string_re2 += '<div class="swiper-slide item"><a href="product_view_share.html?bo_table='+value.sh_pr_board+'&wr_id='+value.sh_pr_board_id+'&site_id=share"><div class="sns_c"><div class="item_img"><img src="'+value.sh_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sh_wr_subject+'</span></p><span class="sub_txt color_share">쉐어</span><span class="sub_txt item_view">조회&nbsp;'+value.sh_wr_hit+'</span></div></div></a></div>';
 				}); 
 				$("#share_fix").html(string_re2);
 				
