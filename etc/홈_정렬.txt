@@ -1,0 +1,28 @@
+<div class="home_list">
+			<div class="ca_wrap ca_wrap2">
+				<div class="swiper-container1_1">
+					<div class="swiper-wrapper home_category blog_ct">
+						<div class="swiper-slide"><a href="#none" class="on" data="all"><span>전체</span></a></div>
+						<div class="swiper-slide"><a href="#none" data="food"><span>맛집</span></a></div>
+						<div class="swiper-slide"><a href="#none" data="fashion"><span>패션</span></a></div>
+						<div class="swiper-slide"><a href="#none" data="beauty"><span>뷰티</span></a></div>
+						<div class="swiper-slide"><a href="#none" data="life"><span>생활</span></a></div>
+						<div class="swiper-slide"><a href="#none" data="hobby"><span>취미</span></a></div>
+						<div class="swiper-slide"><a href="#none" data="tour"><span>여행</span></a></div>
+						<div class="swiper-slide"><a href="#none" data="special"><span>기타</span></a></div>
+					</div>
+				</div>
+				<div class="btn_sort_wrap"><a id="btn_sort"></a></div>
+			</div>
+			<div class="ca_sort_wrap">
+				<ul>
+					<li><a href="#none">최신순<a/></li>
+					<li><a href="#none">마감순<a/></li>
+					<li><a href="#none">인기순<a/></li>
+				</ul>
+			</div>
+			<ul id="blog_list">
+			
+			</ul>
+			<div id="loading_bar" class=""></div>
+		</div>

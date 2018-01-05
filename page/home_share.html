@@ -80,6 +80,17 @@
 				</div>
 			</div>
 		</div>
+		<!-- 추천 콘텐츠 -->
+		<div class="main_list" style="margin-bottom:10px">
+			<h1 class="title">고수익 콘텐츠</h1>
+			<div class="pd_wrap">
+				<div class="swiper-container1">
+					<div class="swiper-wrapper" id="share_fix">
+					
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- 실시간 랭킹 -->
 		<div class="ct_wrap list_pn" style="padding: 0 16px;margin-bottom:10px;height:54px;overflow:hidden" id="me_rank">
 			<a href="share_rank.html">
@@ -177,6 +188,7 @@
 		var mb_id = member['mb_id'];
 		var string_no = '';
 		var string_re = '';
+		var string_re2 = '';
 		var string_sh = '';
 		var string_rk = '';
 		var params = {"mb_id":mb_id};
@@ -197,8 +209,14 @@
 				}); 
 				$("#share_rec").html(string_re);
 				
-				//SHARE 리스트 뿌리기
+				//고정위젯 콘텐츠 뿌리기
 				$.each(data[2],function(key,value){
+					string_re2 += '<div class="swiper-slide item"><a href="product_view_share.html?bo_table='+value.sh_pr_board+'&wr_id='+value.sh_pr_board_id+'&site_id=share"><div class="sns_c"><div class="item_img"><img src="'+value.sh_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sh_wr_subject+'</span></p><span class="sub_txt color_share">쉐어</span><span class="sub_txt item_view">클릭&nbsp;'+value.sh_wr_comment_reply+'</span></div></div></a></div>';
+				}); 
+				$("#share_fix").html(string_re2);
+				
+				//SHARE 리스트 뿌리기
+				$.each(data[3],function(key,value){
 					string_sh += '<li><a href="product_view_share.html?bo_table='+value.shh_pr_board+'&wr_id='+value.shh_pr_board_id+'&site_id=share"><div class="list_item"><div class="list_item_img"><img src="'+value.shh_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.shh_wr_subject+'</p><span class="conts txt_ov">'+value.shh_subject_sub+'</span><div class="sh_pw"><span class="sh_point">+'+value.shh_wr_link2+'p</span>';
 					if(value.shh_wr_link2 == '20'){
 						string_sh += '<span class="sh_fix"></span>';
@@ -212,21 +230,21 @@
 				$(".share_list").html(string_sh);
 				
 				//실시간 현황 뿌리기
-				$.each(data[3],function(key,value){
+				$.each(data[4],function(key,value){
 					if(key == 'sh_in' || key == 'sh_view' || key == 'sh_join' || key == 'sh_ins' || key == 'sh_in_sub' || key == 'sh_view_sub' || key == 'sh_join_sub' || key == 'sh_ins_sub'){
 						$("#"+key).text(value);
 					}
 				}); 
 				
 				//랭킹 뿌리기
-				$.each(data[4],function(key,value){
+				$.each(data[5],function(key,value){
 					string_rk += '<li><div class="rank_b"><span class="txt_ov title_sub" id="mb_nick">'+value.mb_nick+'</span><span class="sub_txt rk_view" id="v_sum">'+value.v_sum+' view</span><span class="ps_r rk_point color_share" id="p_sum">'+value.p_sum+' p</span><span class="rk_rank color_share" id="rank" style="text-align:left">'+value.rank+'</span><div class="rk_img"><img src="'+value.mb_photo+'" id="mb_photo"></div></div></li>';
 				}); 
 				$("#share_rank").html(string_rk);
 				
 				//닉네임, 포인트 불러오기
-				$('#mb_nick_t').html(data[5].mb_nick);
-				$('#mb_point_t').html(data[5].mb_point);
+				$('#mb_nick_t').html(data[6].mb_nick);
+				$('#mb_point_t').html(data[6].mb_point);
 				
 				//추천콘텐츠 slide
 				var swiper = new Swiper('.swiper-container1', {

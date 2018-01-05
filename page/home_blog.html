@@ -78,6 +78,9 @@
 	</script>
 	
     <script>
+	$(document).on('click','#btn_sort',function(){
+		alert("정렬");
+	})
 	// 카테고리 on-off
 	$(document).on('click','.home_category a',function(){
 		$(this).parent().parent().children().children('a').removeClass('on');
