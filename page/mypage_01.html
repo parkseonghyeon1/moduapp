@@ -54,8 +54,10 @@
 				$.each(data[0],function(key,value){
 					if(value.bo_table == 'sns_fashion'){
 						txt_ca = '_sns';
+						guide_id = 'sns';
 					}else{
-						txt_ca = '_blog'
+						txt_ca = '_blog';
+						guide_id = 'blog';
 					}
 					string += '<li><a href="product_view';
 					if(value.bo_table == 'sns_fashion'){
@@ -71,7 +73,7 @@
 							w = "c";
 						}
 						if(value.wr_18){
-						string += '<a href="guide_view.html?wr_id='+value.wr_18_id+'" class="btn_tp1 btn_l">가이드</a>';
+						string += '<a href="guide_view.html?wr_id='+value.wr_18_id+'&guide_id='+guide_id+'" class="btn_tp1 btn_l">가이드</a>';
 						}
 						if(value.bo_table == 'sns_fashion'){
                             string += '<a href="sns_review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'&bo_table='+value.bo_table+'" class="btn_tp1 btn_r color'+txt_ca+'">리뷰'+txt_s+'</a>';
@@ -143,7 +145,7 @@
 							w = "c";
 						}
 						if(value.wr_18){
-						string += '<a href="guide_view.html?wr_id='+value.wr_18_id+'" class="btn_tp1 btn_l">가이드</a>';
+						string += '<a href="guide_view.html?wr_id='+value.wr_18_id+'&guide_id='+guide_id+'" class="btn_tp1 btn_l">가이드</a>';
 						}
 						if(value.bo_table == 'sns_fashion'){
                             string += '<a href="sns_review_reg_form.html?wr_id='+value.wr_13+'&ms_id='+value.ms_id+'&w='+w+'&bo_table='+value.bo_table+'" class="btn_tp1 btn_r color'+txt_ca+'">리뷰'+txt_s+'</a>';
