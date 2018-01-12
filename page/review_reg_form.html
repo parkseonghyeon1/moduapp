@@ -56,7 +56,7 @@
 				</li>
 				<li>
 					<label class="title" for="data1">리뷰</label>
-					<div id="rv_rs">
+					<div id="rv_rs" style="cursor:pointer">
 						<div class="dv_input" style="margin-bottom:10px">
 							<span class="rv_select txt_ov">블로그 리뷰 불러오기</span>
 						</div>
@@ -64,6 +64,7 @@
 							<ul id="rv_list">
 								
 							</ul>
+							<input type="hidden" value="0" id="blog_review_no">
 						</div>
 					</div>
 					<div class="dv_input" style="margin-bottom:10px">
@@ -109,7 +110,10 @@
 	// 블로그 리뷰 불러오기 클릭
 	$(document).on('click','.rv_select',function(){
 		$(this).toggleClass("on");
-		$( ".rv_list_blog" ).toggleClass("on");
+		$(".rv_list_blog").toggleClass("on");
+		if($('#blog_review_no').val() == '2'){
+			alert("등록 된 블로그에 작성된 리뷰가 존재하지 않습니다.\n리뷰URL을 직접 입력해주세요.");
+		}
 	});	
 	// 블로그 리뷰 선택
 	$(document).on("click",".rv_title",function(){
@@ -163,6 +167,10 @@
 					string += '<li class="rv_title"><a href="'+value.rv_link[0]+'"><span class="txt_ov">'+value.rv_title[1]+'</span></a></li>';
 				})
 				$('#rv_list').html(string);
+				
+				if(!string){
+					$('#blog_review_no').val('2');
+				}
 				//console.log(data);
 			},   
 			error:function(e){  

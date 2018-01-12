@@ -287,7 +287,7 @@
 			url:"http://modublog.co.kr/app_public/ajax/a_banner_check.php",   
 			success:function(data){
 				if(class_id == 'link_y'){
-					cordova.InAppBrowser.open(data);
+					cordova.InAppBrowser.open(data,'_system','location=yes');
 				}else{
 					location.href=link;
 				}

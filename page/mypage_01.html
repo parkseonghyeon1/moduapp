@@ -85,7 +85,9 @@
 				}); 
 				$("#my_list").append(string);
 				
-				$('#my_li_stat').html("* 최근 4개월 이내 신청한 상품만 노출됩니다.");
+				if(!string){
+					$('#my_li_stat').html("* 최근 4개월 이내 신청한 상품만 노출됩니다.");
+				}
 				
 				console.log(data);
 			}, 

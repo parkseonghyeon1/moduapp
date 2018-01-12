@@ -79,7 +79,7 @@
 
 	$(document).on('click','.go_inapp',function(){
         var url = $(this).attr("href");
-        window.open(url);
+		cordova.InAppBrowser.open(url,'_system','location=yes');
         return false;
     });
 

@@ -92,6 +92,7 @@
 					$("#comment_num1").html("("+data.wr_comment+")");
 				}
 				$("#wr_name").html(data.wr_name);
+				$("#wr_name").attr('data',data.wr_id);
 				$("#comu_cate").html("["+data.ca_name+"]");
 				$("#comu_img").attr("src",data.mb_photo);
 				$("#datetime").html(data.wr_datetime);
@@ -113,6 +114,7 @@
 		var wr_id = getQuerystring('wr_id');
 		var mb_id = member['mb_id'];
 		var params = {"wr_id":wr_id,"bo_table":"comu"};
+		var comu_mb_id = $("#wr_name").attr('data');
 		var string_c = '';
 		$.ajax({      
 			type:"POST",  
@@ -128,10 +130,10 @@
 						string_c += '<li style="border-top:1px solid #f1f1f1"><div class="comment_re_dp" style="margin-left:'+value.cmt_depth+'px">';
 					}
 					
-					string_c += '<div class="comment_title"><span class="title_sub"><span class="nick_ov">'+value.wr_name+'</span></span><span class="date_txt" style="padding:0 4px">'+value.datetime+'</span><span class="comment_re">';
+					string_c += '<div class="comment_title"><span class="title_sub"><span class="nick_ov nick_ex">'+value.wr_name+'</span><span class="date_txt" style="padding:0 4px">'+value.datetime+'</span><span class="comment_re">';
 					
 					if(mb_id){
-						string_c += '<a href="#none" class="color_blog btn_comment comm" id="comm_re" data="'+value.wr_id+'">답글</a>';
+						string_c += '<a href="#none" class="color_blog btn_comment comm" id="comm_re" data="'+value.wr_id+'">답글</a></span>';
 					}
 					if(value.mb_id == mb_id){
 						if(value.icon_secret){
@@ -141,11 +143,10 @@
 					}
 					
 					string_c += '</span><div class="comment_img"><img src="'+value.mb_photo+'"></div></div>';
-					
-					if(value.icon_secret && value.mb_id != mb_id){
-						string_c += '<div class="comment_conts"><img class="icon_secret_c" src="../img/icon_secret.gif">비밀글입니다.</div>';
-					}else if(value.icon_secret && value.mb_id == mb_id){
+					if((value.icon_secret && value.mb_id == mb_id) || (value.icon_secret && value.comu_mb_id == member['mb_id'])){
 						string_c += '<div class="comment_conts"><img class="icon_secret_c" src="../img/icon_secret.gif">'+value.wr_content+'</div>';
+					}else if(value.icon_secret && value.mb_id != mb_id){
+						string_c += '<div class="comment_conts"><img class="icon_secret_c" src="../img/icon_secret.gif">비밀글입니다.</div>';
 					}else{
 						string_c += '<div class="comment_conts">'+value.wr_content+'</div>';
 					}

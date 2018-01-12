@@ -168,7 +168,7 @@
 		var url = $('#share_url').val();
 		var params = {"sh_id":sh_id,"wr_id":wr_id,"url":url};
 		
-		window.open("http://modublog.co.kr/app_public/ajax/a_share_social.php?wr_id="+wr_id+"&url="+url+"&sh_id="+sh_id);
+		cordova.InAppBrowser.open("http://modublog.co.kr/app_public/ajax/a_share_social.php?wr_id="+wr_id+"&url="+url+"&sh_id="+sh_id,'_system','location=yes');
 		
 		$.ajax({      
 			type:"POST",  
@@ -291,8 +291,9 @@
 									string_sh += '<span class="sh_fix"></span>';
 								}
 								string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.shh_wr_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.shh_wr_comment_reply+'</span></div></div></div></a>';
+								
 								if(value.shh_link == '1'){
-									string_sh += '<div class="sh_url_b"><span class="sh_url_en color_share">발급완료</span><a class="sh_share" id="'+value.shh_pr_board_id+'" data="'+value.shh_url+'"></a></div>';
+									string_sh += '<div class="sh_url_b"><span class="sh_url_en color_share">발급완료</span><a class="sh_share" id="'+value.shh_pr_board_id+'" data="'+value.shh_url+'"></span></div>';
 								}
 								string_sh += '</li>';
 							}); 

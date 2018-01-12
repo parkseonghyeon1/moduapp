@@ -26,7 +26,7 @@
 			<input type="hidden" id="sort" value="">
 		</div>
 		<ul class="list_pn_sd message_list" id="message_li">
-		
+			
 		</ul>
 		<div id="loading_bar" class="off"></div>
 		<div id="loading_bar2" class="off"></div>
@@ -82,7 +82,8 @@
 		var sort = $("#sort").val();
 		var mb_id = member['mb_id'];
 		var params = {"mb_id":mb_id,"sort":sort};
-		string_m = '';
+		var string_m = '';
+		
 		$.ajax({      
 			type:"POST",
 			data:params,			

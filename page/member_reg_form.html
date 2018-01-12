@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			<div id="aa">
-				<iframe src="http://modublog.co.kr/app_public/a_test02.html" id="register_frame" name="register_frame" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%"></iframe>
+				<iframe src="http://modublog.co.kr/app_public/a_test02.html" id="register_frame" name="register_frame" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="600px"></iframe>
 			</div>
 			<div class="m_reg_li terms_wrap">
 				<p class="title">약관동의</p>
@@ -271,8 +271,8 @@
 		$('#mb_hp2').val(data['mb_hp2']);
 		$('#mb_hp3').val(data['mb_hp3']);
 		$('#mb_zip').val(data['mb_zip']);
-		$('#mb_addr1').val(string_blank(decodeURI(data['mb_addr1'])));
-		$('#mb_addr2').val(string_blank(decodeURI(data['mb_addr2'])));
+		$('#mb_addr1').val(string_blank(string_change(decodeURI(data['mb_addr1']))));
+		$('#mb_addr2').val(string_blank(string_change(decodeURI(data['mb_addr2']))));
 		$('#mb_homepage').val(string_change(data['mb_homepage']));
 		$('#mb_email').val(string_change(data['mb_email']));
 		$('#mb_password').val(decodeURI(data['mb_password']));
@@ -336,11 +336,11 @@
 			return false;
 		}
 		
-		/*if(mb_password.match(regexPw) == null){
+		if(mb_password.match(regexPw) == null){
 			alert("비밀번호 6자리이상 입력하세요.");
 			$("#mb_password").focus();
 			return false;
-		}*/
+		}
 		
 		if(mb_password != mb_password_re){
 			alert("비밀번호가 일치하지 않습니다.");

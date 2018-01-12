@@ -68,7 +68,7 @@
 							<a href="#none" class="ca_name" data="source" style="width:56px;line-height:24px">소스복사</a>
 							<a href="#none" class="ca_name" data="pix_widget" style="width:56px;line-height:24px">고정위젯</a>
 							<a href="#none" class="ca_name" data="random_widget" style="width:56px;line-height:24px">랜덤위젯</a>
-							<a class="btn_tp1">발급완료</a>
+							<span class="btn_tp1">발급완료</span>
 						</div>
 						<div class="pd_view_li">
 							<p class="title">홍보문구</p>
@@ -122,7 +122,7 @@
 		var url = $("#url_w").val();
 		var params = {"sh_id":sh_id,"wr_id":wr_id,"url":url};
 		
-		window.open("http://modublog.co.kr/app_public/ajax/a_share_social.php?wr_id="+wr_id+"&url="+url+"&sh_id="+sh_id);
+		cordova.InAppBrowser.open("http://modublog.co.kr/app_public/ajax/a_share_social.php?wr_id="+wr_id+"&url="+url+"&sh_id="+sh_id,'_system','location=yes');
 		
 		$.ajax({      
 			type:"POST",  
@@ -140,9 +140,13 @@
 	// 복사하기 버튼
 	$(document).ready(function(){
 		if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
-			$('.btn_url').on('click', function(e){
+			$(document).on('click','.btn_url', function(e){
 				//select_all_and_copy(document.getElementById("u_url"));
 				$('#u_url').focus();
+			});
+			var clipboard = new Clipboard('.btn_url');
+			clipboard.on('success', function(e) {
+				alert('접속중인 기기및 브라우저에서는 클립보드 복사를 지원하지 않습니다.\nURL을 길게 눌러 복사하세요.');
 			});
 		} else {
 			var clipboard = new Clipboard('.btn_url');
@@ -150,7 +154,6 @@
 				alert('복사 되었습니다.');
 				e.clearSelection();
 			});
-
 			clipboard.on('error', function(e) {
 				alert('선택된 텍스트를 복사하세요.');
 			});
@@ -190,21 +193,6 @@
 			string = '<a target="_blank" href="'+url+'?mb_id='+mb_id+'"><img src="https://moduad.com/img/share_img.php?&mb_id='+mb_id+'" style="border:0;"></a>';
 		}
 		$('#u_url').html(string);
-	})
-	
-	// 발급받기 버튼 비로그인
-	$(document).on('click','#req_go',function(){
-		if(logincheck==0){
-			var result = confirm('로그인 후 이용 가능한 서비스입니다. 로그인 하시겠습니까?');
-			if(result){
-				location.href="login.html";
-			}else{
-				return false;
-			}
-		}else{
-		
-		}
-		return false;
 	})
 	
 	// 전체 로딩
@@ -273,36 +261,48 @@
 		}); 
 	});
 		
+	//$('.pr_btn_p').on('click','.btn_req.on',function(){
 	$(document).on('click','.btn_req.on',function(){
-		$(this).removeClass('on');
-		var mb_id = member['mb_id'];
-		var wr_id = getQuerystring('wr_id');
-		var wr_7 = $(this).attr('data');
-		var params = {"wr_id":wr_id,"mb_id":mb_id,"wr_7":wr_7};
-		//console.log(wr_7);
-		$.ajax({      
-			type:"POST",  
-			url:"http://modublog.co.kr/app_public/ajax/a_share_link.php",
-			data:params,
-			success:function(data){
-				console.log(data);
-				$('#u_url').html(data);
-				$('#url_w').val(data);
-				$('#btn_url_n1').hide();
-				$('#btn_url_n2').show();
-				$('#tab_url1').hide();
-				$('#tab_url2').show();
-				$('.tab_two').children().removeClass('on');
-				$('.tab_two li:nth-child(2)').addClass('on');
-				$('.tab1_pn').hide();
-				$('.tab2_pn').show();
-			},   
-			complete:function(){
-			},
-			error:function(e){  
-				console.log(e.responseText);  
-			}  
-		});
+		// 발급받기 버튼 비로그인
+		if(logincheck==0){
+			var result = confirm('로그인 후 이용 가능한 서비스입니다. 로그인 하시겠습니까?');
+			if(result){
+				location.href="login.html";
+			}else{
+				return false;
+			}
+		}else{
+		// 발급받기 버튼 로그인
+			$(this).removeClass('on');
+			var mb_id = member['mb_id'];
+			var wr_id = getQuerystring('wr_id');
+			var wr_7 = $(this).attr('data');
+			var params = {"wr_id":wr_id,"mb_id":mb_id,"wr_7":wr_7};
+			//console.log(wr_7);
+			$.ajax({      
+				type:"POST",  
+				url:"http://modublog.co.kr/app_public/ajax/a_share_link.php",
+				data:params,
+				success:function(data){
+					console.log(data);
+					$('#u_url').html(data);
+					$('#url_w').val(data);
+					$('#btn_url_n1').hide();
+					$('#btn_url_n2').show();
+					$('#tab_url1').hide();
+					$('#tab_url2').show();
+					$('.tab_two').children().removeClass('on');
+					$('.tab_two li:nth-child(2)').addClass('on');
+					$('.tab1_pn').hide();
+					$('.tab2_pn').show();
+				},   
+				complete:function(){
+				},
+				error:function(e){  
+					console.log(e.responseText);  
+				}  
+			});
+		}
 	})
 	</script>
 </body>

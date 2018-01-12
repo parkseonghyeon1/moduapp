@@ -5,6 +5,7 @@
 /* color | text */
 .txt_ov {overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .nick_ov {overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:120px}
+.nick_ex {display:block;float:left}
 .txt_ov_m {overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-wrap:break-word;display: -webkit-box} 
 .title {font-family:NotoSansCKJ-Bold}
 .title_sub {font-family:NotoSansCKJ-Medium}
