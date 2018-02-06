@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>쉐어 발급</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/iphone.css"/>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/swiper.min.js"></script>
+	<script src="../js/menu.js"></script>
+    <script src="../../cordova.js"></script>
+</head>
+<body style="background:#fff">
+	<div id="header">
+		<h1>모두의쉐어 발급</h1>
+		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+	</div>
+	<div class="widget_wrap">
+		<p id="wdg_title"><span>모두의 쉐어 </span>&nbsp;발급받기</p>
+		<span id="wdg_title_sub">모두의쉐어는 블로그/티스토리/홈페이지 등 다양한 사이트에서 이용이 가능한 서비스입니다.<br>쉐어를 1회 발급받으면 배너이미지, 설정 등의 <b>손쉬운 변경이 가능</b>합니다.</span>	
+		<div class="wdg_stat_li">
+			<ul>
+				<li id="step1">
+					<span class="wdg_stat_stap">step.01</span>
+					<span class="wdg_stat_title">이용약관 동의</span>
+				</li>
+				<li id="step2" class="on">
+					<span class="wdg_stat_stap">step.02</span>
+					<span class="wdg_stat_title">쉐어 코드 발급</span>
+				</li>
+				<li id="step3">
+					<span class="wdg_stat_stap">step.03</span>
+					<span class="wdg_stat_title">쉐어 코드 확인</span>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="wdg_is_way_wrap" id="wdg_is_1">
+			<div class="wdg_way">
+				<p class="wdg_b_title">쉐어 발급 방법</p>
+				<span class="way1">1. 아래의 ‘쉐어 코드 발급’ 버튼을 클릭하여 <b>코드를 복사</b>합니다.<br>2. 쉐어를 설치할 블로그/티스토리/홈페이지 등의 스킨 설정 페이지에 접속합니다.<br>3. 블로그위젯,홈페이지 스킨등에 쉐어를 추가할 수 있도록 <b>코드를 붙여넣기</b>합니다.<br>4. 쉐어 발급이 완료된 블로그/티스토리/홈페이지에 접속하시면, 쉐어를 확인하실 수 있습니다.</span>
+			</div>
+			<div class="wdg_way" style="padding-top:25px">
+				<p class="wdg_b_title">유의사항</p>
+				<span class="way2"><span style="color:#fe5200;padding:0;display:inline">- 음란, 도박 등 부적절한 콘텐츠로 공유하여 해당 제품의 이미지를 실추시키거나 부당한 방법으로 포인트를 취득 할 시 법적 조치 될 수 있습니다.</span><br>- 랜덤쉐어는 페이지당 최대 1개 설치할 수 있으며, 2개 이상 설치할 경우 중복설치로 인해 포인트 차감이 발생할 수 있습니다.<br>- 고정 쉐어는 페이지당 다수 설치할 수 있으며, 하나의 페이지에 설치된 모든 고정쉐어의 포인트가 인정됩니다.<br>- 부정 카운트 증가행위가 발견 될 시 포인트는 지급되지 않으며 지급된 포인트도 차감 될 수 있습니다.<br>- 활동 포인트는 실시간으로 누적되며 내 포인트 내역에 실시간으로 기록됩니다.<br>- 업체 사정으로 인해 상품이 변경 될 수 있습니다.</span>
+			</div>
+			<!-- 발급버튼 누르면 -->
+			<div class="share_url_wrap" id="share_url">
+				<div id="btn_close"><a></a></div>
+				<div class="share_url_b">
+					<p class="wdg_b_title"><span>쉐어 복사하기</span></p>
+					<textarea id="link" readonly></textarea>
+					<span class="url_sub">발급되는 링크 정보입니다. 지금 바로 공유해보세요!</span>
+					<input type="button" class="btn_next_st" id="btn_copy_link" value="복사하기">
+				</div>
+			</div>
+			<div id="share_mask" class="btn_next_st" style="display:none"></div>
+			<div class="wdg_btn_wrap lg_btn">
+				<a href="" class="wdg_btn_m" id="wdg_btn_submit">쉐어 코드 발급</a>
+				<a href="" class="wdg_btn_m" id="btn_next" style="display:none;margin-left:8px">다음으로</a>
+			</div>
+		</div>
+		<!-- 발급4 : 위젯 코드 인증 -->
+		<div class="wdg_is_way_wrap" id="wdg_is_2" style="display:none">
+			<div class="wdg_way">
+				<p class="wdg_b_title">쉐어 코드 확인 및 설치</p>
+				<span class="way1">1. 블로그/티스토리/홈페이지에 접속하여 블로그 위젯, 홈페이지 관리등을 통해 쉐어를 설치합니다.<br>2. 쉐어가 정상적인 설치가 되어 있는지 확인합니다.</span>
+			</div>
+			<div class="wdg_way" style="padding-top:30px">
+				<span class="way2">- 하단의 '내 사이트 바로가기' 클릭 시 회원정보에 기입된 블로그/티스토리/홈페이지 주소로 이동됩니다.<br>- 회원정보에 기입되지 않은 블로그/티스토리/홈페이지에서 쉐어 서비스 이용을 희망할 경우 'Step.02 쉐어 코드 발급'단계에서 발급받은 코드를 해당 블로그/티스토리로 직접 붙여넣기 바랍니다.<br>- 추가적인 쉐어 발급을 희망할 시 해당 단계를 한번 더 수행하시기 바랍니다.</span>
+			</div>
+			<div class="wdg_btn_wrap lg_btn">
+				<a href="" class="wdg_btn_m" id="gosite" style="margin-right:10px;font-size:1em" target="_blank">내 사이트 바로가기</a>
+				<a href="home_share.html" class="wdg_btn_m" id="" style="font-size:1em">모두의쉐어 바로가기</a>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+	// 위젯 코드 발급 클릭
+	$(document).on('click','#wdg_btn_submit',function(){
+		var mb_id = member['mb_id'];
+		var in_path = getQuerystring('in');
+		var wr_id = getQuerystring('wr_id');
+		var type = getQuerystring('type');
+		var params = {"wr_id":wr_id,"mb_id":mb_id,"type":type,"input_type":"access_url"};
+		console.log(params);
+		$.ajax({      
+			type:"POST",
+			data:params,			
+			url:"http://modublog.co.kr/app_public/ajax/a_widget_update.php",      
+			success:function(data){
+				if(data == 'failed'){
+					alert('고정 쉐어는 최대 5개, 랜덤 쉐어는 최대 1개 발급 가능합니다.\n[마이페이지]-[나의쉐어]에서 발급 쉐어 삭제 후 이용바랍니다.');
+					location.href="home_share.html"
+				}else{
+					$('#link').text('<a target="_blank"  href="https://moduad.com/img/share_link2.php?accesstoken='+data+'"><img src="https://moduad.com/img/share_img2.php?accesstoken='+data+'" style="width:100%"></a>');
+					$('#share_mask').fadeTo("slow",0.7);
+					$('#share_url').show();	
+					$('#wdg_btn_submit').hide();
+					$('#btn_next').show();
+					//location.href="share_widget_copy.html?wr_id="+wr_id+"&type="+type+"&in="+in_path+"&chk=y&accesstoken="+data;	
+					console.log(data);
+				}
+				console.log(data);
+			},   
+			complete:function(){
+			},	
+			error:function(e){  
+				//console.log(e.responseText);  
+			}  		
+		})
+		return false;
+	})
+	
+	// 복사하기
+	$(document).on('click','#btn_copy_link',function(){
+		var url = $("#link").val();
+	
+		if( is_ie() ) {
+			window.clipboardData.setData("Text", url);
+			alert("복사되었습니다.");
+			return;
+		}
+		prompt("Ctrl+C를 눌러 복사하세요.", url);
+	})
+	
+	function is_ie() {
+		if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1) return false;
+		if(navigator.userAgent.toLowerCase().indexOf("msie") != -1) return true;
+		if(navigator.userAgent.toLowerCase().indexOf("windows nt") != -1) return true;
+		return false;
+	}
+	
+	//내 사이트 바로가기
+    $(document).on('click','#gosite',function(){
+		var mb_id = member['mb_id'];
+		var params = {"mb_id":mb_id}
+		$.ajax({      
+			type:"POST",
+			data:params,			
+			url:"http://modublog.co.kr/app_public/ajax/a_mypage.php",      
+			success:function(data){
+				if(data.mb_homepage){
+					cordova.InAppBrowser.open($member,'_system','location=yes');
+				}else{
+					alert("내 사이트로 이동할 수 없습니다.");
+				}
+			},   
+			complete:function(){
+			},	
+			error:function(e){  
+				//console.log(e.responseText);  
+			}  		
+		})
+		return false;
+    })
+	
+	//복사하기 or 마스크 눌렀을 때 다음 페이지 이동
+	$('#share_mask').click(function(){
+		$('#share_mask').hide();
+		$('.share_url_wrap').hide();
+		$('#wdg_btn_submit').hide();
+		$('#btn_next').show();
+	})
+	$('#btn_close').click(function(){
+		$('.share_url_wrap').hide();
+		$('#share_mask').hide();
+		$('#wdg_btn_submit').hide();
+		$('#btn_next').show();
+	})
+	$('#btn_next').click(function(){
+		$('#wdg_is_2').show();
+		$('#wdg_is_1').hide();
+		$('#step2').removeClass('on');
+		$('#step3').addClass('on');
+		return false;
+	})
+	</script>
+</body>
+</html>

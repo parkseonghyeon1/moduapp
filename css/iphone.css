@@ -1,9 +1,0 @@
-/*
- * iphone 5 & 5s
- */
-@media only screen 
-and (max-device-width : 320px) 
-and (orientation : portrait) { 
-	.rv_btn_b {width:98px !important;right:10px !important}
-	.rv_btn_b .btn_l,.rv_btn_b .btn_r {width:45px !important}
-}

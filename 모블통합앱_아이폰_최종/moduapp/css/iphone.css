@@ -1,0 +1,29 @@
+/*
+ * iphone 5 & 5s
+ */
+@media only screen 
+and (max-device-width : 320px) 
+and (orientation : portrait) { 
+	/* top */
+	/*#search_wrap {height:63px;line-height:63px}
+	.btn_t_l, .btn_t_r {top:18px !important}
+	.iphone_top {display:block !important}*/
+	/* navi */
+	.c-menu--slide-left.f_on {overflow-y:scroll !important;-webkit-overflow-scrolling:touch;}
+	/* ::-webkit-scrollbar {width:6px;height:6px;border:3px solid #fff}
+	::-webkit-scrollbar-thumb {width:50px;height:30px;background:rgba(0,0,0,.2);border-radius:8px}
+	::-webkit-scrollbar-track {background:#efefef}*/
+	.c-menu--push-left, .c-menu--push-right, .c-menu--slide-left, .c-menu--slide-right {width:264px !important}
+	.mb_info {padding:19px 28px 0 48px !important}
+	.p_img {width:38px !important;height:38px !important;margin-top:-19px !important}
+	.p_message a {height:38px !important}
+	.nav_profile {padding: 0 13px !important}
+	.nav_profile.on {background:url(../img/icon_arrow_right.png)no-repeat right 13px center !important;background-size:10px 10px !important}
+	.nav_profile .p_name {font-size:1em !important}
+	.nav_left_mn, .nav_mn1, .nav_mn2 {width:200px !important}
+	.nav_mn3 {height:24px}
+	.nav_footer.f_on {position:relative !important;padding-top:40px !important;background:#fff !important}
+	/* etc */
+	.rv_btn_b {width:98px !important;right:10px !important}
+	.rv_btn_b .btn_l,.rv_btn_b .btn_r {width:45px !important}
+}

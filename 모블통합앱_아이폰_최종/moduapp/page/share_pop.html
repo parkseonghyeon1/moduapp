@@ -1,0 +1,86 @@
+
+<style>
+::-webkit-scrollbar {width:6px;height:6px;border:3px solid #fff}
+::-webkit-scrollbar-thumb {width:50px;height:30px;background:rgba(0,0,0,.2);border-radius:8px}
+::-webkit-scrollbar-track {background:#efefef}
+.layer-open{
+overflow:hidden;
+}
+</style>
+
+<div id="popup" style="width:230px;margin-left:-115px;left:50%">
+	<div id="btn_close" class="close"><a></a></div>
+	<div class="share_box">
+		<h3>나의 URL 공유하기</h3>
+		<div class="share">
+			<ul>
+				<li>
+					<a id="share_kakao" class="btn_social" href="">
+						<span class="ico_k">카카오톡</span>
+					</a>
+				</li>
+				<li style="margin:0 20px;">
+					<a id="share_facebook" class="btn_social" href="">
+						<span class="ico_f">페이스북</span>
+					</a>
+				</li>
+				<li>
+					<a id="share_blog" class="btn_social" href="">
+						<span class="ico_b">블로그</span>
+					</a>									
+				</li>							
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="mask" class="close"></div>
+
+<script>
+$(document).ready(function(){
+	var popHeight = $("#popup").height();
+	$("#popup").css("margin-top","-"+popHeight/2-6+"px");
+	
+	var scrollHeight = 0; // 전역변수로 초기화
+	scrollHeight = $("body").scrollTop(); // 열렸을떄 scrollTop 체크 (var 쓰지않기. 팝업오픈했을때만사용하기위한 변수)
+		//$("body").addClass('layer-open'); //overflow:hidden 추가
+
+		//$(".wrapper").css({
+		//	"position" : "fixed", //최상위 div 고정 
+		//	"top" : -scrollHeight // 최상위 div에 현재 스크롤된값 = 보이는화면만큼 top값 추가
+		//});
+		
+	$("html, body").css("overflow-y","hidden");
+	
+	$("#mask").fadeTo("slow",0.6);
+	$("#popup").show();
+
+	//팝업 닫기버튼 클릭
+	$(document).on('click','.close',function(){
+		//$("body").removeClass("layer-open"); //overflow-hidden 해제(스크롤 해제)
+		//$(".wrapper").css({
+		//	"position" : "relative", //최상위 div 고정해제
+		//	"top" : "0" //top값 해제
+		//});
+		
+		//$("body").scrollTop(scrollHeight); //현재 스크롤된값=보이는화면 
+
+		$('#mask').fadeOut(500);
+		$('#popup').fadeOut(500);
+		$("html, body").css("overflow-y","visible");
+	});
+});
+
+/*
+// 마스크 클릭 닫기
+$(document).on('click','#mask',function(){  
+	$(this).fadeOut(500);
+	$('#popup').fadeOut(500);
+	$("html").css("overflow-y","scroll");
+});
+// 닫기 버튼
+$(document).on('click','#btn_close',function(){
+	$('#mask').fadeOut(500);
+	$('#popup').fadeOut(500);
+});
+*/
+</script>

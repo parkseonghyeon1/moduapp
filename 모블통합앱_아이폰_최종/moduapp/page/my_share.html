@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>마이페이지</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/iphone.css"/>
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/swiper.min.js"></script>
+	<script src="../js/menu.js"></script>
+</head>
+<style>
+.my_sh_info {margin-bottom:10px;border-bottom:1px solid #d5d5d5;background:#fff;padding:13px;overflow:hidden}
+.my_sh_info .sh_info_box {width:49%;float:left}
+.my_sh_info .sh_info_box span {display:block;text-align:center}
+.my_sh_info .sh_info_box span:nth-child(1) {font-size:1.08em;color:#303030}
+.my_sh_info .sh_info_box span:nth-child(2) {font-size:1.8em;padding-top:6px;color:#ff5a00;}
+.my_sh_info .sh_info_box.sh_m2 {border-left:1px solid #d8d8d8}
+
+table {width:100%}
+table td, table th {width:50%;text-align:center;border:1px solid #ddd;font-size:1.1em;}
+table th {padding:6px 0;background:#e6967b;color:#fff}
+table td {padding:10px 0;font-weight:bold}
+
+.my_share {padding:13px;background:#fff}
+.my_share ul {}
+.my_share li {overflow:hidden;cursor:pointer}
+.my_share li span {display:block;float:left;}
+.my_share li span:nth-child(1) {padding-right:10px}
+</style>
+<body style="background:#fff">
+	<div id="header">
+		<h1>나의 쉐어 발급 목록</h1>
+		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+	</div>
+	<div class="bk_gray">
+		<div class="" style="padding:13px;margin-bottom:10px;background:#fff;border-bottom:1px solid #d8d8d8">
+			<p style="margin-bottom:8px;padding-left:9px;background:url(../img/icon_sym_bar.png)no-repeat left center;font-family:'NotoSansCKJ-Bold'">쉐어 발급 개수</p>
+			<table style="box-shadow:2px 1px 1px 0px rgba(0,0,0,.2)">
+				<tr>
+					<th>고 정</th>
+					<th>랜 덤</th>
+				</tr>
+				<tr>
+					<td id="rent_num"></td>
+					<td id="rand_num"></td>
+				</tr>
+			</table>
+		</div>
+			
+		<div class="my_share">
+			<p style="margin-bottom:8px;padding-left:9px;background:url(../img/icon_sym_bar.png)no-repeat left center;font-family:'NotoSansCKJ-Bold'">쉐어 발급 목록</p>
+			<ul id="my_share" class="bk_white" style="border-top:1px solid #ddd">
+			
+			</ul>
+		</div>
+		<div class="my_share" id="my_sh_copy" style="padding:5px 13px 13px">
+			<p style="margin-bottom:8px;padding-left:9px;background:url(../img/icon_sym_bar.png)no-repeat left center;font-family:'NotoSansCKJ-Bold'">쉐어 복사하기 <span style="font-size:10px">(복사하실 상품을 선택해주세요.)</span></p>
+			<div style="border:1px solid #ddd">
+				<textarea readonly style="width:100%;box-sizing:border-box;padding:4px 10px;border:none;min-height:90px" id="link_my"></textarea>
+			</div>
+			<div class="wdg_btn_wrap">
+				<a href="#none" id="btn_copy_sh">복사하기</a>
+			</div>
+		</div>
+	</div>
+	<script>
+	//발급 내역 정보
+	$(document).ready(function(){
+		var mb_id = member['mb_id'];
+		var params = {"mb_id":mb_id,"widget_p":"p3"};
+		var string_my = '';
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_widget.php",
+			data:params,
+			success:function(data){
+				$('#rent_num').html(data[0].rent_num+"개");
+				$('#rand_num').html(data[0].rand_num+"개");
+				
+				//발급내역 없는 경우
+				if(data[1].length <= 0){
+					string_my = '<li style="position:relative;border-bottom:1px solid #ddd;padding:13px 10px;font-size:0.95em;text-align:center;padding:100px 0">발급내역이 존재하지 않습니다.</li>';
+					$('#my_sh_copy').hide();
+				}
+				
+				$.each(data[1],function(key,value){
+					string_my += '<li style="position:relative;border-bottom:1px solid #ddd;padding:13px 10px;font-size:0.95em" data="'+value.accesstoken+'"><span>'+value.sa_num+'</span><span class="txt_ov" style="max-width:220px">'+value.wr_subject+'</span><span style="color:#465b83">&nbsp;('+value.type+')</span><a style="position:absolute;top:50%;right:0px;width:35px;height:35px;margin-top:-18px;background:url(../img/icon_cancle_on.png)no-repeat;background-size:12px;background-position:50% 50%" id="btn_delete_sh" data='+value.accesstoken+'></a></li>';
+				}); 
+				$('#my_share').html(string_my);
+			},
+			error:function(){
+			}
+		})
+	})
+	
+	//리스트 삭제 
+	$(document).on('click','#btn_delete_sh',function(){
+		var accesstoken = $(this).attr('data');
+		var result = confirm('정말 삭제하시겠습니까?'); 
+		console.log(accesstoken);
+		if(result){
+			var params = {"accesstoken":accesstoken,"input_type":"sh_delete"};
+			$.ajax({      
+				type:"POST",
+				data:params,			
+				url:"http://modublog.co.kr/app_public/ajax/a_widget_update.php",      
+				success:function(data){
+					alert("삭제되었습니다.");
+					location.reload();
+				},   
+				complete:function(){
+				},	
+				error:function(e){  
+					console.log(e.responseText);  
+				}  		
+			})
+			
+		}else{ 
+			return false;
+		}
+	return false;
+	})
+	
+	//리스트 선택
+	$(document).on('click','#my_share li',function(){
+		var link = $(this).attr('data');
+		$('#link_my').html('<a target="_blank" href="https://moduad.com/img/share_link2.php?accesstoken='+link+'"><img src="https://moduad.com/img/share_img2.php?accesstoken='+link+'" style="width:100%"></a>');
+	})
+	
+	//복사하기
+	$(document).on('click','#btn_copy_sh',function(){
+		var url = $("#link_my").val();
+		if(url == ''){
+			alert("선택된 상품이 없습니다.\n복사하실 쉐어 상품을 선택해주세요.");
+			return false;
+		}
+		if( is_ie() ) {
+			window.clipboardData.setData("Text", url);
+			alert("복사되었습니다.");
+			return;
+		}
+		prompt("Ctrl+C를 눌러 복사하세요.", url);
+	})
+	
+	function is_ie() {
+		if(navigator.userAgent.toLowerCase().indexOf("chrome") != -1) return false;
+		if(navigator.userAgent.toLowerCase().indexOf("msie") != -1) return true;
+		if(navigator.userAgent.toLowerCase().indexOf("windows nt") != -1) return true;
+		return false;
+	}
+	</script>
+</body>
+</html>

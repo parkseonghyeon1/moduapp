@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>설정</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/iphone.css"/>
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/swiper.min.js"></script>
+	<script src="../js/menu.js"></script>
+	<script src="../../cordova.js"></script>
+</head>
+<body>
+	<div class="iphone_top"></div>
+	<div id="header">
+		<h1 id="add">설정</h1>
+		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+	</div>
+	<div class="bk_gray" style="height:100%">
+		<!-- 설정 -->
+		<div class="setting_li ct_wrap">
+			<ul class="bk_white">
+				<li>
+					<div class="terms_use">
+						<a>SNS 알림 설정</a>
+						<input type="checkbox" id="chk_1" name="alarm_c" value="1">
+						<label for="chk_1"><span></span></label>
+					</div>
+				</li>
+				<li>
+					<div class="terms_use">
+						<a style="text-decoration:none">광고성 알림 설정</a>
+						<input type="checkbox" id="chk_2" name="ad_c" value="1">
+						<label for="chk_2"><span></span></label>
+					</div>
+				</li>
+				<input class="input" type="hidden" id="token" name="token">
+				<!--
+				<li>
+					<p id="asas">버전정보<span id="version">현재버전 2.16 (최신버전)</span></p>
+				</li>
+				-->
+			</ul>
+		</div>
+		<!-- 설정 끝 -->
+		
+		<!-- 띠배너 -->
+		<div id="line_bann">
+		
+		</div>
+		<!-- 띠배너 end -->
+		
+		<div class="btm_info" style="padding-top:20px">
+			<div class="bottom_mn">
+				<a class="log_hd" href="member_reg_form.html">회원가입</a><span class="log_hd">ㅣ</span><a href="#none">로그아웃</a>
+			</div>
+			<div class="log_footer n_ov_f">광고/제휴문의 고객센터 <a href="tel:02-3144-2110">02-3144-2110</a><br>일반회원 고객센터 <a href="tel:02-6392-2121">02-6392-2121</a></div>
+		</div>
+	</div>
+</body>
+<script>
+	$("#chk_1").change(function(){
+		var chk = $("input:checkbox[id='chk_1']").is(":checked");
+		var mb_token = $("#token").val();
+		var ummm = {"chk":chk,"mb_token":mb_token,"mb_set":"mb_set1"};
+		$.ajax({
+			type : 'POST',
+			url : 'http://modublog.co.kr/app_public/ajax/a_push_check.php/',
+			data : ummm,
+			dataType : 'json',
+			success : function(data){
+				
+				//alert(data);
+			}, error : function(xhr, status, error){
+				var error_confirm = confirm('데이터 전송 오류입니다. 확인을 누르시면 페이지가 새로고침됩니다.');
+				document.location.reload();
+			}
+		});
+    })
+	$("#chk_2").change(function(){	
+		var chk = $("input:checkbox[id='chk_2']").is(":checked");
+		var mb_token = $("#token").val();
+
+		var ummm = {"chk":chk,"mb_token":mb_token,"mb_set":"mb_set2"};
+		$.ajax({
+			type : 'POST',
+			url : 'http://modublog.co.kr/app_public/ajax/a_push_check.php/',
+			data : ummm,
+			dataType : 'json',
+			success : function(data){
+				//console.log(data);
+				
+			}, error : function(xhr, status, error){
+				var error_confirm = confirm('데이터 전송 오류입니다. 확인을 누르시면 페이지가 새로고침됩니다.');
+				document.location.reload();
+			}
+		});
+    })
+</script>
+<script>
+	if(logincheck == 1){
+		$('.log_hd').hide();
+	}
+	$(document).ready(function(){
+		document.addEventListener("deviceready", onDeviceReady, false);
+	    function onDeviceReady() {
+		    FCMPlugin.getToken(
+		      function(token){
+		        $("#token").val(token);
+		        var params = {"token":token};
+				$.ajax({
+					type : 'POST',
+					url : 'http://modublog.co.kr/app_public/ajax/a_setting.php/',
+					data : params,
+					dataType : 'json',
+					success : function(data){
+						if(data[0].mb_set1 == 1){
+							$("#chk_1").attr("checked",true);
+						}else{
+							$("#chk_1").attr("checked",false);
+						}
+						if(data[0].mb_set2 == 1){
+							$("#chk_2").attr("checked",true);	
+						}else{
+							$("#chk_2").attr("checked",false);
+						}
+					}, error : function(xhr, status, error){
+						var error_confirm = confirm('데이터 전송 오류입니다. 확인을 누르시면 페이지가 새로고침됩니다.');
+						document.location.reload();
+					}
+				});		
+		      },
+		      function(err){
+		        console.log('error retrieving token: ' + err);
+		      }
+		    )
+		}
+	})
+	
+	// 띠 배너 불러오기
+	$(document).ready(function(){
+		var string_line = '';
+		$.ajax({
+			type : 'POST',
+			url : 'http://modublog.co.kr/app_public/ajax/a_setting.php/',
+			//data : params,
+			dataType : 'json',
+			success : function(data){
+				//띠배너
+				$.each(data[1],function(key,value){
+					if(value.li_image_file){
+						string_line += '<div class="bann_wrap sub_bann"><div class="swiper-wrapper"><div class="swiper-slide"><a href="'+value.li_bo_table+'?wr_id='+value.li_wr_id+'" style="display:block" id="'+value.li_br_id+'"';
+						if(value.li_bo_table == ''){
+							string_line += ' class="link_y"';
+						}
+						string_line += '><div class="sub_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.li_image_file+'"></div></a></div></div><div class="sub_bann_nav" style="position:absolute;right:13px;bottom:13px;z-index:2"><span class="sub-pagination"></span></div></div>';
+					}
+				});
+				$("#line_bann").append(string_line); 
+				
+				//띠배너 slide
+				var banner_slide = new Swiper('.sub_bann', { // 소개이미지 슬라이드
+					pagination: '.sub-pagination',
+					paginationClickable: true, 		
+					centeredSlides: true, 
+					slidesPerView: 1,
+					autoplay: {
+						delay:10000, // slide 시간 실정
+					},
+				});	
+				//console.log(data);
+			}, 
+			error:function(e){  
+				console.log(e.responseText);  
+			}  
+		});	
+	})
+	
+	// 배너 클릭
+	$(document).on('click','.bann_wrap a',function(){
+		var br_id = $(this).attr('id');
+		var class_id = $(this).attr('class');
+		var link = $(this).attr('href');
+		var tbl_id = 'banner';
+		var params = {"br_id":br_id,"tbl_id":tbl_id};
+		$.ajax({      
+			type:"POST",
+			data:params,			
+			url:"http://modublog.co.kr/app_public/ajax/a_banner_check.php",   
+			success:function(data){
+				if(class_id == 'link_y'){
+					cordova.InAppBrowser.open(data,'_system','location=yes');
+				}else{
+					location.href=link;
+				}
+			},  
+			complete:function(){
+			},   
+			error:function(e){  
+				console.log(e.responseText);  
+			}
+		})	
+		return false;
+	})
+</script>
+</html>
+
+						

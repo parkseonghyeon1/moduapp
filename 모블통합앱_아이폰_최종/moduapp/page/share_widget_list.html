@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>쉐어 발급</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/iphone.css"/>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/swiper.min.js"></script>
+	<script src="../js/menu.js"></script>
+</head>
+<body style="background:#fff">
+	<div id="header">
+		<h1>모두의쉐어 발급</h1>
+		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+	</div>
+	<div class="widget_wrap">
+		<p id="wdg_title"><span>모두의 쉐어 </span>&nbsp;발급받기</p>
+		<span id="wdg_title_sub">모두의쉐어는 블로그/티스토리/홈페이지 등 다양한 사이트에서 이용이 가능한 서비스입니다.<br>쉐어를 1회 발급받으면 배너이미지, 설정 등의 <b>손쉬운 변경이 가능</b>합니다.</span>	
+		<div class="wdg_stat_li">
+			<ul>
+				<li id="step1">
+					<span class="wdg_stat_stap">step.01</span>
+					<span class="wdg_stat_title">이용약관 동의</span>
+				</li>
+				<li id="step2" class="on">
+					<span class="wdg_stat_stap">step.02</span>
+					<span class="wdg_stat_title">쉐어 코드 발급</span>
+				</li>
+				<li id="step3">
+					<span class="wdg_stat_stap">step.03</span>
+					<span class="wdg_stat_title">쉐어 코드 확인</span>
+				</li>
+			</ul>
+			<input type="hidden" value="" id="step_stat">
+		</div>
+		<!-- 인덱스에서 들어온 경우 상품 선택 -->
+		<div id="widget_list" style="width:100%;overflow:hidden;border-top:1px solid #eaeaea;padding-bottom:57px">
+			<ul style="min-height:600px" class="share_list rent_li">
+				
+			</ul>
+			<div id="loading_bar" class="off"></div>
+		</div>
+		<input type="hidden" id="wg_wr_id" value="">
+		
+		<div class="pr_btn_wrap" style="background:#fe6a24">
+			<div class="pr_btn_p" id="btn_sh_selected">
+				<a id="req_go" class="btn_req on" style="width:100%;font-size:1.2em;letter-spacing:1px;padding:4px 0">선택완료</a>
+			</div>
+		</div>
+	</div>
+	<script>
+	$(document).ready(function(){
+		var mb_id = member['mb_id'];
+		var params = {"mb_id":mb_id,"widget_p":"p2"};
+		var string_sh = '';
+		
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_widget.php",
+			data:params,
+			success:function(data){
+				//리스트 뿌리기
+				$.each(data,function(key,value){
+					string_sh += '<li data="'+value.wr_id+'"><div class="my_sh_stat"><div class="my_sh_select ed_m"></div><div class="my_sh_select ed_c"><img src="../img/icon_check_r.png"></div></div><a><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_21+'</span><div class="sh_pw"><span class="sh_point">+'+value.wr_link2+'p</span>';
+					if(value.wr_link2 == '20'){
+						string_sh += '<span class="sh_fix"></span>';
+					}
+					string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.wr_link2_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.wr_comment_reply+'</span></div></div></div></a>';
+					if(value.link == '1'){
+						string_sh += '<div class="sh_url_b"><span class="sh_url_en color_share">발급완료</span><a class="sh_share" id="'+value.pr_board_id+'" data="'+value.url+'"></span></div>';
+					}
+					string_sh += '</li>';
+				}); 
+				$(".rent_li").html(string_sh);
+				console.log(data);
+			},
+			error:function(){
+			}
+		})
+	})
+	
+	var list = 10;
+	var list_num = 10;
+	// 리스트 스크롤
+	$(window).scroll(function() {
+		if($(window).scrollTop() == $(document).height() - $(window).height()){
+			var mb_id = member['mb_id'];
+			var loading_class = $("#loading_bar").attr("class");
+			var linum = $(".rent_li").length;
+			
+			if(linum > 0 && loading_class == 'off'){
+				var params = {"list_ar":list,"mb_id":mb_id};
+				var string_sh = '';
+				$.ajax({      
+					type:"POST",
+					data:params,			
+					url:"http://modublog.co.kr/app_public/ajax/a_widget_ajax.php",      
+					beforeSend:function(){
+						$("#loading_bar").attr("class","");
+						$("#loading_bar").html("<div class='loader_wrap' style='height:134px;background:#fff'><img src='../img/icon_loder.gif'></div>");
+					},
+					success:function(data){
+						$.each(data,function(key,value){
+							string_sh += '<li data="'+value.wr_id+'"><div class="my_sh_stat"><div class="my_sh_select ed_m"></div><div class="my_sh_select ed_c"><img src="../img/icon_check_r.png"></div></div><a><div class="list_item"><div class="list_item_img"><img src="'+value.img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.wr_subject+'</p><span class="conts txt_ov">'+value.wr_21+'</span><div class="sh_pw"><span class="sh_point">+'+value.wr_link2+'p</span>';
+							if(value.wr_link2 == '20'){
+								string_sh += '<span class="sh_fix"></span>';
+							}
+							string_sh += '</div><div class="conts_info"><span class="info_title"><span>조회</span>'+value.wr_link2_hit+'&nbsp;&nbsp;</span></span><span class="info_title"><span>클릭</span>'+value.wr_comment_reply+'</span></div></div></div></a>';
+							if(value.link == '1'){
+								string_sh += '<div class="sh_url_b"><span class="sh_url_en color_share">발급완료</span><a class="sh_share" id="'+value.pr_board_id+'" data="'+value.url+'"></span></div>';
+							}
+							string_sh += '</li>';
+						}); 
+						$(".rent_li").append(string_sh);
+						
+						console.log(data.length);
+						list = list + list_num;
+						
+						if(!string_sh || data.length > list_num){
+							list = 10;
+							$("#loading_bar").attr("class","on");
+							$("#loading_bar").html("");
+						}else{
+							$("#loading_bar").attr("class","off");
+						}
+					},  
+					complete:function(){
+					},	 
+					error:function(e){  
+						console.log(e.responseText);  
+					}  		
+				})
+			}
+		}	
+	})
+	
+	//리스트 선택 클릭
+	$(document).on('click','.rent_li li',function(){
+		var sh_wr_id = $(this).attr('data');
+		
+		$('#wg_wr_id').val(sh_wr_id);
+		$('.my_sh_stat').hide();
+		$(this).children('.my_sh_stat').show();
+	})
+	
+	//선택완료 버튼
+	$(document).on('click','#btn_sh_selected',function(){
+		var wr_id = $('#wg_wr_id').val();
+		var in_path = getQuerystring('in');
+		var type = getQuerystring('type');
+		
+		if(wr_id == ''){
+			alert("발급받으실 쉐어 상품을 선택해주세요.");
+		}else{
+			location.href="share_widget_copy.html?wr_id="+wr_id+"&type="+type+"&in="+in_path;
+		}
+		return false;
+	})
+	</script>
+</body>
+</html>

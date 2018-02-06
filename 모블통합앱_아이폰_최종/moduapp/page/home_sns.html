@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>SNS 홈</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/swiper.min.js"></script>
+	<script src="../js/menu.js"></script>
+</head>
+<body class="bk_white">
+	<div id="nav_v"></div>
+	<script>
+		$("#nav_v").load("slide_menu.html");
+	</script>
+
+	<div class="bk_gray">
+		<!-- main banner -->
+		<div class="bann_wrap main_bann bk_gray">
+			<div class="main_bann_nav">
+				<span class="sub-pagination"></span>
+			</div>
+		</div>
+		<div class="main_list">
+			<h1 class="title">MD 추천 체험단</h1>
+			<div class="pd_wrap">
+				<div class="swiper-container1">
+					<div class="swiper-wrapper" id="sns_wrap">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="main_list">
+			<h1 class="title">마감임박 체험단</h1>
+			<div class="pd_wrap">
+				<div class="swiper-container2">
+					<div class="swiper-wrapper" id="sns_wrap_end">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="home_list">
+			<div class="ca_wrap ca_wrap2">
+				<div class="swiper-container2_1">
+					<div class="swiper-wrapper home_category sns_ct">
+						<div class="swiper-slide"><a href="#none" class="on" data="all"><span>전체</span></a></div>
+						<div class="swiper-slide"><a href="#none" data="food"><span>맛집</span></a></div>
+						<div class="swiper-slide"><a href="#none" data="fashion"><span>패션</span></a></div>
+						<div class="swiper-slide"><a href="#none" data="beauty"><span>뷰티</span></a></div>
+						<div class="swiper-slide"><a href="#none" data="life"><span>생활</span></a></div>
+						<div class="swiper-slide"><a href="#none" data="event"><span>이벤트</span></a></div>
+					</div>
+				</div>
+			</div>
+			<ul id="sns_list">
+			
+			</ul>
+			<div id="loading_bar" class=""></div>
+		</div>
+	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading_wraps"></div>
+	<script>
+		$("#loading_wraps").load("loading.html #lo_sns");
+	</script>
+	
+    <script>
+	// 카테고리 on-off
+	$(document).on('click','.home_category a',function(){
+		$(this).parent().parent().children().children('a').removeClass('on');
+		$(this).addClass('on');
+	})
+	//카테고리 slide - BLOG
+	var swiper2_1 = new Swiper('.swiper-container2_1', {
+		slidesPerView: 'auto',
+		spaceBetween: 6,
+	});
+	
+	// 첫 페이지 불러오기
+	$(document).ready(function(){
+	if (logincheck==0) {
+        $('.nav_profile').html('<a href="login.html" class="go_a">로그인</a>');         
+    }else{
+		$('.nav_profile').html('<div class="p_img_wrap"><div class="p_img"><img src="http://modublog.co.kr/data/mb_photo/'+member['mb_id']+'" alt="" id="profile_img"></div></div><p class="title p_name"><a href="member_edit_form.html" class="go_a">'+member['mb_nick']+'</a></p><span class="p_point">'+member['mb_point']+'</span><div class="p_message"><a href="#none"><span class="title">1</span></a></div>');      
+    }
+    });
+    $('.p_message').click(function(){
+        window.localStorage.removeItem("mb_id");
+        window.localStorage.removeItem("mb_nick");
+        window.localStorage.removeItem("mb_point");
+        window.localStorage.clear();
+        document.location.reload();
+    });
+	</script>
+	<script>
+	// 첫 페이지 불러오기
+	$(document).ready(function(){
+		var string = '';
+		var string_re= '';
+		var string_re2= '';
+		var string_sn = '';
+		$.ajax({      
+			type:"POST",  
+			url:"http://modublog.co.kr/app_public/ajax/a_sns.php",          
+			success:function(data){
+				//메인배너
+				$.each(data[0],function(key,value){
+					string += '<div class="swiper-slide"><a href="'+value.bn_bo_table+'?wr_id='+value.bn_wr_id+'" style="display:block" id="'+value.bn_br_id+'"';
+					if(value.bn_bo_table == ''){
+						string += ' class="link_y"';
+					}
+					string += '><div class="main_bann_img"><img alt="" src="http://modublog.co.kr/data/file/banner/new_banner/'+value.image_file+'"></div><div class="bann_txt"><p class="title"></p><span></span></div></a></div>';
+				}); 
+				$('.main_bann').append('<div class="swiper-wrapper" id="rolling_wrap"></div>');
+				$("#rolling_wrap").append(string);
+				
+				//추천콘텐츠 뿌리기
+				$.each(data[1],function(key,value){
+					string_re += '<div class="swiper-slide item"><a href="product_view_sns.html?bo_table='+value.sn_pr_board+'&wr_id='+value.sn_pr_board_id+'&site_id=sns"><div class="sns_c"><div class="item_img"><img src="'+value.sn_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sn_wr_subject+'</span></p><span class="sub_txt color_sns">'+value.sn_pr_ca+'</span><span class="sub_txt item_view">신청&nbsp;<span class="color_sns">'+value.sn_comment+'</span><span>/'+value.sn_rec_num+'</span></span></div></div></a></div>';
+				}); 
+				$("#sns_wrap").append(string_re);
+				
+				//마감임박 뿌리기
+				$.each(data[2],function(key,value){
+					string_re2 += '<div class="swiper-slide item"><a href="product_view_sns.html?bo_table='+value.sn_pr_board+'&wr_id='+value.sn_pr_board_id+'&site_id=sns"><div class="sns_c"><div class="item_img"><img src="'+value.sn_img+'"></div><div class="item_txt"><p><span class="sub_title txt_ov">'+value.sn_wr_subject+'</span></p><span class="sub_txt color_sns">'+value.sn_pr_ca+'</span><span class="sub_txt item_view">신청&nbsp;<span class="color_sns">'+value.sn_comment+'</span><span>/'+value.sn_rec_num+'</span></span></div></div></a></div>';
+				}); 
+				$("#sns_wrap_end").append(string_re2);
+				
+				//SNS 뿌리기
+				$.each(data[3],function(key,value){
+					string_sn += '<li><a href="product_view_sns.html?bo_table='+value.snn_pr_board+'&wr_id='+value.snn_pr_board_id+'&site_id=sns"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.snn_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.snn_wr_subject+'</p><span class="conts txt_ov">'+value.snn_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.snn_comment+'</span>/'+value.snn_rec_num+'</span><span class="info_title"><span>조회</span>'+value.snn_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.snn_d_day+'</span></div></div></div></div></a></li>';
+				}); 
+				$("#sns_list").append(string_sn);
+				console.log(data);
+				
+				//메인배너 slide
+				var banner_slide1 = new Swiper('.main_bann', { // 소개이미지 슬라이드
+					pagination: {
+						el: '.sub-pagination',
+					},
+					paginationClickable: true, 		
+					centeredSlides: true, 
+					slidesPerView: 1,
+					loop: true,
+					autoplay: {
+						delay:4200, // slide 시간 실정
+					},
+					autoplayDisableOnInteraction:false 
+				});
+				
+				//상품 slide1
+				var swiper = new Swiper('.swiper-container1', {
+					slidesPerView: 'auto',
+					spaceBetween: 12,
+					loop: false,
+					direction: 'horizontal'
+				});
+				//상품 slide2
+				var swiper = new Swiper('.swiper-container2', {
+					slidesPerView: 'auto',
+					spaceBetween: 12,
+					loop: false,
+					direction: 'horizontal'
+				});
+			},   
+			complete:function(){
+				$('.loading').hide();
+				if(string_sn){
+					$("#loading_bar").attr("class","off");
+				}
+			},
+			error:function(e){  
+				console.log(e.responseText);  
+			}  
+		});  		
+	})
+	</script>
+	<script>
+	// SNS 카테고리 선택
+	$(document).on('click','.home_category a',function(){
+		var data = $(this).attr("data");
+		var params = {"bo_table":data,"type":"sns"};
+		$("#sns_list").html("");
+		$('#sns_list').attr('style', '');
+		string_sn = '';
+		$.ajax({      
+			type:"POST",
+			data:params,			
+			url:"http://modublog.co.kr/app_public/ajax/a_sns_sub.php",      
+			beforeSend:function(){
+				$("#loading_bar").attr("class","");
+			},     
+			success:function(data){
+				$("#sns_list").html("");
+				//SNS 뿌리기
+				$.each(data,function(key,value){
+					string_sn += '<li><a href="product_view_sns.html?bo_table='+value.snn_pr_board+'&wr_id='+value.snn_pr_board_id+'&site_id=sns"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.snn_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.snn_wr_subject+'</p><span class="conts txt_ov">'+value.snn_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.snn_comment+'</span>/'+value.snn_rec_num+'</span><span class="info_title"><span>조회</span>'+value.snn_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.snn_d_day+'</span></div></div></div></div></a></li>';
+				}); 
+				$("#sns_list").html(string_sn);
+				
+				if(data.length <= 0){
+					$("#loading_bar").attr("class","on");
+					$('#sns_list').html('<p class="ex_info">등록된 상품이 존재하지 않습니다.</p>');
+				}else if(data.length > 0 && data.length < 10){
+					$("#loading_bar").attr("class","on");
+				}
+				
+				list = 10;
+			},     
+			complete:function(){
+				if(string_sn){
+					$("#loading_bar").attr("class","off");
+				}
+			},
+			error:function(e){  
+				console.log(e.responseText);  
+			}  		
+		})
+	});
+	
+	var list = 10;
+	var list_num = 10;
+	var temp = 'all';
+	// 리스트 스크롤
+	$(window).scroll(function() {
+		if($(window).scrollTop() == $(document).height() - $(window).height()){
+			var loading_class = $("#loading_bar").attr("class");
+			var ca_name = $('.home_category .on').attr("data");
+			var linum = $("#sns_list").length;
+
+			if(linum > 0 && loading_class == 'off'){
+				var bo_table = $('.home_category .on').attr("data");
+				var params = {"bo_table":bo_table,"type":"sns","list":list};
+				string_sn = '';
+				$.ajax({      
+					type:"POST",
+					data:params,			
+					url:"http://modublog.co.kr/app_public/ajax/a_sns_ajax.php",      
+					beforeSend:function(){
+						$("#loading_bar").attr("class","");
+						$("#loading_bar").html("<div class='loader_wrap' style='height:115px'><img src='../img/icon_loder.gif'></div>");
+					},
+					success:function(data){
+						//SNS 뿌리기
+						$.each(data,function(key,value){
+							string_sn += '<li><a href="product_view_sns.html?bo_table='+value.snn_pr_board+'&wr_id='+value.snn_pr_board_id+'&site_id=sns"><div class="list_item"><div class="list_b"><div class="list_item_img"><img src="'+value.snn_img+'"></div><div class="list_item_txt"><p class="title txt_ov">'+value.snn_wr_subject+'</p><span class="conts txt_ov">'+value.snn_subject_sub+'</span><div class="conts_info"><span class="info_title"><span>신청</span><span class="color_sns">'+value.snn_comment+'</span>/'+value.snn_rec_num+'</span><span class="info_title"><span>조회</span>'+value.snn_wr_hit+'</span><span class="info_title"><span>기간</span>D-'+value.snn_d_day+'</span></div></div></div></div></a></li>';
+						}); 
+						$("#sns_list").append(string_sn);
+						
+						if(ca_name != temp){
+							list = 10;
+						}
+						
+						list = list + list_num;
+						temp = ca_name;
+
+						$("#loading_bar").attr("class","off");
+					}, 
+					complete:function(){
+						if(!string_sn){
+							list = 10;
+							$("#loading_bar").attr("class","on");
+							$("#loading_bar").html("");
+						}else{
+							$("#loading_bar").attr("class","off");
+						}
+					},	   
+					error:function(e){  
+						console.log(e.responseText);  
+					}  		
+				})
+			}			
+		}
+	})
+	
+	// 메인 배너 클릭
+	$(document).on('click','.bann_wrap a',function(){
+		var br_id = $(this).attr('id');
+		var class_id = $(this).attr('class');
+		var link = $(this).attr('href');
+		var tbl_id = 'banner';
+		var params = {"br_id":br_id,"tbl_id":tbl_id};
+		$.ajax({      
+			type:"POST",
+			data:params,			
+			url:"http://modublog.co.kr/app_public/ajax/a_banner_check.php",   
+			success:function(data){
+				if(class_id == 'link_y'){
+					cordova.InAppBrowser.open(data,'_blank','location=yes');
+				}else{
+					location.href=link;
+				}
+			},  
+			complete:function(){
+			},   
+			error:function(e){  
+				console.log(e.responseText);  
+			}
+		})	
+		return false;
+	})
+	</script>
+</body>
+</html>

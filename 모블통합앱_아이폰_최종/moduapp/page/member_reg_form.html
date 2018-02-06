@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>회원가입</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/iphone.css"/>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/jquery.form.min.js"></script>
+	<script src="../js/menu.js"></script>
+</head>
+<body>
+	<div class="iphone_top"></div>
+	<div id="header">
+		<h1 id="log_title">회원가입</h1>
+		<a href="javascript:history.back()" class="header_btn_l btn_back go_a">뒤로</a>
+	</div>
+	<div class="bk_gray">
+		<form id="mb_form_f" name="mb_form_f" method="post" enctype="multipart/form-data">
+			<input type="hidden" id="mb_name" name="mb_name" val="">
+			<input type="hidden" id="mb_id" name="mb_id" val="">
+			<input type="hidden" id="w" name="w" val="">
+			<input type="hidden" id="mb_nick" name="mb_nick" val="">
+			<input type="hidden" id="mb_sex" name="mb_sex" val="">
+			<input type="hidden" id="mb_email" name="mb_email" val="">
+			<input type="hidden" id="mb_password" name="mb_password" val="">
+			<input type="hidden" id="mb_password_re" name="mb_password_re" val="">
+			<input type="hidden" id="mb_hp1" name="mb_hp1" val="">
+			<input type="hidden" id="mb_hp2" name="mb_hp2" val="">
+			<input type="hidden" id="mb_hp3" name="mb_hp3" val="">
+			<input type="hidden" id="mb_zip" name="mb_zip" val="">
+			<input type="hidden" id="mb_addr1" name="mb_addr1" val="">
+			<input type="hidden" id="mb_addr2" name="mb_addr2" val="">
+			<input type="hidden" id="mb_homepage" name="mb_homepage" val="">
+			<input type="hidden" id="sns_1" name="sns_1" val="">
+			<input type="hidden" id="sns_2" name="sns_2" val="">
+			<input type="hidden" id="nick_chk_val" name="nick_chk_val" val="">
+			<input type="hidden" id="email_chk_val" name="email_chk_val" val="">
+			<div class="bk_white m_profile_box" style="margin-bottom:10px">
+				<div id="img_box1" style="background:url(../img/person.png)center center / cover no-repeat">
+					<!--<input type="file" name="" class="btn_add_img" onchange="fileInfo_b(this)">-->
+					<div style="width:100%;height:100%; background:rgba(0,0,0,.3)" id="bk_profile_img"></div>
+				</div>
+				<div class="profile_info">
+					<p id="mb_name_t"></p>
+					<span id="mb_email_t"></span>
+				</div>
+				<div id="img_box2">
+					<div class="profile_img_b">
+						<div class="profile_img"><img src="" id="mb_photo" onError="this.src='../img/person.png'"></div>
+					</div>
+					<div class="btn_add_img"><input type="file" name="mb_photo" id="mb_photo" onchange="fileInfo_p(this)"></div>
+				</div>
+			</div>
+			<div id="aa">
+				<iframe src="http://modublog.co.kr/app_public/a_test02.html" id="register_frame" name="register_frame" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="100%" height="600px"></iframe>
+			</div>
+			<div class="m_reg_li terms_wrap">
+				<p class="title">약관동의</p>
+				<div class="terms_use terms_all">
+					<p>모두동의</p>
+					<input type="checkbox" id="chk_all">
+					<label for="chk_all"><span></span></label>
+				</div>
+				<em class="em_b"></em>
+				<div class="terms_use">
+					<span class="ct">[필수]</span><a href="#none" id="terms_mb" class="terms">회원약관 동의 <span class="ft_10">(전문보기)</span></a>
+					<input type="checkbox" id="chk_1" name="chk_1" class="chk">
+					<label for="chk_1"><span></span></label>
+				</div>
+				<div class="terms_use">
+					<span class="ct">[필수]</span><a href="#none" id="terms_pv" class="terms">개인정보 수집 및 이용 동의 <span class="ft_10">(전문보기)</span></a>
+					<input type="checkbox" id="chk_2" name="chk_2" class="chk">
+					<label for="chk_2"><span></span></label>
+				</div>
+				<div class="terms_use">
+					<span class="ct">[필수]</span><a href="#none">체험 상품 정보 메일 및 SMS 수신 동의</a>
+					<input type="checkbox" id="chk_3" name="chk_3" class="chk">
+					<label for="chk_3"><span></span></label>
+				</div>
+				<div class="terms_use">
+					<span class="ct">[필수]</span><a href="#none">정해진 규정 준수 동의</a>
+					<input type="checkbox" id="chk_4" name="chk_4" class="chk">
+					<label for="chk_4"><span></span></label>
+				</div>
+			</div>
+			<div style="padding:0 16px 20px">
+				<div class="btn_wrap btn_ok">
+					<a href="#none" id="submit_btn" class="btn_submit">회원가입 완료</a>
+				</div>
+				<div class="bottom_txt">회원가입에 문제가 있을 시 일반회원 고객센터로<br>전화해주시면 친절히 안내해 드리겠습니다.</div>
+				<div class="bottom_txt bt_footer">광고/제휴문의 고객센터 <a href="tel:02-3144-2110">02-3144-2110</a><br>일반회원 고객센터 <a href="tel:02-6392-2121">02-6392-2121</a></div>
+			</div>
+		</form>
+	</div>
+	<!-- 페이지 로딩 -->
+	<div id="loading_wraps"></div>
+	<script>
+		//ß$("#loading_wraps").load("loading.html #lo_blog");
+	</script>
+	<!-- 팝업 -->
+	<div id="pop"></div>
+	
+	<script>
+	// iframe 높이
+	$(window).ready(function() {
+		var lastHeight = 0;
+		var curHeight = 0;
+		var targetFrame = $('#register_frame'); // custome id 입력
+		
+		$( "#register_frame" ).on('load', function() { 
+			curHeight = targetFrame.contents().find('form').height();
+			console.log(curHeight);
+			targetFrame.css('height', curHeight + 'px' );
+		});
+		
+		setInterval(function(){
+			curHeight = targetFrame.contents().find('form').height();
+			if ( curHeight != lastHeight ) {
+			  targetFrame.css('height', (lastHeight = curHeight) + 'px' );
+			}
+		  },1000);
+	});
+	
+	// 카테고리 on-off
+    $(document).on("click",".category a",function(){  
+        $(this).parent().children('a').removeClass('on');
+        $(this).addClass('on');
+    })
+	
+	// 약관동의 팝업 - 불러오기
+	$(document).on('click','.terms',function(e){
+		e.preventDefault();
+		var terms_id = $(this).attr('id');
+		$('#pop').load("popup.html", function(){
+			$.ajax({      
+				url: 'http://modublog.co.kr/app_public/ajax/a_terms.php',
+				//data: {'terms_id':terms_id},
+				type: 'POST',
+				success: function(args){
+					if(terms_id == 'terms_mb'){
+						$('.terms_title').html("회원약관");
+						$('.terms_sub').html('<h3>- 아래의 약관을 확인하신 후 회원가입 하시길 바랍니다.</h3>');
+						$('.terms_cont').html(args.cf_stipulation);
+					}else if(terms_id == 'terms_pv'){
+						$('.terms_sub').html('<h3>- 아래의 약관을 확인하신 후 회원가입 하시길 바랍니다.</h3>');
+						$('.terms_title').html("개인정보 수집 및 이용");
+						$('.terms_cont').html(args.cf_privacy);
+					}
+					console.log(args.cf_privacy);
+				}, 
+				error:function(e){  	
+				}  
+			});
+		});
+		return false;
+	})
+	
+	$(document).ready(function(){	
+		//로그인 되어있는 경우 약관(회원정보수정)
+		if(logincheck == 1){
+			$('#log_title').text("개인정보변경");
+			$('.terms_wrap').hide();
+			$('#submit_btn').text("변경완료");
+			$('.btn_ok > a').addClass('on');
+			$("#mb_photo").attr("src","http://modublog.co.kr/data/mb_photo/"+member['mb_id']);
+			$('#img_box1').css('background','url(http://modublog.co.kr/data/mb_photo/'+member['mb_id']+')center center / cover no-repeat');
+			$.ajax({      
+				url: 'http://modublog.co.kr/app_public/ajax/a_edit_member.php',
+				data: {'mb_id':member['mb_id']},
+				type: 'POST',
+				success: function(args){
+					$('#mb_name_t').text(args.mb_name);
+					$('#mb_email_t').text(args.mb_email);
+				}, 
+				error:function(e){  	
+				}  
+			});
+		}else{
+			$('#log_title').text("회원가입");
+			//약관동의 체크박스
+			//전체동의 선택 시 모든 체크박스 상태 checked true|false
+			$('#chk_all').click(function(){
+				if($('#chk_all').prop('checked')){
+					$('input.chk').prop('checked',true);
+					$('.btn_ok > a').addClass('on');
+				}else{
+					$('input.chk').prop('checked',false);
+					$('.btn_ok > a').removeClass('on');
+				}
+			})
+			//모든 체크박스 checked 일 때 확인 버튼 on
+			$('input.chk').click(function(){
+				if($('#chk_1').prop('checked') && $('#chk_2').prop('checked') && $('#chk_3').prop('checked') && $('#chk_4').prop('checked')){
+					$('.btn_ok > a').addClass('on');
+				}else{
+					$('#chk_all').prop('checked',false);
+					$('.btn_ok > a').removeClass('on');
+				}
+			})
+		}
+	})
+	
+	//iframe
+	$("#register_frame").attr("src","http://modublog.co.kr/app_public/a_test02.html?login_check="+logincheck+"&mb_id="+member['mb_id']);
+	// iframe 로드 후 이벤트
+	$("#register_frame").on("load", function(){
+		$('.loading').hide();
+	});
+	
+	// 프로필 이미지
+	function fileInfo_p(f){
+		var file = f.files; // 파일의 정보
+		// file 은 배열이므로 file[0] 으로 접근
+		var maxSize = 5242880;
+		var fileSize = Math.round(file[0].size);
+		
+        if(fileSize > maxSize){
+            alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+            return;
+        }else if(file[0].type.indexOf('image') < 0){ // 선택한 파일이 이미지인지 확인
+			alert('이미지 파일만 선택하세요.');
+			return;
+		}
+
+		var reader = new FileReader(); // FileReader 객체 사용
+		reader.onload = function(rst){
+			$('#mb_photo').attr("src", rst.target.result); 
+			$('#img_box1').css('background','url('+rst.target.result+')center center / cover no-repeat');
+			// append 메소드를 사용해서 이미지 추가
+			// 이미지는 base64 문자열로 추가
+		}
+		reader.readAsDataURL(file[0]); // 파일을 읽는다
+	}
+	</script>
+	<script>
+
+	// 확인 버튼
+	$(document).on('click','.btn_submit.on',function(){
+		var zip = $("#register_frame").contents().find("#mb_form").serialize();
+		//alert(zip);
+		var dataList = zip.split("&");
+		var dataList_length = dataList.length;
+
+		var data = new Array();
+		for( i=0; i<dataList_length; i++ )
+		{
+		   var data2 = dataList[i].split("=");  //dataList 각 배열의 값을 '=' 문자로 배열로 저장한다.
+		   data[data2[0]] = data2[1];  //data 배열의 인덱스는 data2[0]로 설정하고 값은 data2[1]로 저장
+		   
+		}
+		
+		function string_change(data){
+			return data.replace(/%21/gi,"!").replace(/%23/gi,"#").replace(/%24/gi,"&").replace(/%26/gi,"&").replace(/%27/gi,"'").replace(/%28/gi,"(").replace(/%29/gi,")").replace(/%2A/gi,"*").replace(/%2B/gi,"+").replace(/%2C/gi,",").replace(/%2F/gi,"/").replace(/%3A/gi,":").replace(/%3B/gi,";").replace(/%3D/gi,"=").replace(/%3F/gi,"?").replace(/%40/gi,"@").replace(/%5B/gi,"[").replace(/%5D/gi,"]").replace(/%20/gi," ").replace(/%22/gi,'"').replace(/%25/gi,"%").replace(/%2D/gi,"-").replace(/%2E/gi,".").replace(/%3C/gi,"<").replace(/%3E/gi,">").replace(/%5C/gi,"\'").replace(/%5E/gi,"^").replace(/%5F/gi,"_").replace(/%60/gi,"`").replace(/%7B/gi,"{").replace(/%7C/gi,"|").replace(/%7D/gi,"}").replace(/%7E/gi,"~");
+		}
+
+		function string_blank(data){
+			return data.replace(/\+/gi," ");
+		}
+
+		$('#w').val(data['w']);
+		$('#mb_id').val(data['mb_id']);
+		$('#mb_name').val(decodeURI(data['mb_name']));
+		$('#mb_nick').val(decodeURI(data['mb_nick']));
+		$('#mb_sex').val(data['mb_sex']);
+		$('#mb_hp1').val(data['mb_hp1']);
+		$('#mb_hp2').val(data['mb_hp2']);
+		$('#mb_hp3').val(data['mb_hp3']);
+		$('#mb_zip').val(data['mb_zip']);
+		$('#mb_addr1').val(string_blank(string_change(decodeURI(data['mb_addr1']))));
+		$('#mb_addr2').val(string_blank(string_change(decodeURI(data['mb_addr2']))));
+		$('#mb_homepage').val(string_change(data['mb_homepage']));
+		$('#mb_email').val(string_change(data['mb_email']));
+		$('#mb_password').val(decodeURI(data['mb_password']));
+		$('#mb_password_re').val(decodeURI(data['mb_password_re']));
+		$('#nick_chk_val').val(data['nick_chk_val']);
+		$('#email_chk_val').val(data['email_chk_val']);
+		$('#sns_1').val(string_change(data['sns_1']));
+		$('#sns_2').val(string_change(data['sns_2']));
+
+		var mb_id = $('#mb_id').val();
+		var mb_name = $('#mb_name').val();
+		var mb_nick = $('#mb_nick').val();
+		var mb_sex = $('#mb_sex').val();
+		var mb_hp1 = $('#mb_hp1').val();
+		var mb_hp2 = $('#mb_hp2').val();
+		var mb_hp3 = $('#mb_hp3').val();
+		var mb_zip = $('#mb_zip').val();
+		var mb_addr1 = $('#mb_addr1').val();
+		var mb_addr2 = $('#mb_addr2').val();
+		var mb_homepage = $('#mb_homepage').val(); 
+		var mb_email = $('#mb_email').val();
+		var mb_password = $('#mb_password').val();
+		var mb_password_re = $('#mb_password_re').val();
+		var nick_chk_val = $('#nick_chk_val').val();
+		var email_chk_val = $('#email_chk_val').val();
+		var mb_sns1 = $('#sns_1').val();
+		var mb_sns2 = $('#sns_2').val();
+		var agree1 = $('#chk_1:checkbox:checked').val();
+		var agree2 = $('#chk_2:checkbox:checked').val();
+		var agree3 = $('#chk_3:checkbox:checked').val();
+		var agree4 = $('#chk_4:checkbox:checked').val();
+
+		//alert(data['mb_sex']);
+		//alert(nick_chk_val);
+		//alert(mb_nick + mb_sex + mb_zip + nick_chk_val + agree2);
+
+		//alert(mb_email);
+
+		// 유효성 검사 정규식
+		var regexPw = /^[a-zA-Z0-9!@#$%^&*()?_~]{6,15}$/;
+		var regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
+		if(mb_nick == ''){
+			alert("닉네임을 입력하세요.");
+			$("#mb_nick").focus();
+			return false;
+		}
+		if(mb_hp1 == '' || mb_hp2 == '' || mb_hp3 == ''){
+			alert("전화번호를 입력하세요.");
+			$("#mb_hp1").focus();
+			return false;
+		}
+		if(mb_zip == '' || mb_addr1 == '' || mb_addr2 == ''){
+			alert("주소를 입력하세요.");
+			$("#mb_zip").focus();
+			return false;
+		}
+		if(mb_homepage == ''){
+			alert("블로그주소를 입력하세요.");
+			$("#mb_homepage").focus();
+			return false;
+		}
+		
+		if(mb_password.match(regexPw) == null){
+			alert("비밀번호 6자리이상 입력하세요.");
+			$("#mb_password").focus();
+			return false;
+		}
+		
+		if(mb_password != mb_password_re){
+			alert("비밀번호가 일치하지 않습니다.");
+			$("#mb_password").focus();
+			return false;
+		}
+		
+		if(logincheck == 0){
+			if(mb_name == ''){
+				alert("이름을 입력하세요.");
+				$("#mb_email").focus();
+				return false;
+			}
+			if(mb_sex == ''){
+				alert("성별을 선택하세요.");
+				$("#mb_sex").focus();
+				return false;
+			}
+			if(mb_email == ''){
+				alert("이메일을 입력하세요.");
+				$("#mb_email").focus();
+				return false;
+			}
+			if(agree1 != 'on' || agree2 != 'on' || agree3 != 'on' || agree4 != 'on'){
+				alert("이용약관에 동의해주세요.");
+				return false;
+			}
+		}
+		$(this).attr("class","btn_submit off");
+
+		/*var parmas = {
+			mb_name : $('#mb_name').val(),
+			mb_nick : $('#mb_nick').val(),
+			mb_sex : $('input[name=mb_sex]:radio:checked').val(),
+			mb_hp1 : $('#mb_hp1').val(),
+			mb_hp2 : $('#mb_hp2').val(),
+			mb_hp3 : $('#mb_hp3').val(),
+			mb_zip : $('#mb_zip').val(),
+			mb_addr1 : $('#mb_addr1').val(),
+			mb_addr2 : $('#mb_addr2').val(),
+			mb_homepage : $('#mb_homepage').val(),
+			mb_email : $('#mb_email').val(),
+			mb_password : $('#mb_password').val()
+		};
+
+		$.ajax({
+			type : 'POST',
+			url: "http://modublog.co.kr/app_public/ajax/a_register_member.php",
+			data : parmas,
+			enctype: "multipart/form-data",
+			success: function(args){
+				alert("회원 가입 성공");
+				//alert(args);
+			},
+			error: function(e){
+				alert("실패다 이자식아");
+			}
+		});*/
+		
+		$('#mb_form_f').ajaxForm({
+			url: "http://modublog.co.kr/app_public/ajax/a_register_member.php",
+			enctype: "multipart/form-data",
+			type:"post",
+			dataType:"json",
+			success: function(args){
+				if(logincheck == 1){
+					location.reload();
+				}else{
+					location.href="login.html";
+				}
+				//alert("회원가입에 성공하였습니다");
+				console.log(args);
+			},
+			error: function(e){ 
+				console.log("에러");
+			}
+		});
+		$("#mb_form_f").submit();
+	})
+
+	// 이동
+    $(document).on('click','.go_a',function(){
+        var url = $(this).attr("href");
+        location.href(url);
+        return false;
+    });
+    $(document).on('click','.go_a_replace',function(){
+        var url = $(this).attr("href");
+        location.replace(url);
+        return false;
+    });
+	
+	</script>
+	
+</body>
+</html>

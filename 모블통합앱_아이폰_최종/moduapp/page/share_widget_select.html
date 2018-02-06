@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>쉐어 발급</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/iphone.css"/>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/swiper.min.js"></script>
+	<script src="../js/menu.js"></script>
+</head>
+<body style="background:#fff">
+	<div id="header">
+		<h1>모두의쉐어 발급</h1>
+		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+	</div>
+	<div class="widget_wrap">
+		<p id="wdg_title"><span>모두의 쉐어 </span>&nbsp;발급받기</p>
+		<span id="wdg_title_sub">모두의쉐어는 블로그/티스토리/홈페이지 등 다양한 사이트에서 이용이 가능한 서비스입니다.<br>쉐어를 1회 발급받으면 배너이미지, 설정 등의 <b>손쉬운 변경이 가능</b>합니다.</span>	
+		<div class="wdg_stat_li">
+			<ul>
+				<li id="step1">
+					<span class="wdg_stat_stap">step.01</span>
+					<span class="wdg_stat_title">이용약관 동의</span>
+				</li>
+				<li id="step2" class="on">
+					<span class="wdg_stat_stap">step.02</span>
+					<span class="wdg_stat_title">쉐어 코드 발급</span>
+				</li>
+				<li id="step3">
+					<span class="wdg_stat_stap">step.03</span>
+					<span class="wdg_stat_title">쉐어 코드 확인</span>
+				</li>
+			</ul>
+			<input type="hidden" value="" id="step_stat">
+		</div>
+		<!-- 위젯 타입 선택 -->
+		<div class="wdg_box_wrap" id="wdg_is_1">
+			<p class="wdg_b_title">쉐어 타입 선택</p>
+			<a href="#none" class="select_type" id="a_rent">
+				<div class="wdg_box wdg_box_l" id="wdg_fix">
+					<div class="wdg_conts">
+						<p class="wdg_b_title sh_col">고정쉐어</p>
+						<span class="wdg_type_b">사용자의 선택으로 해당 상품의 쉐어가 고정으로 노출됩니다.<br>노출된 쉐어의 상품이 종료되거나 최적화된 쉐어가 있을 경우, 자동변경 될 수 있습니다. 변경될시, 불건전하거나 도박성이 있는 위젯은 절대 노출되지 않으며 랜덤 쉐어보다 높은 20 포인트를 획득할 수 있습니다.</span>
+						<span class="wdg_type_b type_sub">- 최적화된 쉐어 : 맛집블로거의 경우 맛집 연관 쉐어 / 대구 거주자의 경우 대전 연관 쉐어<br>- 자동변경을 원하지 않는 경우, 쉐어 관리 페이지에서 변경 가능</span>
+					</div>
+				</div>
+			</a>
+			<a href="#none" class="select_type" id="a_rand">
+				<div class="wdg_box wdg_box_r" id="wdg_rand">
+					<div class="wdg_conts">
+						<p class="wdg_b_title sh_col">랜덤쉐어</p>
+						<span class="wdg_type_b">모집 진행 중인 모든 업체에 자동참여 됩니다.<br>하나의 쉐어에 다양한 이미지를 랜덤으로 노출할 수 있는 쉐어입니다. <br>단, 고정쉐어 상품은 노출되지 않으며 랜덤 쉐어는 중복으로 설치 하실 수 없습니다.<br>10포인트를 획득할 수 있습니다.</span>
+						<span class="wdg_type_b type_sub">- 고정 쉐어보다 지급되는 포인트가 낮으며, 랜덤쉐어는 중복 설치가 불가능합니다.<br>- ex) 랜덤 쉐어 1개, 고정쉐어 5개[가능] / 랜덤 쉐어 2개, 고정쉐어 5개[불가능]</span>
+					</div>
+				</div>
+			</a>
+			<input type="hidden" name="" id="wdg_type" value="">
+		</div>
+	</div>
+	<script>
+	$(document).on('click','.select_type',function(){
+		var in_path = getQuerystring('in');
+		var a_type = $(this).attr('id');
+		
+		if(a_type == 'a_rent'){
+			location.href="share_widget_list.html?in="+in_path+"&type=rent";
+		}else if(a_type == 'a_rand'){
+			$.ajax({      
+				type:"POST",
+				data:{"widget_p":"p4"},			
+				url:"http://modublog.co.kr/app_public/ajax/a_widget_update.php",      
+				success:function(data){
+					location.href="share_widget_copy.html?in="+in_path+"&type=rand&wr_id="+data;
+				},   
+				error:function(e){  
+					console.log(e.responseText);  
+				}  		
+			})
+		}
+	})
+	</script>
+</body>
+</html>

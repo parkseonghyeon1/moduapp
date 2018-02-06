@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' gap:; style-src 'self' 'unsafe-inline'; script-src 'self' http://* 'unsafe-eval' 'unsafe-inline'; img-src 'self' data: http:; media-src *"/>
+	<title>쉐어 발급</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/iphone.css"/>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/swiper.min.js"></script>
+	<script src="../js/menu.js"></script>
+</head>
+<body style="background:#fff">
+	<div id="header">
+		<h1>모두의쉐어 발급</h1>
+		<a href="javascript:history.back();" class="header_btn_l btn_back">뒤로</a>
+	</div>
+	<div class="widget_wrap">
+		<p id="wdg_title"><span>모두의 쉐어 </span>&nbsp;발급받기</p>
+		<span id="wdg_title_sub">모두의쉐어는 블로그/티스토리/홈페이지 등 다양한 사이트에서 이용이 가능한 서비스입니다.<br>쉐어를 1회 발급받으면 배너이미지, 설정 등의 <b>손쉬운 변경이 가능</b>합니다.</span>	
+		<div class="wdg_stat_li">
+			<ul>
+				<li id="step1" class="on">
+					<span class="wdg_stat_stap">step.01</span>
+					<span class="wdg_stat_title">이용약관 동의</span>
+				</li>
+				<li id="step2">
+					<span class="wdg_stat_stap">step.02</span>
+					<span class="wdg_stat_title">쉐어 코드 발급</span>
+				</li>
+				<li id="step3">
+					<span class="wdg_stat_stap">step.03</span>
+					<span class="wdg_stat_title">쉐어 코드 확인</span>
+				</li>
+			</ul>
+			<input type="hidden" value="" id="step_stat">
+		</div>
+		<div id="tab_agree">
+			<div class="wdg_box_wrap wdg_agree_li">
+				<div class="wdg_box wdg_box_l">
+					<p class="wdg_b_title">이용약관 동의</p>
+					<div class="wdg_conts"><textarea readonly id="textarea1"></textarea></div>
+					<div class="wdg_agree_chk">
+						<input type="checkbox" name="" id="agree_1">
+						<label for="agree_1"><span>이용약관에 동의합니다(필수)</span></label>
+					</div>
+				</div>
+				<div class="wdg_box wdg_box_r">
+					<p class="wdg_b_title">개인정보 수집 및 이용 동의</p>
+					<div class="wdg_conts"><textarea readonly id="textarea2"><? include_once('share_bl_agreement_2.php'); ?></textarea></div>
+				</div>
+				<div class="wdg_agree_chk">
+					<input type="checkbox" name="" id="agree_2">
+					<label for="agree_2"><span>개인정보 수집 이용에 동의합니다(필수)</span></label>
+				</div>
+			</div>
+			<div class="wdg_btn_wrap">
+				<a href="#none" id="wdg_btn_agree">약관 동의</a>
+				<span>반드시, 해당 약관을 읽은 후 동의바랍니다.</span>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		//약관 내용
+		$("#textarea1").load("http://modublog.co.kr/share/widget/share_bl_agreement_1.php");
+		$("#textarea2").load("http://modublog.co.kr/share/widget/share_bl_agreement_2.php");
+	</script>
+
+	<script>
+	// 약관동의 버튼
+	$(document).on('click','#wdg_btn_agree',function(){	
+		var sh_agree1 = $('input:checkbox[id=agree_1]').is(":checked");
+		var sh_agree2 = $('input:checkbox[id=agree_2]').is(":checked");
+		var mb_id = member['mb_id'];
+		var in_path = getQuerystring('in');
+		
+		if(sh_agree1 == true && sh_agree2 == true){
+			$.ajax({
+				type : 'post',
+				url:"http://modublog.co.kr/app_public/ajax/a_widget_update.php",
+				data : {"mb_id" : mb_id,"input_type":"agree"},
+				success : function (data) {
+					console.log(data);
+					if(data == 'success'){
+						if(in_path == 'view'){
+							location.href="share_widget_copy.html?in="+in_path+"&wr_id="+wr_id+"&type="+type;
+						}else{
+							location.href="share_widget_select.html?in="+in_path;
+						}
+					}else{
+						alert("약관 동의에 실패하셨습니다.");
+					}
+				}
+			});		
+		}else{
+			alert("개인정보 수집 및 이용 약관에 동의해주세요.");
+			return false;
+		}
+		return false;
+	})
+	</script>
+</body>
+</html>
